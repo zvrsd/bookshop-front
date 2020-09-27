@@ -1,0 +1,18 @@
+package res;
+
+/**
+ *
+ * @author zvr
+ */
+public class Values {
+
+    public final static String PARAM_USERNAME = "username";
+    public final static String PARAM_PASSWORD = "password";
+    public final static String PARAM_CUSTOMER = "customer";
+    public final static String PARAM_ACTION = "action";
+    public final static String PARAM_BOOKS = "books";
+    public final static String PARAM_BOOK = "book";
+    
+    public final static String ACTION_CREATE_ORDER = "create_order";
+    public final static String ACTION_VALIDATED_ORDER = "validated_order";
+}
