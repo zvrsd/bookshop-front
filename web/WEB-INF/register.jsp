@@ -26,35 +26,35 @@
 
 
             <table class="k_table_form">
-                <form action="_____" method="get">
+                <form action="servletRegister" method="post">
                     <tr>
                         <th>Creation de compte</th>
                     </tr>
                     <tr>
                         <td>
                             Nom<br />
-                            <input class="k_text_field" type="text" name="last_name" value="" />
+                            <input class="k_text_field" type="text" name="last_name" value="${last_name}" />
 
                         </td>
                     </tr>
                     <tr>
                         <td>
                             Prénom<br />
-                            <input class="k_text_field" type="text" name="first_name" value="" />
+                            <input class="k_text_field" type="text" name="first_name" value="${first_name}" />
 
                         </td>
                     </tr>
                     <tr>
                         <td>
                             Adresse email<br />
-                            <input class="k_text_field" type="text" name="email" value="" />
+                            <input class="k_text_field" type="text" name="email" value="${email}" />
 
                         </td>
                     </tr>
                     <tr>
                         <td>
                             Nom d'utilisateur<br />
-                            <input class="k_text_field" type="text" name="username" value="" />
+                            <input class="k_text_field" type="text" name="username" value="${username}" />
 
                         </td>
                     </tr>
@@ -66,7 +66,7 @@
                     </tr>
                     <tr>
                         <td class="k_label_error">
-                            Message d'erreur
+                            ${msg}
                         </td>
                     </tr>
                     <tr>
