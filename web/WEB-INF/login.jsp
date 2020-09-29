@@ -25,8 +25,8 @@
                     </tr>
                     <tr>
                         <td>
-                            Utilisateur<br />
-                            <input class="k_text_field" type="text" name="username" value="${username}" />
+                            Email<br />
+                            <input class="k_text_field" type="text" name="email" value="${email}" />
                         </td>
                     </tr>
                     <tr>

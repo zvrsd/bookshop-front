@@ -8,10 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.bean.LoginBean;
 import model.dao.CustomerDAO;
 import model.entity.Customer;
-import res.Values;
 
+import res.Values;
 /**
  *
  * @author maybe
@@ -20,7 +22,7 @@ import res.Values;
 public class ServletLogin extends HttpServlet {
 
     public final String JSP_LOGIN = "/WEB-INF/login.jsp";
-
+    public final String JSP_ACCOUNT = "/account.html";
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,50 +35,67 @@ public class ServletLogin extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         response.setContentType("text/html;charset=UTF-8");
 
         CustomerDAO customerDAO = new CustomerDAO();
         
         String errorMessage = "";
         
-        String username = "";
+        String email = "";
         String password = "";
         
-        username = request.getParameter("username");
+        email = request.getParameter("email");
         password = request.getParameter("password");
         
+        HttpSession session = request.getSession();
+
+        // This bean is used to check if the user is logged or not and stores
+        // all its information
+        LoginBean loginBean = (LoginBean) session.getAttribute(Values.BEAN_LOGIN_NAME);
+        if (loginBean == null) {
+            loginBean = new LoginBean();
+                session.setAttribute(Values.BEAN_LOGIN_NAME, loginBean);
+        }
+
+        // If the user is logged already
+        if(loginBean.getIsLogged()){
+            
+            // Displaying Account page
+            request.getRequestDispatcher(JSP_ACCOUNT).include(request, response);
+            return;
+        }
         // If the user is coming from another page
         if(!Values.ACTION_LOGIN.equals(request.getParameter(Values.PARAM_ACTION))){
+            
+            // Displaying Login page
             request.getRequestDispatcher(JSP_LOGIN).include(request, response);
             return;
         }
         
-        Customer customer = new Customer();
         try {
-            if(customerDAO.getByUsername(username, password) == null){
-                errorMessage = Values.ERROR_INVALID_LOGIN;
+            Customer customer = customerDAO.getByUsername(email, password);
+            // If login is invalid ( incorrect username/password )
+            if(customer == null){
+                errorMessage += Values.ERROR_INVALID_LOGIN;
+            }
+            // If login OK 
+            else{
+                request.getRequestDispatcher(JSP_ACCOUNT).include(request, response);
+                loginBean.setIsLogged(true);
+                session.setAttribute(Values.BEAN_LOGIN_NAME, loginBean);
+                session.setAttribute(Values.PARAM_CUSTOMER, customer);
+                return;
             }
             
-            customer.setCustomerFName("first_name_guy");
-            customer.setCustomerLName("last_name_guy");
-            customer.setCustomerUsername("123");
-            customer.setCustomerPassword("123");
-            customer.setCustomerEmail("email@email.mail");
-            
-            
-            customerDAO.add(customer);
         } catch (NamingException ex) {
-            errorMessage = ex.getMessage();
+            errorMessage += ex.getMessage();
         } catch (SQLException ex) {
-            errorMessage = ex.getMessage();
+            errorMessage += ex.getMessage();
         }
         
-        request.setAttribute("username", request.getParameter("username"));
-        
+        request.setAttribute("email", request.getParameter("email"));
         request.setAttribute("error_message", errorMessage);
-        
-        
-        
         
         request.getRequestDispatcher(JSP_LOGIN).include(request, response);
     }
@@ -109,6 +128,4 @@ public class ServletLogin extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
 }
-
