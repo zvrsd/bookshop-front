@@ -15,4 +15,6 @@ public class Values {
     
     public final static String ACTION_CREATE_ORDER = "create_order";
     public final static String ACTION_VALIDATED_ORDER = "validated_order";
+    
+    public final static String ERROR_INVALID_LOGIN = "Identifiants invalides";
 }

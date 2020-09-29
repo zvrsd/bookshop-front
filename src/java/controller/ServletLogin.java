@@ -1,0 +1,91 @@
+package controller;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.NamingException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import model.dao.CustomerDAO;
+import res.Values;
+
+/**
+ *
+ * @author maybe
+ */
+@WebServlet(urlPatterns = {"/login"})
+public class ServletLogin extends HttpServlet {
+
+    public final String JSP_LOGIN = "/WEB-INF/login.jsp";
+
+    
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+
+        CustomerDAO customerDAO = new CustomerDAO();
+        
+        String errorMessage = "";
+        
+        try {
+            if(customerDAO.getByUsername("20", "20") == null){
+                errorMessage = Values.ERROR_INVALID_LOGIN;
+            }
+        } catch (NamingException ex) {
+            errorMessage = ex.getMessage();
+        } catch (SQLException ex) {
+            errorMessage = ex.getMessage();
+        }
+        
+        request.setAttribute("username", request.getParameter("username"));
+        
+        request.setAttribute("error_message", errorMessage);
+        
+        
+        request.getRequestDispatcher(JSP_LOGIN).include(request, response);
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+}
+
