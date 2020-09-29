@@ -1,14 +1,18 @@
+<%-- 
+    Document   : register
+    Created on : Sep 29, 2020, 9:42:47 AM
+    Author     : Cy
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
-<head>
-    <title>S'enregistrer</title>
-    <link rel="stylesheet" href="css/default.css" />
-    <meta charset="UTF-8">
-</head>
-
-<body>
-
+    <head>
+        <meta charset="UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+     
     <!-- page title container -->
     <div class="k_box_page_title">
         Mon compte
@@ -22,7 +26,7 @@
 
 
             <table class="k_table_form">
-                <form action="servletRegister" method="post">
+                <form action="_____" method="get">
                     <tr>
                         <th>Creation de compte</th>
                     </tr>
@@ -75,5 +79,4 @@
         </div>
     </div>
 </body>
-
 </html>
