@@ -29,4 +29,9 @@ public class LoginBean implements Serializable{
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+    
+    public void logout(){
+        setIsLogged(false);
+        customer = null;
+    }
 }
