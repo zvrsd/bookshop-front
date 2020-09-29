@@ -32,17 +32,35 @@ public class servletRegister extends HttpServlet {
             String email = request.getParameter("email");
             String username = request.getParameter("username");
             String password = request.getParameter("password");
+            // Variable 
+            String msg;
             
+            if (last_name == null){
+                RequestDispatcher req = request.getRequestDispatcher("/WEB-INF/register.jsp");
+                req.include(request, response);
             
+            return;
+            }
 // Check if fliends are empty, if so. the page return to initial state - and shows an error message            
             if(last_name.isEmpty() || first_name.isEmpty() || email.isEmpty() || 
 				username.isEmpty() || password.isEmpty()){
-               RequestDispatcher req = request.getRequestDispatcher("register.html");
+                msg = "ERROR!!!!";
+                request.setAttribute("msg", msg);
+                request.setAttribute("last_name", last_name);
+                request.setAttribute("first_name", first_name);
+                request.setAttribute("email", email);
+                request.setAttribute("username", username);                
+                
+                RequestDispatcher req = request.getRequestDispatcher("/WEB-INF/register.jsp");
                 req.include(request, response);
                 
+                
             }else{
-// If form is ok, the newly registered customer gets send to his account page.                
-               RequestDispatcher req = request.getRequestDispatcher("account.html");
+// If form is ok, the newly registered customer gets send to his account page. 
+               
+                
+               
+               RequestDispatcher req = request.getRequestDispatcher("/account.html");
                req.forward(request, response);
             }
         }
