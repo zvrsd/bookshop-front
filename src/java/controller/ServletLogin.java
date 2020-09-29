@@ -40,8 +40,20 @@ public class ServletLogin extends HttpServlet {
         
         String errorMessage = "";
         
+        String username = "";
+        String password = "";
+        
+        username = request.getParameter("username");
+        password = request.getParameter("password");
+        
+        // If the user is coming from another page
+        if(!Values.ACTION_LOGIN.equals(request.getParameter(Values.PARAM_ACTION))){
+            request.getRequestDispatcher(JSP_LOGIN).include(request, response);
+            return;
+        }
+        
         try {
-            if(customerDAO.getByUsername("20", "20") == null){
+            if(customerDAO.getByUsername(username, password) == null){
                 errorMessage = Values.ERROR_INVALID_LOGIN;
             }
         } catch (NamingException ex) {

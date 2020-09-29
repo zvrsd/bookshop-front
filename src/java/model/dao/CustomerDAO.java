@@ -16,6 +16,13 @@ public class CustomerDAO implements DAO<Customer,Long> {
 
     public final String TABLE_CUSTOMER = "CUSTOMER";
 
+    public final String QUERY_INSERT_CUSTOMER
+            = "INSERT INTO " + TABLE_CUSTOMER
+            + "(CUSTOMER_L_NAME, CUSTOMER_F_NAME, CUSTOMER_EMAIL, "
+            + "CUSTOMER_USERNAME, CUSTOMER_PASSWORD, CLIENT_DATE)"
+            + " values"
+            + "(?,?,?,?,?,?)";
+
     public final String QUERY_SELECT_ALL_CUSTOMER
             = "SELECT * FROM " + TABLE_CUSTOMER;
     public final String QUERY_SELECT_CUSTOMER
@@ -24,11 +31,32 @@ public class CustomerDAO implements DAO<Customer,Long> {
     public final String QUERY_SELECT_CUSTOMER_FROM_USERNAME
             = "SELECT * FROM " + TABLE_CUSTOMER + " "
             + "WHERE CUSTOMER_USERNAME = ? AND "
-            + " AND CUSTOMER_PASSWORD = ?";
+            + "CUSTOMER_PASSWORD = ?";
     
     @Override
-    public void add(Customer object){
+    public void add(Customer object) throws NamingException, SQLException{
+         
+        Database database = Database.getInstance();
+        Connection connection;
+        PreparedStatement statement;
+        int result = -1;
+
+        connection = database.getConnection();
+        statement = connection.prepareStatement(QUERY_INSERT_CUSTOMER);
+
+        statement.setString(1, object.getCustomerLName());
+        statement.setString(2, object.getCustomerFName());
+        statement.setString(3, object.getCustomerEmail());
+        statement.setString(4, object.getCustomerUsername());
+        statement.setString(5, object.getCustomerPassword());
+        //statement.setString(6, );
         
+
+        result = statement.executeUpdate();
+
+        statement.close();
+        connection.close();
+
     }
 
     @Override
@@ -53,7 +81,7 @@ public class CustomerDAO implements DAO<Customer,Long> {
     
     public Customer getByUsername(String username, String password) throws NamingException, SQLException{
         
-        Customer customer = new Customer();
+        Customer customer = null;
 
         Database database = Database.getInstance();
         Connection connection;
@@ -72,6 +100,7 @@ public class CustomerDAO implements DAO<Customer,Long> {
         // Creates objects based on the query results
         if (resultSet.next()) {
 
+            customer = new Customer();
             customer.setCustomerId(resultSet.getLong(1));
             customer.setCustomerLName(resultSet.getString(2));
             customer.setCustomerFName(resultSet.getString(3));

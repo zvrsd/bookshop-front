@@ -43,7 +43,6 @@
                     <tr>
                         <td>
                             <button class="k_button" type="submit" name="action" value="login">Connexion</button>
-
                         </td>
                     </tr>
                 </form>
