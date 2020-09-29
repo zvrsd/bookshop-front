@@ -1,21 +1,27 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.dao.CustomerDAO;
+import model.entity.Customer;
+import res.Values;
 
 /**
  *
  * @author maybe
  */
-@WebServlet(urlPatterns = {"/bookshop"})
-public class ServletController extends HttpServlet {
+@WebServlet(urlPatterns = {"/login"})
+public class ServletLogin extends HttpServlet {
 
-    public final String JSP_HOME = "/WEB-INF/home.jsp";
+    public final String JSP_LOGIN = "/WEB-INF/login.jsp";
 
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -29,8 +35,50 @@ public class ServletController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        CustomerDAO customerDAO = new CustomerDAO();
         
-        request.getRequestDispatcher(JSP_HOME).include(request, response);
+        String errorMessage = "";
+        
+        String username = "";
+        String password = "";
+        
+        username = request.getParameter("username");
+        password = request.getParameter("password");
+        
+        // If the user is coming from another page
+        if(!Values.ACTION_LOGIN.equals(request.getParameter(Values.PARAM_ACTION))){
+            request.getRequestDispatcher(JSP_LOGIN).include(request, response);
+            return;
+        }
+        
+        Customer customer = new Customer();
+        try {
+            if(customerDAO.getByUsername(username, password) == null){
+                errorMessage = Values.ERROR_INVALID_LOGIN;
+            }
+            
+            customer.setCustomerFName("first_name_guy");
+            customer.setCustomerLName("last_name_guy");
+            customer.setCustomerUsername("123");
+            customer.setCustomerPassword("123");
+            customer.setCustomerEmail("email@email.mail");
+            
+            
+            customerDAO.add(customer);
+        } catch (NamingException ex) {
+            errorMessage = ex.getMessage();
+        } catch (SQLException ex) {
+            errorMessage = ex.getMessage();
+        }
+        
+        request.setAttribute("username", request.getParameter("username"));
+        
+        request.setAttribute("error_message", errorMessage);
+        
+        
+        
+        
+        request.getRequestDispatcher(JSP_LOGIN).include(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -63,3 +111,4 @@ public class ServletController extends HttpServlet {
     }
 
 }
+

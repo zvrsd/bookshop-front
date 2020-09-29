@@ -325,14 +325,18 @@
     width: 100%;
 }
 
-#k_table_form_shopping_cart th {}
+#k_table_form_shopping_cart th {
+    
+}
 
 #k_table_form_shopping_cart td {
     padding: 4px 8px;
     border: 1px solid white;
 }
 
-#k_table_form_shopping_cart tr {}
+#k_table_form_shopping_cart tr {
+    
+}
 
 #k_box_shopping_cart_actions {
     display: flex;
@@ -348,5 +352,26 @@
 #k_box_shopping_cart_order {
     width: 50%;
     padding: 16px 40px;
+    background-color: var(--k_main_bg_color);
+}
+/***********/
+/* Account */
+/***********/
+#k_box_order_validation_content {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    text-align: center;
+    align-items: stretch;
+    background-color: var(--k_main_bg_color);
+}
+
+#k_box_order_validation_total {
+    display: flex;
+    flex-direction: row;
+    width: 30%;
+    padding: 10px;
+    text-align: center;
+    align-items: stretch;
     background-color: var(--k_main_bg_color);
 }

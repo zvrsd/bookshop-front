@@ -1,14 +1,13 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
-<head>
-    <title>Connexion</title>
-    <link rel="stylesheet" href="css/default.css" />
-</head>
-
-<body>
-
-    <!-- page title container -->
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Login</title>
+        <link rel="stylesheet" href="css/default.css" />
+    </head>
+    <body>
+        <!-- page title container -->
     <div class="k_box_page_title">
         Mon compte
     </div>
@@ -20,14 +19,14 @@
         <div class="k_box_account" id="k_box_account_login">
 
             <table class="k_table_form">
-                <form action="login" method="get">
+                <form action="login" method="post">
                     <tr>
                         <th>Se connecter</th>
                     </tr>
                     <tr>
                         <td>
                             Utilisateur<br />
-                            <input class="k_text_field" type="text" name="username" value="" />
+                            <input class="k_text_field" type="text" name="username" value="${username}" />
                         </td>
                     </tr>
                     <tr>
@@ -38,13 +37,12 @@
                     </tr>
                     <tr>
                         <td class="k_label_error">
-                            Message d'erreur
+                            ${error_message}
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <button class="k_button" type="submit" name="action" value="login">Connexion</button>
-
                         </td>
                     </tr>
                 </form>
@@ -70,6 +68,5 @@
         </div>
 
     </div>
-</body>
-
+    </body>
 </html>

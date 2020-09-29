@@ -13,6 +13,10 @@ public class Values {
     public final static String PARAM_BOOKS = "books";
     public final static String PARAM_BOOK = "book";
     
+    public final static String ACTION_LOGIN = "login";
+    public final static String ACTION_REGISTER = "register";
     public final static String ACTION_CREATE_ORDER = "create_order";
     public final static String ACTION_VALIDATED_ORDER = "validated_order";
+    
+    public final static String ERROR_INVALID_LOGIN = "Identifiants invalides";
 }
