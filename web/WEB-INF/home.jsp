@@ -12,6 +12,12 @@
         This page is empty<br/>
         TODO : Add content
         
+        username : ${username}
+        password : ${password}
+        email    : ${email}
+        first    : ${first_name}
+        last     : ${last_name}
+        
     </body>
 
 </html>
