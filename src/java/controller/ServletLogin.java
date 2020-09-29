@@ -2,8 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.dao.CustomerDAO;
+import model.entity.Customer;
 import res.Values;
 
 /**
@@ -52,10 +51,20 @@ public class ServletLogin extends HttpServlet {
             return;
         }
         
+        Customer customer = new Customer();
         try {
             if(customerDAO.getByUsername(username, password) == null){
                 errorMessage = Values.ERROR_INVALID_LOGIN;
             }
+            
+            customer.setCustomerFName("first_name_guy");
+            customer.setCustomerLName("last_name_guy");
+            customer.setCustomerUsername("123");
+            customer.setCustomerPassword("123");
+            customer.setCustomerEmail("email@email.mail");
+            
+            
+            customerDAO.add(customer);
         } catch (NamingException ex) {
             errorMessage = ex.getMessage();
         } catch (SQLException ex) {
@@ -65,6 +74,8 @@ public class ServletLogin extends HttpServlet {
         request.setAttribute("username", request.getParameter("username"));
         
         request.setAttribute("error_message", errorMessage);
+        
+        
         
         
         request.getRequestDispatcher(JSP_LOGIN).include(request, response);

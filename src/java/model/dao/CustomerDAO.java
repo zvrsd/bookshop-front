@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.naming.NamingException;
 import model.entity.Customer;
@@ -49,9 +51,8 @@ public class CustomerDAO implements DAO<Customer,Long> {
         statement.setString(3, object.getCustomerEmail());
         statement.setString(4, object.getCustomerUsername());
         statement.setString(5, object.getCustomerPassword());
-        //statement.setString(6, );
+        statement.setString(6, DateFormat.getInstance().format(new Date()));
         
-
         result = statement.executeUpdate();
 
         statement.close();
