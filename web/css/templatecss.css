@@ -48,7 +48,7 @@ a {
     margin-left: 0; 
 }
 
-nav {
+#bottomNav {
     display:table;
     margin: 0 auto;
 }
