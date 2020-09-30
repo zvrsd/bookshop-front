@@ -19,7 +19,7 @@ public class Values {
     public final static String ACTION_VALIDATED_ORDER = "validated_order";
     
     public final static String ERROR_INVALID_LOGIN = "Identifiants invalides";
-    
+
     public final static String MSG_LOGIN_SUCCESS = "Identifiants OK";
     
     public final static String BEAN_LOGIN_NAME = "bean_login";

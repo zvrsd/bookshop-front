@@ -8,15 +8,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.dao.CustomerDAO;
+import model.entity.Customer;
+import res.Values;
+
 import javax.servlet.http.HttpSession;
 import model.bean.LoginBean;
 import model.dao.CustomerDAO;
 import model.entity.Customer;
 
 import res.Values;
+
 /**
  *
- * @author maybe
+ * @author zvr
  */
 @WebServlet(urlPatterns = {"/login"})
 public class ServletLogin extends HttpServlet {
@@ -35,7 +41,7 @@ public class ServletLogin extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         response.setContentType("text/html;charset=UTF-8");
 
         CustomerDAO customerDAO = new CustomerDAO();
@@ -96,7 +102,7 @@ public class ServletLogin extends HttpServlet {
         
         request.setAttribute("email", request.getParameter("email"));
         request.setAttribute("error_message", errorMessage);
-        
+      
         request.getRequestDispatcher(JSP_LOGIN).include(request, response);
     }
 
@@ -128,4 +134,3 @@ public class ServletLogin extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-}
