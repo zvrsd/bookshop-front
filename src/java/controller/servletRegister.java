@@ -7,12 +7,20 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.dao.CustomerDAO;
+import model.entity.Customer;
 
 /**
  *
@@ -58,10 +66,28 @@ public class servletRegister extends HttpServlet {
             }else{
 // If form is ok, the newly registered customer gets send to his account page. 
                
+               Customer customer = new Customer();
                 
+               customer.setCustomerLName(request.getParameter("last_name"));
+               customer.setCustomerFName(request.getParameter("first_name"));
+               customer.setCustomerUsername(request.getParameter("username"));
+               customer.setCustomerEmail(request.getParameter("email"));
+               customer.setCustomerPassword(request.getParameter("password"));
                
-               RequestDispatcher req = request.getRequestDispatcher("/account.html");
-               req.forward(request, response);
+               CustomerDAO newCustomer = new CustomerDAO();
+                try {
+                    newCustomer.add(customer);
+                } catch (NamingException ex) {
+                    System.out.println("Naming exception: " + ex);
+                    Logger.getLogger(servletRegister.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    System.out.println("SQLException: " + ex);
+                    Logger.getLogger(servletRegister.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               
+               
+            RequestDispatcher req = request.getRequestDispatcher("/account.html");
+            req.forward(request, response);
             }
         }
     }
