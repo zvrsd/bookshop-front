@@ -36,12 +36,14 @@
         <section>
             <h2>Modification des informations</h2>
             
+            <form action="ServletIdModif" method="post">
             <ul>
             <li><label>Nom </label><input type="text" name="lName">*</li>
             <li><label>Prénom </label><input type="text" name="fName">*</li>
             <li><label>Pseudonyme</label><input type="text" name="pseudo"></li>
-            <li><label>Ancien mot de passe</label></li>
+            
                 <li><label>Nouveau mot de passe</label><input type="text" name="newPassword">*</li>
+                <li><label>Confirmer nouveau mot de passe</label><input type="text" name="newPasswordConf">*</li>
             </ul>
             
             <section>
@@ -50,6 +52,7 @@
                  
                 <button type="button"><a href="id.jsp">Annuler</a></button>
             </section>
+            </form>    
         </section>
            
              
