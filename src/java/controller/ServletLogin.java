@@ -28,7 +28,7 @@ import res.Values;
 public class ServletLogin extends HttpServlet {
 
     public final String JSP_LOGIN = "/WEB-INF/login.jsp";
-    public final String JSP_ACCOUNT = "/account.html";
+    public final String JSP_ACCOUNT = "/template.html";
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -133,4 +133,5 @@ public class ServletLogin extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        }
     }
