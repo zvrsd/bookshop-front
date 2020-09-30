@@ -9,10 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.dao.CustomerDAO;
-import model.entity.Customer;
-import res.Values;
-
 import javax.servlet.http.HttpSession;
 import model.bean.LoginBean;
 import model.dao.CustomerDAO;
