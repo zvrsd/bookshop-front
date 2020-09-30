@@ -36,7 +36,7 @@
         <section>
             <h2>Modification des informations</h2>
             
-            <form action="ServletIdModif" method="post">
+            <form action="/ServletIdModif" method="post">
             <ul>
             <li><label>Nom </label><input type="text" name="lName">*</li>
             <li><label>Prénom </label><input type="text" name="fName">*</li>
