@@ -26,8 +26,8 @@
                     </tr>
                     <tr>
                         <td>
-                            Email<br />
-                            <input class="k_text_field" type="text" name="email" value="${email}" />
+                            Utilisateur<br />
+                            <input class="k_text_field" type="text" name="username" value="${username}" />
                         </td>
                     </tr>
                     <tr>
@@ -60,8 +60,8 @@
                 </tr>
                 <tr>
                     <td>
-                        <form action="servletRegister" method="post">
-                            <button class="k_button" type="submit" name="action" value="register">Creer un compte</button>
+                        <form action="register.html" method="get">
+                            <button class="k_button" type="submit" name="action" value="new_account">Creer un compte</button>
                         </form>
 
                     </td>
