@@ -43,10 +43,10 @@ public class CustomerDAO implements DAO<Customer,Long> {
         Connection connection;
         PreparedStatement statement;
         int result = -1;
-
+ 
         connection = database.getConnection();
         statement = connection.prepareStatement(QUERY_INSERT_CUSTOMER);
-
+        
         statement.setString(1, object.getCustomerLName());
         statement.setString(2, object.getCustomerFName());
         statement.setString(3, object.getCustomerEmail());
