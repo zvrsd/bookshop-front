@@ -40,7 +40,6 @@ public class Database {
             ds = (DataSource) context.lookup(CONTEXT_NAME);
             connection = ds.getConnection();
         }
-
         return connection;
     }
 

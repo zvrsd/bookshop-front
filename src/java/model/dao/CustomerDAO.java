@@ -30,7 +30,8 @@ public class CustomerDAO implements DAO<Customer,Long> {
     public final String QUERY_SELECT_CUSTOMER
             = "SELECT * FROM " + TABLE_CUSTOMER + " "
             + "WHERE CUSTOMER_ID = ?";
-    public final String QUERY_SELECT_CUSTOMER_FROM_USERNAME
+
+    public final String QUERY_SELECT_CUSTOMER_FROM_EMAIL
             = "SELECT * FROM " + TABLE_CUSTOMER + " "
             + "WHERE CUSTOMER_USERNAME = ? AND "
             + "CUSTOMER_PASSWORD = ?";
@@ -80,7 +81,8 @@ public class CustomerDAO implements DAO<Customer,Long> {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
-    public Customer getByUsername(String username, String password) throws NamingException, SQLException{
+
+    public Customer getByUsername(String email, String password) throws NamingException, SQLException{
         
         Customer customer = null;
 
@@ -92,8 +94,8 @@ public class CustomerDAO implements DAO<Customer,Long> {
         connection = database.getConnection();
 
         // Prepares and execute the query
-        statement = connection.prepareStatement(QUERY_SELECT_CUSTOMER_FROM_USERNAME);
-        statement.setString(1, username);
+        statement = connection.prepareStatement(QUERY_SELECT_CUSTOMER_FROM_EMAIL);
+        statement.setString(1, email);
         statement.setString(2, password);
         
         resultSet = statement.executeQuery();
