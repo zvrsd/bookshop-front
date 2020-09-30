@@ -7,7 +7,8 @@
         <link rel="stylesheet" href="css/default.css" />
     </head>
     <body>
-        <!-- page title container -->
+        
+    <!-- page title container -->
     <div class="k_box_page_title">
         Mon compte
     </div>
@@ -35,6 +36,7 @@
                             <input class="k_text_field" type="password" name="password" value="" />
                         </td>
                     </tr>
+                    
                     <tr>
                         <td class="k_label_error">
                             ${error_message}
