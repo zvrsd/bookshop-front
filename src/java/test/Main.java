@@ -13,7 +13,7 @@ import model.entity.Customer;
  */
 public class Main {
     
-    public static void main(String a){
+    public static void main(String [] a){
         
         //--------------------------------
         // Adds a customer to the database
@@ -34,8 +34,10 @@ public class Main {
             customerDAO.add(customer);
             
         } catch (NamingException ex) {
+            System.out.println("Naming exception: " + ex);
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex);
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
