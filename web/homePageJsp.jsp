@@ -22,8 +22,14 @@
     <body>
             
         <section id="evenement">
-            <h2>L'événement du moment</h2>
-            <a href="">Rentrée des classes 2020</a></section>
+             <h2>L'événement du moment</h2>
+          
+        
+        <FORM ACTION="/jspEvent.jsp"   METHOD="get">  
+      
+             <input type="image" class="submit1" src='img/evtRentree.png' alt="Submit button" name="event" value="2" />
+                                                                         
+        </FORM>        
         
         <section id = présentation>
             <h2>Présentation</h2>
