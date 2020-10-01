@@ -1,20 +1,7 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" href="templatecss.css">
-    </head>
-    <body>
-        
-        
-         <footer>
+
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
              <nav id="bottomNav">
              <ul id="footer">
                  <li class="barreMenuB"><a href="">CGV</a></li>
@@ -26,8 +13,5 @@ and open the template in the editor.
                  <li class="barreMenuB"><a href=""><img src="img/twitter.png" class="logo"></a></li>
              </ul>
                  </nav>
-                 </footer>
-             
+                           
             <div id="tdr">Tous droits réservés - 2020</div>
-    </body>
-</html>
