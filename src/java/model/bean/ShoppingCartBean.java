@@ -12,22 +12,18 @@ public class ShoppingCartBean implements Serializable{
     private HashMap<String,Book> books;
     private HashMap<String,Integer> quantity;
 
-    public HashMap<String, Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(HashMap<String, Book> books) {
-        this.books = books;
-    }
     
     public ShoppingCartBean(){
         books = new HashMap<>();
         quantity = new HashMap<>();
     }
     
+    // Add a new book into the cart
     public void add(Book book){
-        if(books.containsValue(book))
+        setQuantity(book, 1);
     }
+    
+    // Set book's quantity manually
     public void setQuantity(Book book, int quantity) {
         
         // If the book isnt in the map - add it
@@ -58,7 +54,12 @@ public class ShoppingCartBean implements Serializable{
         books.remove(book.getIsbn());
     }
     
+    // Returns all book but not their quantity in cart
+    public HashMap<String, Book> getBooks() {
+        return books;
+    }
     
+    // Returns book's quantity for a given book
     public int getQuantity(Book book){
         if(quantity.containsKey(book.getIsbn())){
             return quantity.get(book.getIsbn());

@@ -18,16 +18,10 @@
             <!-- page content container -->
             <div id="k_box_shopping_cart_content">
 
-                <c:if test="{true}" scope="request">
-                    <!-- displayed only when the shopping cart is empty -->
-                    <label class="k_label_error">Le panier est vide</label>
-                </c:if>
-                
-                <c:if test="" scope="request">
-                    <!-- Informative message -->
-                    <label class="k_label_info">Le livre A vient d'etre retiré du panier</label>
-                </c:if>
-                    
+                <label class="k_label_error">${error_message}</label>
+
+                <label class="k_label_info">${message}</label>
+
                 <!-- This has to be displayed only if the cart contains products -->
                 <table class="k_table_form" id="k_table_form_shopping_cart">
                     <form action="ServletShoppingCart" method="post">

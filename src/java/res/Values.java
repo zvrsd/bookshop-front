@@ -29,4 +29,5 @@ public class Values {
     public final static String BEAN_LOGIN_NAME = "bean_login";
     
     public final static String JSP_ERROR = "WEB-INF/error.jsp";
+    public final static String JSP_SHOPPING_CART = "WEB-INF/shopping_cart.jsp";
 }
