@@ -81,12 +81,13 @@ public class ServletLogin extends HttpServlet {
             if(customer == null){
                 errorMessage += Values.ERROR_INVALID_LOGIN;
             }
-            // If login OK 
+            // If login OK
             else{
-                request.getRequestDispatcher(JSP_ACCOUNT).include(request, response);
                 loginBean.setIsLogged(true);
                 session.setAttribute(Values.BEAN_LOGIN_NAME, loginBean);
                 session.setAttribute(Values.PARAM_CUSTOMER, customer);
+                
+                request.getRequestDispatcher(JSP_ACCOUNT).include(request, response);
                 return;
             }
             
