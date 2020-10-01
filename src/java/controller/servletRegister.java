@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.dao.CustomerDAO;
 import model.entity.Customer;
-import res.Values;
 
 /**
  *
@@ -46,7 +45,7 @@ public class servletRegister extends HttpServlet {
             */            
             
             if (last_name == null){
-                RequestDispatcher req = request.getRequestDispatcher(Values.JSP_REGISTER_FULL);
+                RequestDispatcher req = request.getRequestDispatcher("/WEB-INF/register.jsp");
                 req.include(request, response);
             
             return;
@@ -75,7 +74,7 @@ public class servletRegister extends HttpServlet {
                 request.setAttribute("email", email);
                 request.setAttribute("username", username);                
                 
-                RequestDispatcher req = request.getRequestDispatcher(Values.JSP_REGISTER_FULL);
+                RequestDispatcher req = request.getRequestDispatcher("/WEB-INF/register.jsp");
                 req.include(request, response);
                 return;
                 }  
@@ -104,7 +103,7 @@ public class servletRegister extends HttpServlet {
                 request.setAttribute("email", email);
                 request.setAttribute("username", username);                
                 
-                RequestDispatcher req = request.getRequestDispatcher(Values.JSP_REGISTER_FULL);
+                RequestDispatcher req = request.getRequestDispatcher("/WEB-INF/register.jsp");
                 req.include(request, response);
                 
 //            }else if(request.getAttribute("email") == {
