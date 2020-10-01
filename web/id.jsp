@@ -48,6 +48,6 @@
         <footer><jsp:include page="footerJsp.jsp" /></footer>
         
    <!-- Site web créé par la fine équipe -->
-
+    </body>
         
 </html>
