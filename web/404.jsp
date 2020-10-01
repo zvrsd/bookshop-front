@@ -22,11 +22,19 @@
         
         <section>
             <h1>Erreur 404</h1>
+            
         <p>La page demandée n'existe pas !<br />
             Vous pouvez poursuivre la navigation sur le site en cliquant sur l'un des liens suivants...</p>
         <ul>
-            <li><a href="">Précédent</a></li>
+            <li><a onclick="goBack()">Précédent</a></li>
+            <script>
+                function goBack() {
+                window.history.back();
+                }
+            </script>
+            
             <li><a href="homePageJsp.jsp">Page d'accueil</a></li>
+            
         </ul>
         </section>
         
