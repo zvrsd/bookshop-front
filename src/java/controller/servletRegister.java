@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controller;
 
 import java.io.IOException;
@@ -31,8 +27,9 @@ public class servletRegister extends HttpServlet {
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException {      
         response.setContentType("text/html;charset=UTF-8");
+
         try (PrintWriter out = response.getWriter()) {
             /* Gets the info entered on the register.html page */
             String last_name = request.getParameter("last_name");
@@ -42,6 +39,10 @@ public class servletRegister extends HttpServlet {
             String password = request.getParameter("password");
             // Variable 
             String msg;
+          
+/*
+            This part of code checks if the user is coming from outside of the page:
+            */            
             
             if (last_name == null){
                 RequestDispatcher req = request.getRequestDispatcher("/WEB-INF/register.jsp");
@@ -49,10 +50,18 @@ public class servletRegister extends HttpServlet {
             
             return;
             }
-// Check if fliends are empty, if so. the page return to initial state - and shows an error message            
+/*
+            
+            Check if fliends are empty, if so. the page return to initial state -
+            and shows an error message
+
+            Also it leaves the inserted text into corresponding fields
+*/
+            
+            
             if(last_name.isEmpty() || first_name.isEmpty() || email.isEmpty() || 
 				username.isEmpty() || password.isEmpty()){
-                msg = "ERROR!!!!";
+                msg = "Veuillez remplir les champs manquants!!!";
                 request.setAttribute("msg", msg);
                 request.setAttribute("last_name", last_name);
                 request.setAttribute("first_name", first_name);
@@ -62,6 +71,7 @@ public class servletRegister extends HttpServlet {
                 RequestDispatcher req = request.getRequestDispatcher("/WEB-INF/register.jsp");
                 req.include(request, response);
                 
+//            }else if(request.getAttribute("email") == {
                 
             }else{
 // If form is ok, the newly registered customer gets send to his account page. 
