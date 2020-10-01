@@ -130,8 +130,8 @@ public class servletRegister extends HttpServlet {
                     Logger.getLogger(servletRegister.class.getName()).log(Level.SEVERE, null, ex);
                 }
                
-               
-            RequestDispatcher req = request.getRequestDispatcher("/account.html");
+// Change this line to redirect new customer to desired page of website:               
+            RequestDispatcher req = request.getRequestDispatcher("/homePageJsp.jsp");
             req.forward(request, response);
             }
         }
