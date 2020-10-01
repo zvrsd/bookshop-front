@@ -38,6 +38,7 @@ public class ServletBook extends HttpServlet {
         // YOU MUST PROVIDE AN ISBN OR THE BOOK TO DISPLAY
         // in request
         
+        // Attempts to retrieve the book from the request, if one was given
         Book book = (Book) request.getAttribute(Values.PARAM_BOOK);
    
         // If no book object was provided
@@ -57,7 +58,7 @@ public class ServletBook extends HttpServlet {
                 }
             }
 
-            // If there is still no book at this points
+            // If there is still no book at this point
             if (book == null) {
 
                 // Abort mission

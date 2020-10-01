@@ -9,6 +9,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/default.css" />
         <title>JSP Page</title>
     </head>
     <body>
