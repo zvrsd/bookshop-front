@@ -27,7 +27,7 @@ public class servletRegister extends HttpServlet {
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {      
+            throws ServletException, IOException, NamingException {      
         response.setContentType("text/html;charset=UTF-8");
 
         try (PrintWriter out = response.getWriter()) {
@@ -52,12 +52,47 @@ public class servletRegister extends HttpServlet {
             }
 /*
             
-            Check if fliends are empty, if so. the page return to initial state -
+            Check if fields are empty, if so. the page return to initial state -
             and shows an error message
 
             Also it leaves the inserted text into corresponding fields
 */
-            
+            if (email !=null){
+                //check if email is in database:
+                
+//                Customer newCustomer = new Customer();
+                CustomerDAO dao = new CustomerDAO();
+                try{
+                boolean emailFound = dao.getCheckEmail(email);
+                
+                if (emailFound == true){;
+                // If Email exists in database
+                msg ="Cet email est deja connu! Veuillez voulez vous connecter!";
+                request.setAttribute("msg", msg);
+                request.setAttribute("last_name", last_name);
+                request.setAttribute("first_name", first_name);
+                request.setAttribute("email", email);
+                request.setAttribute("username", username);                
+                
+                RequestDispatcher req = request.getRequestDispatcher("/WEB-INF/register.jsp");
+                req.include(request, response);
+                return;
+                }  
+                } catch (NamingException ex) {
+                    System.out.println("Naming exception: " + ex);
+                    Logger.getLogger(servletRegister.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    System.out.println("SQLException: " + ex);
+                    Logger.getLogger(servletRegister.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                 
+                                    
+                
+   
+                        
+            }              
+       
+                
             
             if(last_name.isEmpty() || first_name.isEmpty() || email.isEmpty() || 
 				username.isEmpty() || password.isEmpty()){
@@ -95,8 +130,8 @@ public class servletRegister extends HttpServlet {
                     Logger.getLogger(servletRegister.class.getName()).log(Level.SEVERE, null, ex);
                 }
                
-               
-            RequestDispatcher req = request.getRequestDispatcher("/account.html");
+// Change this line to redirect new customer to desired page of website:               
+            RequestDispatcher req = request.getRequestDispatcher("/homePageJsp.jsp");
             req.forward(request, response);
             }
         }
@@ -114,7 +149,11 @@ public class servletRegister extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (NamingException ex) {
+            Logger.getLogger(servletRegister.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -128,7 +167,11 @@ public class servletRegister extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (NamingException ex) {
+            Logger.getLogger(servletRegister.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

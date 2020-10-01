@@ -35,6 +35,11 @@ public class CustomerDAO implements DAO<Customer,Long> {
             = "SELECT * FROM " + TABLE_CUSTOMER + " "
             + "WHERE CUSTOMER_USERNAME = ? AND "
             + "CUSTOMER_PASSWORD = ?";
+ 
+    public final String QUERY_CHECK_CUSTOMER_BY_EMAIL
+            = "SELECT CUSTOMER_EMAIL FROM " + TABLE_CUSTOMER + " "
+            + "WHERE CUSTOMER_EMAIL = ?";
+    
     
     @Override
     public void add(Customer object) throws NamingException, SQLException{
@@ -115,5 +120,31 @@ public class CustomerDAO implements DAO<Customer,Long> {
         statement.close();
 
         return customer;
+    }
+    
+    public boolean getCheckEmail(String email) throws NamingException, SQLException{
+        
+        Boolean emailFound = false;
+
+        Database database = Database.getInstance();
+        Connection connection;
+        PreparedStatement statement;
+        ResultSet resultSet;
+
+        connection = database.getConnection();
+
+        // Prepares and execute the query
+        statement = connection.prepareStatement(QUERY_CHECK_CUSTOMER_BY_EMAIL);
+        statement.setString(1, email);
+        
+        resultSet = statement.executeQuery();
+
+        // Creates objects based on the query results
+        if (resultSet.next()) {
+            emailFound = true;
+         
+        statement.close();
+        }
+        return emailFound; 
     }
 }
