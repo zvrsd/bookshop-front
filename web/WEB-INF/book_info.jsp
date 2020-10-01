@@ -48,9 +48,9 @@
                             Auteur : 
                             <c:forEach var="author" items="${book.authors}">
                                 ${author.firstName} ${author.lastName}
-                            </c:forEach><br /><br />
+                            </c:forEach><br/><br/>
                                 
-                            Editeur : ${book.publisher}<br /><br />
+                            Editeur : ${book.publisher}<br/><br/>
                             
                             Categories : <br />
                             <c:forEach var="category" items="${book.categories}">
@@ -64,7 +64,7 @@
                         </div>
 
                         <div id="k_book_info_summary">
-                            Resumé : ${book.summary}<br />
+                            Resumé : ${book}<br />
                         </div>
                     </div>
 
