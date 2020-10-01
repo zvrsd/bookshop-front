@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
     Document   : jspEvent
     Created on : 29 sept. 2020, 15:47:40
@@ -5,6 +6,7 @@
 --%>
 
 <%@page import="beans.beanEvent"%>
+
 <%@page import="classes.Book"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,12 +28,12 @@
 </head>
 <body>
     <hr>
-    <jsp:useBean class="beans.beanEvent" scope="session" id="customerId" />
+    <jsp:useBean class="beans.beanEvent" scope="application" id="event" />
 
     <%@include file="header.html" %>   
 
 
-    <p style="background-color: red">
+    <p>
 
         <script src="evtImg.js"></script>       
     </p>
@@ -42,46 +44,31 @@
         <h1>Les livres sélectionnés pour l'évenement </h1>
 
     </div>
-
+    <div>
     <!-- Le container -->
+     
+    
+</div>
+
+    
     <%
         for (Book b : new beanEvent().returnlBook()) {
             
-                   out.println("<div class=\"container\"> " + " <div class=\"row\"> "  + "  <div class=\"col-sm-4\"> " + " <figure>  <p><a href=\" book.html\" title=\"\"><img src = \'"+ b.getCoverURL() + "'" 
+                   out.println("<div class=\"container\"> " + " <div class=\"row\"> "  + "  <div class=\"col-sm-4\"> ");
+                   out.println( " <figure>  <p><a href=\" book?isbn=\""); 
+                   out.println( b.getIsbn() + " title=\"\"><img src = \'"+ b.getCoverURL() + "'" 
                            + " width=\"150\" height=\"200\"  alt= \"\" /></a> "  + " <h3> " + b.getTitle() + " </h3>"
                   + " <p>  " +  b.getPostIt() + " </p>" +
                    " <p> " + b.getPrice() + " Euros</p>" +
            " </div> ");}
           
     %>
+     
     
     </div> 
 </div>
-    <!-- 
-    <div class="container">
 
-        <!-- 
-        <div class="row">
-
-            <!-- 
-
-            <div class="col-sm-4">
-
-                <figure>  <p><a href="book.html" title=""><img src ="  out.println(b.getCoverURL()); %>" width="150" height="200"  alt= "" /></a><!-- Photo du livre sélectionné. On peut cliquer sur l'image pour accèder à la fiche du livre      
-                    <h3> 
-                        out.println(b.getTitle()); %>
-                    </h3>
-                    <p>
-                        out.println(b.getPostIt()); %>
-                    </p>
-                    <p> out.println(b.getPrice());
-                        }%> /  Prix remisé</p>
-            </div>
-        </div>
-    </div>
-</div
---> 
-
+<br></br><br></br><br></br>
 <%@include file="footer.html" %>      
 </body>
 </html>
