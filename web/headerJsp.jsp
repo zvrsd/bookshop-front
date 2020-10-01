@@ -1,21 +1,7 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <link rel="stylesheet" href="templatecss.css">
 
-    </head>
-    <body>
-            
- 
-         
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
          <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 
@@ -102,19 +88,18 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 <!-- Trigger/Open The Modal -->
 
-    <ul>
-        <li class="banniere"><a href=""><figure><img src="img/0.png" alt="Logo Bookshop" id="logoBookshop"></figure></a></li>
+<ul> <form method="POST" action="book">
+        <li class="banniere"><a href="homePageJsp.jsp"><figure><img src="img/0.png" alt="Logo Bookshop" id="logoBookshop"></figure></a></li>
             <!-- recherche rapide -->
             <li class="banniere"><label for="recherche">Recherche</label>
-                <input type="text" id="recherche" name="recherche">
-                <button type="button">OK</button></li>
-            <li class="banniere"><a href=""><span id="barreMenuD">Panier</span></a></li>
-                    <li class="banniere"><button id="myBtn">Mon compte</button></li>
+                <input type="text" id="recherche" name="isbn">
+                <button type="submit">OK</button></li>
+            <li class="banniere"><a href="shoppingcart"><span id="barreMenuD">Panier</span></a></li>
+                    <li class="banniere"><button id="myBtn" type="button">Mon compte</button></li>
+    </form>
             </ul>
             
             
-
-
 
 
 
@@ -129,34 +114,10 @@ body {font-family: Arial, Helvetica, sans-serif;}
       <br></br>
     </div>
     <div class="modal-body">
-      <table class="login_table">
-            <tr>
-                <th>Se connecter</th>
-            </tr>
-            <tr>
-                <td>
-                    Utilisateur<br />
-                    <input class="login_input" type="text" name="username" value="" />
-
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Mot de passe<br />
-                    <input class="login_input" type="password" name="password" value="" />
-                </td>
-            </tr>
-            <tr>
-                <td class="login_text">
-                    Message d'erreur
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input class="login_button" type="submit" name="username" value="Connexion" />
-                </td>
-            </tr>
-        </table>
+      
+        <jsp:include page="WEB-INF/login.jsp" />
+        
+        
     </div>
     <div class="modal-footer">
         <br></br>
@@ -196,7 +157,7 @@ window.onclick = function(event) {
             
             
             
-        
+      
         
        
          <div id="font">   
@@ -213,14 +174,3 @@ window.onclick = function(event) {
                 </ul>
                 
             </nav>
-       
-             
-        <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-                                                                            CODE POUR LE HAUT DE PAGE
-        -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        --------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-          </body>
-</html>

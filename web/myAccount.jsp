@@ -17,10 +17,12 @@
         <link rel="stylesheet" href="css/templatecss.css">
     </head>
 
+    <header><jsp:include page="headerJsp.jsp" /></header>
+    
 
     <body>
 
-        <jsp:include page="header.html" />
+        
         
     <div id="font"> 
 
@@ -44,14 +46,13 @@
         </section>
 
         <br><br>
-        <p><a href="">Déconnexion</a></p>
+        <p><a href="login?action=logout">Déconnexion</a></p>
 
 
 
     </div>
 
-        <jsp:include page="footer.html" />        
-    
+        <footer><jsp:include page="footerJsp.jsp" /></footer>
 
 </body>
 
