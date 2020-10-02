@@ -1,11 +1,12 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
     Document   : jspEvent
     Created on : 29 sept. 2020, 15:47:40
     Author     : cda611
 --%>
 
-<%@page import="java.util.List"%>
 <%@page import="model.bean.beanEvent"%>
+
 <%@page import="model.entity.Book"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,11 +16,10 @@
         <title>JSP Page</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/templatecss.css">
+        <link rel="stylesheet" href="templatecss.css">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="evtImg.js"></script>
-
     <canvas id="canvas" width="1300" height="200"></canvas>
     <script src="evtImg.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -28,64 +28,48 @@
 </head>
 <body>
     <hr>
-    <jsp:useBean class="model.bean.beanEvent" scope="session" id="customerId" />
+    <jsp:useBean class="model.bean.beanEvent" scope="application" id="event" />
 
     <%@include file="header.html" %>   
 
 
-    <p style="background-color: red">
-        <script src="evtImg.js"></script>      
+    <p>
+
+        <script src="evtImg.js"></script>       
     </p>
 
 
-    <br>
-    </br>
-    <br>
-
-    </br>
+    <br> </br><br></br>
     <div class="jumbotron text-center">
         <h1>Les livres sélectionnés pour l'évenement </h1>
+
     </div>
-
+    <div>
     <!-- Le container -->
+     
+    
+</div>
+
+    
     <%
-        for (Book b : (List<Book>) new beanEvent().returnlBook()) {
-            request.setAttribute("book", b);
-            out.println("<div class=\"container\"> " + " <div class=\"row\"> " + "  <div class=\"col-sm-4\"> " + " <figure>  <p><a href=\"book\" title=\"\"><img src = \'" + b.getCoverURL() + "'"
-                    + " width=\"150\" height=\"200\"  alt= \"\" /></a> " + " <h3> " + b.getTitle() + " </h3>"
-                    + " <p>  " + b.getPostIt() + " </p>"
-                    + " <p> " + b.getPrice() + " Euros</p>"
-                    + " </div> ");
-        }
-
+        for (Book b : new beanEvent().returnlBook()) {
+       
+                   out.println("<div class=\"container\"> " + " <div class=\"row\"> "  + "  <div class=\"col-sm-4\"> ");
+                   out.println( " <figure>  <p><a href=\" book?isbn=" + b.getIsbn()); 
+                   out.println( " \"\"><img src = \'"+ b.getCoverURL() + "'" 
+                           + " width=\"150\" height=\"200\"  alt= \"\" /></a> "  + " <h3> " + b.getTitle() + " </h3>"
+                  + " <p>  " +  b.getPostIt() + " </p>" +
+                   " <p> " + b.getPrice() + " Euros</p>" +
+           " </div> ");}
+       
+          
     %>
-</div> 
+     
+    
+    </div> 
 </div>
-<!-- 
-<div class="container">
 
-<!-- 
-<div class="row">
-
-<!-- 
-
-<div class="col-sm-4">
-
-    <figure>  <p><a href="book.html" title=""><img src ="  out.println(b.getCoverURL()); %>" width="150" height="200"  alt= "" /></a><!-- Photo du livre sélectionné. On peut cliquer sur l'image pour accèder à la fiche du livre      
-        <h3> 
-            out.println(b.getTitle()); %>
-        </h3>
-        <p>
-            out.println(b.getPostIt()); %>
-        </p>
-        <p> out.println(b.getPrice());
-            }%> /  Prix remisé</p>
-</div>
-</div>
-</div>
-</div
---> 
-
+<br></br><br></br><br></br>
 <%@include file="footer.html" %>      
 </body>
 </html>

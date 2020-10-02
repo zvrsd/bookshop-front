@@ -1,3 +1,9 @@
+/*==============================================================*/
+/*				TEST DATA  for BookShop							*/
+/*			Date de création :  01/10/2020 16:49:00             */
+/*==============================================================*/
+
+-- Resets auto-increment
 DBCC CHECKIDENT('EVENT', RESEED, 0) WITH NO_INFOMSGS
 DBCC CHECKIDENT('AUTHOR', RESEED, 0) WITH NO_INFOMSGS
 DBCC CHECKIDENT('PUBLISHER', RESEED, 0) WITH NO_INFOMSGS
@@ -22,6 +28,7 @@ DBCC CHECKIDENT('ORDER_ROW', RESEED, 0) WITH NO_INFOMSGS
 DBCC CHECKIDENT('COMMENT', RESEED, 0) WITH NO_INFOMSGS
 DBCC CHECKIDENT('PAYMENT', RESEED, 0) WITH NO_INFOMSGS
 
+-- Clears all previous data
 DELETE FROM ASSOC_ADDRESS_PUBLISHER;
 DELETE FROM ASSOC_CATEGORY_CATEGORY;
 DELETE FROM ASSOC_BOOK_AUTHOR;
@@ -118,13 +125,30 @@ INSERT INTO ASSOC_CATEGORY_CATEGORY
 		(3, 10)
 ;
 
-INSERT INTO KEYWORD 
-	(KEYWORD_NAME) 
-	values 
-		('motclef_0'),
-		('motclef_1'),
-		('motclef_2')
-;
+INSERT INTO KEYWORD (KEYWORD_NAME) values 
+('roman'),
+('théâtre'),
+('manga'),
+('informatique'),
+('programmation'),
+('historique'),
+('antiquité'),
+('moyen-âge'),
+('XXe siècle'),
+('XIXe siècle'),
+('aventure'),
+('jeunesse'),
+('philosophie'),
+('histoire'),
+('manga'),
+('shonen'),
+('BD'),
+('comédie'),
+('tragédie'),
+('chevalerie'),
+('classique'),
+('poésie'),
+('psychanalyse');
 
 INSERT INTO BOOK_STATUS
 	(BOOK_STATUS_NAME) 
@@ -134,21 +158,41 @@ INSERT INTO BOOK_STATUS
 		('statut_livre_2')
 ;
 
-INSERT INTO PUBLISHER
-	(PUBLISHER_NAME, PUBLISHER_POST_IT) 
-	values 
-		('editeur_0', 'commentaire sur l editeur 0'),
-		('editeur_1', 'commentaire sur l editeur 1'),
-		('editeur_2', 'commentaire sur l editeur 2')
-;
+INSERT INTO PUBLISHER (PUBLISHER_NAME, PUBLISHER_POST_IT) values
+('Folio', ''),
+('Livre de Poche', ''),
+('GF', ''),
+('Gallimard', ''),
+('Seuil', ''),
+('Glénat', ''),
+('Casterman', ''),
+('Hachette', ''),
+('Eyrolles', ''),
+('Editions ENI', '');
 
-INSERT INTO AUTHOR
-	(AUTHOR_L_NAME, AUTHOR_F_NAME, AUTHOR_POST_IT) 
-	values 
-		('nom_auteur_0', 'prenom_auteur_0', 'commentaire sur l auteur 0'),
-		('nom_auteur_1', 'prenom_auteur_1', 'commentaire sur l auteur 1'),
-		('nom_auteur_2', 'prenom_auteur_2', 'commentaire sur l auteur 2')
-;
+INSERT INTO AUTHOR (AUTHOR_L_NAME, AUTHOR_F_NAME, AUTHOR_POST_IT) values
+('Orwell', 'Georges', ''),
+('Anouilh', 'Jean', ''),
+('Jean de La Fontaine', 'Jean de', ''),
+('Marivaux', '', ''),
+('Verlaine', 'Paul', ''),
+('Musset', 'Alfred de', ''),
+('Hugo', 'Victor', ''),
+('Cervantes', 'Miguel de', ''),
+('Dante', '', ''),
+('Thucydide', '', ''),
+('Tacite', '', ''),
+('Toriyama', 'Akira', ''),
+('Hergé', '', ''),
+('Freud', 'Sigmund', ''),
+('Aristote', '', ''),
+('Platon', '', ''),
+('Pennac', 'Daniel', ''),
+('Marchand Kalicky', 'Anne', ''),
+('Delannoy', 'Claude', ''),
+('Herby', 'Cyrille', ''),
+('Gervais', 'Luc', '');
+
 
 INSERT INTO VAT
 	(VAT_RATE)
@@ -169,62 +213,234 @@ INSERT INTO [EVENT]
 INSERT INTO BOOK
 	(BOOK_ISBN, PUBLISHER_ID, VAT_ID, BOOK_TITLE, BOOK_SUBTITLE, BOOK_HT_PRICE, BOOK_COVER_URL, BOOK_SUMMARY, BOOK_STOCK_QTY, BOOK_SHELF, BOOK_POST_IT)
 	values
-		('8421645890222', 1,  1, 'livre_0', 'sous_titre_0', 10.00, 'http://url-cover.com/0.png', 'resume du livre 0',  100, 'emplacement_0', 'commentaire sur le livre 0'),
-		('1470256684261', 1,  2, 'livre_1', 'sous_titre_1',  8.40, 'http://url-cover.com/1.png', 'resume du livre 1',   10, 'emplacement_1', 'commentaire sur le livre 1'),
-		('1230917563582', 2,  2, 'livre_2', 'sous_titre_2',  7.50, 'http://url-cover.com/2.png', 'resume du livre 2', 2800, 'emplacement_2', 'commentaire sur le livre 2'),
-		('5600469200125', 3,  2, 'livre_3', 'sous_titre_3', 12.80, 'http://url-cover.com/3.png', 'resume du livre 3',   45, 'emplacement_3', 'commentaire sur le livre 3')
-;
+
+
+/* Littérature */
+('9782072878497', 1, 3, '1984', '', 8.5, 'img\1984.jpg', 'Le roman contre-utopique du XXe siècle', 14, 'rayon A', ''),
+('9782710381419', 1, 3, 'Antigone', '', 6.1, 'img\antigone.jpg', 'Adaptation du célèbre personnage de la mythologie au contexte du XXe siècle', 58, 'rayon A', ''),
+('9782070375165', 1, 3, 'La ferme des animaux', '', 6.3, 'img\laferme.jpg', '', 2, 'rayon L', ''),
+('9782253010043', 2, 3, 'Les fables de La Fontaine', '', 3.1, 'img\fontaine.jpg', '', 30, 'rayon L', ''),
+('9782081516342', 3, 3, 'Les fausses confidences', '', 2.8, 'img\confidences.jpg', '', 5, 'rayon L', ''),
+('9782070320530', 4, 3, 'Fêtes Galantes', '', 6.2, 'img\galantes.jpg', '', 56, 'rayon L', ''),
+('9782253161080', 2, 3, 'La confession d''un enfant du siècle', '', 6.5, 'img\confidences.jpg', '', 12, 'rayon L', ''),
+('9782010008993', 2, 3, 'Les Misérables', '', 4.75, 'img\miserables.jpg', 'Le plus fameux roman de Victor Hugo, qui nous plonge dans les misères du peuple parisien dans les décennies suivant la Révolution.', 84, 'rayon L', ''),
+('9782070406029', 4, 3, 'Les Châtiments', '', 7.5, 'img\chatiments.jpg', 'Le recueil de poèmes de Victor Hugo, opposant politique féroce à Napoléon III.', 2, 'rayon L', ''),
+('9782253160786', 2, 3, 'Quatrevingt-Treize', '', 5.7, 'img\93.jpg', '', 26, 'rayon Q', ''),
+('9782020222129', 5, 3, 'Don Quichotte de la Manche', '', 8.8, 'img\donQuich.jpg', '', 51, 'rayon D', ''),
+('9782080712165', 3, 3, 'Divine Comédie', 'L''Enfer', 10.00, 'img\divine.jpg', '', 3, 'Rayon D', ''),
+
+/* Sciences humaines */
+('9782070400683', 1, 3, 'La Guerre du Péloponnèse', '', 13.5, 'img\1.jpg', '', 18, 'Rayon L', ''),
+('9782070387625', 1, 3, 'Annales', '', 9.9, 'img\2.jpg', '', 3, 'rayon A', ''),
+('9782757802137', 5, 3, 'L''interprétation du rêve', '', 13.5, 'img\3.jpg', '', 2, 'Rayon L', ''),
+('9782081358775', 3, 3, 'Politiques', '', 10.0, 'img\4.jpg', '', 5, 'Rayon P', ''),
+('9782080705631', 3, 3, 'Métaphysique', '', 11.5, 'img\5.jpg', '', 2, 'Rayon M', ''),
+('9782081421547', 3, 3, 'De l''Âme', '', 8.1, 'img\6.jpg', '', 2, 'Rayon M', ''),
+('9782081386693', 3, 3, 'République', '', 8.9, 'img\7.jpg', '', 8, 'Rayon R', ''),
+('9782081427730', 3, 3, 'Gorgias', '', 5.2, 'img\8.jpg', '', 8, 'Rayon G', ''),
+('9782080704894', 3, 3, 'Phédon', '', 8.2, 'img\9.jpg', '', 4, 'Rayon P', ''),
+('9782081377226', 3, 3, 'Apologie de Socrate', '', 3.5, 'img\10.jpg', '', 7, 'Rayon A', ''),
+('9782081422582', 3, 3, 'Banquet', '', 4.0, 'img\11.jpg', '', 27, 'Rayon B', ''),
+('9782080706881', 3, 3, 'Parménide', '', 8.8, 'img\12.jpg', '', 4, 'Rayon P', ''),
+
+/* BD / Manga */
+('9782876952058', 6, 3, 'Dragon Ball', 'Tome 1', 6.9, 'img\13.jpg', '', 2, 'rayon D', ''),
+('9782876952065', 6, 3, 'Dragon Ball', 'Tome 2', 6.9, 'img\13.jpg', '', 1, 'rayon D', ''),
+('9782876952072', 6, 3, 'Dragon Ball', 'Tome 3', 6.9, 'img\13.jpg', '', 8, 'rayon D', ''),
+('9782876952102', 6, 3, 'Dragon Ball', 'Tome 4', 6.9, 'img\13.jpg', '', 1, 'rayon D', ''),
+('9782876952119', 6, 3, 'Dragon Ball', 'Tome 5', 6.9, 'img\13.jpg', '', 11, 'rayon D', ''),
+('9782876952126', 6, 3, 'Dragon Ball', 'Tome 6', 6.9, 'img\13.jpg', '', 1, 'rayon D', ''),
+('9782876952171', 6, 3, 'Dragon Ball', 'Tome 7', 6.9, 'img\13.jpg', '', 1, 'rayon D', ''),
+('9782876952188', 6, 3, 'Dragon Ball', 'Tome 8', 6.9, 'img\13.jpg', '', 14, 'rayon D', ''),
+('9782876952195', 6, 3, 'Dragon Ball', 'Tome 9', 6.9, 'img\13.jpg', '', 1, 'rayon D', ''),
+('9782876952201', 6, 3, 'Dragon Ball', 'Tome 10', 6.9, 'img\13.jpg', '', 1, 'rayon D', ''),
+('9782876952218', 6, 3, 'Dragon Ball', 'Tome 11', 6.9, 'img\13.jpg', '', 31, 'rayon D', ''),
+('9782723418553', 6, 3, 'Dragon Ball', 'Tome 12', 6.9, 'img\13.jpg', '', 1, 'rayon D', ''),
+('9782723418560', 6, 3, 'Dragon Ball', 'Tome 13', 6.9, 'img\13.jpg', '', 7, 'rayon D', ''),
+('9782723418577', 6, 3, 'Dragon Ball', 'Tome 14', 6.9, 'img\13.jpg', '', 1, 'rayon D', ''),
+('9782723418584', 6, 3, 'Dragon Ball', 'Tome 15', 6.9, 'img\13.jpg', '', 1, 'rayon D', ''),
+('9782203198920', 7, 3, 'Les Aventures de Tintin', 'Intégrale : Coffret en 8 volumes', 90.0, 'img\14.jpg', '', 5, 'rayon L', ''),
+('9782203001114', 7, 3, 'Les Aventures de Tintin', 'Le Trésor de Rackham le Rouge', 11.5, 'img\14.jpg', '', 5, 'rayon L', ''),
+('9782203001152', 7, 3, 'Les Aventures de Tintin', 'Objectif Lune', 11.5, 'img\14.jpg', '', 5, 'rayon L', ''),
+('9782203001169', 7, 3, 'Les Aventures de Tintin', 'On a marché sur la Lune', 11.5, 'img\14.jpg', '', 4, 'rayon L', ''),
+('9782203001107', 7, 3, 'Les Aventures de Tintin', 'Le Secret de la Licorne', 11.5, 'img\14.jpg', '', 2, 'rayon L', ''),
+('9782203001121', 7, 3, 'Les Aventures de Tintin', 'Les sept boules de cristal', 11.5, 'img\14.jpg', '', 2, 'rayon L', ''),
+('9782203001183', 7, 3, 'Les Aventures de Tintin', 'Coke en stock', 11.5, 'img\14.jpg', '', 3, 'rayon L', ''),
+
+/* Jeunesse */
+('9782075109178', 1, 3, 'Une aventure de Kamo', '1. - L''idée du siècle', 5.9, 'img\15.jpg', '', 8, 'Rayon U', ''),
+('9782075090858', 1, 3, 'Une aventure de Kamo', '2. - Kamo et moi', 5.9, 'img\15.jpg', '', 5, 'Rayon U', ''),
+('9782075109222', 1, 3, 'Une aventure de Kamo', '3. - L''agence Babel', 5.9, 'img\15.jpg', '', 3, 'Rayon U', ''),
+('9782075090841', 1, 3, 'Une aventure de Kamo', '4. - L''évasion de Kamo', 5.9, 'img\15.jpg', '', 14, 'Rayon U', ''),
+('9782012202894', 8, 3, 'Oui-Oui joue au football', '', 1.75, 'img\15.jpg', '', 25, 'Rayon O', ''),
+('9782012274495', 8, 3, 'Oui-Oui et la fête de la musique', '', 1.75, 'img\15.jpg', '', 25, 'Rayon O', ''),
+('9782012275973', 8, 3, 'Oui-Oui et la fête de Miniville', '', 1.75, 'img\15.jpg', '', 52, 'Rayon O', ''),
+
+/* Autres */
+('9782416000188', 9, 3, 'Programmer en Java', 'Couvre Java 10 à Java 14', 35.00, 'img\16.jpg', '', 13, 'Rayon P', ''),
+('9782212675214', 9, 3, 'Apprenez à programmer en Java', '', 35.0, 'img\16.jpg', '', 54, 'Rayon A', ''),
+('9782409026300', 10, 3, 'Apprendre la Programmation Orientée Objet avec le langage Java', '', 28.0, 'img\16.jpg', '', 12, 'Rayon A', '');
 
 INSERT INTO ASSOC_BOOK_AUTHOR
 	(AUTHOR_ID, BOOK_ISBN)
 	values
-		(1, '8421645890222'),
-		(2, '1470256684261'),
-		(3, '1230917563582'),
-		(1, '5600469200125'),
-		(2, '5600469200125'),
-		(3, '5600469200125')
+/* 12 en littérature */
+		(1, '9782072878497'),
+		(2, '9782710381419'),
+		(1, '9782070375165'),
+		(3, '9782253010043'),
+		(4, '9782081516342'),
+		(5, '9782070320530'),
+		(6 ,'9782253161080'),
+		(7, '9782010008993'),
+		(7, '9782070406029'),
+		(7, '9782253160786'),
+		(8, '9782020222129'),
+		(9, '9782080712165'),
+/* 12 en sciences humaines */
+		(10, '9782070400683'),
+		(11, '9782070387625'),
+		(14, '9782757802137'),
+		(15, '9782081358775'),
+		(15, '9782080705631'),
+		(15, '9782081421547'),
+		(16, '9782081386693'),
+		(16, '9782081427730'),
+		(16, '9782080704894'),
+		(16, '9782081377226'),
+		(16, '9782081422582'),
+		(16, '9782080706881'),
+/* 22 en BD/Manga */
+		(12, '9782876952058'),
+		(12, '9782876952065'),
+		(12, '9782876952072'),
+		(12, '9782876952102'),
+		(12, '9782876952119'),
+		(12, '9782876952126'),
+		(12, '9782876952171'),
+		(12, '9782876952188'),
+		(12, '9782876952195'),
+		(12, '9782876952201'),
+		(12, '9782876952218'),
+		(12, '9782723418553'),
+		(12, '9782723418560'),
+		(12, '9782723418577'),
+		(12, '9782723418584'),
+		(13, '9782203198920'),
+		(13, '9782203001114'),
+		(13, '9782203001152'),
+		(13, '9782203001169'),
+		(13, '9782203001107'),
+		(13, '9782203001121'),
+		(13, '9782203001183'),
+/* 7 dans jeunesse */
+		(17, '9782075109178'),
+		(17, '9782075090858'),
+		(17, '9782075109222'),
+		(17, '9782075090841'),
+		(18, '9782012202894'),
+		(18, '9782012274495'),
+		(18, '9782012275973'),
+/* 3 dans autres */
+		(19, '9782416000188'),
+		(20, '9782212675214'),
+		(21, '9782409026300')
 ;
 
 INSERT INTO ASSOC_BOOK_EVENT
 	(EVENT_ID, BOOK_ISBN)
 	values
-		(1, '8421645890222'),
-		(2, '1470256684261'),
-		(3, '1230917563582'),
-		(1, '5600469200125'),
-		(2, '5600469200125'),
-		(3, '5600469200125')
+		(1, '9782203001107'),
+		(2, '9782203001107'),
+		(3, '9782203001107'),
+		(1, '9782409026300'),
+		(2, '9782409026300'),
+		(3, '9782409026300')
 ;
 
-INSERT INTO ASSOC_BOOK_KEYWORD
-	(KEYWORD_ID, BOOK_ISBN)
+INSERT INTO [dbo].[ASSOC_BOOK_KEYWORD]
+           ([KEYWORD_ID]
+           ,[BOOK_ISBN])
 	values
-		(1, '8421645890222'),
-		(2, '1470256684261'),
-		(3, '1230917563582'),
-		(1, '5600469200125'),
-		(3, '5600469200125')
+		(1, '9782072878497'),
+		(2, '9782710381419'),
+		(1, '9782070375165'),
+		(21, '9782253010043'),
+		(2, '9782081516342'),
+		(22, '9782070320530'),
+		(10 ,'9782253161080'),
+		(1, '9782010008993'),
+		(1, '9782070406029'),
+		(1, '9782253160786'),
+		(21, '9782020222129'),
+		(21, '9782080712165'),
+		(7, '9782070400683'),
+		(7, '9782070387625'),
+		(23, '9782757802137'),
+		(13, '9782081358775'),
+		(13, '9782080705631'),
+		(13, '9782081421547'),
+		(13, '9782081386693'),
+		(13, '9782081427730'),
+		(13, '9782080704894'),
+		(13, '9782081377226'),
+		(13, '9782081422582'),
+		(13, '9782080706881'),
+		(16, '9782876952058'),
+		(16, '9782876952065'),
+		(16, '9782876952072'),
+		(16, '9782876952102'),
+		(16, '9782876952119'),
+		(16, '9782876952126'),
+		(16, '9782876952171'),
+		(16, '9782876952188'),
+		(16, '9782876952195'),
+		(16, '9782876952201'),
+		(16, '9782876952218'),
+		(16, '9782723418553'),
+		(16, '9782723418560'),
+		(16, '9782723418577'),
+		(16, '9782723418584'),
+		(17, '9782203198920'),
+		(17, '9782203001114'),
+		(17, '9782203001152'),
+		(17, '9782203001169'),
+		(17, '9782203001107'),
+		(17, '9782203001121'),
+		(17, '9782203001183'),
+		(12, '9782075109178'),
+		(12, '9782075090858'),
+		(12, '9782075109222'),
+		(12, '9782075090841'),
+		(12, '9782012202894'),
+		(12, '9782012274495'),
+		(12, '9782012275973'),
+		(5, '9782416000188'),
+		(5, '9782212675214'),
+		(5, '9782409026300'),
+		(4, '9782416000188'),
+		(4, '9782212675214'),
+		(4, '9782409026300')
 ;
 
 INSERT INTO ASSOC_BOOK_CATEGORY
 	(BOOK_ISBN, CATEGORY_ID)
 	values
-		('8421645890222', 5),
-		('1470256684261', 6),
-		('1230917563582', 6),
-		('5600469200125', 8),
-		('5600469200125', 9)
+		('9782012274495', 5),
+		('9782723418560', 6),
+		('9782012274495', 6),
+		('9782012274495', 8),
+		('9782723418560', 9)
 ;
 
 INSERT INTO ASSOC_STATUS_BOOK
 	(BOOK_ISBN, BOOK_STATUS_ID)
 	values
-		('8421645890222', 1),
-		('1470256684261', 1),
-		('1230917563582', 2),
-		('5600469200125', 3),
-		('5600469200125', 1)
+		('9782012274495', 1),
+		('9782876952065', 1),
+		('9782723418560', 2),
+		('9782070406029', 3),
+		('9782070400683', 1)
 ;
 
 INSERT INTO [ADDRESS]
@@ -413,18 +629,19 @@ insert into ATTRIBUTE
 		('url instagram', 'www.instagram.com/fr/bookshop')
 ;
 
-insert into PERMISSION (PERMISSION_ID, PERMISSION_NAME) values (1, 'Often');
-insert into PERMISSION (PERMISSION_ID, PERMISSION_NAME) values (2, 'Yearly');
-insert into PERMISSION (PERMISSION_ID, PERMISSION_NAME) values (3, 'Monthly');
-insert into PERMISSION (PERMISSION_ID, PERMISSION_NAME) values (4, 'Often');
-insert into PERMISSION (PERMISSION_ID, PERMISSION_NAME) values (5, 'Monthly');
+insert into PERMISSION (PERMISSION_ID, PERMISSION_NAME) values (1, 'admin');
+insert into PERMISSION (PERMISSION_ID, PERMISSION_NAME) values (2, 'user');
+insert into PERMISSION (PERMISSION_ID, PERMISSION_NAME) values (3, 'intern');
 
-insert into [dbo].[GROUP] (GROUP_ID, GROUP_NAME) values (1, 'Never');
-insert into [dbo].[GROUP] (GROUP_ID, GROUP_NAME) values (2, 'Once');
-insert into [dbo].[GROUP] (GROUP_ID, GROUP_NAME) values (3, 'Once');
-insert into [dbo].[GROUP] (GROUP_ID, GROUP_NAME) values (4, 'Weekly');
-insert into [dbo].[GROUP] (GROUP_ID, GROUP_NAME) values (5, 'Never');
 
+insert into [dbo].[GROUP] (GROUP_ID, GROUP_NAME) values (1, 'admin');
+insert into [dbo].[GROUP] (GROUP_ID, GROUP_NAME) values (2, 'user');
+insert into [dbo].[GROUP] (GROUP_ID, GROUP_NAME) values (3, 'intern');
+
+
+insert into EMPLOYEE (EMPLOYEE_LOGIN, EMPLOYEE_PASSWORD, EMPLOYEE_DATE_START, EMPLOYEE_DATE_END) values ('admin', 'admin', '2019/01/10', '2020-12-10');
+insert into EMPLOYEE (EMPLOYEE_LOGIN, EMPLOYEE_PASSWORD, EMPLOYEE_DATE_START, EMPLOYEE_DATE_END) values ('user', 'user', '2019/01/10', '2020-12-10');
+insert into EMPLOYEE (EMPLOYEE_LOGIN, EMPLOYEE_PASSWORD, EMPLOYEE_DATE_START, EMPLOYEE_DATE_END) values ('intern', 'intern', '2019/01/10', '2020-12-10');														 
 insert into EMPLOYEE (EMPLOYEE_LOGIN, EMPLOYEE_PASSWORD, EMPLOYEE_DATE_START, EMPLOYEE_DATE_END) values ('sa', 'sa', '2019/01/10', '2020-12-10');
 insert into EMPLOYEE (EMPLOYEE_LOGIN, EMPLOYEE_PASSWORD, EMPLOYEE_DATE_START, EMPLOYEE_DATE_END) values ('WilburtEmerton', 'CJIvKxuno', '2020-01-10', '2020-12-10');
 insert into EMPLOYEE (EMPLOYEE_LOGIN, EMPLOYEE_PASSWORD, EMPLOYEE_DATE_START, EMPLOYEE_DATE_END) values ('AnthiathiaMcGiven', 'k6gkQl', '2019-01-10', '2019-05-10');
@@ -480,8 +697,6 @@ insert into ASSOC_GROUP_EMPLOYEE (EMPLOYEE_ID, GROUP_ID) values (5, 3)
 insert into ASSOC_PERMISSION_GROUP (PERMISSION_ID, GROUP_ID) values (1, 1)
 insert into ASSOC_PERMISSION_GROUP (PERMISSION_ID, GROUP_ID) values (2, 2)
 insert into ASSOC_PERMISSION_GROUP (PERMISSION_ID, GROUP_ID) values (3, 3)
-insert into ASSOC_PERMISSION_GROUP (PERMISSION_ID, GROUP_ID) values (4, 4)
-insert into ASSOC_PERMISSION_GROUP (PERMISSION_ID, GROUP_ID) values (5, 5)
 
 INSERT INTO [dbo].[ORDER]
 	([CUSTOMER_ID],[DELIVERY_ADDRESS_ID],[BILLING_ADDRESS_ID],[SHIPPING_OFFER_ID],[ORDER_CREATION_DATE],[ORDER_SHIPPING_TIME_LIMIT],
@@ -529,17 +744,17 @@ insert into ASSOC_STATUS_ORDER (ORDER_ID,ORDER_STATUS_ID,ASSOC_STATUS_ORDER_DATE
 insert into ASSOC_STATUS_ORDER (ORDER_ID,ORDER_STATUS_ID,ASSOC_STATUS_ORDER_DATE,ASSOC_STATUS_ORDER_POST_IT) values (4,6,'2020-08-14T09:20:15','commentaireStatut1');
 insert into ASSOC_STATUS_ORDER (ORDER_ID,ORDER_STATUS_ID,ASSOC_STATUS_ORDER_DATE,ASSOC_STATUS_ORDER_POST_IT) values (1,1,'2020-09-01T19:01:00','commentaireStatut1');
 
-insert into ORDER_ROW (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE) values (null, 1, '8421645890222', 1, '11.33', '44.01');
-insert into ORDER_ROW (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE) values (null, 2, '1470256684261', 2, '12.07', '9.38');
-insert into ORDER_ROW (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE) values (null, 3, '1230917563582', 3, '10.18', '27.35');
-insert into ORDER_ROW (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE) values (null, 4, '5600469200125', 4, '2.49', '31.16');
-insert into ORDER_ROW (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE) values (null, 4, '1470256684261', 5, '13.20', '30.55');
+insert into ORDER_ROW (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE) values (null, 1, '9782203001107', 1, '11.33', '44.01');
+insert into ORDER_ROW (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE) values (null, 2, '9782080706881', 2, '12.07', '9.38');
+insert into ORDER_ROW (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE) values (null, 3, '9782080706881', 3, '10.18', '27.35');
+insert into ORDER_ROW (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE) values (null, 4, '9782080706881', 4, '2.49', '31.16');
+insert into ORDER_ROW (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE) values (null, 4, '9782203001107', 5, '13.20', '30.55');
 
-insert into COMMENT (CUSTOMER_ID, ORDER_ROW_ID, BOOK_ISBN, COMMENT_TITLE, COMMENT_RATING, COMMENT_TEXT, COMMENT_DATE, COMMENT_USER_IP, COMMENT_EDIT_DATE) values (1, 1, '8421645890222', 'forecast', 1, 'engineer 24/7 models', '2020-02-25T12:39:02', '127.46.205.152', '2020-02-14T05:32:46');
-insert into COMMENT (CUSTOMER_ID, ORDER_ROW_ID, BOOK_ISBN, COMMENT_TITLE, COMMENT_RATING, COMMENT_TEXT, COMMENT_DATE, COMMENT_USER_IP, COMMENT_EDIT_DATE) values (2, 2, '1470256684261', 'Ergonomic', 2, 'generate B2C applications', '2020-06-30T06:06:19', '253.125.33.249', '2020-01-24T21:50:09');
-insert into COMMENT (CUSTOMER_ID, ORDER_ROW_ID, BOOK_ISBN, COMMENT_TITLE, COMMENT_RATING, COMMENT_TEXT, COMMENT_DATE, COMMENT_USER_IP, COMMENT_EDIT_DATE) values (3, 3, '1230917563582', 'structure', 3, 'optimize bricks-and-clicks synergies', '2019-09-18T18:26:26', '228.209.107.216', '2020-05-23T20:15:36');
-insert into COMMENT (CUSTOMER_ID, ORDER_ROW_ID, BOOK_ISBN, COMMENT_TITLE, COMMENT_RATING, COMMENT_TEXT, COMMENT_DATE, COMMENT_USER_IP, COMMENT_EDIT_DATE) values (4, 4, '5600469200125', 'local', 4, 'innovate customized initiatives', '2020-02-26T07:12:53', '151.228.148.194', '2019-09-14T12:00:04');
-insert into COMMENT (CUSTOMER_ID, ORDER_ROW_ID, BOOK_ISBN, COMMENT_TITLE, COMMENT_RATING, COMMENT_TEXT, COMMENT_DATE, COMMENT_USER_IP, COMMENT_EDIT_DATE) values (5, 5, '1470256684261', 'interactive', 5, 'seize synergistic networks', '2020-03-11T03:15:40', '175.61.123.249', '2020-02-17T13:57:57');
+insert into COMMENT (CUSTOMER_ID, ORDER_ROW_ID, BOOK_ISBN, COMMENT_TITLE, COMMENT_RATING, COMMENT_TEXT, COMMENT_DATE, COMMENT_USER_IP, COMMENT_EDIT_DATE) values (1, 1, '9782203001107', 'forecast', 1, 'engineer 24/7 models', '2020-02-25T12:39:02', '127.46.205.152', '2020-02-14T05:32:46');
+insert into COMMENT (CUSTOMER_ID, ORDER_ROW_ID, BOOK_ISBN, COMMENT_TITLE, COMMENT_RATING, COMMENT_TEXT, COMMENT_DATE, COMMENT_USER_IP, COMMENT_EDIT_DATE) values (2, 2, '9782080706881', 'Ergonomic', 2, 'generate B2C applications', '2020-06-30T06:06:19', '253.125.33.249', '2020-01-24T21:50:09');
+insert into COMMENT (CUSTOMER_ID, ORDER_ROW_ID, BOOK_ISBN, COMMENT_TITLE, COMMENT_RATING, COMMENT_TEXT, COMMENT_DATE, COMMENT_USER_IP, COMMENT_EDIT_DATE) values (3, 3, '9782080706881', 'structure', 3, 'optimize bricks-and-clicks synergies', '2019-09-18T18:26:26', '228.209.107.216', '2020-05-23T20:15:36');
+insert into COMMENT (CUSTOMER_ID, ORDER_ROW_ID, BOOK_ISBN, COMMENT_TITLE, COMMENT_RATING, COMMENT_TEXT, COMMENT_DATE, COMMENT_USER_IP, COMMENT_EDIT_DATE) values (4, 4, '9782080706881', 'local', 4, 'innovate customized initiatives', '2020-02-26T07:12:53', '151.228.148.194', '2019-09-14T12:00:04');
+insert into COMMENT (CUSTOMER_ID, ORDER_ROW_ID, BOOK_ISBN, COMMENT_TITLE, COMMENT_RATING, COMMENT_TEXT, COMMENT_DATE, COMMENT_USER_IP, COMMENT_EDIT_DATE) values (5, 5, '9782203001107', 'interactive', 5, 'seize synergistic networks', '2020-03-11T03:15:40', '175.61.123.249', '2020-02-17T13:57:57');
 
 insert into ASSOC_COMMENT_EMPLOYEE 
 	(EMPLOYEE_ID, COMMENT_ID, ASSOC_COMMENT_EMPLOYEE_DATE, ASSOC_COMMENT_EMPLOYEE_POST_IT)

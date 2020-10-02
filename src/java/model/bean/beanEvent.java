@@ -5,15 +5,14 @@
  */
 package model.bean;
 
+import model.entity.Book;
+import model.entity.Event;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.naming.NamingException;
-import model.dao.BookDAO;
-import model.entity.Event;
+import controller.eventServlet;
 
 /**
  *
@@ -21,15 +20,20 @@ import model.entity.Event;
  */
 public class beanEvent implements Serializable {
     
+    List<Book> eventList = null;
+    
     public beanEvent() {
+        this.eventList = new ArrayList();
       
     }
     
     
     
-    public List returnlBook(){
-
-        return new ArrayList();
+    public List<Book> returnlBook() throws SQLException, NamingException {
+    eventList = new eventServlet().getList();
+    
+    
+        return eventList;
     }
     
     public double getRemise(){

@@ -37,9 +37,10 @@ public class ServletBook extends HttpServlet {
 
         // YOU MUST PROVIDE AN ISBN OR THE BOOK TO DISPLAY
         // in request
-        
+
+        // Attempts to retrieve the book from the request, if one was given
         Book book = (Book) request.getAttribute(Values.PARAM_BOOK);
-   
+
         // If no book object was provided
         if (request.getAttribute(Values.PARAM_BOOK) == null) {
 
@@ -57,7 +58,7 @@ public class ServletBook extends HttpServlet {
                 }
             }
 
-            // If there is still no book at this points
+            // If there is still no book at this point
             if (book == null) {
 
                 // Abort mission
@@ -69,13 +70,13 @@ public class ServletBook extends HttpServlet {
 
         // Book comments go inside this collection
         Collection<Object> comments = new ArrayList<>();
-        
+
         // This contains the book to be displayed
         request.setAttribute(Values.PARAM_BOOK, book);
-        
+
         // This contains the comments related to this books
         request.setAttribute(Values.PARAM_COMMENTS, comments);
-        
+
         // Displays the book contents
         request.getRequestDispatcher(JSP_BOOK).include(request, response);
     }
@@ -108,4 +109,4 @@ public class ServletBook extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-}
+} 

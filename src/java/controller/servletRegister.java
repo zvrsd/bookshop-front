@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.io.IOException;
@@ -21,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.dao.CustomerDAO;
 import model.entity.Customer;
+import res.Values;
 
 /**
  *
@@ -31,8 +27,9 @@ public class servletRegister extends HttpServlet {
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, NamingException {      
         response.setContentType("text/html;charset=UTF-8");
+
         try (PrintWriter out = response.getWriter()) {
             /* Gets the info entered on the register.html page */
             String last_name = request.getParameter("last_name");
@@ -42,38 +39,85 @@ public class servletRegister extends HttpServlet {
             String password = request.getParameter("password");
             // Variable 
             String msg;
-            
+
+/*
+            This part of code checks if the user is coming from outside of the page:
+            */            
+
             if (last_name == null){
-                RequestDispatcher req = request.getRequestDispatcher("/WEB-INF/register.jsp");
+                RequestDispatcher req = request.getRequestDispatcher(Values.JSP_REGISTER_FULL);
                 req.include(request, response);
-            
+
             return;
             }
-// Check if fliends are empty, if so. the page return to initial state - and shows an error message            
-            if(last_name.isEmpty() || first_name.isEmpty() || email.isEmpty() || 
-				username.isEmpty() || password.isEmpty()){
-                msg = "ERROR!!!!";
+/*
+            
+            Check if fields are empty, if so. the page return to initial state -
+            and shows an error message
+            Also it leaves the inserted text into corresponding fields
+*/
+            if (email !=null){
+                //check if email is in database:
+
+//                Customer newCustomer = new Customer();
+                CustomerDAO dao = new CustomerDAO();
+                try{
+                boolean emailFound = dao.getCheckEmail(email);
+
+                if (emailFound == true){;
+                // If Email exists in database
+                msg ="Cet email est deja connu! Veuillez voulez vous connecter!";
                 request.setAttribute("msg", msg);
                 request.setAttribute("last_name", last_name);
                 request.setAttribute("first_name", first_name);
                 request.setAttribute("email", email);
                 request.setAttribute("username", username);                
-                
-                RequestDispatcher req = request.getRequestDispatcher("/WEB-INF/register.jsp");
+
+                RequestDispatcher req = request.getRequestDispatcher(Values.JSP_REGISTER_FULL);
                 req.include(request, response);
-                
-                
+                return;
+                }  
+                } catch (NamingException ex) {
+                    System.out.println("Naming exception: " + ex);
+                    Logger.getLogger(servletRegister.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    System.out.println("SQLException: " + ex);
+                    Logger.getLogger(servletRegister.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+
+
+
+
+            }              
+
+
+
+            if(last_name.isEmpty() || first_name.isEmpty() || email.isEmpty() || 
+				username.isEmpty() || password.isEmpty()){
+                msg = "Veuillez remplir les champs manquants!!!";
+                request.setAttribute("msg", msg);
+                request.setAttribute("last_name", last_name);
+                request.setAttribute("first_name", first_name);
+                request.setAttribute("email", email);
+                request.setAttribute("username", username);                
+
+                RequestDispatcher req = request.getRequestDispatcher(Values.JSP_REGISTER_FULL);
+                req.include(request, response);
+
+//            }else if(request.getAttribute("email") == {
+
             }else{
 // If form is ok, the newly registered customer gets send to his account page. 
-               
+
                Customer customer = new Customer();
-                
+
                customer.setCustomerLName(request.getParameter("last_name"));
                customer.setCustomerFName(request.getParameter("first_name"));
                customer.setCustomerUsername(request.getParameter("username"));
                customer.setCustomerEmail(request.getParameter("email"));
                customer.setCustomerPassword(request.getParameter("password"));
-               
+
                CustomerDAO newCustomer = new CustomerDAO();
                 try {
                     newCustomer.add(customer);
@@ -84,9 +128,9 @@ public class servletRegister extends HttpServlet {
                     System.out.println("SQLException: " + ex);
                     Logger.getLogger(servletRegister.class.getName()).log(Level.SEVERE, null, ex);
                 }
-               
-               
-            RequestDispatcher req = request.getRequestDispatcher("/account.html");
+
+// Change this line to redirect new customer to desired page of website:               
+            RequestDispatcher req = request.getRequestDispatcher("/homePageJsp.jsp");
             req.forward(request, response);
             }
         }
@@ -104,7 +148,11 @@ public class servletRegister extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (NamingException ex) {
+            Logger.getLogger(servletRegister.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -118,7 +166,11 @@ public class servletRegister extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (NamingException ex) {
+            Logger.getLogger(servletRegister.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
