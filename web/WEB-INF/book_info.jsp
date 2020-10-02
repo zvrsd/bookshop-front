@@ -22,7 +22,8 @@
 
                 <div id="k_box_book_image">
 
-                    <img src="img/0.jpg" />
+                    <img src="${book.coverURL}" />
+                    <br></br>
                     <form action="/shopping_cart.html" method="get">
 
                         <!-- This button could be disabled if the book is already in the shopping cart
@@ -48,9 +49,9 @@
                             Auteur : 
                             <c:forEach var="author" items="${book.authors}">
                                 ${author.firstName} ${author.lastName}
-                            </c:forEach><br /><br />
+                            </c:forEach><br/><br/>
                                 
-                            Editeur : ${book.publisher}<br /><br />
+                            Editeur : ${book.publisher}<br/><br/>
                             
                             Categories : <br />
                             <c:forEach var="category" items="${book.categories}">
@@ -64,7 +65,7 @@
                         </div>
 
                         <div id="k_book_info_summary">
-                            Resumé : ${book.summary}<br />
+                            Resumé : ${book}<br />
                         </div>
                     </div>
 

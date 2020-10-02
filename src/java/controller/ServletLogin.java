@@ -19,13 +19,10 @@ import res.Values;
 /**
  *
  * @author zvr
- */
+*/
 @WebServlet(urlPatterns = {"/login"})
 public class ServletLogin extends HttpServlet {
 
-    public final String JSP_LOGIN = "/WEB-INF/login.jsp";
-    public final String JSP_ACCOUNT = "/template.html";
-    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,15 +38,15 @@ public class ServletLogin extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         CustomerDAO customerDAO = new CustomerDAO();
-        
+
         String errorMessage = "";
-        
+
         String email = "";
         String password = "";
-        
+
         email = request.getParameter("email");
         password = request.getParameter("password");
-        
+
         HttpSession session = request.getSession();
 
         // This bean is used to check if the user is logged or not and stores
@@ -60,21 +57,32 @@ public class ServletLogin extends HttpServlet {
                 session.setAttribute(Values.BEAN_LOGIN_NAME, loginBean);
         }
 
+        // If the user wants to logout
+        if(Values.ACTION_LOGOUT.equals(request.getParameter(Values.PARAM_ACTION))){
+
+            // Logging the user out
+            loginBean.logout();
+
+            // Going back to homepage
+            response.sendRedirect(Values.JSP_HOME);
+            return;
+        }
         // If the user is logged already
         if(loginBean.getIsLogged()){
-            
+
             // Displaying Account page
-            request.getRequestDispatcher(JSP_ACCOUNT).include(request, response);
+            response.sendRedirect(Values.JSP_ACCOUNT);
             return;
         }
         // If the user is coming from another page
         if(!Values.ACTION_LOGIN.equals(request.getParameter(Values.PARAM_ACTION))){
-            
+
             // Displaying Login page
-            request.getRequestDispatcher(JSP_LOGIN).include(request, response);
+            //request.getRequestDispatcher(Values.JSP_LOGIN).include(request, response);
+            request.getRequestDispatcher(Values.JSP_LOGIN_FULL).include(request, response);
             return;
         }
-        
+
         try {
             Customer customer = customerDAO.getByUsername(email, password);
             // If login is invalid ( incorrect username/password )
@@ -86,21 +94,22 @@ public class ServletLogin extends HttpServlet {
                 loginBean.setIsLogged(true);
                 session.setAttribute(Values.BEAN_LOGIN_NAME, loginBean);
                 session.setAttribute(Values.PARAM_CUSTOMER, customer);
-                
-                request.getRequestDispatcher(JSP_ACCOUNT).include(request, response);
+
+                // Displaying Account page
+                response.sendRedirect(Values.JSP_ACCOUNT);
                 return;
             }
-            
+
         } catch (NamingException ex) {
             errorMessage += ex.getMessage();
         } catch (SQLException ex) {
             errorMessage += ex.getMessage();
         }
-        
+
         request.setAttribute("email", request.getParameter("email"));
         request.setAttribute("error_message", errorMessage);
-      
-        request.getRequestDispatcher(JSP_LOGIN).include(request, response);
+
+        request.getRequestDispatcher(Values.JSP_LOGIN_FULL).include(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
