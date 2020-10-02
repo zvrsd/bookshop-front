@@ -74,9 +74,9 @@ public class ShippingOffer implements Serializable {
 	 	private String query;
 	 	ResultSetMetaData resultMeta;
 	 	PreparedStatement prepare;
-		private  String url = "jdbc:sqlserver://CHARLèNE-PC;databaseName=BookShop;"; 
-	    private  String username = "cha"; 
-	    private  String password = "eminem"; 
+		private  String url = "jdbc:sqlserver://localhost;databaseName=BookShop;"; 
+	    private  String username = "sa"; 
+	    private  String password = "sa"; 
     private static final long serialVersionUID = 1L;
 	/*
 	 * @Id
