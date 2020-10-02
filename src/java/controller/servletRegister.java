@@ -1,4 +1,3 @@
-
 package controller;
 
 import java.io.IOException;
@@ -17,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.dao.CustomerDAO;
 import model.entity.Customer;
+import res.Values;
 
 /**
  *
@@ -39,32 +39,31 @@ public class servletRegister extends HttpServlet {
             String password = request.getParameter("password");
             // Variable 
             String msg;
-          
+
 /*
             This part of code checks if the user is coming from outside of the page:
             */            
-            
+
             if (last_name == null){
-                RequestDispatcher req = request.getRequestDispatcher("/WEB-INF/register.jsp");
+                RequestDispatcher req = request.getRequestDispatcher(Values.JSP_REGISTER_FULL);
                 req.include(request, response);
-            
+
             return;
             }
 /*
             
             Check if fields are empty, if so. the page return to initial state -
             and shows an error message
-
             Also it leaves the inserted text into corresponding fields
 */
             if (email !=null){
                 //check if email is in database:
-                
+
 //                Customer newCustomer = new Customer();
                 CustomerDAO dao = new CustomerDAO();
                 try{
                 boolean emailFound = dao.getCheckEmail(email);
-                
+
                 if (emailFound == true){;
                 // If Email exists in database
                 msg ="Cet email est deja connu! Veuillez voulez vous connecter!";
@@ -73,8 +72,8 @@ public class servletRegister extends HttpServlet {
                 request.setAttribute("first_name", first_name);
                 request.setAttribute("email", email);
                 request.setAttribute("username", username);                
-                
-                RequestDispatcher req = request.getRequestDispatcher("/WEB-INF/register.jsp");
+
+                RequestDispatcher req = request.getRequestDispatcher(Values.JSP_REGISTER_FULL);
                 req.include(request, response);
                 return;
                 }  
@@ -85,15 +84,15 @@ public class servletRegister extends HttpServlet {
                     System.out.println("SQLException: " + ex);
                     Logger.getLogger(servletRegister.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                 
-                                    
-                
-   
-                        
+
+
+
+
+
             }              
-       
-                
-            
+
+
+
             if(last_name.isEmpty() || first_name.isEmpty() || email.isEmpty() || 
 				username.isEmpty() || password.isEmpty()){
                 msg = "Veuillez remplir les champs manquants!!!";
@@ -102,23 +101,23 @@ public class servletRegister extends HttpServlet {
                 request.setAttribute("first_name", first_name);
                 request.setAttribute("email", email);
                 request.setAttribute("username", username);                
-                
-                RequestDispatcher req = request.getRequestDispatcher("/WEB-INF/register.jsp");
+
+                RequestDispatcher req = request.getRequestDispatcher(Values.JSP_REGISTER_FULL);
                 req.include(request, response);
-                
+
 //            }else if(request.getAttribute("email") == {
-                
+
             }else{
 // If form is ok, the newly registered customer gets send to his account page. 
-               
+
                Customer customer = new Customer();
-                
+
                customer.setCustomerLName(request.getParameter("last_name"));
                customer.setCustomerFName(request.getParameter("first_name"));
                customer.setCustomerUsername(request.getParameter("username"));
                customer.setCustomerEmail(request.getParameter("email"));
                customer.setCustomerPassword(request.getParameter("password"));
-               
+
                CustomerDAO newCustomer = new CustomerDAO();
                 try {
                     newCustomer.add(customer);
@@ -129,7 +128,7 @@ public class servletRegister extends HttpServlet {
                     System.out.println("SQLException: " + ex);
                     Logger.getLogger(servletRegister.class.getName()).log(Level.SEVERE, null, ex);
                 }
-               
+
 // Change this line to redirect new customer to desired page of website:               
             RequestDispatcher req = request.getRequestDispatcher("/homePageJsp.jsp");
             req.forward(request, response);
