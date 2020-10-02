@@ -17,7 +17,9 @@
         
         
        
-    <jsp:include page="header.html" />
+        <header>
+            <jsp:include page="headerJsp.jsp" />
+        </header>
        
              
         <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -71,7 +73,9 @@
              
       </div>
         
-      <jsp:include page="footer.html" />
+      <footer>
+          <jsp:include page="footerJsp.jsp" />
+      </footer>
  
     </body>
         

@@ -16,7 +16,7 @@
         
         
        
-        <jsp:include page="header.jsp" />
+        <header><jsp:include page="headerJsp.jsp" /></header>
        
              
         
@@ -33,7 +33,7 @@
             
             <section>
                 
-                <button type="button"><a href="idModif.html">Modifier</a></button>
+                <button type="button"><a href="idModif.jsp">Modifier</a></button>
                 <br>
             <a href="myAccount.jsp">Précédent</a>
             </section>
@@ -45,9 +45,9 @@
              
              
              
-                                                                            <jsp:include page="footer.jsp" />
+        <footer><jsp:include page="footerJsp.jsp" /></footer>
         
    <!-- Site web créé par la fine équipe -->
-
+    </body>
         
 </html>
