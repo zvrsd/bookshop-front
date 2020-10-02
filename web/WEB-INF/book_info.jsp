@@ -22,7 +22,8 @@
 
                 <div id="k_box_book_image">
 
-                    <img src="img/0.jpg" />
+                    <img src="${book.coverURL}" />
+                    <br></br>
                     <form action="/shopping_cart.html" method="get">
 
                         <!-- This button could be disabled if the book is already in the shopping cart
