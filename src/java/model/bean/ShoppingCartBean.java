@@ -11,16 +11,13 @@ import model.entity.Book;
 public class ShoppingCartBean implements Serializable{
     
     private HashMap<String,Book> books;
-    private HashMap<String,Integer> quantity;
 
-    
-    public Book getBook(){
-        return null;
-    }
-    
     public ShoppingCartBean(){
         books = new HashMap<>();
-        quantity = new HashMap<>();
+    }
+    
+    public Book getBook(String isbn){
+        return books.get(isbn);
     }
     
     // Add a new book into the cart
@@ -57,33 +54,23 @@ public class ShoppingCartBean implements Serializable{
     
     // Removes a book from the shopping cart
     public void remove(String isbn){
-        quantity.remove(isbn);
         books.remove(isbn);
     }
     
     public void clear(){
         books.clear();
-        quantity.clear();
-    }
-    // Returns all book but not their quantity in cart
-    public Collection<Book> getBooks(){
-        /*Collection<Book> booksC = books.values();
-        for(Book book : booksC){
-            book.setQuantity(quantity.get(book.getIsbn()));
-        }*/
-        return books.values();
     }
     
-    // Returns quantities
-    public Collection<Integer> getQuantities(){
-        return quantity.values();
+    // Returns all books in cart
+    public Collection<Book> getBooks(){
+        return books.values();
     }
     
     // Returns book's quantity for a given book
     public int getQuantity(String isbn){
         
-        if(quantity.containsKey(isbn)){
-            return quantity.get(isbn);
+        if(books.containsKey(isbn)){
+            return getBook(isbn).getQuantity();
         }
         return 0;
     }

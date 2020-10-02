@@ -2,8 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,7 +45,6 @@ public class ServletShoppingCart extends HttpServlet {
         book = (Book) request.getAttribute(Values.PARAM_BOOK);
         isbn = request.getParameter(Values.PARAM_ISBN);
         Collection<Book> books;
-        Collection<Integer> quantities;
         
         // This bean contains the shopping carts ( books )
         ShoppingCartBean shoppingcartBean = (ShoppingCartBean) session.getAttribute(Values.BEAN_SHOPPING_CART_NAME);
@@ -56,13 +53,6 @@ public class ServletShoppingCart extends HttpServlet {
                 session.setAttribute(Values.BEAN_SHOPPING_CART_NAME, shoppingcartBean);
         }
         books = shoppingcartBean.getBooks();
-        quantities = shoppingcartBean.getQuantities();
-        isEmpty = shoppingcartBean.isEmpty();
-        
-        // If the cart is empty
-        if(shoppingcartBean.isEmpty()){
-            message = Values.ERROR_EMPTY_CART;
-        }
         
         // If the user adds a new book
         if(Values.ACTION_ADD_BOOK.equals(request.getParameter(Values.PARAM_ACTION))){
@@ -84,29 +74,38 @@ public class ServletShoppingCart extends HttpServlet {
         }
         // If the user increase by 1 book
         else if(Values.ACTION_INC_BOOK.equals(request.getParameter(Values.PARAM_ACTION))){
+            book = shoppingcartBean.getBook(isbn);
             shoppingcartBean.increment(isbn);
             message = String.format(Values.MSG_BOOK_QTY_CHANGED, book.getTitle(), book.getQuantity());
         }
         // If the user decreases by 1 book
         else if(Values.ACTION_DEC_BOOK.equals(request.getParameter(Values.PARAM_ACTION))){
+            book = shoppingcartBean.getBook(isbn);
             shoppingcartBean.decrement(isbn);
             message = String.format(Values.MSG_BOOK_QTY_CHANGED, book.getTitle(), book.getQuantity());
         }
         // If the user removes a book
         else if(Values.ACTION_DEL_BOOK.equals(request.getParameter(Values.PARAM_ACTION))){
+            book = shoppingcartBean.getBook(isbn);
             shoppingcartBean.remove(isbn);
             message = String.format(Values.MSG_BOOK_REMOVED, book.getTitle());
         }
         // If the user clears the cart
-        else if(Values.ACTION_DEL_BOOK.equals(request.getParameter(Values.PARAM_ACTION))){
+        else if(Values.ACTION_EMPTY_CART.equals(request.getParameter(Values.PARAM_ACTION))){
+            book = shoppingcartBean.getBook(isbn);
             shoppingcartBean.clear();
-            message = String.format(Values.MSG_BOOK_REMOVED, book.getTitle());
+            message = String.format(Values.MSG_CART_CLEARED, book.getTitle());
+        }
+        
+        isEmpty = shoppingcartBean.isEmpty();
+        // If the cart is empty
+        if(shoppingcartBean.isEmpty()){
+            message = Values.ERROR_EMPTY_CART;
         }
         
         request.setAttribute(Values.PARAM_ERROR_MSG, errorMessage);
         request.setAttribute(Values.PARAM_MSG, message);
         request.setAttribute("books", books);
-        request.setAttribute("quantities", quantities);
         request.setAttribute("isEmpty", isEmpty);
         
         request.getRequestDispatcher(Values.JSP_SHOPPING_CART_FULL).include(request, response);

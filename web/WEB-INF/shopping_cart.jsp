@@ -7,10 +7,7 @@
     </head>
 
     <body>
-        
-        <jsp:getProperty name="request" property="authType" />
-        <jsp:setProperty name="request" property="" value="" />
-        
+
         <div class="k_box_page_content">
 
             <!-- page title container -->
@@ -25,37 +22,40 @@
 
                 <label class="k_label_info">${message}</label>
 
-             
+
                 <!-- If the cart is empty -->
                 <c:if test="${!isEmpty}">
 
                     <!-- This has to be displayed only if the cart contains products -->
                     <table class="k_table_form" id="k_table_form_shopping_cart">
-                        <form action="shoppingcart" method="post">
-                            <tr>
-                                <th>Titre</th>
-                                <th>Prix</th>
-                                <th>Quantité</th>
-                                <th>Ajouter</th>
-                                <th>Retirer</th>
-                                <th>Supprimer</th>
-                            </tr>
-                            <c:forEach var="book" items="${books}">
+
+                        <tr>
+                            <th>Produit</th>
+                            <th>Prix unitaire TTC</th>
+                            <th>Quantité</th>
+                            <th>Prix total TTC</th>
+                            <th>Ajouter</th>
+                            <th>Retirer</th>
+                            <th>Supprimer</th>
+                        </tr>
+                        <c:forEach var="book" items="${books}">
+                            <form action="shoppingcart" method="post">
                                 <!-- This whole tr contains product's info -->
                                 <tr>
                                 <input type="hidden" name="isbn" value="${book.isbn}" />
                                 <td><a href="book?isbn=${book.isbn}">${book.title}</a></td>
-                                <td>${book.price}</td>
+                                <td>${book.tPrice} &euro;</td>
                                 <td>${book.quantity}</td>
+                                <td>${book.quantity * book.price} &euro;</td>
                                 <td><button class="k_button" type="submit" name="action" value="inc_book">+1</button></td>
                                 <td><button class="k_button" type="submit" name="action" value="dec_book">-1</button></td>
                                 <td><button class="k_button" type="submit" name="action" value="rem_book">X</button></td>
                                 </tr>
+                            </form>
+                        </c:forEach>
 
-                            </c:forEach>
 
 
-                        </form>
                     </table>
 
                     <!-- This has to be displayed only if the cart contains products -->
