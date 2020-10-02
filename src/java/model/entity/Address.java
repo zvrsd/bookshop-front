@@ -6,26 +6,7 @@ package model.entity;
  * and open the template in the editor.
  */
 
-
-
 import java.io.Serializable;
-import java.util.Collection;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-import java.io.Serializable;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Collection;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -42,62 +23,33 @@ import java.sql.Connection;
  *
  * @author cda611
  */
-@Entity
-@Table(name = "ADDRESS")
-@NamedQueries({
-    @NamedQuery(name = "Address.findAll", query = "SELECT a FROM Address a")})
-
 public class Address implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "addressId")
     private Collection<Carrier> carrierCollection;
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ADDRESS_ID")
     private Long addressId;
-    @Column(name = "ADDRESS_COMPANY_NAME")
     private String addressCompanyName;
-    @Column(name = "ADDRESS_L_NAME")
     private String addressLName;
-    @Column(name = "ADDRESS_F_NAME")
     private String addressFName;
-    @Basic(optional = false)
-    @Column(name = "ADDRESS_STREET")
     private String addressStreet;
-    @Column(name = "ADDRESS_STREET_EXTRA")
     private String addressStreetExtra;
-    @Basic(optional = false)
-    @Column(name = "ADDRESS_POSTCODE")
     private String addressPostcode;
-    @Basic(optional = false)
-    @Column(name = "ADDRESS_CITY")
     private String addressCity;
-    @Column(name = "ADDRESS_PHONE")
     private String addressPhone;
-    @Column(name = "ADDRESS_PHONE_EXTRA")
     private String addressPhoneExtra;
-    @JoinTable(name = "ASSOC_CUSTOMER_DELIVERY_ADDRESS", joinColumns = {
-        @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ADDRESS_ID")}, inverseJoinColumns = {
-        @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "CUSTOMER_ID")})
-    @ManyToMany
     private Collection<Customer> customerCollection;
-    @JoinTable(name = "ASSOC_CUSTOMER_BILLING_ADDRESS", joinColumns = {
-        @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ADDRESS_ID")}, inverseJoinColumns = {
-        @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "CUSTOMER_ID")})
-    @ManyToMany
     private Collection<Customer> customerCollection1;
-     private Connection connection;
-	 	private ResultSet result;
-	 	private Statement state;
-	 	private String query;
-	 	ResultSetMetaData resultMeta;
-	 	PreparedStatement prepare;
-		private  String url = "jdbc:sqlserver://CHARLèNE-PC;databaseName=BookShop;"; 
-	    private  String username = "cha"; 
-	    private  String password = "eminem"; 
-	    Address a1;
+    private Connection connection;
+    private ResultSet result;
+    private Statement state;
+    private String query;
+    ResultSetMetaData resultMeta;
+    PreparedStatement prepare;
+    private String url = "jdbc:sqlserver://CHARLèNE-PC;databaseName=BookShop;";
+    private String username = "cha";
+    private String password = "eminem";
+    Address a1;
 
     public Address() {
     }
@@ -109,18 +61,18 @@ public class Address implements Serializable {
     public Address(Long addressId, String addressCompanyName, String addressLName, String addressFName, String addressStreet, String addressStreetExtra, String addressPostcode, String addressCity, String addressPhone, String addressPhoneExtra) {
         this.addressId = addressId;
         this.addressCompanyName = addressCompanyName;
-        this.addressLName = addressLName; 
-        this.addressFName = addressFName; 
+        this.addressLName = addressLName;
+        this.addressFName = addressFName;
         this.addressStreet = addressStreet;
-        this.addressStreetExtra = addressStreetExtra; 
+        this.addressStreetExtra = addressStreetExtra;
         this.addressPostcode = addressPostcode;
         this.addressCity = addressCity;
         this.addressPhone = addressPhone;
-        this.addressPhoneExtra = addressPhoneExtra; 
+        this.addressPhoneExtra = addressPhoneExtra;
     }
-    
-     public Address( String addressStreet, String addressPostcode, String addressCity) {
-       
+
+    public Address(String addressStreet, String addressPostcode, String addressCity) {
+
         this.addressStreet = addressStreet;
         this.addressPostcode = addressPostcode;
         this.addressCity = addressCity;
@@ -228,32 +180,30 @@ public class Address implements Serializable {
         hash += (addressId != null ? addressId.hashCode() : 0);
         return hash;
     }
-    
-      public Address getAdressById(int id) throws SQLException {
-    	
-  	  connection = DriverManager.getConnection(url, username, password); 
-  	   query = "SELECT * from Address where Address_Id = '"+ id +"'";
-  	   state = connection.createStatement();
-  	  
-  	  connection.createStatement();
-  	  result = state.executeQuery(query); 
-  	
-  	  
-  	  if (result.next()){
-  	  
-  	  a1 = new Address(result.getLong("Address_ID"), result.getString("ADDRESS_COMPANY_NAME"), result.getString("ADDRESS_L_NAME")
-  		      ,result.getString("ADDRESS_F_NAME"), result.getString("ADDRESS_STREET")
-  		    	      ,result.getString("ADDRESS_STREET_EXTRA")
-  		    	      ,result.getString("ADDRESS_POSTCODE")
-  		    	      ,result.getString("ADDRESS_CITY") ,result.getString("ADDRESS_PHONE") ,result.getString("ADDRESS_PHONE_EXTRA"));
-  	  
-  	  }else {
-  		  JOptionPane.showMessageDialog(new JFrame(), "Adresse inexistante");
-  	  }
-		return a1;
-  	  
-  	
-  }
+
+    public Address getAdressById(int id) throws SQLException {
+
+        connection = DriverManager.getConnection(url, username, password);
+        query = "SELECT * from Address where Address_Id = '" + id + "'";
+        state = connection.createStatement();
+
+        connection.createStatement();
+        result = state.executeQuery(query);
+
+        if (result.next()) {
+
+            a1 = new Address(result.getLong("Address_ID"), result.getString("ADDRESS_COMPANY_NAME"), result.getString("ADDRESS_L_NAME"),
+                     result.getString("ADDRESS_F_NAME"), result.getString("ADDRESS_STREET"),
+                     result.getString("ADDRESS_STREET_EXTRA"),
+                     result.getString("ADDRESS_POSTCODE"),
+                     result.getString("ADDRESS_CITY"), result.getString("ADDRESS_PHONE"), result.getString("ADDRESS_PHONE_EXTRA"));
+
+        } else {
+            JOptionPane.showMessageDialog(new JFrame(), "Adresse inexistante");
+        }
+        return a1;
+
+    }
 
     @Override
     public boolean equals(Object object) {
@@ -277,5 +227,5 @@ public class Address implements Serializable {
     public void setCarrierCollection(Collection<Carrier> carrierCollection) {
         this.carrierCollection = carrierCollection;
     }
-    
+
 }
