@@ -70,7 +70,7 @@ public class orderServlet extends HttpServlet {
          DataSource ds = null;
             try {
                 InitialContext context = new InitialContext();
-                ds = (DataSource) context.lookup("jdbc/Bookshop");
+                ds = (DataSource) context.lookup("jdbc/bookshop");
             } catch (NamingException ex) {
                 System.out.println(">>>Oops:Naming:" + ex.getMessage());
             }
