@@ -20,7 +20,6 @@ import res.Values;
 public class ServletBook extends HttpServlet {
 
     public final String JSP_HOME = "/WEB-INF/home.jsp";
-    public final String JSP_BOOK = "/WEB-INF/book_info.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -78,7 +77,7 @@ public class ServletBook extends HttpServlet {
         request.setAttribute(Values.PARAM_COMMENTS, comments);
 
         // Displays the book contents
-        request.getRequestDispatcher(JSP_BOOK).include(request, response);
+        request.getRequestDispatcher(Values.JSP_BOOK_INFO_FULL).include(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
