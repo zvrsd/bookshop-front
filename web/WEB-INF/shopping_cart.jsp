@@ -7,7 +7,10 @@
     </head>
 
     <body>
-
+        
+        <jsp:getProperty name="request" property="authType" />
+        <jsp:setProperty name="request" property="" value="" />
+        
         <div class="k_box_page_content">
 
             <!-- page title container -->
@@ -18,56 +21,60 @@
             <!-- page content container -->
             <div id="k_box_shopping_cart_content">
 
-                <c:if test="{true}" scope="request">
-                    <!-- displayed only when the shopping cart is empty -->
-                    <label class="k_label_error">Le panier est vide</label>
-                </c:if>
-                
-                <c:if test="" scope="request">
-                    <!-- Informative message -->
-                    <label class="k_label_info">Le livre A vient d'etre retiré du panier</label>
-                </c:if>
-                    
-                <!-- This has to be displayed only if the cart contains products -->
-                <table class="k_table_form" id="k_table_form_shopping_cart">
-                    <form action="ServletShoppingCart" method="post">
-                        <tr>
-                            <th>Titre</th>
-                            <th>Prix</th>
-                            <th>Quantité</th>
-                            <th>Ajouter</th>
-                            <th>Retirer</th>
-                            <th>Supprimer</th>
-                        </tr>
+                <label class="k_label_error">${error_message}</label>
 
-                        <!-- This whole tr contains product's info -->
-                        <tr>
-                        <input type="hidden" name="book" value="${book}" />
-                        <td><a href="book?isbn=${book.isbn}">${book.title}</a></td>
-                        <td>14.56</td>
-                        <td>8</td>
-                        <td><button class="k_button" type="submit" name="action" value="inc">+1</button></td>
-                        <td><button class="k_button" type="submit" name="action" value="dec">-1</button></td>
-                        <td><button class="k_button" type="submit" name="action" value="del">X</button></td>
-                        </tr>
+                <label class="k_label_info">${message}</label>
 
+             
+                <!-- If the cart is empty -->
+                <c:if test="${!isEmpty}">
+
+                    <!-- This has to be displayed only if the cart contains products -->
+                    <table class="k_table_form" id="k_table_form_shopping_cart">
+                        <form action="shoppingcart" method="post">
+                            <tr>
+                                <th>Titre</th>
+                                <th>Prix</th>
+                                <th>Quantité</th>
+                                <th>Ajouter</th>
+                                <th>Retirer</th>
+                                <th>Supprimer</th>
+                            </tr>
+                            <c:forEach var="book" items="${books}">
+                                <!-- This whole tr contains product's info -->
+                                <tr>
+                                <input type="hidden" name="isbn" value="${book.isbn}" />
+                                <td><a href="book?isbn=${book.isbn}">${book.title}</a></td>
+                                <td>${book.price}</td>
+                                <td>${book.quantity}</td>
+                                <td><button class="k_button" type="submit" name="action" value="inc_book">+1</button></td>
+                                <td><button class="k_button" type="submit" name="action" value="dec_book">-1</button></td>
+                                <td><button class="k_button" type="submit" name="action" value="rem_book">X</button></td>
+                                </tr>
+
+                            </c:forEach>
+
+
+                        </form>
+                    </table>
+
+                    <!-- This has to be displayed only if the cart contains products -->
+                    <form action="shoppingcart" method="post">
+                        <div id="k_box_shopping_cart_actions">
+
+                            <div id="k_box_shopping_cart_clear">
+                                <button class="k_button" type="submit" name="action" value="empty_cart">Vider le panier</button>
+                            </div>
+
+                            <div id="k_box_shopping_cart_order">
+                                <button class="k_button" type="submit" name="action" value="order">Commander</button>
+                            </div>
+
+                        </div>
                     </form>
-                </table>
 
-                <!-- This has to be displayed only if the cart contains products -->
-                <form action="shopping_cart.html" method="get">
-                    <div id="k_box_shopping_cart_actions">
+                </c:if>
 
-                        <div id="k_box_shopping_cart_clear">
-                            <button class="k_button" type="submit" name="action" value="clear">Vider le panier</button>
-                        </div>
-
-                        <div id="k_box_shopping_cart_order">
-                            <button class="k_button" type="submit" name="action" value="order">Commander</button>
-                        </div>
-
-                    </div>
-                </form>
             </div>
         </div>
     </body>
