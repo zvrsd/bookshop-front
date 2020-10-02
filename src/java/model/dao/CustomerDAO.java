@@ -33,7 +33,7 @@ public class CustomerDAO implements DAO<Customer,Long> {
 
     public final String QUERY_SELECT_CUSTOMER_FROM_EMAIL
             = "SELECT * FROM " + TABLE_CUSTOMER + " "
-            + "WHERE CUSTOMER_USERNAME = ? AND "
+            + "WHERE CUSTOMER_EMAIL = ? AND "
             + "CUSTOMER_PASSWORD = ?";
  
     public final String QUERY_CHECK_CUSTOMER_BY_EMAIL
@@ -144,6 +144,7 @@ public class CustomerDAO implements DAO<Customer,Long> {
             emailFound = true;
          
         statement.close();
+        
         }
         return emailFound; 
     }
