@@ -35,6 +35,6 @@ public class Values {
     public final static String JSP_LOGIN = "WEB-INF/login.jsp";
     public final static String JSP_LOGIN_FULL = "WEB-INF/login_full.jsp";
     public final static String JSP_REGISTER_FULL = "WEB-INF/register_full.jsp";
-    public final static String JSP_ACCOUNT = "myAccount.jsp";
+    public final static String JSP_ACCOUNT = "/ServletMyAccount";
     public final static String JSP_REGISTER = "register.jsp";
 }

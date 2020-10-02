@@ -14,10 +14,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Bookshop - Bienvenue sur votre librairie en ligne !</title>
         <meta name="description" content="">
-        <link rel="stylesheet" href="css/templatecss.css">
+        <link rel="stylesheet" href="../css/templatecss.css">
     </head>
 
-    <header><jsp:include page="headerJsp.jsp" /></header>
+    <header><jsp:include page="../headerJsp.jsp" /></header>
     
 
     <body>
@@ -28,6 +28,8 @@
 
 
         <section>
+            <p>Bienvenue ${customer.customerFName} !</p>
+            
             <h2>Mes Commandes</h2>
             <ul>
                 <li><a href="">Commandes en cours</a></li>
@@ -52,7 +54,7 @@
 
     </div>
 
-        <footer><jsp:include page="footerJsp.jsp" /></footer>
+        <footer><jsp:include page="../footerJsp.jsp" /></footer>
 
 </body>
 
