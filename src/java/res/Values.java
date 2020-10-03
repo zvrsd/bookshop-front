@@ -36,6 +36,7 @@ public class Values {
     public final static String MSG_LOGIN_SUCCESS = "Identifiants OK";
     public final static String MSG_BOOK_QTY_CHANGED = "La quantité du livre %s est passée a %d";
     public final static String MSG_BOOK_REMOVED = "Le livre %s a été retiré du panier";
+    public final static String MSG_BOOK_ADDED = "Le livre %s a été ajouté au panier";
     public final static String MSG_CART_CLEARED = "Le panier a été vidé";
     
     public final static String BEAN_LOGIN_NAME = "bean_login";

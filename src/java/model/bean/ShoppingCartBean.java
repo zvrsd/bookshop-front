@@ -10,10 +10,18 @@ import model.entity.Book;
  */
 public class ShoppingCartBean implements Serializable{
     
+    private String totalPriceText;
+    private String totalFullPriceText;
+    
     private HashMap<String,Book> books;
 
     public ShoppingCartBean(){
         books = new HashMap<>();
+    }
+    
+    // Rounds a float by 2 decimals ( 15.56 )
+    private String roundFloat(float value) {
+        return String.format("%.02f", value);
     }
     
     public Book getBook(String isbn){
@@ -40,6 +48,7 @@ public class ShoppingCartBean implements Serializable{
         
         // If the quantity reaches 0
         if(getQuantity(isbn) <= 0){
+            remove(isbn);
         }
     }
     // Increases book's quantity by 1
@@ -74,6 +83,38 @@ public class ShoppingCartBean implements Serializable{
         }
         return 0;
     }
+    
+    // Returns total "HT" price for all the cart
+    public float getTotalPrice(){
+        
+        float price = 0;
+        
+        for(Book book : books.values()){
+            price += book.getPrice() * book.getQuantity();
+        }
+        return price;
+    }
+    
+    // Returns total "TTC" price for all the cart
+    public float getTotalFullPrice(){
+        
+        float price = 0;
+        
+        for(Book book : books.values()){
+            price += book.getTPrice() * book.getQuantity();
+        }
+        return price;
+    }
+    
+    public String getTotalPriceText(){
+        return roundFloat(getTotalPrice());
+    }
+
+    public String getTotalFullPriceText() {
+        return roundFloat(getTotalFullPrice());
+    }
+    
+    
     
     // Returns true if the shopping cart is empty
     public boolean isEmpty(){

@@ -38,15 +38,18 @@
                             <th>Retirer</th>
                             <th>Supprimer</th>
                         </tr>
+                        <jsp:useBean id="bookBean" scope="application" class="model.bean.BookBean" />
+
                         <c:forEach var="book" items="${books}">
                             <form action="shoppingcart" method="post">
+                                <jsp:setProperty name="bookBean" property="book" value="${book}" />
                                 <!-- This whole tr contains product's info -->
                                 <tr>
                                 <input type="hidden" name="isbn" value="${book.isbn}" />
                                 <td><a href="book?isbn=${book.isbn}">${book.title}</a></td>
-                                <td>${book.tPrice} &euro;</td>
+                                <td>${bookBean.fullPriceText} &euro;</td>
                                 <td>${book.quantity}</td>
-                                <td>${book.quantity * book.price} &euro;</td>
+                                <td>${bookBean.fullPriceTotalText} &euro;</td>
                                 <td><button class="k_button" type="submit" name="action" value="inc_book">+1</button></td>
                                 <td><button class="k_button" type="submit" name="action" value="dec_book">-1</button></td>
                                 <td><button class="k_button" type="submit" name="action" value="rem_book">X</button></td>
@@ -54,10 +57,16 @@
                             </form>
                         </c:forEach>
 
-
-
                     </table>
-
+                        
+                    <div id="k_box_order_validation_total">
+                        <table class="k_table_form" id="k_table_form_shopping_cart">
+                                <tr>
+                                    <th>Prix Total TTC : ${bean_shopping_cart.totalFullPriceText} &euro;</th>
+                                </tr>
+                        </table>
+                    </div>
+                        
                     <!-- This has to be displayed only if the cart contains products -->
                     <form action="shoppingcart" method="post">
                         <div id="k_box_shopping_cart_actions">

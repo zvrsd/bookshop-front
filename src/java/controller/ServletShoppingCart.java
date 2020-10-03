@@ -60,13 +60,13 @@ public class ServletShoppingCart extends HttpServlet {
             
             try {
                 shoppingcartBean.add(bookDAO.getById(isbn));
+                book = shoppingcartBean.getBook(isbn);
+                message = String.format(Values.MSG_BOOK_ADDED, book.getTitle());
             } catch (Exception ex) {
                 request.setAttribute(Values.PARAM_ERROR_MSG, ex.getMessage());
                 request.getRequestDispatcher(Values.JSP_ERROR).include(request, response);
                 return;
             }
-             
-            return;
         }
         
         if(isbn == null || isbn.isEmpty()){
@@ -90,11 +90,11 @@ public class ServletShoppingCart extends HttpServlet {
             shoppingcartBean.remove(isbn);
             message = String.format(Values.MSG_BOOK_REMOVED, book.getTitle());
         }
+        
         // If the user clears the cart
-        else if(Values.ACTION_EMPTY_CART.equals(request.getParameter(Values.PARAM_ACTION))){
-            book = shoppingcartBean.getBook(isbn);
+        if(Values.ACTION_EMPTY_CART.equals(request.getParameter(Values.PARAM_ACTION))){
             shoppingcartBean.clear();
-            message = String.format(Values.MSG_CART_CLEARED, book.getTitle());
+            message = String.format(Values.MSG_CART_CLEARED);
         }
         
         isEmpty = shoppingcartBean.isEmpty();
@@ -108,7 +108,13 @@ public class ServletShoppingCart extends HttpServlet {
         request.setAttribute("books", books);
         request.setAttribute("isEmpty", isEmpty);
         
-        request.getRequestDispatcher(Values.JSP_SHOPPING_CART_FULL).include(request, response);
+        // If an action has been made this will prevent data to be resent
+        if(request.getParameter(Values.PARAM_ACTION) != null){
+            response.sendRedirect("shoppingcart");
+        }
+        else{
+            request.getRequestDispatcher(Values.JSP_SHOPPING_CART_FULL).forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
