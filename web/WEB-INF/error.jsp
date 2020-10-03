@@ -8,6 +8,6 @@
     <body>
         <h1>Welp</h1>
         <br/>
-        ${error_msg}
+        ${error_message}
     </body>
 </html>

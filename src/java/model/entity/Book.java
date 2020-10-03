@@ -75,7 +75,7 @@ public class Book {
     }
 
     public float getTPrice(){
-        return price + (price * vat.getRate());
+        return price + price * (vat.getRate() / 100);
     }
     /**
      * @param newPrice
