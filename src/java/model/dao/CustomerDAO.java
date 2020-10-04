@@ -1,6 +1,8 @@
 package model.dao;
 
 import db.Database;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import javax.naming.NamingException;
 import model.entity.Customer;
+import util.HashUtil;
 /**
  *
  * @author zvr
@@ -87,7 +90,7 @@ public class CustomerDAO implements DAO<Customer,Long> {
     }
     
 
-    public Customer getByUsername(String email, String password) throws NamingException, SQLException{
+    public Customer getByUsername(String email, String password) throws NamingException, SQLException, NoSuchAlgorithmException, UnsupportedEncodingException{
         
         Customer customer = null;
 
@@ -95,13 +98,15 @@ public class CustomerDAO implements DAO<Customer,Long> {
         Connection connection;
         PreparedStatement statement;
         ResultSet resultSet;
+        HashUtil hashUtil;
 
+        hashUtil = new HashUtil();
         connection = database.getConnection();
 
         // Prepares and execute the query
         statement = connection.prepareStatement(QUERY_SELECT_CUSTOMER_FROM_EMAIL);
         statement.setString(1, email);
-        statement.setString(2, password);
+        statement.setString(2, hashUtil.hashText(password));
         
         resultSet = statement.executeQuery();
 

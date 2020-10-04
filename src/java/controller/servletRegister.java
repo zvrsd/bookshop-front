@@ -2,9 +2,9 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.dao.CustomerDAO;
 import model.entity.Customer;
 import res.Values;
+import util.HashUtil;
 
 /**
  *
@@ -116,7 +117,8 @@ public class servletRegister extends HttpServlet {
                customer.setCustomerFName(request.getParameter("first_name"));
                customer.setCustomerUsername(request.getParameter("username"));
                customer.setCustomerEmail(request.getParameter("email"));
-               customer.setCustomerPassword(request.getParameter("password"));
+// Hashes the password before its sent to DB
+               customer.setCustomerPassword(new HashUtil().hashText(request.getParameter("password")));
 
                CustomerDAO newCustomer = new CustomerDAO();
                 try {
@@ -133,6 +135,11 @@ public class servletRegister extends HttpServlet {
             RequestDispatcher req = request.getRequestDispatcher("/homePageJsp.jsp");
             req.forward(request, response);
             }
+// Hash related exceptions         
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(servletRegister.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(servletRegister.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

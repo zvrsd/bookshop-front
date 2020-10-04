@@ -8,13 +8,16 @@ import model.entity.Customer;
  */
 public class LoginBean implements Serializable{
     
+    // Stores the logged state of the customer
     private boolean isLogged;
+    // Stores the customer itself
     private Customer customer;
-
+    
     
     public LoginBean(){
         
     }
+    
     public boolean getIsLogged(){
         return isLogged;
     }
