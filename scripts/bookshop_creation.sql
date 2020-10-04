@@ -1092,7 +1092,7 @@ create table CUSTOMER (
    CUSTOMER_F_NAME      varchar(50)          not null,
    CUSTOMER_EMAIL       varchar(50)          not null,
    CUSTOMER_USERNAME    varchar(20)          null,
-   CUSTOMER_PASSWORD    varchar(20)          not null,
+   CUSTOMER_PASSWORD    varchar(64)          not null,
    CUSTOMER_POST_IT     varchar(500)         null,
    CLIENT_DATE          datetime             null,
    constraint PK_CUSTOMER primary key nonclustered (CUSTOMER_ID)

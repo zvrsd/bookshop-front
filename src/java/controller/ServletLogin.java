@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
@@ -104,6 +106,10 @@ public class ServletLogin extends HttpServlet {
         } catch (NamingException ex) {
             errorMessage += ex.getMessage();
         } catch (SQLException ex) {
+            errorMessage += ex.getMessage();
+        } catch (NoSuchAlgorithmException ex) {
+            errorMessage += ex.getMessage();
+        } catch (UnsupportedEncodingException ex) {
             errorMessage += ex.getMessage();
         }
 
