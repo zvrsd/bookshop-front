@@ -94,6 +94,7 @@ public class ServletLogin extends HttpServlet {
             // If login OK
             else{
                 loginBean.setIsLogged(true);
+                loginBean.setCustomer(customer);
                 session.setAttribute(Values.BEAN_LOGIN_NAME, loginBean);
                 session.setAttribute(Values.PARAM_CUSTOMER, customer);
 
