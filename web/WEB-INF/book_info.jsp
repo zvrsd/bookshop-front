@@ -18,18 +18,21 @@
                 Fiche du livre
             </div>
 
+            <label class="k_label_info">${message}</label>
+            
             <div id="k_box_book_content">
 
                 <div id="k_box_book_image">
 
                     <img src="${book.coverURL}" />
                     <br></br>
-                    <form action="/shopping_cart.html" method="get">
+                    <form action="/shoppingcart" method="post">
 
                         <!-- This button could be disabled if the book is already in the shopping cart
                             and change its label too -->
+                        <input type="hidden" name="isbn" value=${book.isbn} />
                         <button class="k_button" type="submit" name="action" value="add_book">Ajouter au panier</button>
-                        <input type="hidden" name="ref" value=${book} />
+                        
                     </form>
                 </div>
 
@@ -65,7 +68,7 @@
                         </div>
 
                         <div id="k_book_info_summary">
-                            Resumé : ${book}<br />
+                            Resumé : ${book.summary}<br />
                         </div>
                     </div>
 

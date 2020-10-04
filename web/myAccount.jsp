@@ -28,7 +28,12 @@
 
 
         <section>
-            <h2>Mes Commandes</h2>
+            <h2> <%--    --%>
+                    
+                  <form action="allOrder" method="post">
+                <a href="/allOrder">Mes Commandes</a> 
+                </form>
+          </h2>
             <ul>
                 <li><a href="">Commandes en cours</a></li>
                 <li><a href="">Commandes archivées</a></li>
@@ -39,7 +44,7 @@
         <section>
             <h2>Mes paramètres</h2>
             <ul>
-                <li><a href="id.jsp">Paramètres de sécurité et de connexion</a></li>
+                <li><a href="id.html">Paramètres de sécurité et de connexion</a></li>
                 <li><a href="">Mes adresses de facturation</a></li>
                 <li><a href="">Mes adresses de livraison</a></li>
             </ul>

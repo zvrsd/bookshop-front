@@ -19,6 +19,10 @@
         <servlet-name>ServletController</servlet-name>
         <servlet-class>controller.ServletController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TestServlet</servlet-name>
+        <servlet-class>test.TestServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>orderServlet</servlet-name>
         <url-pattern>/allOrder</url-pattern>
@@ -34,6 +38,10 @@
     <servlet-mapping>
         <servlet-name>ServletController</servlet-name>
         <url-pattern>/ServletController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TestServlet</servlet-name>
+        <url-pattern>/TestServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

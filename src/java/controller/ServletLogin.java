@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
@@ -92,6 +94,7 @@ public class ServletLogin extends HttpServlet {
             // If login OK
             else{
                 loginBean.setIsLogged(true);
+                loginBean.setCustomer(customer);
                 session.setAttribute(Values.BEAN_LOGIN_NAME, loginBean);
                 session.setAttribute(Values.PARAM_CUSTOMER, customer);
 
@@ -103,6 +106,10 @@ public class ServletLogin extends HttpServlet {
         } catch (NamingException ex) {
             errorMessage += ex.getMessage();
         } catch (SQLException ex) {
+            errorMessage += ex.getMessage();
+        } catch (NoSuchAlgorithmException ex) {
+            errorMessage += ex.getMessage();
+        } catch (UnsupportedEncodingException ex) {
             errorMessage += ex.getMessage();
         }
 

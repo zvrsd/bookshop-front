@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.naming.NamingException;
 import controller.eventServlet;
+import model.dao.EventDAO;
 
 /**
  *
@@ -20,30 +21,33 @@ import controller.eventServlet;
  */
 public class beanEvent implements Serializable {
     
-    List<Book> eventList = null;
+ List<Book> books;
+       EventDAO ed = new EventDAO(); 
     
     public beanEvent() {
-        this.eventList = new ArrayList();
+       
       
     }
     
     
     
-    public List<Book> returnlBook() throws SQLException, NamingException {
-    eventList = new eventServlet().getList();
+    public List<Book> returnlBook(String id) throws SQLException, NamingException {
+    books = ed.getList(id); 
+        
+        return books;
     
-    
-        return eventList;
     }
     
-    public double getRemise(){
-       //doit retourner ou une remise ou le prix du livre à déterminer. 
+    public Double getDiscountPrice(String id) throws SQLException{
+        Event event = ed.getEvent(id); 
+        Double remise = event.getDiscount(); 
         
-        return 0.0;
+        return remise; 
+        
     }
     
-    public Event getEvent(){
+    public Event getEvent(String id) throws SQLException{
         
-        return new Event();
+        return ed.getEvent(id);
     }
 }
