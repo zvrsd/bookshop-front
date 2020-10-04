@@ -63,7 +63,7 @@
                             <c:set var="remise" value="${remise}"/>
                             <%-- Calcul à revoir --%>
                             
-                            <p> Ancien prix :  ${book.price}  Euros</p><p> Nouveau prix : <c:set var="remise" value="${remise * book.price /100}"/>  ${remise} Euros</p>
+                            <p> Ancien prix :  ${book.price}  Euros</p><p> Nouveau prix : <c:set var="discount" value="${remise * book.price /100}"/>  ${discount} Euros</p>
 
                             <br></br><br></br>
                     </div> 
