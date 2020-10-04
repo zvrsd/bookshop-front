@@ -98,13 +98,15 @@ body {font-family: Arial, Helvetica, sans-serif;}
                 <button type="submit">OK</button></li>
             <li class="banniere"><a href="shoppingcart"><span id="barreMenuD">Panier</span></a></li>
 
+
                     <li class="banniere"><button id="myBtn" type="button">Se connecter</button></li>
+
+
                     <li class="banniere">
                          <form action="/allOrder">   
           <button> <a href="myAccount.jsp">Mon compte</a> </button> </li>
     </form>
 
-            
             <%-- ### LOGIN ### --%>
             
             <%-- Bean that contains customer's info if they are logged --%>
@@ -119,8 +121,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
             <c:if test="${!bean_login.isLogged}" var="isLogged" scope="session">
                 <li class="banniere"><button id="myBtn" type="button">Mon compte</button></li>
             </c:if>
-                
->>>>>>> origin
+
     </form>
             </ul>
             

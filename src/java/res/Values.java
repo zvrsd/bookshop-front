@@ -55,6 +55,7 @@ public class Values {
 
 
 
+
    public final static String JSP_BOOK_INFO = "/WEB-INF/book_info.jsp";
     public final static String JSP_BOOK_INFO_FULL = "/WEB-INF/book_info_full.jsp";
     
@@ -67,7 +68,9 @@ public class Values {
     public final static String JSP_NOTLOG = "WEB-INF/notLog.jsp";
     public final static String ERROR_NOT_LOGIN = "Non identifié";
     public final static String ERROR_NO_ORDER = "Aucune commande à afficher";
-   
 
-}
+  }
+
+
+
 
