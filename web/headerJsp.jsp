@@ -77,6 +77,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 .banniere {
     display : inline-block;
 }
+
 #logoBookshop {
 	width: 30vmin;
 	width: 20vmax;
@@ -95,7 +96,11 @@ body {font-family: Arial, Helvetica, sans-serif;}
                 <input type="text" id="recherche" name="isbn">
                 <button type="submit">OK</button></li>
             <li class="banniere"><a href="shoppingcart"><span id="barreMenuD">Panier</span></a></li>
-                    <li class="banniere"><button id="myBtn" type="button">Mon compte</button></li>
+                    <li class="banniere"><button id="myBtn" type="button">Se connecter</button></li>
+                    <li class="banniere">
+                         <form action="/allOrder">   
+          <button> <a href="myAccount.jsp">Mon compte</a> </button> </li>
+    </form>
     </form>
             </ul>
             
