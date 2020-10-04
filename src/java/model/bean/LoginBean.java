@@ -12,7 +12,7 @@ public class LoginBean implements Serializable{
     private boolean isLogged;
     // Stores the customer itself
     private Customer customer;
-
+    
     
     public LoginBean(){
         
