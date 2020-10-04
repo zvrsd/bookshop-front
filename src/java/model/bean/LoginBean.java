@@ -10,7 +10,7 @@ public class LoginBean implements Serializable{
     
     private boolean isLogged;
     private Customer customer;
-
+    
     
     public LoginBean(){
         
