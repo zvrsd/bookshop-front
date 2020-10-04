@@ -1,3 +1,4 @@
+
 package res;
 
 /**
@@ -37,4 +38,5 @@ public class Values {
     public final static String JSP_REGISTER_FULL = "WEB-INF/register_full.jsp";
     public final static String JSP_ACCOUNT = "myAccount.jsp";
     public final static String JSP_REGISTER = "register.jsp";
+
 }
