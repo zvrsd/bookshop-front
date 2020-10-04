@@ -2,6 +2,7 @@ package test;
 
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
@@ -16,31 +17,26 @@ public class Main {
     
     public static void main(String [] a){
         
-        //--------------------------------
-        // Adds a customer to the database
-        //--------------------------------
-        
-        CustomerDAO customerDAO = new CustomerDAO();
-
-        // The customer to insert
-        Customer customer = new Customer();
-
-        customer.setCustomerFName("first_name_guy");
-        customer.setCustomerLName("last_name_guy");
-        customer.setCustomerUsername("123");
-        customer.setCustomerPassword("123");
-        customer.setCustomerEmail("email@email.mail");
-        
-        try {
-            customerDAO.add(customer);
-            
-        } catch (NamingException ex) {
-            System.out.println("Naming exception: " + ex);
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            System.out.println("SQLException: " + ex);
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         
+        testMap();
     }
+    
+    private static void testMap(){
+
+       HashMap<String, String> hashmap = new HashMap<String, String>();
+       
+       hashmap.put("aaa", "apple" );
+       hashmap.put("pab", "lemon" );
+       hashmap.put("aac", "orange" );
+       hashmap.put("aad", "banana" );
+       hashmap.put("zae", "litchi" );
+       hashmap.put("aazeaze48848aa", "mango" );
+       hashmap.put("qsaa", "papaya" );
+
+       System.out.println(hashmap.size());
+
+       for (String key : hashmap.values()) {
+           System.out.println(key);
+       }
+   }
+
 }
