@@ -25,7 +25,6 @@
     </head>
     <body>
 
-        <hr>
 
         <%@include file="headerJsp.jsp" %>  
         <!-- Premiere ligne sous l'en tete -->
@@ -34,11 +33,11 @@
         </div>
 
         <div> 
-            <form name="order" action="searchOrder" method="post">
-                <input type="text" name="inputOrder" value="Recherche par ID" /><input type="image" name="doSearch" src="img/buton1.png">
+            <form action="jspOrderSearch.jsp" method="post">
+                <input type="text" id="inputOrder" name="inputOrder" value="Recherche par ID" /><input type="submit"> 
             </form>
         </div>
-
+       
 
         <h3> Dernier mois</h3>  
 

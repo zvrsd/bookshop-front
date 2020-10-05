@@ -45,13 +45,33 @@ public class orderServlet extends HttpServlet {
             throws ServletException, IOException, SQLException, NamingException {
         response.setContentType("text/html;charset=UTF-8");
 
+        if (request.getParameter("inputOrder") !=null){
+            beanOrder beanO = new beanOrder(); 
+            String i = request.getParameter("inputOrder");
+            List<Book> books; 
+            books = (List<Book>) beanO.getListById(i);
+            
+              if(books == null){
+            request.setAttribute(Values.PARAM_ERROR_MSG, Values.ERROR_NO_ORDER);
+            request.getRequestDispatcher("/error.jsp").include(request, response);
+            
+            }
+            
+           
+           request.setAttribute("list", books );
+       
+           this.getServletContext().getRequestDispatcher("/jspOrderSearch.jsp").include(request, response);
+            
+        }
+         
+
         try {
            HttpSession session = request.getSession();
 
             if (session.getAttribute(Values.PARAM_CUSTOMER) == null){
                 request.setAttribute(Values.PARAM_ERROR_MSG, Values.ERROR_NOT_LOGIN);
                 request.getRequestDispatcher(Values.JSP_NOTLOG).include(request, response);
-                return;     
+                 
             }else{
         
                 
@@ -101,9 +121,7 @@ public class orderServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(orderServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NamingException ex) {
+        } catch (SQLException | NamingException ex) {
             Logger.getLogger(orderServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -122,9 +140,7 @@ public class orderServlet extends HttpServlet {
 
         try {
             processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(orderServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NamingException ex) {
+        } catch (SQLException | NamingException ex) {
             Logger.getLogger(orderServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
