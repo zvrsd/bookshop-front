@@ -52,12 +52,9 @@ public class Values {
     public final static String JSP_REGISTER_FULL = "/WEB-INF/register_full.jsp";
     public final static String JSP_ACCOUNT = "myAccount.jsp";
     public final static String JSP_REGISTER = "register.jsp";
-
-
-
-
-   public final static String JSP_BOOK_INFO = "/WEB-INF/book_info.jsp";
+    public final static String JSP_BOOK_INFO = "/WEB-INF/book_info.jsp";
     public final static String JSP_BOOK_INFO_FULL = "/WEB-INF/book_info_full.jsp";
+    public final static String JSP_ORDER_VALIDATION = "/WEB-INF/order_validation_full.jsp";
     
     // Order 
     
