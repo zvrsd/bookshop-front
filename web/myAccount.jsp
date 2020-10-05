@@ -44,7 +44,7 @@
         <section>
             <h2>Mes paramètres</h2>
             <ul>
-                <li><a href="id.html">Paramètres de sécurité et de connexion</a></li>
+                <li><a href="id.jsp">Paramètres de sécurité et de connexion</a></li>
                 <li><a href="">Mes adresses de facturation</a></li>
                 <li><a href="">Mes adresses de livraison</a></li>
             </ul>

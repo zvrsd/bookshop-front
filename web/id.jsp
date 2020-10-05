@@ -25,7 +25,7 @@
             <h2>Paramètres de sécurité et de connexion</h2>
             
             <ul>
-            <li><label>Nom </label></li>
+            <li><label>Nom : </label></li>
             <li><label>Prénom </label></li>
             <li><label>Pseudonyme</label></li>
             
