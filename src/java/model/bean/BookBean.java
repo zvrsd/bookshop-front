@@ -1,10 +1,6 @@
 package model.bean;
 
 import java.io.Serializable;
-import java.sql.SQLException;
-import java.util.List;
-import javax.naming.NamingException;
-import model.dao.BookDAO;
 import model.entity.Book;
 
 /**
@@ -13,19 +9,62 @@ import model.entity.Book;
  */
 public class BookBean implements Serializable {
 
+    // "HT" price for 1
+    private String priceText;
     
-    public BookBean(){
-        
+    // "TTC" price for 1
+    private String fullPriceText;
+    
+    // "HT" price for all
+    private float priceTotal;
+    private String priceTotalText;
+    
+    // "TTC" price for all
+    private float fullPriceTotal;
+    private String fullPriceTotalText;
+
+    private Book book;
+
+    public BookBean() {
+
     }
-    
-    public boolean isBookAvailable(Book book){
-        return true;
+
+    // Rounds a float by 2 decimals ( 15.56 )
+    private String roundFloat(float value) {
+        return String.format("%.02f", value);
     }
-    
-    public List<Book> search(String search) throws NamingException, SQLException{
-        
-        List<Book> books = new BookDAO().getAll();
-        
-        return books;
+
+    // Returns "HT" price for 1 book in text format
+    public String getPriceText() {
+        return roundFloat(book.getPrice());
+    }
+
+    // Returns "TTC" price for 1 book
+    public String getFullPriceText() {
+        return roundFloat(book.getTPrice());
+    }
+
+    public float getPriceTotal() {
+        return book.getPrice() * book.getQuantity();
+    }
+
+    public String getPriceTotalText() {
+        return roundFloat(getPriceTotal());
+    }
+
+    public float getFullPriceTotal() {
+        return book.getTPrice() * book.getQuantity();
+    }
+
+    public String getFullPriceTotalText() {
+        return roundFloat(getFullPriceTotal());
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
     }
 }
