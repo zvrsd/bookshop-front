@@ -44,11 +44,6 @@ public class Values {
     public final static String BEAN_SHOPPING_CART_NAME = "bean_shopping_cart";
     
     public final static String JSP_HOME = "homePageJsp.jsp";
-    public final static String JSP_ERROR = "WEB-INF/error.jsp";
-    public final static String JSP_LOGIN = "WEB-INF/login.jsp";
-    public final static String JSP_LOGIN_FULL = "WEB-INF/login_full.jsp";
-    public final static String JSP_REGISTER_FULL = "WEB-INF/register_full.jsp";
-    public final static String JSP_ACCOUNT = "/ServletMyAccount";
     public final static String JSP_ERROR = "/WEB-INF/error.jsp";
     public final static String JSP_SHOPPING_CART = "/WEB-INF/shopping_cart.jsp";
     public final static String JSP_SHOPPING_CART_FULL = "/WEB-INF/shopping_cart_full.jsp";
