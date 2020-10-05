@@ -66,7 +66,7 @@
                             <p> Ancien prix :  ${book.price}  Euros</p><p> Nouveau prix : <c:set var="discount" value="${remise * book.price /100}"/>  ${discount} Euros</p>
 
                             <br></br><br></br>
-                    </div> 
+                   
                 </div>
 
 
