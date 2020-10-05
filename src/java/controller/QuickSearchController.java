@@ -33,9 +33,13 @@ public class QuickSearchController extends HttpServlet {
             
             BookDAO qs = new BookDAO();
             try {
-                ArrayList<Book> listQS = (ArrayList<Book>) qs.quickSearch((String) request.getAttribute("recherche"));
-               
+                ArrayList<Book> listQS = (ArrayList<Book>) qs.quickSearch((String) request.getParameter("recherche"));
+                System.out.println("Test: " + request.getParameter("recherche"));
+                System.out.println("TEST2: " + request.getParameterValues("recherche"));
                 
+                request.setAttribute("books", listQS);
+                
+                request.getRequestDispatcher("jspQuickSearch.jsp").include(request, response);
                 
                 
                 

@@ -57,7 +57,7 @@
         <div class="container"> 
             <div class="row">  
                
-                <c:forEach var="book" items="${book}">
+                <c:forEach var="book" items="${books}">
 
                     <a href="book?isbn=${book.isbn}<img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
                     <div class="col-sm-4"> 
