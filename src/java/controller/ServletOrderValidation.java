@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.bean.LoginBean;
 import model.bean.ShoppingCartBean;
 import model.dao.BookDAO;
 import model.entity.Book;
@@ -33,27 +34,38 @@ public class ServletOrderValidation extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        BookDAO bookDAO = new BookDAO();
-        String isbn = "";
         String errorMessage = "";
         String message = "";
                 
         HttpSession session = request.getSession();
-        Collection<Book> books;
         
-        // This bean contains the shopping carts ( books )
+        LoginBean loginBean = (LoginBean) session.getAttribute(Values.BEAN_LOGIN_NAME);
         ShoppingCartBean shoppingcartBean = (ShoppingCartBean) session.getAttribute(Values.BEAN_SHOPPING_CART_NAME);
-        if (shoppingcartBean == null) {
+        
+        // If the user chooses to go back to cart
+        if(Values.ACTION_GOTO_CART.equals(request.getParameter(Values.PARAM_ACTION))){
+            response.sendRedirect("shoppingcart");
+        }
+        // If the cart is empty
+        else if (shoppingcartBean == null || shoppingcartBean.isEmpty()) {
+            
             errorMessage = "Aucun livre disponible";
         }
-        else{
-            books = shoppingcartBean.getBooks();
+        // If the user is not logged in
+        else if(loginBean == null || !loginBean.getIsLogged()){
+            request.setAttribute(Values.PARAM_MSG, "Connectez-vous pour commander");
+            session.setAttribute(Values.PARAM_ORIGIN, "ordervalidation");
+            request.getRequestDispatcher("login").include(request, response);
+            return;
+            
         }
-        
+        else{
+            
+        }
         request.setAttribute(Values.PARAM_ERROR_MSG, errorMessage);
         request.setAttribute(Values.PARAM_MSG, message);
         
-        request.getRequestDispatcher(Values.JSP_ORDER_VALIDATION).include(request, response);
+        request.getRequestDispatcher(Values.JSP_ORDER_VALIDATION_FULL).include(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

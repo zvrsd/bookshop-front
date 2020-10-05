@@ -38,7 +38,7 @@ public class ServletLogin extends HttpServlet {
             throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
-
+        
         CustomerDAO customerDAO = new CustomerDAO();
 
         String errorMessage = "";
@@ -50,7 +50,7 @@ public class ServletLogin extends HttpServlet {
         password = request.getParameter("password");
 
         HttpSession session = request.getSession();
-
+        
         // This bean is used to check if the user is logged or not and stores
         // all its information
         LoginBean loginBean = (LoginBean) session.getAttribute(Values.BEAN_LOGIN_NAME);
@@ -70,10 +70,15 @@ public class ServletLogin extends HttpServlet {
             return;
         }
         // If the user is logged already
-        if(loginBean.getIsLogged()){
+        if (loginBean.getIsLogged()) {
 
+            String url = Values.JSP_ACCOUNT;
+
+            if (request.getAttribute(Values.PARAM_ORIGIN) != null) {
+                url = (String) session.getAttribute(Values.PARAM_ORIGIN);
+            }
             // Displaying Account page
-            response.sendRedirect(Values.JSP_ACCOUNT);
+            response.sendRedirect(url);
             return;
         }
         // If the user is coming from another page
@@ -98,8 +103,14 @@ public class ServletLogin extends HttpServlet {
                 session.setAttribute(Values.BEAN_LOGIN_NAME, loginBean);
                 session.setAttribute(Values.PARAM_CUSTOMER, customer);
 
+                
+                if(session.getAttribute(Values.PARAM_ORIGIN) != null){
+                    response.sendRedirect((String) session.getAttribute(Values.PARAM_ORIGIN));
+                }
                 // Displaying Account page
-                response.sendRedirect(Values.JSP_ACCOUNT);
+                else{
+                    response.sendRedirect(Values.JSP_ACCOUNT);
+                }
                 return;
             }
 
@@ -113,10 +124,11 @@ public class ServletLogin extends HttpServlet {
             errorMessage += ex.getMessage();
         }
 
+        
         request.setAttribute("email", request.getParameter("email"));
         request.setAttribute("error_message", errorMessage);
 
-        request.getRequestDispatcher(Values.JSP_LOGIN_FULL).include(request, response);
+        request.getRequestDispatcher(Values.JSP_LOGIN_FULL).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

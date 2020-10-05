@@ -29,6 +29,7 @@ public class Values {
     public final static String ACTION_INC_BOOK = "inc_book";
     public final static String ACTION_DEC_BOOK = "dec_book";
     public final static String ACTION_EMPTY_CART = "empty_cart";
+    public final static String ACTION_GOTO_CART = "cart";
     
     public final static String ERROR_INVALID_LOGIN = "Identifiants invalides";
     public final static String ERROR_NO_BOOK = "Aucun livre à afficher";
@@ -54,13 +55,13 @@ public class Values {
     public final static String JSP_REGISTER = "register.jsp";
     public final static String JSP_BOOK_INFO = "/WEB-INF/book_info.jsp";
     public final static String JSP_BOOK_INFO_FULL = "/WEB-INF/book_info_full.jsp";
-    public final static String JSP_ORDER_VALIDATION = "/WEB-INF/order_validation_full.jsp";
+    public final static String JSP_ORDER_VALIDATION_FULL = "/WEB-INF/order_validation_full.jsp";
     
     // Order 
     
-    public final static String ORDER_LASTMONTH = "listMonth"; 
+    public final static String ORDER_LASTMONTH = "listMonth";
     public final static String ORDER_SIXMONTH = "listSixMonth";
-    public final static String ORDER_PAST = "listPast"; 
+    public final static String ORDER_PAST = "listPast";
     
     public final static String JSP_NOTLOG = "WEB-INF/notLog.jsp";
     public final static String ERROR_NOT_LOGIN = "Non identifié";

@@ -12,19 +12,19 @@
         <jsp:useBean id="bean_shopping_cart" scope="session" class="model.bean.ShoppingCartBean" />
         
         <!-- displayed when unexpected stuffs happen -->
-        <label class="k_label_error">Erreur</label>
+        <label class="k_label_error">${error_msg}</label>
 
         <!-- Informative message -->
-        <label class="k_label_info">Un evenement a eu lieu sur cette commande</label>
+        <label class="k_label_info">${message}</label>
 
         <!-- Contains products -->
         <table class="k_table_form" id="k_table_form_shopping_cart">
             <form action="ordervalidation" method="post">
                 <tr>
                     <th>Titre</th>
-                    <th>Prix Unitaire HT</th>
+                    <th>Prix HT</th>
                     <th>&nbsp;&nbsp;TVA&nbsp;&nbsp;</th>
-                    <th>Prix Unitaire TTC</th>
+                    <th>Prix TTC</th>
                     <th>Remise</th>
                     <th>Quantité</th>
                     <th>Prix Total HT</th>
@@ -58,7 +58,7 @@
             <!-- Contains products -->
             <table class="k_table_form" id="k_table_form_shopping_cart">
 
-                <form action="shoppingcart" method="post">
+                <form>
                     <tr>
                         <th>Prix Total HT</th>
                         <th>Prix Total TTC</th>
@@ -75,11 +75,11 @@
 
 
         <!-- This has to be displayed only if the cart contains products -->
-        <form action="shopping_cart.html" method="get">
+        <form action="ordervalidation" method="post">
             <div id="k_box_shopping_cart_actions">
 
                 <div id="k_box_shopping_cart_clear">
-                    <button class="k_button" type="submit" name="action" value="">Revenir au panier</button>
+                    <button class="k_button" type="submit" name="action" value="cart">Revenir au panier</button>
                 </div>
 
                 <div id="k_box_shopping_cart_order">
