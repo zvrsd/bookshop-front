@@ -89,41 +89,36 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 
 <!-- Trigger/Open The Modal -->
+<ul>
 
-<ul> <form method="POST" action="book">
+    <form method="POST" action="book">
+
         <li class="banniere"><a href="homePageJsp.jsp"><figure><img src="img/0.png" alt="Logo Bookshop" id="logoBookshop"></figure></a></li>
-            <!-- recherche rapide -->
-            <li class="banniere"><label for="recherche">Recherche</label>
-                <input type="text" id="recherche" name="isbn">
-                <button type="submit">OK</button></li>
-            <li class="banniere"><a href="shoppingcart"><span id="barreMenuD">Panier</span></a></li>
+        <!-- recherche rapide -->
+        <li class="banniere"><label for="recherche">Recherche</label>
+            <input type="text" id="recherche" name="isbn">
+            <button type="submit">OK</button>
+        </li>
+        <li class="banniere"><a href="shoppingcart">Panier</a></li>
 
 
-                    <li class="banniere"><button id="myBtn" type="button">Se connecter</button></li>
 
+        <%-- ### LOGIN ### --%>
 
-                    <li class="banniere">
-                         <form action="/allOrder">   
-          <button> <a href="myAccount.jsp">Mon compte</a> </button> </li>
+        <%-- Bean that contains customer's info if they are logged --%>
+        <jsp:useBean id="bean_login" scope="session" class="model.bean.LoginBean" />
+
+        <%-- If the user is logged --%>
+        <c:if test="${bean_login.isLogged}" var="isLogged" scope="session">
+            <li class="banniere"> ${bean_login.customer.customerUsername}</li>
+            <li class="banniere"><a href="login"><span id="barreMenuD"><button type="button">Mon compte</button></span></a></li>
+        </c:if>
+        <%-- Else --%>
+        <c:if test="${!bean_login.isLogged}" var="isLogged" scope="session">
+            <li class="banniere"><span id="barreMenuD"><button id="myBtn" type="button">Se connecter</button></span></li>
+        </c:if>
     </form>
-
-            <%-- ### LOGIN ### --%>
-            
-            <%-- Bean that contains customer's info if they are logged --%>
-            <jsp:useBean id="bean_login" scope="session" class="model.bean.LoginBean" />
-            
-            <%-- If the user is logged --%>
-            <c:if test="${bean_login.isLogged}" var="isLogged" scope="session">
-                <li class="banniere"> ${bean_login.customer.customerUsername}</li>
-                <li class="banniere"><a href="login"><button type="button">Mon compte</button></a></li>
-            </c:if>
-            <%-- Else --%>
-            <c:if test="${!bean_login.isLogged}" var="isLogged" scope="session">
-                <li class="banniere"><button id="myBtn" type="button">Mon compte</button></li>
-            </c:if>
-
-    </form>
-            </ul>
+</ul>
             
             
 
