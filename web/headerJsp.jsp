@@ -91,12 +91,12 @@ body {font-family: Arial, Helvetica, sans-serif;}
 <!-- Trigger/Open The Modal -->
 <ul>
 
-    <form method="POST" action="book">
+    <form method="POST" action="QuickSearchController">
 
         <li class="banniere"><a href="homePageJsp.jsp"><figure><img src="img/0.png" alt="Logo Bookshop" id="logoBookshop"></figure></a></li>
         <!-- recherche rapide -->
         <li class="banniere"><label for="recherche">Recherche</label>
-            <input type="text" id="recherche" name="isbn">
+            <input type="text" id="recherche" name="recherche">
             <button type="submit">OK</button>
         </li>
         <li class="banniere"><a href="shoppingcart">Panier</a></li>
@@ -195,3 +195,4 @@ window.onclick = function(event) {
                 </ul>
                 
             </nav>
+
