@@ -1,14 +1,15 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+        <link rel="stylesheet" href="css/default.css" />
+        <link rel="stylesheet" href="css/templatecss.css" />
          <style>
+             
 body {font-family: Arial, Helvetica, sans-serif;}
 
 /* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
+  display: block; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   padding-top: 100px; /* Location of the box */
@@ -89,36 +90,19 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 
 <!-- Trigger/Open The Modal -->
-<ul>
 
-    <form method="POST" action="QuickSearchController">
-
+<ul> <form method="POST" action="book">
         <li class="banniere"><a href="homePageJsp.jsp"><figure><img src="img/0.png" alt="Logo Bookshop" id="logoBookshop"></figure></a></li>
-        <!-- recherche rapide -->
-        <li class="banniere"><label for="recherche">Recherche</label>
-            <input type="text" id="recherche" name="recherche">
-            <button type="submit">OK</button>
-        </li>
-        <li class="banniere"><a href="shoppingcart">Panier</a></li>
-
-
-
-        <%-- ### LOGIN ### --%>
-
-        <%-- Bean that contains customer's info if they are logged --%>
-        <jsp:useBean id="bean_login" scope="session" class="model.bean.LoginBean" />
-
-        <%-- If the user is logged --%>
-        <c:if test="${bean_login.isLogged}" var="isLogged" scope="session">
-            <li class="banniere"> ${bean_login.customer.customerUsername}</li>
-            <li class="banniere"><a href="login"><span id="barreMenuD"><button type="button">Mon compte</button></span></a></li>
-        </c:if>
-        <%-- Else --%>
-        <c:if test="${!bean_login.isLogged}" var="isLogged" scope="session">
-            <li class="banniere"><span id="barreMenuD"><button id="myBtn" type="button">Se connecter</button></span></li>
-        </c:if>
+            <!-- recherche rapide -->
+            <li class="banniere"><label for="recherche">Recherche</label>
+                <input type="text" id="recherche" name="isbn">
+                <button type="submit">OK</button></li>
+            <li class="banniere"><a href="shoppingcart"><span id="barreMenuD">Panier</span></a></li>
+                    <li class="banniere"><button id="myBtn" type="button">Se connecter</button></li>
+                    <li class="banniere">
+                         
     </form>
-</ul>
+            </ul>
             
             
 
@@ -136,7 +120,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
     </div>
     <div class="modal-body">
       
-        <jsp:include page="WEB-INF/login.jsp" />
+        <jsp:include page="login.jsp" />
         
         
     </div>
@@ -152,15 +136,15 @@ body {font-family: Arial, Helvetica, sans-serif;}
 var modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+//var btn = document.getElementById("myBtn");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
-btn.onclick = function() {
+/*btn.onclick = function() {
   modal.style.display = "block";
-}
+}*/
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
