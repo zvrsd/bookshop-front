@@ -29,6 +29,7 @@
             </span>
             
             <table>
+                
                 <tr>
                     <td>Nom</td>
                     <td>${customer.customerLName}</td>
@@ -45,7 +46,6 @@
                     <td>Adresse e-mail</td>
                     <td>${customer.customerEmail}</td>
                 </tr>
-                
                 
                 
             </table> 

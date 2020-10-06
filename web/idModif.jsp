@@ -38,6 +38,12 @@
         <section>
             <h2>Modification des informations</h2>
             
+            <div>
+                Tous les champs marqués d'un astérisque * doivent impérativement être renseignés afin de valider les modifications.
+            </div>
+            
+            <br />
+            
             <form action="/ServletIdModif" method="post">
             <table>
                 <tr>
@@ -54,11 +60,11 @@
                 </tr>
                 <tr>
                     <td>Nouveau mot de passe</td>
-                    <td><input type="text" name="newPassword">*<td/>
+                    <td><input type="password" name="newPassword">*<td/>
                 </tr>
                 <tr>
                     <td>Confirmer le mot de passe</td>
-                    <td><input type="text" name="newPasswordConf">*</td>
+                    <td><input type="password" name="newPasswordConf">*</td>
                 </tr>
             <!-- <li><label>Nom </label><input type="text" name="lName" value="${customer.customerLName}">*</li>
             <li><label>Prénom </label><input type="text" name="fName" value="${customer.customerFName}">*</li>
@@ -68,11 +74,13 @@
                 <li><label>Confirmer nouveau mot de passe</label><input type="text" name="newPasswordConf">*</li>-->
             </table>
             
+            <br>
+            
             <section>
                 
                 <button type="button">Confirmer</button>
                  
-                <button type="button"><a href="id.jsp">Annuler</a></button>
+                <button type="button"><a href="myAccount.jsp">Annuler</a></button>
             </section>
             </form>    
         </section>
