@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
     Document   : homePage.jsp
     Created on : 1 oct. 2020, 11:28:20
@@ -42,7 +43,24 @@
                 </ul>
             </section>
              
-             
+           <div class="container"> 
+            <div class="row">  
+               
+                <c:forEach var="book" items="${books}">
+
+                    <a href="book?isbn=${book.isbn}<img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
+                    <div class="col-sm-4"> 
+                        <figure>  <p><a href="book?isbn=${book.isbn} "><img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
+                            <h3>  ${book.title}  </h3>
+                            <p>   ${book.postIt} </p>     
+                            
+                            <p> Prix :  ${book.price}  Euros</p>
+                            <br></br><br></br>
+                   
+                </div>
+            </c:forEach>
+        </div> 
+    </div>          
              
        
         <footer><jsp:include page="footerJsp.jsp" /></footer>

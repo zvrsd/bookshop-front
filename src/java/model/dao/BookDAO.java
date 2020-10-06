@@ -45,7 +45,7 @@ public class BookDAO implements DAO<Book, String> {
             = "SELECT CATEGORY_ID FROM " + TABLE_ASSOC_BOOK_CATEGORY + " "
             + "WHERE BOOK_ISBN = ?";
     public final String QUERY_QUICK_SEARCH
-            = "SELECT book.*\n"
+            = "SELECT Distinct book.*\n"
             + "FROM KEYWORD inner join\n"
             + "ASSOC_BOOK_KEYWORD on KEYWORD.KEYWORD_ID = ASSOC_BOOK_KEYWORD.KEYWORD_ID inner join\n"
             + "BOOK on ASSOC_BOOK_KEYWORD.BOOK_ISBN = BOOK.BOOK_ISBN\n"
