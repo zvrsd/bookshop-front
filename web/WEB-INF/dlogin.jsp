@@ -1,8 +1,10 @@
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+        <link rel="stylesheet" href="css/default.css" />
+        <link rel="stylesheet" href="css/templatecss.css" />
          <style>
+             
 body {font-family: Arial, Helvetica, sans-serif;}
 
 /* The Modal (background) */
@@ -98,9 +100,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
             <li class="banniere"><a href="shoppingcart"><span id="barreMenuD">Panier</span></a></li>
                     <li class="banniere"><button id="myBtn" type="button">Se connecter</button></li>
                     <li class="banniere">
-                         <form action="/allOrder">   
-          <button> <a href="myAccount.jsp">Mon compte</a> </button> </li>
-    </form>
+                         
     </form>
             </ul>
             
