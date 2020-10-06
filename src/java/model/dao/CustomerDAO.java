@@ -114,12 +114,21 @@ public class CustomerDAO implements DAO<Customer,Long> {
         if (resultSet.next()) {
 
             customer = new Customer();
+            
             customer.setCustomerId(resultSet.getLong(1));
             customer.setCustomerLName(resultSet.getString(2));
             customer.setCustomerFName(resultSet.getString(3));
             customer.setCustomerEmail(resultSet.getString(4));
             customer.setCustomerUsername(resultSet.getString(5));
             customer.setCustomerPassword(resultSet.getString(6));
+            
+            /*
+            // Unsafe cast from long to int !!!
+            customer.setBillingAddresses(AddressDAO.listAddressByIdCustomer(Integer.parseInt(""+customer.getCustomerId())));
+            
+            // Unsafe cast from long to int !!!
+            customer.setBillingAddresses(AddressDAO.listAddressByIdCustomer(Integer.parseInt(""+customer.getCustomerId())));
+            */
         }
 
         statement.close();

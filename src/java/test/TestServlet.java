@@ -42,9 +42,7 @@ public class TestServlet extends HttpServlet {
         
         
         
-        
-        
-        
+        /*
         try {
             addCustomer();
         } catch (NoSuchAlgorithmException ex) {
@@ -53,6 +51,7 @@ public class TestServlet extends HttpServlet {
             Logger.getLogger(TestServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         testHash();
+        */
     }
 
     private static void testHash() {

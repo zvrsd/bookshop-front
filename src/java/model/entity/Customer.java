@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collection;
 import java.util.Date;
-import model.entity.Address;
 
 /**
  *
@@ -136,6 +135,15 @@ public class Customer implements Serializable {
         this.deliveryAddresses = deliveryAddresses;
     }
 
+    public Collection<Address> getBillingAddresses() {
+        return billingAddresses;
+    }
+
+    public void setBillingAddresses(Collection<Address> billingAddresses) {
+        this.billingAddresses = billingAddresses;
+    }
+
+    
     @Override
     public int hashCode() {
         int hash = 0;
