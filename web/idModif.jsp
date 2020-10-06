@@ -40,9 +40,9 @@
             
             <form action="/ServletIdModif" method="post">
             <ul>
-            <li><label>Nom </label><input type="text" name="lName">*</li>
-            <li><label>Prénom </label><input type="text" name="fName">*</li>
-            <li><label>Pseudonyme</label><input type="text" name="pseudo"></li>
+            <li><label>Nom </label><input type="text" name="lName" value="${customer.customerLName}">*</li>
+            <li><label>Prénom </label><input type="text" name="fName" value="${customer.customerFName}">*</li>
+            <li><label>Pseudonyme</label><input type="text" name="pseudo" value=""${customer.customerUsername}></li>
             
                 <li><label>Nouveau mot de passe</label><input type="text" name="newPassword">*</li>
                 <li><label>Confirmer nouveau mot de passe</label><input type="text" name="newPasswordConf">*</li>
