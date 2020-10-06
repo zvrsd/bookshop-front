@@ -39,14 +39,34 @@
             <h2>Modification des informations</h2>
             
             <form action="/ServletIdModif" method="post">
-            <ul>
-            <li><label>Nom </label><input type="text" name="lName" value="${customer.customerLName}">*</li>
+            <table>
+                <tr>
+                    <td>Nom</td>
+                    <td><input type="text" name="lName" value="${customer.customerLName}">*</td>
+                </tr>
+                <tr>
+                    <td>Prénom</td>
+                    <td><input type="text" name="fName" value="${customer.customerFName}">*</td>
+                </tr>
+                <tr>
+                    <td>Pseudonyme</td>
+                    <td><input type="text" name="pseudo" value="${customer.customerUsername}"></td>
+                </tr>
+                <tr>
+                    <td>Nouveau mot de passe</td>
+                    <td><input type="text" name="newPassword">*<td/>
+                </tr>
+                <tr>
+                    <td>Confirmer le mot de passe</td>
+                    <td><input type="text" name="newPasswordConf">*</td>
+                </tr>
+            <!-- <li><label>Nom </label><input type="text" name="lName" value="${customer.customerLName}">*</li>
             <li><label>Prénom </label><input type="text" name="fName" value="${customer.customerFName}">*</li>
-            <li><label>Pseudonyme</label><input type="text" name="pseudo" value=""${customer.customerUsername}></li>
+            <li><label>Pseudonyme</label><input type="text" name="pseudo" value="${customer.customerUsername}"></li>
             
                 <li><label>Nouveau mot de passe</label><input type="text" name="newPassword">*</li>
-                <li><label>Confirmer nouveau mot de passe</label><input type="text" name="newPasswordConf">*</li>
-            </ul>
+                <li><label>Confirmer nouveau mot de passe</label><input type="text" name="newPasswordConf">*</li>-->
+            </table>
             
             <section>
                 

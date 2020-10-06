@@ -28,8 +28,11 @@
 
 
         <section>
-            <h2> <%--    --%>
+            
                     
+                <span id="llbienvenue">Bienvenue ${customer.customerFName} ${customer.customerLName}</span>
+                
+            <h2> <%--    --%>    
                   <form action="allOrder" method="post">
                 <a href="/allOrder">Mes Commandes</a> 
                 </form>

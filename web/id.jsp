@@ -24,12 +24,33 @@
         <section>
             <h2>Paramètres de sécurité et de connexion</h2>
             
-            <ul>
-            <li><label>Nom : </label></li>
-            <li><label>Prénom </label></li>
-            <li><label>Pseudonyme</label></li>
+            <span>
+                Mes informations personnelles
+            </span>
             
-            </ul>
+            <table>
+                <tr>
+                    <td>Nom</td>
+                    <td>${customer.customerLName}</td>
+                </tr>
+                <tr>
+                    <td>Prénom</td>
+                    <td>${customer.customerFName}</td>
+                </tr>
+                <tr>
+                    <td>Pseudonyme</td>
+                    <td>${customer.customerUsername}</td>
+                </tr>
+                <tr>
+                    <td>Adresse e-mail</td>
+                    <td>${customer.customerEmail}</td>
+                </tr>
+                
+                
+                
+            </table> 
+               
+            
             
             <section>
                 
