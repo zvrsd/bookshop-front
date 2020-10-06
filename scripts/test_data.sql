@@ -1,6 +1,7 @@
 /*==============================================================*/
 /*				TEST DATA  for BookShop							*/
-/*			Date de création :  01/10/2020 16:49:00             */
+/*			Date de création     :  01/09/2020 16:49:00         */ 
+/*          Date de modification :  06/10/2020 11:12:13         */
 /*==============================================================*/
 
 -- Resets auto-increment
@@ -522,7 +523,8 @@ insert into CARRIER
 		('7', 'La Poste', 'contactpro@laposte.net'),
 		('5', 'DHL', 'dhldeliveryservice@dhl.com'),
 		('6', 'UPS', 'ups@ups.com'),
-		('5', 'TNT', 'contact@tnt.com')
+		('5', 'TNT', 'contact@tnt.com'),
+		('2', 'Generic', 'carrier@generic.com')
 ;
 
 insert into PACKAGE 
@@ -555,7 +557,10 @@ insert into SHIPPING_OFFER
 		(2, 'Chronopost', 'Livré sous 48h, suivi internet et sms', 'Livré en main propre contre signature', 18.70, null),
 		(3, 'Express', 'Livré le lendemain avant 18h', 'Livré en main propre contre signature', 20.00, null),
 		(3, 'Prioritaire', 'Livré sous 4 jours ouvrés, suivi internet', 'Livraison en boîte aux lettres', 5.00, null),
-		(4, 'Lettre ordinaire', '1 à 2 semaines', 'Livré en boîte aux lettres', 3.50, 'aucun suivi, aucune garantie')
+		(4, 'Lettre ordinaire', '1 à 2 semaines', 'Livré en boîte aux lettres', 3.50, 'aucun suivi, aucune garantie'),
+		(5, 'Livraison Express', 'Livré le jour suivant', '', 5.00, null),
+		(5, 'Livraison Rapide', 'Livré en 3 jours ouvrés', '', 2.00, null),
+		(5, 'Livraison Standard', 'Délai variable', '', 1.00, null)
 ;
 
 insert into ASSOC_STATUS_CARRIER 
