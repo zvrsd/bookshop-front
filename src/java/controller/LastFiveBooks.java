@@ -34,7 +34,7 @@ public class LastFiveBooks extends HttpServlet {
             // Gets the last 5 books from DB
             ArrayList<Book> allBooks = (ArrayList<Book>) new BookDAO().getAll();
             List<Book> lastBooks = new ArrayList<Book>();
-            for(int i = allBooks.size() - 1; i > allBooks.size() - 7; i--){
+            for(int i = allBooks.size() - 1; i > allBooks.size() - 6; i--){
                 lastBooks.add(allBooks.get(i));
             }
             // Displays books

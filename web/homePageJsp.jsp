@@ -15,6 +15,7 @@
         <title>Bookshop - Bienvenue sur votre librairie en ligne !</title>
         <meta name="description" content="">
         <link rel="stylesheet" href="css/templatecss.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     </head>
 
     <header><jsp:include page="headerJsp.jsp" /></header>
@@ -35,12 +36,8 @@
         </section>
             
             <section id = "livres tendance">
-                <h2>En tendance en ce moment</h2>
-                <ul>
-                    <li><a href="">n°1</a></li>
-                    <li><a href ="">n°2</a></li>
-                    <li><a href ="">n°3</a></li>
-                </ul>
+                <h2>Les nouveautes: </h2>
+
             </section>
              
            <div class="container"> 
@@ -49,20 +46,20 @@
                 <c:forEach var="book" items="${books}">
 
                     <a href="book?isbn=${book.isbn}<img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
-                    <div class="col-sm-4"> 
+                    <div class="col-sm-2"> 
                         <figure>  <p><a href="book?isbn=${book.isbn} "><img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
                             <h3>  ${book.title}  </h3>
                             <p>   ${book.postIt} </p>     
                             
                             <p> Prix :  ${book.price}  Euros</p>
                             <br></br><br></br>
-                   
+                            
                 </div>
             </c:forEach>
         </div> 
     </div>          
              
-       
+     <br></br><br></br><br></br>      
         <footer><jsp:include page="footerJsp.jsp" /></footer>
 
 </body>
