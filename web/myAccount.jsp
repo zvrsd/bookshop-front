@@ -25,9 +25,11 @@
 
     <body>
 
+        
         <jsp:useBean id="bean_login" scope="session" class="model.bean.LoginBean" />
     <c:if test="${!bean_login.isLogged}" var="isLogged" scope="session">
         <jsp:forward page="WEB-INF/login.jsp" />
+        
         </c:if>
         
     <div id="font"> 
@@ -64,6 +66,7 @@
 
 
 
+        
     </div>
 
         <footer><jsp:include page="footerJsp.jsp" /></footer>
