@@ -45,7 +45,7 @@ public class BookDAO implements DAO<Book, String> {
             = "SELECT CATEGORY_ID FROM " + TABLE_ASSOC_BOOK_CATEGORY + " "
             + "WHERE BOOK_ISBN = ?";
     public final String QUERY_QUICK_SEARCH
-            = "SELECT book.*\n"
+            = "SELECT DISTINCT book.*\n"
             + "FROM KEYWORD inner join\n"
             + "ASSOC_BOOK_KEYWORD on KEYWORD.KEYWORD_ID = ASSOC_BOOK_KEYWORD.KEYWORD_ID inner join\n"
             + "BOOK on ASSOC_BOOK_KEYWORD.BOOK_ISBN = BOOK.BOOK_ISBN\n"
@@ -60,13 +60,13 @@ public class BookDAO implements DAO<Book, String> {
             + "OR KEYWORD_NAME like concat ('%', ?, '%')\n" 
             + "OR BOOK.BOOK_ISBN like concat ('%', ?, '%')";
        
-    public final String QUERY_LIST_CATEGORY = "SELECT book.* FROM category inner join ASSOC_BOOK_CATEGORY  on CATEGORY.CATEGORY_ID = ASSOC_BOOK_CATEGORY.CATEGORY_ID  inner join BOOK on ASSOC_BOOK_CATEGORY.BOOK_ISBN = BOOK.BOOK_ISBN WHERE category.CATEGORY_NAME like concat ('%', ?, '%')";
+    public final String QUERY_LIST_CATEGORY = "SELECT distinct book.* FROM category inner join ASSOC_BOOK_CATEGORY  on CATEGORY.CATEGORY_ID = ASSOC_BOOK_CATEGORY.CATEGORY_ID  inner join BOOK on ASSOC_BOOK_CATEGORY.BOOK_ISBN = BOOK.BOOK_ISBN WHERE category.CATEGORY_NAME like concat ('%', ?, '%')";
     
-    public final String QUERY_LIST_PRICE = "   select * from Book where Book.BOOK_HT_PRICE > like concat ('%', ?, '%') and Book.BOOK_HT_PRICE < like concat ('%', ?, '%')";
+    public final String QUERY_LIST_PRICE = "   select  * from Book where Book.BOOK_HT_PRICE > like concat ('%', ?, '%') and Book.BOOK_HT_PRICE < like concat ('%', ?, '%')";
     
-     public final String QUERY_LIST_MINUS_PRICE = "   select * from Book where Book.BOOK_HT_PRICE < like concat ('%', ?, '%')";
+     public final String QUERY_LIST_MINUS_PRICE = "   select  * from Book where Book.BOOK_HT_PRICE < like concat ('%', ?, '%')";
      
-     public final String QUERY_LIST_MAX_PRICE = "   select * from Book where Book.BOOK_HT_PRICE > like concat ('%', ?, '%')";
+     public final String QUERY_LIST_MAX_PRICE = "   select  * from Book where Book.BOOK_HT_PRICE > like concat ('%', ?, '%')";
      
     @Override
     public void add(Book object) throws Exception {

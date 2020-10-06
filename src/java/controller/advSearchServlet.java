@@ -9,7 +9,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
@@ -43,23 +45,33 @@ public class advSearchServlet extends HttpServlet {
             throws ServletException, IOException, NamingException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         
-            
+            Set books = new HashSet(); 
             beanSearch beanSearch = new beanSearch(); 
-            List<Book> books = new ArrayList(); 
-            books = (List<Book>) beanSearch.getByTitle((String) request.getParameter("title")); 
-         /*   beanSearch = (beanSearch) beanSearch.getByCategory((String) request.getParameter("category"));
-            beanSearch = (beanSearch) beanSearch.getByISBN((String) request.getParameter("isbn"));
-            beanSearch = (beanSearch) beanSearch.getByKeywords((String) request.getParameter("keywords"));
+            //List<Book> books = new ArrayList(); 
+            List<List<Book>> recueil = new ArrayList(); 
+            recueil.add(beanSearch.getByTitle((String) request.getParameter("title"))); 
+            recueil.add(beanSearch.getByCategory((String) request.getParameter("category")));
+            recueil.add(beanSearch.getByISBN((String) request.getParameter("isbn")));
+            recueil.add(beanSearch.getByKeywords((String) request.getParameter("keywords")));
+           /* if(request.getParameter("priceMin") != null) {
+                  if (request.getParameter("priceMax") != null){
             Double min = Double.parseDouble(request.getParameter("priceMin")); 
-            Double max = Double.parseDouble(request.getParameter("priceMax"));  
-            beanSearch = (beanSearch) beanSearch.getByPrice(min , max);
-            */
+            Double max = Double.parseDouble(request.getParameter("priceMax"));
+             recueil.add( beanSearch.getByPrice(min , max));
+            }*/
+            
+            recueil.stream().forEach((book) -> {
+                book.stream().forEach((boo) -> {
+                    books.add(boo);
+            });
+        });
             
              request.setAttribute("books", books);
              request.getRequestDispatcher("/advancedSearch.jsp").include(request, response);
            
         
     }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
