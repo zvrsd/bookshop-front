@@ -13,24 +13,33 @@ and open the template in the editor.
     <body>
         <h2>Recherche avancée</h2>
         <form action="/advSearchServlet" method="GET">
-            
+
             par Titre : <input type="text" name="title" value="" />
             <br></br>
             par ISBN : <input type="text" name="isbn" value="" />
-             <br></br>
+            <br></br>
             par Catégorie : <select name="category">
-                <option></option>
-                <option></option>
+                <option value="category">categorie</option>
+                <option value="categorie_A">categorie_A</option>
+                <option value="categorie_B">categorie_B</option>
+                <option value="categorie_C">categorie_C</option>
+                <option value="categorie_A_0">categorie_A_0</option>
+                <option value="categorie_A_1">categorie_A_1</option>
+                <option value="categorie_A_2">categorie_A_2</option>
+                <option value="categorie_B_0">categorie_B_0</option>
+                <option value="categorie_B_1">categorie_B_1</option>
+                <option value="categorie_B_2">categorie_B_2</option>
+                
             </select>
-             <br></br>
+            <br></br>
             par Mot-Clefs : <input type="text" name="keywords" value="" />
-             <br></br>
+            <br></br>
             par prix min : <input type="number" name="priceMin" value="" /> par prix max : <input type="number" name="priceMax" value="" /> 
-             <br></br>
-             Article remisé <input type="radio" name="remise" value="" />
-             <br></br>
-            <input type="submit" value="doSearch" />
+            <br></br>
+            Article remisé <input type="radio" name="remise" value="" />
+            <br></br>
+            <input type="submit" value="Rechercher" />
         </form>
-        
+
     </body>
 </html>
