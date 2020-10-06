@@ -10,11 +10,7 @@
 
 <html>
 
-    <jsp:useBean id="bean_login" scope="session" class="model.bean.LoginBean" />
-    <c:if test="${!bean_login.isLogged}" var="isLogged" scope="session">
-        <jsp:forward page="WEB-INF/login.jsp" />
-        
-        </c:if>
+
     
     
     
@@ -39,7 +35,7 @@
         <section>
             
                     
-                <span id="llbienvenue">Bienvenue ${customer.customerFName} ${customer.customerLName}</span>
+                <div id="llbienvenue">Bienvenue ${customer.customerFName} ${customer.customerLName}</div>
                 
             <h2> <%--    --%>    
                   <form action="allOrder" method="post">

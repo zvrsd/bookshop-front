@@ -4,11 +4,6 @@
 <!DOCTYPE html>
 <html>
     
-    <jsp:useBean id="bean_login" scope="session" class="model.bean.LoginBean" />
-    <c:if test="${!bean_login.isLogged}" var="isLogged" scope="session">
-        <jsp:forward page="WEB-INF/login.jsp" />
-        
-        </c:if>
     
     
     <head>
@@ -73,12 +68,7 @@
                     <td>Confirmer le mot de passe</td>
                     <td><input type="password" name="newPasswordConf">*</td>
                 </tr>
-            <!-- <li><label>Nom </label><input type="text" name="lName" value="${customer.customerLName}">*</li>
-            <li><label>Prénom </label><input type="text" name="fName" value="${customer.customerFName}">*</li>
-            <li><label>Pseudonyme</label><input type="text" name="pseudo" value="${customer.customerUsername}"></li>
             
-                <li><label>Nouveau mot de passe</label><input type="text" name="newPassword">*</li>
-                <li><label>Confirmer nouveau mot de passe</label><input type="text" name="newPasswordConf">*</li>-->
             </table>
             
             <br>

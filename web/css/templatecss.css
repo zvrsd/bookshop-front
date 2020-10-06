@@ -89,6 +89,7 @@ section {
     background-color: hsl(200,25%,92%);
     border-top-style: solid;
     border-top-color: white;
+    font-family: sans-serif;
 }
 
 #barreFixe {
@@ -482,4 +483,13 @@ section {
     text-align: center;
     align-items: stretch;
     background-color: var(--k_main_bg_color);
+    
+}
+
+/* *******MY ACCOUNT**********/
+
+#llbienvenue {
+    font-style: italic;
+    font-size: large;
+    text-align: center;
 }
