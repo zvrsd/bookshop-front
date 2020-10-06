@@ -39,11 +39,11 @@
                 
             <h2> <%--    --%>    
                   <form action="allOrder" method="post">
-                <a href="/allOrder">Mes Commandes</a> 
+                <a>Mes Commandes</a> 
                 </form>
           </h2>
             <ul>
-                <li><a href="">Commandes en cours</a></li>
+                <li><a href="/allOrder">Commandes en cours</a></li>
                 <li><a href="">Commandes archivées</a></li>
             </ul>
         </section>
