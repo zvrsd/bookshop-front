@@ -43,13 +43,13 @@ public class CustomerDAO implements DAO<Customer,Long> {
             = "SELECT CUSTOMER_EMAIL FROM " + TABLE_CUSTOMER + " "
             + "WHERE CUSTOMER_EMAIL = ?";
     
-    // variable - requête SQL pour modif données client
+    // Loïc : variable - requête SQL pour modif données client
     public final String QUERY_UPDATE_CUSTOMER
             = "UPDATE " + TABLE_CUSTOMER + " "
             + "SET "
             + "CUSTOMER_L_NAME, CUSTOMER_F_NAME, CUSTOMER_EMAIL, "
             + "CUSTOMER_USERNAME, CUSTOMER_PASSWORD "
-            + "WHERE CUSTOMER_ID = ";
+            + "WHERE CUSTOMER_ID = ?";
     
    // fin variable SQL
             

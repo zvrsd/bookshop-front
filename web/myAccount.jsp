@@ -4,11 +4,14 @@
     Author     : Loïc
 --%>
 
+
 <%@page contentType="text/html" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 
 <html>
 
+    
+    
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,7 +25,10 @@
 
     <body>
 
-        
+        <jsp:useBean id="bean_login" scope="session" class="model.bean.LoginBean" />
+    <c:if test="${!bean_login.isLogged}" var="isLogged" scope="session">
+        <jsp:forward page="WEB-INF/login.jsp" />
+        </c:if>
         
     <div id="font"> 
 
