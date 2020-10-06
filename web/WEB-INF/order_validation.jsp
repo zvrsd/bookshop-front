@@ -17,6 +17,20 @@
         <!-- Informative message -->
         <label class="k_label_info">${message}</label>
 
+        <div id="k_box_order_validation_total">
+            
+            Selectionnez un mode de livraison : 
+            
+            <select id="cars" name="cars">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="fiat">Fiat</option>
+                <option value="audi">Audi</option>
+            </select>
+
+        </div> 
+        
+
         <!-- Contains products -->
         <table class="k_table_form" id="k_table_form_shopping_cart">
             <form action="ordervalidation" method="post">
