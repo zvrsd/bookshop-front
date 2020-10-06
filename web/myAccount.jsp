@@ -3,13 +3,19 @@
     Created on : 30 sept. 2020, 12:19:09
     Author     : Loïc
 --%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@page contentType="text/html" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 
 <html>
 
+    <jsp:useBean id="bean_login" scope="session" class="model.bean.LoginBean" />
+    <c:if test="${!bean_login.isLogged}" var="isLogged" scope="session">
+        <jsp:forward page="WEB-INF/login.jsp" />
+        
+        </c:if>
+    
     
     
     <head>
@@ -25,12 +31,7 @@
 
     <body>
 
-        
-        <jsp:useBean id="bean_login" scope="session" class="model.bean.LoginBean" />
-    <c:if test="${!bean_login.isLogged}" var="isLogged" scope="session">
-        <jsp:forward page="WEB-INF/login.jsp" />
-        
-        </c:if>
+      
         
     <div id="font"> 
 

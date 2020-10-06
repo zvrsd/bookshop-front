@@ -1,7 +1,17 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    
+    
+    <jsp:useBean id="bean_login" scope="session" class="model.bean.LoginBean" />
+    <c:if test="${!bean_login.isLogged}" var="isLogged" scope="session">
+        <jsp:forward page="WEB-INF/login.jsp" />
+        
+        </c:if>
+    
     
     <head>
         <meta charset="utf-8">
