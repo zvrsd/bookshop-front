@@ -53,6 +53,7 @@ public class advSearchServlet extends HttpServlet {
             recueil.add(beanSearch.getByCategory((String) request.getParameter("category")));
             recueil.add(beanSearch.getByISBN((String) request.getParameter("isbn")));
             recueil.add(beanSearch.getByKeywords((String) request.getParameter("keywords")));
+            
            /* if(request.getParameter("priceMin") != null) {
                   if (request.getParameter("priceMax") != null){
             Double min = Double.parseDouble(request.getParameter("priceMin")); 

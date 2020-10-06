@@ -85,6 +85,7 @@ section {
      
 }
 
+
 #font {
     background-color: hsl(200,25%,92%);
     border-top-style: solid;
@@ -96,9 +97,42 @@ section {
 }
 
 #tdr {
+    display: flex;
     text-align: center;
 }
 
+/* --------------------------------------------------------
+***********************************************************
+*************************CHARLèNE***************************** 
+***********************************************************
+-------------------------------------------------------- */
+.evtConteneur {
+   display: flex;
+   justify-content: center;
+}
+
+.prezConteneur{
+    display: flex;
+    
+    
+    .prezConteneur:nth-child(1)
+{
+    order: 1;
+}
+
+    .prezConteneur:nth-child(2)
+{
+    order: 2;
+}
+}
+.titre {
+   display: flex;
+   justify-content: center;
+}
+
+#bor {
+   border: 1px solid black;
+}
 /* --------------------------------------------------------
 ***********************************************************
 *************************KEVIN***************************** 
