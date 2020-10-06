@@ -19,7 +19,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.dao.BookDAO;
+import model.dao.ShippingOfferDAO;
 import model.entity.Book;
+import model.entity.ShippingOffer;
 
 /**
  *
@@ -42,16 +44,11 @@ public class TestServletBook extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         try {
-
-            // Gets the last 5 books from DB
-            ArrayList<Book> allBooks = (ArrayList<Book>) new BookDAO().getAll();
-            List<Book> lastBooks = new ArrayList<Book>();
-            for (int i = allBooks.size() - 1; i > allBooks.size() - 6; i--) {
-                lastBooks.add(allBooks.get(i));
-            }
+            ArrayList<ShippingOffer> list = (ArrayList<ShippingOffer>) new ShippingOfferDAO().getByCarrierId(null);
+            
             // Displays books
-            for (Book book : lastBooks) {
-                System.out.println(book);
+            for (ShippingOffer offer : list) {
+                System.out.println(offer);
             }
 
         } catch (NamingException ex) {

@@ -7,8 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.naming.NamingException;
 import model.entity.ShippingOffer;
 
 /**
@@ -25,7 +24,8 @@ public class ShippingOfferDAO implements DAO<ShippingOffer, Long>{
     public final String COLUMN_SHIPPING_OFFER_DETAILS = "SHIPPING_OFFER_DETAILS";
     public final String COLUMN_SHIPPING_OFFER_HT_PRICE = "SHIPPING_OFFER_HT_PRICE";
     
-    public final long GENERIC_CARRIER_ID = 6;
+    // ID of the generic carrier into the database ( may vary )
+    public final long GENERIC_CARRIER_ID = 5;
     
     public final String QUERY_SELECT_ALL_SHIPPING_OFFER
             = "SELECT * FROM " + TABLE_SHIPPING_OFFER;
@@ -85,7 +85,7 @@ public class ShippingOfferDAO implements DAO<ShippingOffer, Long>{
         return shippingOfferList;
     }
     
-    public List<ShippingOffer> getByCarrierId(Long id) throws Exception {
+    public List<ShippingOffer> getByCarrierId(Long id) throws NamingException, SQLException {
         
         List<ShippingOffer> shippingOfferList = new ArrayList();
 
@@ -97,7 +97,7 @@ public class ShippingOfferDAO implements DAO<ShippingOffer, Long>{
         connection = database.getConnection();
 
         // Prepares and execute the query
-        statement = connection.prepareStatement(QUERY_SELECT_ALL_SHIPPING_OFFER);
+        statement = connection.prepareStatement(QUERY_SELECT_SHIPPING_OFFER_BY_CARRIER);
         statement.setLong(1, GENERIC_CARRIER_ID);
         resultSet = statement.executeQuery();
         

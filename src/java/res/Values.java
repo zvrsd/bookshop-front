@@ -43,6 +43,7 @@ public class Values {
     
     public final static String BEAN_LOGIN_NAME = "bean_login";
     public final static String BEAN_SHOPPING_CART_NAME = "bean_shopping_cart";
+    public final static String BEAN_ORDER_VALIDATION_NAME = "bean_order_val";
     
     public final static String JSP_HOME = "homePageJsp.jsp";
     public final static String JSP_ERROR = "/WEB-INF/error.jsp";

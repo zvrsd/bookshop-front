@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.bean.LoginBean;
+import model.bean.OrderValidationBean;
 import model.bean.ShoppingCartBean;
-import model.dao.BookDAO;
 import model.entity.Book;
 import res.Values;
 
@@ -48,8 +49,9 @@ public class ServletOrderValidation extends HttpServlet {
         }
         // If the cart is empty
         else if (shoppingcartBean == null || shoppingcartBean.isEmpty()) {
-            
             errorMessage = "Aucun livre disponible";
+            response.sendRedirect("shoppingcart");
+            return;
         }
         // If the user is not logged in
         else if(loginBean == null || !loginBean.getIsLogged()){
@@ -57,11 +59,21 @@ public class ServletOrderValidation extends HttpServlet {
             session.setAttribute(Values.PARAM_ORIGIN, "ordervalidation");
             request.getRequestDispatcher("login").include(request, response);
             return;
-            
         }
-        else{
-            
+ 
+        OrderValidationBean orderValidationBean = (OrderValidationBean) session.getAttribute(Values.BEAN_ORDER_VALIDATION_NAME);
+        if(orderValidationBean == null){
+            orderValidationBean = new OrderValidationBean();
+            session.setAttribute(Values.BEAN_ORDER_VALIDATION_NAME, orderValidationBean);
+            orderValidationBean.setBooks(shoppingcartBean.getBooks());
+            orderValidationBean.setValidated(false);
         }
+        
+        // If the order has been validated already
+        if(orderValidationBean.isValidated()){
+            message = "commande deja validée";
+        }
+        
         request.setAttribute(Values.PARAM_ERROR_MSG, errorMessage);
         request.setAttribute(Values.PARAM_MSG, message);
         
@@ -97,4 +109,7 @@ public class ServletOrderValidation extends HttpServlet {
         processRequest(request, response);
     }
 
+    private boolean validateOrder(OrderValidationBean orderBean){
+        return false;
+    }
 }

@@ -17,18 +17,7 @@
         <!-- Informative message -->
         <label class="k_label_info">${message}</label>
 
-        <div id="k_box_order_validation_total">
-            
-            Selectionnez un mode de livraison : 
-            
-            <select id="cars" name="cars">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="fiat">Fiat</option>
-                <option value="audi">Audi</option>
-            </select>
-
-        </div> 
+        
         
 
         <!-- Contains products -->
@@ -90,6 +79,42 @@
 
         <!-- This has to be displayed only if the cart contains products -->
         <form action="ordervalidation" method="post">
+            
+            <br/>
+            <br/>
+            <div id="k_box_order_validation_total">
+
+                <%-- Shipping offer selection --%>
+                <label>Mode de livraison</label>
+                <jsp:useBean id="bean_order_val" scope="session" class="model.bean.OrderValidationBean" />
+                
+                <select id="shipping_offers" name="shipping_offers">
+                    <c:forEach var="shippingOffer" items="${bean_order_val.genericShippingOffers}">
+                        <option name="shippingOffer" value="${shippingOffer}">${shippingOffer.shippingOfferName} - ${shippingOffer.shippingOfferDetails}</option>
+                    </c:forEach>
+                </select>
+            </div> 
+            
+            <div id="k_box_order_validation_total">
+
+
+                <%-- Shipping offer selection --%>
+                <label>Addresse de livraison</label>
+                <select id="delivery_addresses" name="shipping_offers">
+                    <c:forEach var="billing_addresse" items="${bean_order_val.genericShippingOffers}">
+                        <option name="shippingOffer" value="${shippingOffer}">${shippingOffer.shippingOfferName} - ${shippingOffer.shippingOfferDetails}</option>
+                    </c:forEach>
+                </select>
+
+                <%-- Shipping Address selection --%>
+                <label>Addresse de facturation</label>
+                <select id="billing_addresses" name="billing_addresses">
+                    <c:forEach var="billing_addresse" items="${customer.billing_addresse}">
+                        <option name="billing_addresse" value="${billing_addresse}">${billing_addresse.shippingOfferName} - ${billing_addresse.shippingOfferDetails}</option>
+                    </c:forEach>
+                </select>
+            </div> 
+                
             <div id="k_box_shopping_cart_actions">
 
                 <div id="k_box_shopping_cart_clear">
