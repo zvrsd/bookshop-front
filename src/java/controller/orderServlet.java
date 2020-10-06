@@ -7,18 +7,11 @@ package controller;
 
 import model.bean.beanOrder;
 import model.entity.Book;
-import model.entity.Order;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,9 +19,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
-import model.dao.BookDAO;
-import model.dao.OrderDAO;
 import model.entity.Customer;
 import res.Values;
 
@@ -44,7 +34,30 @@ public class orderServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, NamingException {
         response.setContentType("text/html;charset=UTF-8");
+// Code to show book that have been ordered
+        
+        if (request.getParameter("inputOrder") !=null){
+            beanOrder beanO = new beanOrder(); 
+            String i = request.getParameter("inputOrder");
+            List<Book> books; 
+            books = (List<Book>) beanO.getListById(i);
+            
+              if(books == null){
+            request.setAttribute(Values.PARAM_ERROR_MSG, Values.ERROR_NO_ORDER);
+            request.getRequestDispatcher("/error.jsp").include(request, response);
+            
+            }
+            
+           
+           request.setAttribute("list", books );
+       
+           this.getServletContext().getRequestDispatcher("/jspOrderSearch.jsp").include(request, response);
+            
+        }
 
+
+
+// Code Below works: 
         try {
            HttpSession session = request.getSession();
 

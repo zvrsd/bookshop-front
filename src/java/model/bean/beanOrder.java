@@ -59,7 +59,7 @@ public class beanOrder implements Serializable {
     }
 
     public List<Book> allOrder(Long id) throws SQLException, NamingException {
- id = 2l;
+    //id = 21;
         books = new OrderDAO().getList(id);
         return books;
 
