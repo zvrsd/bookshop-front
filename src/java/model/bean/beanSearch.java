@@ -7,6 +7,17 @@ package model.bean;
 
 import java.beans.*;
 import java.io.Serializable;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Set;
+import javax.naming.NamingException;
+import model.dao.BookDAO;
+import model.entity.Book;
 
 /**
  *
@@ -14,32 +25,59 @@ import java.io.Serializable;
  */
 public class beanSearch implements Serializable {
     
-    public static final String PROP_SAMPLE_PROPERTY = "sampleProperty";
-    
-    private String sampleProperty;
-    
-    private PropertyChangeSupport propertySupport;
+   Set<Book> books;
     
     public beanSearch() {
-        propertySupport = new PropertyChangeSupport(this);
+      books =  new HashSet(); 
+    }
+     
+    public Set<Book> getAll() throws NamingException, SQLException{
+        books = new HashSet<>(new BookDAO().getAll()); 
+        
+        return books; 
     }
     
-    public String getSampleProperty() {
-        return sampleProperty;
+    public Set<Book> getByCategory(String category) throws NamingException, SQLException{
+        books = new HashSet<>(new BookDAO().categorySearch(category)); 
+        
+        return books; 
     }
     
-    public void setSampleProperty(String value) {
-        String oldValue = sampleProperty;
-        sampleProperty = value;
-        propertySupport.firePropertyChange(PROP_SAMPLE_PROPERTY, oldValue, sampleProperty);
+    public Set<Book> getByTitle(String title) throws NamingException, SQLException{
+        books = new HashSet<>( new BookDAO().quickSearch(title)); 
+        
+        return books; 
     }
     
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        propertySupport.addPropertyChangeListener(listener);
+    public Set<Book> getByISBN(String isbn) throws NamingException, SQLException{
+        books = new HashSet<>( new BookDAO().quickSearch(isbn)); 
+        
+        return books; 
     }
     
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        propertySupport.removePropertyChangeListener(listener);
+    public Set<Book> getByKeywords(String keyword) throws NamingException, SQLException{
+        books = new HashSet<>( new BookDAO().quickSearch(keyword)); 
+        
+        return books; 
     }
     
+    public Set<Book> getByPrice(Double priceS, Double priceE) throws NamingException, SQLException{
+        books = new HashSet<>( new BookDAO().priceSearch(priceS, priceE)); 
+        
+        return books; 
+    }
+    
+    public Set<Book> getByPriceMin(Double priceS) throws NamingException, SQLException{
+        books = new HashSet<>( new BookDAO().priceSearchMin(priceS)); 
+        
+        return books; 
+    }
+    
+    public Set<Book> getByPriceMax(Double priceS) throws NamingException, SQLException{
+        books = new HashSet<>( new BookDAO().priceSearchMax(priceS)); 
+        
+        return books; 
+    }
+
+   
 }
