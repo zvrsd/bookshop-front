@@ -39,7 +39,7 @@
                 
             <h2> <%--    --%>    
                   <form action="allOrder" method="post">
-                <a>Mes Commandes</a> 
+                <a href="/allOrder">Mes Commandes</a> 
                 </form>
           </h2>
             <ul>
