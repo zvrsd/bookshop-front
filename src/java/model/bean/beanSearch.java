@@ -10,9 +10,11 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Set;
 import javax.naming.NamingException;
 import model.dao.BookDAO;
 import model.entity.Book;
@@ -23,56 +25,56 @@ import model.entity.Book;
  */
 public class beanSearch implements Serializable {
     
-   List<Book> books;
+   Set<Book> books;
     
     public beanSearch() {
-      books = new ArrayList(); 
+      books =  new HashSet(); 
     }
      
-    public List<Book> getAll() throws NamingException, SQLException{
-        books = new BookDAO().getAll(); 
+    public Set<Book> getAll() throws NamingException, SQLException{
+        books = new HashSet<>(new BookDAO().getAll()); 
         
         return books; 
     }
     
-    public List<Book> getByCategory(String category) throws NamingException, SQLException{
-        books = new BookDAO().categorySearch(category); 
+    public Set<Book> getByCategory(String category) throws NamingException, SQLException{
+        books = new HashSet<>(new BookDAO().categorySearch(category)); 
         
         return books; 
     }
     
-    public List<Book> getByTitle(String title) throws NamingException, SQLException{
-        books = new BookDAO().quickSearch(title); 
+    public Set<Book> getByTitle(String title) throws NamingException, SQLException{
+        books = new HashSet<>( new BookDAO().quickSearch(title)); 
         
         return books; 
     }
     
-    public List<Book> getByISBN(String isbn) throws NamingException, SQLException{
-        books = new BookDAO().quickSearch(isbn); 
+    public Set<Book> getByISBN(String isbn) throws NamingException, SQLException{
+        books = new HashSet<>( new BookDAO().quickSearch(isbn)); 
         
         return books; 
     }
     
-    public List<Book> getByKeywords(String keyword) throws NamingException, SQLException{
-        books = new BookDAO().quickSearch(keyword); 
+    public Set<Book> getByKeywords(String keyword) throws NamingException, SQLException{
+        books = new HashSet<>( new BookDAO().quickSearch(keyword)); 
         
         return books; 
     }
     
-    public List<Book> getByPrice(Double priceS, Double priceE) throws NamingException, SQLException{
-        books = new BookDAO().priceSearch(priceS, priceE); 
+    public Set<Book> getByPrice(Double priceS, Double priceE) throws NamingException, SQLException{
+        books = new HashSet<>( new BookDAO().priceSearch(priceS, priceE)); 
         
         return books; 
     }
     
-    public List<Book> getByPriceMin(Double priceS) throws NamingException, SQLException{
-        books = new BookDAO().priceSearchMin(priceS); 
+    public Set<Book> getByPriceMin(Double priceS) throws NamingException, SQLException{
+        books = new HashSet<>( new BookDAO().priceSearchMin(priceS)); 
         
         return books; 
     }
     
-    public List<Book> getByPriceMax(Double priceS) throws NamingException, SQLException{
-        books = new BookDAO().priceSearchMax(priceS); 
+    public Set<Book> getByPriceMax(Double priceS) throws NamingException, SQLException{
+        books = new HashSet<>( new BookDAO().priceSearchMax(priceS)); 
         
         return books; 
     }

@@ -48,8 +48,8 @@ public class advSearchServlet extends HttpServlet {
             Set books = new HashSet(); 
             beanSearch beanSearch = new beanSearch(); 
             //List<Book> books = new ArrayList(); 
-            List<List<Book>> recueil = new ArrayList(); 
-            recueil.add(beanSearch.getByTitle((String) request.getParameter("title"))); 
+            Set<Set<Book>> recueil = new HashSet(); 
+            recueil.add( beanSearch.getByTitle((String) request.getParameter("title"))); 
             recueil.add(beanSearch.getByCategory((String) request.getParameter("category")));
             recueil.add(beanSearch.getByISBN((String) request.getParameter("isbn")));
             recueil.add(beanSearch.getByKeywords((String) request.getParameter("keywords")));
