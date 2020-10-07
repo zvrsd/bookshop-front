@@ -65,7 +65,7 @@
                 <tr>
                 <label>
                     <td>Pseudonyme</td>
-                    <td><input type="text" name="pseudo" value="${customer.customerUsername}"></td>
+                    <td><input type="text" name="pseudo" value="${customer.customerUsername}">*</td>
                     </label>
                 </tr>
                 

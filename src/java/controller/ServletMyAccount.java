@@ -1,4 +1,3 @@
-
 package controller;
 
 import java.io.IOException;
@@ -38,35 +37,38 @@ public class ServletMyAccount extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+
         try {
             response.setContentType("text/html;charset=UTF-8");
-            
-            
+
             //
             HttpSession session = request.getSession();
             Customer customer = (Customer) session.getAttribute("customer");
-            
-            
-            
-            if(customer != null) {
-                
-            String lName = request.getParameter("lName");
-            String fName = request.getParameter("fName");
-            String pseudo = request.getParameter("pseudo");
-            String newPassword = request.getParameter("newPassword");
-            
-            
+
+            if (customer != null) {
+
+                String lName = request.getParameter("lName");
+                String fName = request.getParameter("fName");
+                String pseudo = request.getParameter("pseudo");
+                String newPassword = request.getParameter("newPassword");
+                String newPasswordConf = request.getParameter("newPasswordConf");
+
             //Customer customer = new CustomerDAO().getByUsername("test", "2002");
-            customer.setCustomerFName(fName);
-            customer.setCustomerLName(lName);
-            customer.setCustomerUsername(pseudo);
-            customer.setCustomerPassword(new HashUtil().hashText(newPassword));
-            new CustomerDAO().update(customer);
+                if (fName.isEmpty() || lName.isEmpty() || pseudo.isEmpty() || newPassword.isEmpty() || newPasswordConf.isEmpty()) {
+                    request.getRequestDispatcher("id.jsp").forward(request, response);
+                } else if (newPassword.equals(newPasswordConf)){
+                    request.getRequestDispatcher("register.html").forward(request, response);
+                } else {
+                    customer.setCustomerFName(fName);
+                    customer.setCustomerLName(lName);
+                    customer.setCustomerUsername(pseudo);
+                    customer.setCustomerPassword(new HashUtil().hashText(newPassword));
+                    new CustomerDAO().update(customer);
+                }
+
             } else {
                 request.getRequestDispatcher("login").forward(request, response);
             }
-            
 
         } catch (NamingException ex) {
             System.out.println(ex.getMessage());
@@ -77,9 +79,7 @@ public class ServletMyAccount extends HttpServlet {
         } catch (UnsupportedEncodingException ex) {
             System.out.println(ex.getMessage());
         }
-        
-            
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
