@@ -11,18 +11,20 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Bookshop - Bienvenue sur votre librairie en ligne !</title>
+        <title>Bookshop - Mise à jour des informations</title>
         <meta name="description" content="">
         <link rel="stylesheet" href="css/templatecss.css">
     </head>
 
-    <header><jsp:include page="headerJsp.jsp" /></header>
     
 
     <body>
-  
+  <header><jsp:include page="headerJsp.jsp" /></header>
         
-        <div>Vos informations ont bien été mises à jour</div>
+  <div>
+      Vos informations personnelles ont bien été mises à jour. <br>
+      <a href="myAccount.jsp">Retour</a>
+  </div>
         
         
         <footer><jsp:include page="footerJsp.jsp" /></footer>

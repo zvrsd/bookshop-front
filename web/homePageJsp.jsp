@@ -16,10 +16,12 @@
         <link rel="stylesheet" href="css/templatecss.css">
     </head>
 
-    <header><jsp:include page="headerJsp.jsp" /></header>
+    
     
 
     <body>
+        
+        <header><jsp:include page="headerJsp.jsp" /></header>
             
         <section id="evenement">
              <h2>L'événement du moment</h2>
