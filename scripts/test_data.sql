@@ -1,6 +1,7 @@
 /*==============================================================*/
 /*				TEST DATA  for BookShop							*/
-/*			Date de création :  01/10/2020 16:49:00             */
+/*			Date de création     :  01/09/2020 16:49:00         */ 
+/*          Date de modification :  06/10/2020 11:12:13         */
 /*==============================================================*/
 
 -- Resets auto-increment
@@ -472,7 +473,7 @@ INSERT INTO CUSTOMER_STATUS
 INSERT INTO CUSTOMER
 	([CUSTOMER_L_NAME],[CUSTOMER_F_NAME],[CUSTOMER_EMAIL],[CUSTOMER_USERNAME],[CUSTOMER_PASSWORD],[CUSTOMER_POST_IT]) 
 	VALUES
-		('Nom10','Prenom50','ultrices.Duis.volutpat@venenatislacusEtiam.co.uk','membre1','2002','volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus'), 
+		('Nom10','Prenom50','ultrices.Duis.volutpat@venenatislacusEtiam.co.uk','membre1','4ba29b9f9e5732ed33761840f4ba6c53','clear pass : 2002'), 
 		('Nom1050','Prenom560','enim@mauris.com','2membre','35690','rutrum magna. Cras convallis convallis dolor. Quisque tincidunt'), 
 		('Nom1060','Prenom600','elit.Etiam@sitamet.net','20','20','orci. Ut semper pretium neque. Morbi quis urna.'),
 		('Nom2050','Prenom75','metus@eu.org','user20','1220','risus. Nulla eget metus eu erat semper rutrum.'), 
@@ -480,7 +481,8 @@ INSERT INTO CUSTOMER
 		('Nom70','Prenom9750','Proin@et.co.uk','user300','2130','semper tellus id nunc interdum feugiat. Sed nec'), 
 		('Nom7050','Prenom960','tincidunt@aliquet.ca','face20','22590','laoreet, libero et tristique pellentesque, tellus sem mollis'),
 		('Nom20','Prenom750','sodales.at@sed.ca','user40','4210','condimentum eget, volutpat ornare, facilisis eget, ipsum. Donec'),
-		('Nom2040','Prenom87','a@Maecenasliberoest.com','user5','21230','auctor. Mauris vel turpis. Aliquam adipiscing lobortis risus.')
+		('Nom2040','Prenom87','a@Maecenasliberoest.com','user5','21230','auctor. Mauris vel turpis. Aliquam adipiscing lobortis risus.'),
+        ('Nom_test','Prenom_test','test','username_test','4ba29b9f9e5732ed33761840f4ba6c53','clear pass : 2002')
 ;
 
 INSERT INTO ASSOC_STATUS_CUSTOMER
@@ -521,7 +523,8 @@ insert into CARRIER
 		('7', 'La Poste', 'contactpro@laposte.net'),
 		('5', 'DHL', 'dhldeliveryservice@dhl.com'),
 		('6', 'UPS', 'ups@ups.com'),
-		('5', 'TNT', 'contact@tnt.com')
+		('5', 'TNT', 'contact@tnt.com'),
+		('2', 'Generic', 'carrier@generic.com')
 ;
 
 insert into PACKAGE 
@@ -554,7 +557,10 @@ insert into SHIPPING_OFFER
 		(2, 'Chronopost', 'Livré sous 48h, suivi internet et sms', 'Livré en main propre contre signature', 18.70, null),
 		(3, 'Express', 'Livré le lendemain avant 18h', 'Livré en main propre contre signature', 20.00, null),
 		(3, 'Prioritaire', 'Livré sous 4 jours ouvrés, suivi internet', 'Livraison en boîte aux lettres', 5.00, null),
-		(4, 'Lettre ordinaire', '1 à 2 semaines', 'Livré en boîte aux lettres', 3.50, 'aucun suivi, aucune garantie')
+		(4, 'Lettre ordinaire', '1 à 2 semaines', 'Livré en boîte aux lettres', 3.50, 'aucun suivi, aucune garantie'),
+		(5, 'Livraison Express', 'Livré le jour suivant', '', 5.00, null),
+		(5, 'Livraison Rapide', 'Livré en 3 jours ouvrés', '', 2.00, null),
+		(5, 'Livraison Standard', 'Délai variable', '', 1.00, null)
 ;
 
 insert into ASSOC_STATUS_CARRIER 

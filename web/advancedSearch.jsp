@@ -1,9 +1,13 @@
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%-- 
-    Document   : jspEvent
-    Created on : 29 sept. 2020, 15:47:40
-    Author     : cda611
+    Document   : advancedSearch
+    Created on : 3 oct. 2020, 23:50:00
+    Author     : Charlène
 --%>
+
+
 
 
 <%@page import="model.entity.Book"%>
@@ -29,7 +33,7 @@
     <hr>
 
 
-    <%@include file="headerJsp.jsp" %>   
+    <%@include file="/headerJsp.jsp" %>   
 
 
     <p>
@@ -40,43 +44,31 @@
 
     <br> </br><br></br>
     <div class="jumbotron text-center">
-        <h1>Les livres sélectionnés pour l'évenement </h1>
+        <h1> Résultats recherche </h1>
 
     </div>
     <div>
-        <!-- Le container -->
-
-
+       
 
         <div class="container"> 
             <div class="row">  
                
-                <c:forEach var="book" items="${book}">
+                <c:forEach var="book" items="${books}">
 
                     <a href="book?isbn=${book.isbn}<img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
-
                     <div class="col-sm-4"> 
                         <figure>  <p><a href="book?isbn=${book.isbn} "><img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
                             <h3>  ${book.title}  </h3>
-
-                            <p>   ${book.postIt} </p>
-                            <c:set var="remise" value="${remise}"/>
-                            <%-- Calcul à revoir --%>
+                            <p>   ${book.postIt} </p>     
                             
-                            <p> Ancien prix :  ${book.price}  Euros</p><p> Nouveau prix : <c:set var="discount" value="${remise * book.price /100}"/>  ${discount} Euros</p>
-
+                            <p> Prix :  ${book.price}  Euros</p>
                             <br></br><br></br>
                    
                 </div>
-
-
-
             </c:forEach>
         </div> 
     </div>
-
-
     <br></br><br></br><br></br>
-    <%@include file="footerJsp.jsp" %>      
+    <%@include file="/footerJsp.jsp" %>      
 </body>
 </html>

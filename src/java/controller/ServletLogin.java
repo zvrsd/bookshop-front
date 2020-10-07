@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
@@ -92,6 +94,7 @@ public class ServletLogin extends HttpServlet {
             // If login OK
             else{
                 loginBean.setIsLogged(true);
+                loginBean.setCustomer(customer);
                 session.setAttribute(Values.BEAN_LOGIN_NAME, loginBean);
                 session.setAttribute(Values.PARAM_CUSTOMER, customer);
 
@@ -104,12 +107,16 @@ public class ServletLogin extends HttpServlet {
             errorMessage += ex.getMessage();
         } catch (SQLException ex) {
             errorMessage += ex.getMessage();
+        } catch (NoSuchAlgorithmException ex) {
+            errorMessage += ex.getMessage();
+        } catch (UnsupportedEncodingException ex) {
+            errorMessage += ex.getMessage();
         }
 
         request.setAttribute("email", request.getParameter("email"));
         request.setAttribute("error_message", errorMessage);
 
-        request.getRequestDispatcher(Values.JSP_LOGIN_FULL).include(request, response);
+        request.getRequestDispatcher("/WEB-INF/dlogin.jsp").include(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -44,7 +44,7 @@ String event;
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
-     * @param request servlet request
+     * @param request servlet requests
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
@@ -62,78 +62,24 @@ String event;
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet eventServlet at " + request.getContextPath() + "</h1>");  
-
+            
+            event = request.getParameter("event");
+            beanEvent beanE = new beanEvent(); 
+            
+            List <Book> books = (List <Book>) beanE.returnlBook(event);
+            Double remise = beanE.getDiscountPrice(event); 
+            
+            request.setAttribute("remise", remise); 
+            request.setAttribute("book", books);
+            this.getServletContext().getRequestDispatcher( "/jspEvent.jsp").include( request, response );
+           
             out.println("</body>");
             out.println("</html>");
             
             ///WEB-INF/jspEvent.jsp
         }
     }
-
-  
-    
-    //récupere tous les livres d'un client : page html Order
-     public List<Book> getList() throws SQLException, NamingException{
-        List<Book> lBook = new ArrayList();
-        
-         DataSource ds = null;
-            try {
-                InitialContext context = new InitialContext();
-                ds = (DataSource) context.lookup("jdbc/bookshop");
-            } catch (NamingException ex) {
-                System.out.println(">>>Oops:Naming:" + ex.getMessage());
-            }
-
-            Connection connexion = null;
  
-
-                connexion= ds.getConnection();
-                String query = "select * from Book where BOOK_ISBN in (Select BOOK_ISBN from dbo.ASSOC_BOOK_EVENT where EVENT_ID =2 )";
-                Statement stmt = connexion.createStatement();
-                ResultSet rs = stmt.executeQuery(query);
-                 Book object = null;
-
-                while (rs.next()) {
-                    
-                    
-                    object = new Book();
-                object.setIsbn(rs.getString(1));
-                
-                // Obtains the publisher matching the ID
-                //object.setPublisher(new PublisherDAO().get(rs.getInt(2)));
-                // Obtains the VAT matching the ID
-                //object.setVat(new VatDAO().get(rs.getInt(3)));
-                object.setTitle(rs.getString(4));
-                object.setSubTitle(rs.getString(5));
-                object.setPrice(rs.getFloat(6));
-                object.setCoverURL(rs.getString(7));
-                object.setSummary(rs.getString(8));
-                object.setQuantity(rs.getInt(9));
-                object.setShelf(rs.getString(10));
-                object.setPostIt(rs.getString(11));
-                
-               
-                
-                  lBook.add(object );
-                   
-                }
-
-        
-        
-        return lBook;
-    }
-     
-     private Cookie getCookie(Cookie[] cookies, String name) {
-
-        if (cookies != null) 
-            for (Cookie c : cookies) 
-                if (c.getName().equals(name)) 
-                    return c;
-                
-            
-        
-        return null;
-    }
      
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -148,7 +94,15 @@ String event;
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     try {
-        processRequest(request, response);
+         event = request.getParameter("event");
+            beanEvent beanE = new beanEvent(); 
+            
+            List <Book> books = (List <Book>) beanE.returnlBook(event);
+            Double remise = beanE.getDiscountPrice(event); 
+            
+            request.setAttribute("remise", remise); 
+            request.setAttribute("book", books);
+            this.getServletContext().getRequestDispatcher( "/jspEvent.jsp").include( request, response );
     } catch (SQLException ex) {
         Logger.getLogger(eventServlet.class.getName()).log(Level.SEVERE, null, ex);
     } catch (NamingException ex) {

@@ -8,8 +8,6 @@ package controller;
 import model.bean.beanOrder;
 import model.entity.Book;
 import model.entity.Order;
-import model.dao.PublisherDAO;
-import model.dao.VatDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -22,7 +20,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,6 +27,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+import model.dao.BookDAO;
+import model.dao.OrderDAO;
+import model.entity.Customer;
 import res.Values;
 
 /**
@@ -38,160 +38,72 @@ import res.Values;
  */
 @WebServlet(name = "orderServlet", urlPatterns = {"/orderServlet"})
 public class orderServlet extends HttpServlet {
-  
-    private String customId; 
-    private final String bookRequest = "select * from Book where BOOK_ISBN in (Select [BOOK_ISBN] from [dbo].[ORDER_ROW] where Order_id in(\n" + "Select Order_id from [dbo].[ORDER] where [dbo].[ORDER].CUSTOMER_ID = "+ customId +")) ";
 
-    
+    String ci;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException, NamingException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet orderServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet orderServlet at " + request.getContextPath() + "</h1>");
-            
-            HttpSession session= request.getSession();
-            beanOrder Sessionbean= (beanOrder) session.getAttribute(Values.BEAN_LOGIN_NAME);
-            
-            if( Sessionbean==null) {
-                out.println("<p> Aucune commande </p>");
+
+        try {
+           HttpSession session = request.getSession();
+
+            if (session.getAttribute(Values.PARAM_CUSTOMER) == null){
+                request.setAttribute(Values.PARAM_ERROR_MSG, Values.ERROR_NOT_LOGIN);
+                request.getRequestDispatcher(Values.JSP_NOTLOG).include(request, response);
+                return;     
             }else{
         
-                customId =  (String) request.getAttribute("email");
-               
-               List<Book> lBook = new ArrayList();
-        
-         DataSource ds = null;
-            try {
-                InitialContext context = new InitialContext();
-                ds = (DataSource) context.lookup("jdbc/bookshop");
-            } catch (NamingException ex) {
-                System.out.println(">>>Oops:Naming:" + ex.getMessage());
-            }
-
-            Connection connexion = null;
- 
-
-                connexion= ds.getConnection();
-                String query = bookRequest;
                 
-                Statement stmt = connexion.createStatement();
-                ResultSet rs = stmt.executeQuery(query);
-                 Book book = null;
-
-                while (rs.next()) {
-                    book = new Book();
-                            book.setIsbn(rs.getString("BOOK_ISBN"));
-                            book.setTitle(rs.getString("Book_Title"));
-                            book.setSubTitle(rs.getString("Book_Subtitle"));
-                            book.setPrice((float) rs.getDouble("Book_HT_PROCE"));
-                            book.setCoverURL(rs.getString("Book_Cover_Url") );
-                    
-                    lBook.add(book);        
-                }
-                
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jspOrder.jsp");
-           requestDispatcher.include(request, response) ;
             
-            out.println(lBook);
-            out.println("</body>");
-            out.println("</html>");
+            Customer custid = (Customer) session.getAttribute(Values.PARAM_CUSTOMER);
+            beanOrder beanPast = new beanOrder();
+
+            List<Book> book = beanPast.allOrder(custid.getCustomerId());
+            
+            if(book == null){
+            request.setAttribute(Values.ERROR_NO_ORDER, Values.ERROR_NO_ORDER);
+            this.getServletContext().getRequestDispatcher("/jspOrder.jsp").include(request, response);
+            
+            }
+            List<Book> Abook = (List<Book>) beanPast.pastOrder(custid.getCustomerId());
+            List<Book> Bbook = (List<Book>) beanPast.orderSixMonth(custid.getCustomerId());
+            List<Book> Cbook = (List<Book>) beanPast.orderLastMonth(custid.getCustomerId());
+            
+            if (Cbook != null){
+            request.setAttribute(Values.ORDER_LASTMONTH, Cbook);
+            }
+            
+            if(Bbook != null){
+            request.setAttribute(Values.ORDER_SIXMONTH, Bbook);
+            }
+            
+            if(Abook != null){
+            request.setAttribute(Values.ORDER_PAST, Abook);
+            }
+            
+            //request.setAttribute("books", book);
+            this.getServletContext().getRequestDispatcher("/jspOrder.jsp").include(request, response);
+            }     //request.getRequestDispatcher("/jspOrder.jsp").include(request, response);
+        } catch (SQLException | NamingException ex) {
+            Logger.getLogger(orderServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    }
-    
-    //récupere tous les livres d'un client : page html Order
-     public List<Book> getList() throws SQLException, NamingException{
-         
-        List<Book> lBook = new ArrayList();
-        
-         DataSource ds = null;
-            try {
-                InitialContext context = new InitialContext();
-                ds = (DataSource) context.lookup("jdbc/Bookshop");
-            } catch (NamingException ex) {
-                System.out.println(">>>Oops:Naming:" + ex.getMessage());
-            }
-
-            Connection connexion = null;
- 
-
-                connexion= ds.getConnection();
-                String query = bookRequest;
-                Statement stmt = connexion.createStatement();
-                ResultSet rs = stmt.executeQuery(query);
-                 Book object = null;
-
-                while (rs.next()) {
                     
-                    
-                    object = new Book();
-                object.setIsbn(rs.getString(1));
                 
-                // Obtains the publisher matching the ID
-                // object.setPublisher(new PublisherDAO().get(rs.getInt(2)));
-                // Obtains the VAT matching the ID
-                //object.setVat(new VatDAO().get(rs.getInt(3)));
-                object.setTitle(rs.getString(4));
-                object.setSubTitle(rs.getString(5));
-                object.setPrice(rs.getFloat(6));
-                object.setCoverURL(rs.getString(7));
-                object.setSummary(rs.getString(8));
-                object.setQuantity(rs.getInt(9));
-                object.setShelf(rs.getString(10));
-                object.setPostIt(rs.getString(11));
-                
-               
-                
-                  lBook.add(object );
-                   
-                }
-                
+            
+    }
 
         
         
-        return lBook;
-    }
-
-     
-    public String getStatusOrder(Order orderCours) throws SQLException{
-              String statut = "";
-             DataSource ds = null;
-            try {
-                InitialContext context = new InitialContext();
-                ds = (DataSource) context.lookup("jdbc/Bookshop");
-            } catch (NamingException ex) {
-                System.out.println(">>>Oops:Naming:" + ex.getMessage());
-            }
-
-            Connection connexion = null;
- 
-
-                connexion= ds.getConnection();
-                String query = "Select [ORDER_STATUS_NAME] from [dbo].[ORDER_STATUS] where [ORDER_STATUS_ID] in (Select [ORDER_STATUS_ID] from [dbo].[ASSOC_STATUS_ORDER] where [ORDER_ID] = '" + orderCours.getId() +  "' ";
-                       
-                Statement stmt = connexion.createStatement();
-                ResultSet rs = stmt.executeQuery(query);
-                
-                 while (rs.next()){
-                    statut = rs.getString("ORDER_STATUS_NAME");
-                 }
-                 return statut; 
-    }
-   
-    
+        
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
+            Logger.getLogger(orderServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NamingException ex) {
             Logger.getLogger(orderServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -207,15 +119,17 @@ public class orderServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(orderServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NamingException ex) {
+            Logger.getLogger(orderServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
-    
-   
     @Override
     public String getServletInfo() {
         return "Servlet Order";

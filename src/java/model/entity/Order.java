@@ -5,9 +5,11 @@
  */
 package model.entity;
 
+import java.util.List;
 import  model.entity.Address;
 import  model.entity.Customer;
 import model.entity.ShippingOffer;
+import model.entity.Book;
 
 /**
  *
@@ -34,6 +36,8 @@ public class Order {
     private int shippingId;
      private int adresseLivId;
     private int adresseBilId;
+    private Book book; 
+    private List <Book> books; 
     
     public Order() {	
     }
@@ -253,6 +257,14 @@ public class Order {
     
     public Order getOrder() {
     	return order;
+    }
+    
+    public Book getBook(){
+        return book;
+    }
+    
+    public List<Book> getLBook(){
+        return books;
     }
     
   @Override

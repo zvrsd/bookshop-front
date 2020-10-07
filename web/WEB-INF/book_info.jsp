@@ -18,18 +18,24 @@
                 Fiche du livre
             </div>
 
+            <label class="k_label_info">${message}</label>
+            
             <div id="k_box_book_content">
 
+                <jsp:useBean id="bookBean" scope="application" class="model.bean.BookBean" />
+                <jsp:setProperty name="bookBean" property="book" value="${book}" />
+                
                 <div id="k_box_book_image">
 
-                    <img src="${book.coverURL}" />
+                    <img src="${book.coverURL}" width="360" height="480" />
                     <br></br>
-                    <form action="/shopping_cart.html" method="get">
+                    <form action="/shoppingcart" method="post">
 
                         <!-- This button could be disabled if the book is already in the shopping cart
                             and change its label too -->
+                        <input type="hidden" name="isbn" value=${book.isbn} />
                         <button class="k_button" type="submit" name="action" value="add_book">Ajouter au panier</button>
-                        <input type="hidden" name="ref" value=${book} />
+                        
                     </form>
                 </div>
 
@@ -55,23 +61,24 @@
                             
                             Categories : <br />
                             <c:forEach var="category" items="${book.categories}">
-                                ${category.name}<br/> 
+                                + ${category.name}<br/> 
                             </c:forEach><br />
                                 
                             Mots-clés : <br />
                             <c:forEach var="keyword" items="${book.keywords}">
-                                ${keyword.name}<br/> 
+                                + ${keyword.name}<br/> 
                             </c:forEach><br />
                         </div>
 
                         <div id="k_book_info_summary">
-                            Resumé : ${book}<br />
+                            Resumé : ${book.summary}<br />
                         </div>
                     </div>
 
                     <div id="k_book_info_customer">
-                        <label id="k_label_book_price">Prix: ${book.price}€</label>
-                        <label id="k_label_book_stock">Quantité disponible: ${book.quantity}</label>
+                        <label id="k_label_book_price">Prix: ${bookBean.fullPriceText} &euro;</label>
+                        <label id="k_label_book_stock">Quantité disponible: ${book.quantity}</label>TTC
+                        ${remise}
                     </div>
                 </div>
             </div>
