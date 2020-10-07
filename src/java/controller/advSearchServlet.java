@@ -42,7 +42,7 @@ public class advSearchServlet extends HttpServlet {
      * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, NamingException, SQLException {
+            throws ServletException, IOException, NamingException, SQLException, Exception {
         response.setContentType("text/html;charset=UTF-8");
         
             Set books = new HashSet(); 
@@ -92,6 +92,8 @@ public class advSearchServlet extends HttpServlet {
             Logger.getLogger(advSearchServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(advSearchServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(advSearchServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -111,6 +113,8 @@ public class advSearchServlet extends HttpServlet {
         } catch (NamingException ex) {
             Logger.getLogger(advSearchServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
+            Logger.getLogger(advSearchServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(advSearchServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

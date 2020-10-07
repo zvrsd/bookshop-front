@@ -35,7 +35,7 @@
 
         <div> 
             <form name="order" action="searchOrder" method="post">
-                <input type="text" name="inputOrder" value="Recherche par ID" /><input type="image" name="doSearch" src="img/buton1.png">
+                <input type="text" name="inputOrder" value="Recherche par ID" /> <button class="bttn-unite">Rechercher </button> <%--<input type="image" name="doSearch" src="img/buton1.png">--%>
             </form>
         </div>
 
