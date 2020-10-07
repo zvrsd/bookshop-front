@@ -1,7 +1,7 @@
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<link rel="stylesheet" href="css/templatecss.css">
              <nav id="bottomNav">
              <ul id="footer">
                  <li class="barreMenuB"><a href="">CGV</a></li>

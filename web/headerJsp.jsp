@@ -2,7 +2,7 @@
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<link rel="stylesheet" href="css/templatecss.css">
          <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 

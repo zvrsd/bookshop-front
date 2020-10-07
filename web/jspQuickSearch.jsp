@@ -47,8 +47,7 @@
         <!-- Le container -->
         <%
         String rech;
-// Something goes here!!!
-            
+        
             
             
             %>
