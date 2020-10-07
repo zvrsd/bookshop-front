@@ -80,8 +80,7 @@
         <!-- This has to be displayed only if the cart contains products -->
         <form action="ordervalidation" method="post">
             
-            <br/>
-            <br/>
+            <br/><br/>
             <div id="k_box_order_validation_total">
 
                 <%-- Shipping offer selection --%>
@@ -95,22 +94,26 @@
                 </select>
             </div> 
             
+            <br/><br/>
+            <br/><br/>
             <div id="k_box_order_validation_total">
 
 
-                <%-- Shipping offer selection --%>
+                <%-- Delivery Address selection --%>
                 <label>Addresse de livraison</label>
-                <select id="delivery_addresses" name="shipping_offers">
-                    <c:forEach var="billing_addresse" items="${bean_order_val.genericShippingOffers}">
-                        <option name="shippingOffer" value="${shippingOffer}">${shippingOffer.shippingOfferName} - ${shippingOffer.shippingOfferDetails}</option>
+                <select id="delivery_addresses" name="delivery_addresses">
+                    <c:forEach var="delivery_address" items="${customer.deliveryAddresses}">
+                        <option name="delivery_address" value="${delivery_address}">${delivery_address.firstName} ${delivery_address.lastName} ${delivery_address.street}</option>
                     </c:forEach>
                 </select>
-
-                <%-- Shipping Address selection --%>
+            </div> 
+                
+            <div id="k_box_order_validation_total">
+                <%-- Billing Address selection --%>
                 <label>Addresse de facturation</label>
                 <select id="billing_addresses" name="billing_addresses">
-                    <c:forEach var="billing_addresse" items="${customer.billing_addresse}">
-                        <option name="billing_addresse" value="${billing_addresse}">${billing_addresse.shippingOfferName} - ${billing_addresse.shippingOfferDetails}</option>
+                    <c:forEach var="billing_address" items="${customer.billingAddresses}">
+                        <option name="billing_address" value="${billing_address}">${billing_address.firstName} ${billing_address.lastName} ${billing_address.street}</option>
                     </c:forEach>
                 </select>
             </div> 

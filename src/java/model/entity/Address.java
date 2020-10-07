@@ -82,7 +82,7 @@ public class Address {
         this.lastName = lastName;
     }
 
-    public String getFirsttName() {
+    public String getFirstName() {
         return firstName;
     }
 

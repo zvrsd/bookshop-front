@@ -143,7 +143,6 @@ public class Customer implements Serializable {
         this.billingAddresses = billingAddresses;
     }
 
-    
     @Override
     public int hashCode() {
         int hash = 0;

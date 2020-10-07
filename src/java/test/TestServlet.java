@@ -40,34 +40,39 @@ public class TestServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
+            throws ServletException, IOException {
         try {
             response.setContentType("text/html;charset=UTF-8");
+
+            Customer customer = new CustomerDAO().getByUsername("test", "2002");
             
-            
-            List<Address> deliveryAddresses = AddressDAO.listDeliveryAddressByIdCustomer(7);
-            List<Address> billingAddresses = AddressDAO.listBillingAddressByIdCustomer(7);
-            
-            for(Address address : deliveryAddresses){
-                System.out.println("del : "+address);
+            //List<Address> deliveryAddresses = AddressDAO.listDeliveryAddressByIdCustomer(7);
+            //List<Address> billingAddresses = AddressDAO.listBillingAddressByIdCustomer(7);
+
+            for (Address address : customer.getDeliveryAddresses()) {
+                System.out.println("del : " + address);
             }
-            
-            for(Address address : billingAddresses){
-                System.out.println("bil : "+address);
+
+            for (Address address : customer.getBillingAddresses()) {
+                System.out.println("bil : " + address);
             }
             /*
-            try {
-            addCustomer();
-            } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(TestServlet.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(TestServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            testHash();
-            */
+             try {
+             addCustomer();
+             } catch (NoSuchAlgorithmException ex) {
+             Logger.getLogger(TestServlet.class.getName()).log(Level.SEVERE, null, ex);
+             } catch (UnsupportedEncodingException ex) {
+             Logger.getLogger(TestServlet.class.getName()).log(Level.SEVERE, null, ex);
+             }
+             testHash();
+             */
         } catch (SQLException ex) {
             Logger.getLogger(TestServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NamingException ex) {
+            Logger.getLogger(TestServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(TestServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(TestServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -129,7 +134,9 @@ public class TestServlet extends HttpServlet {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
