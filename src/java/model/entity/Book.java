@@ -74,6 +74,8 @@ public class Book {
         return price;
     }
 
+
+    
     public float getTPrice(){
         return price + price * (vat.getRate() / 100);
     }
