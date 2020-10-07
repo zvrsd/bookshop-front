@@ -16,8 +16,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="templatecss.css">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+       
         <script src="evtImg.js"></script>
     <canvas id="canvas" width="1300" height="200"></canvas>
     <script src="evtImg.js"></script>
@@ -30,14 +30,15 @@
 
 
     <%@include file="headerJsp.jsp" %>   
-
+  
+   
 
     <p>
 
         <script src="evtImg.js"></script>       
     </p>
 
-
+           
     <br> </br><br></br>
     <div class="jumbotron text-center">
         <h1>Les livres sélectionnés pour l'évenement </h1>
@@ -60,12 +61,13 @@
                             <h3>  ${book.title}  </h3>
 
                             <p>   ${book.postIt} </p>
-                            <c:set var="remise" value="${remise}"/>
-                            <%-- Calcul à revoir --%>
+                            <c:set  var="remise" value="${remise}"/>
                             
-                            <p> Ancien prix :  ${book.price}  Euros</p><p> Nouveau prix : <c:set var="discount" value="${remise * book.price /100}"/>  ${discount} Euros</p>
-
-                            <br></br><br></br>
+                   <!--   <fmt:formatNumber var="discount" minIntegerDigits="2" value="${remise * (book.priceT /100)}"/> -->
+                            
+                            <p> Ancien prix : ${book.priceT} Euros</p><p> Nouveau prix : <c:set var="discount"value="${remise * (book.priceT /100)}" />  ${discount} Euros</p>
+                                                                                    
+                            <br></br><br></br><%----%>
                    
                 </div>
 
