@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 import javax.naming.NamingException;
 import model.dao.ShippingOfferDAO;
+import model.entity.Address;
 import model.entity.Book;
 import model.entity.ShippingOffer;
 
@@ -18,6 +19,8 @@ public class OrderValidationBean {
     private boolean isValidated;
     private ShippingOffer shippingOffer;
     private List<Book> books;
+    private Address deliveryAddress;
+    private Address billingAddress;
 
     public OrderValidationBean() {
         this.isValidated = false;
@@ -48,6 +51,22 @@ public class OrderValidationBean {
 
     public void setValidated(boolean isValidated) {
         this.isValidated = isValidated;
+    }
+
+    public Address getDeliveryAddress() {
+        return deliveryAddress;
+    }
+
+    public void setDeliveryAddress(Address deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
+    }
+
+    public Address getBillingAddress() {
+        return billingAddress;
+    }
+
+    public void setBillingAddress(Address billingAddress) {
+        this.billingAddress = billingAddress;
     }
     
     public List<ShippingOffer> getGenericShippingOffers() throws NamingException, SQLException{

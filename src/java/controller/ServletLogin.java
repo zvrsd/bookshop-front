@@ -50,7 +50,6 @@ public class ServletLogin extends HttpServlet {
         password = request.getParameter("password");
 
         HttpSession session = request.getSession();
-        
         // This bean is used to check if the user is logged or not and stores
         // all its information
         LoginBean loginBean = (LoginBean) session.getAttribute(Values.BEAN_LOGIN_NAME);
