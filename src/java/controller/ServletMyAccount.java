@@ -56,7 +56,7 @@ public class ServletMyAccount extends HttpServlet {
             //Customer customer = new CustomerDAO().getByUsername("test", "2002");
                 if (fName.isEmpty() || lName.isEmpty() || pseudo.isEmpty() || newPassword.isEmpty() || newPasswordConf.isEmpty()) {
                     request.getRequestDispatcher("id.jsp").forward(request, response);
-                } else if (newPassword.equals(newPasswordConf)){
+                } else if (!newPassword.equals(newPasswordConf)){
                     request.getRequestDispatcher("register.html").forward(request, response);
                 } else {
                     customer.setCustomerFName(fName);
@@ -64,6 +64,7 @@ public class ServletMyAccount extends HttpServlet {
                     customer.setCustomerUsername(pseudo);
                     customer.setCustomerPassword(new HashUtil().hashText(newPassword));
                     new CustomerDAO().update(customer);
+                    request.getRequestDispatcher("jspModifConf.jsp").forward(request, response);
                 }
 
             } else {
