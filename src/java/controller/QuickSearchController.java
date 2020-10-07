@@ -15,12 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.dao.BookDAO;
 import model.entity.Book;
+import res.Values;
 
 /**
  *
  * @author Cy
  */
-@WebServlet(name = "QuickSearchController", urlPatterns = {"/QuickSearchController"})
+@WebServlet(name = Values.QUICK_SEARCH_CONTROLLER, urlPatterns = {"/"+Values.QUICK_SEARCH_CONTROLLER})
 public class QuickSearchController extends HttpServlet {
 
     
