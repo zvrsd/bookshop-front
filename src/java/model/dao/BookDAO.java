@@ -45,7 +45,7 @@ public class BookDAO implements DAO<Book, String> {
             = "SELECT CATEGORY_ID FROM " + TABLE_ASSOC_BOOK_CATEGORY + " "
             + "WHERE BOOK_ISBN = ?";
     public final String QUERY_QUICK_SEARCH
-            = "SELECT Distinct book.*\n"
+            = "SELECT DISTINCT book.*\n"
             + "FROM KEYWORD inner join\n"
             + "ASSOC_BOOK_KEYWORD on KEYWORD.KEYWORD_ID = ASSOC_BOOK_KEYWORD.KEYWORD_ID inner join\n"
             + "BOOK on ASSOC_BOOK_KEYWORD.BOOK_ISBN = BOOK.BOOK_ISBN\n"
@@ -59,8 +59,15 @@ public class BookDAO implements DAO<Book, String> {
             + "OR BOOK_SUBTITLE like concat ('%', ?, '%')\n"
             + "OR KEYWORD_NAME like concat ('%', ?, '%')\n" 
             + "OR BOOK.BOOK_ISBN like concat ('%', ?, '%')";
-            
-            
+       
+    public final String QUERY_LIST_CATEGORY = "SELECT distinct book.* FROM category inner join ASSOC_BOOK_CATEGORY  on CATEGORY.CATEGORY_ID = ASSOC_BOOK_CATEGORY.CATEGORY_ID  inner join BOOK on ASSOC_BOOK_CATEGORY.BOOK_ISBN = BOOK.BOOK_ISBN WHERE category.CATEGORY_NAME like concat ('%', ?, '%')";
+    
+    public final String QUERY_LIST_PRICE = "   select  * from Book where Book.BOOK_HT_PRICE > like concat ('%', ?, '%') and Book.BOOK_HT_PRICE < like concat ('%', ?, '%')";
+    
+     public final String QUERY_LIST_MINUS_PRICE = "   select  * from Book where Book.BOOK_HT_PRICE < like concat ('%', ?, '%')";
+     
+     public final String QUERY_LIST_MAX_PRICE = "   select  * from Book where Book.BOOK_HT_PRICE > like concat ('%', ?, '%')";
+     
     @Override
     public void add(Book object) throws Exception {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -299,6 +306,204 @@ public class BookDAO implements DAO<Book, String> {
         statement.setString(4, searchText);
         statement.setString(5, searchText);
         statement.setString(6, searchText);
+        resultSet = statement.executeQuery();
+        
+        while (resultSet.next()) {
+
+            object = new Book();
+            object.setIsbn(resultSet.getString(1));
+
+            // Obtains the publisher matching the ID
+            object.setPublisher(new PublisherDAO().getById(resultSet.getInt(2)));
+            // Obtains the VAT matching the ID
+            object.setVat(new VatDAO().getById(resultSet.getInt(3)));
+            object.setTitle(resultSet.getString(4));
+            object.setSubTitle(resultSet.getString(5));
+            object.setPrice(resultSet.getFloat(6));
+            object.setCoverURL(resultSet.getString(7));
+            object.setSummary(resultSet.getString(8));
+            object.setQuantity(resultSet.getInt(9));
+            object.setShelf(resultSet.getString(10));
+            object.setPostIt(resultSet.getString(11));
+
+            object.setCategories(getCategories(object.getIsbn()));
+            object.setKeywords(getKeywords(object.getIsbn()));
+            object.setAuthors(getAuthors(object.getIsbn()));
+            object.setStatuses(getStatuses(object.getIsbn()));
+
+            objects.add(object);
+        }
+
+        statement.close();
+        
+        return objects;
+    }
+    
+     public List<Book> categorySearch (String searchText) throws NamingException, SQLException {
+    
+        List<Book> objects = new ArrayList<>();
+        
+        Database database = Database.getInstance();
+        Connection connection;
+        PreparedStatement statement;
+        ResultSet resultSet;
+        Book object = null;
+        
+        connection = database.getConnection();
+        
+        // Prepares and execute the query
+        statement = connection.prepareStatement(QUERY_LIST_CATEGORY);
+        statement.setString(1, searchText);
+        resultSet = statement.executeQuery();
+        
+        while (resultSet.next()) {
+
+            object = new Book();
+            object.setIsbn(resultSet.getString(1));
+
+            // Obtains the publisher matching the ID
+            object.setPublisher(new PublisherDAO().getById(resultSet.getInt(2)));
+            // Obtains the VAT matching the ID
+            object.setVat(new VatDAO().getById(resultSet.getInt(3)));
+            object.setTitle(resultSet.getString(4));
+            object.setSubTitle(resultSet.getString(5));
+            object.setPrice(resultSet.getFloat(6));
+            object.setCoverURL(resultSet.getString(7));
+            object.setSummary(resultSet.getString(8));
+            object.setQuantity(resultSet.getInt(9));
+            object.setShelf(resultSet.getString(10));
+            object.setPostIt(resultSet.getString(11));
+
+            object.setCategories(getCategories(object.getIsbn()));
+            object.setKeywords(getKeywords(object.getIsbn()));
+            object.setAuthors(getAuthors(object.getIsbn()));
+            object.setStatuses(getStatuses(object.getIsbn()));
+
+            objects.add(object);
+        }
+
+        statement.close();
+        
+        return objects;
+    }
+     
+     public List<Book> priceSearch (Double searchPrice, Double searchEPrice) throws NamingException, SQLException {
+    
+        List<Book> objects = new ArrayList<>();
+        
+        Database database = Database.getInstance();
+        Connection connection;
+        PreparedStatement statement;
+        ResultSet resultSet;
+        Book object = null;
+        
+        connection = database.getConnection();
+        
+        // Prepares and execute the query
+        statement = connection.prepareStatement(QUERY_LIST_PRICE);
+        statement.setDouble(1, searchPrice);
+        statement.setDouble(2, searchEPrice);
+        
+        resultSet = statement.executeQuery();
+        
+        while (resultSet.next()) {
+
+            object = new Book();
+            object.setIsbn(resultSet.getString(1));
+
+            // Obtains the publisher matching the ID
+            object.setPublisher(new PublisherDAO().getById(resultSet.getInt(2)));
+            // Obtains the VAT matching the ID
+            object.setVat(new VatDAO().getById(resultSet.getInt(3)));
+            object.setTitle(resultSet.getString(4));
+            object.setSubTitle(resultSet.getString(5));
+            object.setPrice(resultSet.getFloat(6));
+            object.setCoverURL(resultSet.getString(7));
+            object.setSummary(resultSet.getString(8));
+            object.setQuantity(resultSet.getInt(9));
+            object.setShelf(resultSet.getString(10));
+            object.setPostIt(resultSet.getString(11));
+
+            object.setCategories(getCategories(object.getIsbn()));
+            object.setKeywords(getKeywords(object.getIsbn()));
+            object.setAuthors(getAuthors(object.getIsbn()));
+            object.setStatuses(getStatuses(object.getIsbn()));
+
+            objects.add(object);
+        }
+
+        statement.close();
+        
+        return objects;
+    }
+     
+     public List<Book> priceSearchMin (Double searchPrice) throws NamingException, SQLException {
+    
+        List<Book> objects = new ArrayList<>();
+        
+        Database database = Database.getInstance();
+        Connection connection;
+        PreparedStatement statement;
+        ResultSet resultSet;
+        Book object = null;
+        
+        connection = database.getConnection();
+        
+        // Prepares and execute the query
+        statement = connection.prepareStatement(QUERY_LIST_MINUS_PRICE);
+        statement.setDouble(1, searchPrice);
+        
+        
+        resultSet = statement.executeQuery();
+        
+        while (resultSet.next()) {
+
+            object = new Book();
+            object.setIsbn(resultSet.getString(1));
+
+            // Obtains the publisher matching the ID
+            object.setPublisher(new PublisherDAO().getById(resultSet.getInt(2)));
+            // Obtains the VAT matching the ID
+            object.setVat(new VatDAO().getById(resultSet.getInt(3)));
+            object.setTitle(resultSet.getString(4));
+            object.setSubTitle(resultSet.getString(5));
+            object.setPrice(resultSet.getFloat(6));
+            object.setCoverURL(resultSet.getString(7));
+            object.setSummary(resultSet.getString(8));
+            object.setQuantity(resultSet.getInt(9));
+            object.setShelf(resultSet.getString(10));
+            object.setPostIt(resultSet.getString(11));
+
+            object.setCategories(getCategories(object.getIsbn()));
+            object.setKeywords(getKeywords(object.getIsbn()));
+            object.setAuthors(getAuthors(object.getIsbn()));
+            object.setStatuses(getStatuses(object.getIsbn()));
+
+            objects.add(object);
+        }
+
+        statement.close();
+        
+        return objects;
+    }
+     
+      public List<Book> priceSearchMax (Double searchPrice) throws NamingException, SQLException {
+    
+        List<Book> objects = new ArrayList<>();
+        
+        Database database = Database.getInstance();
+        Connection connection;
+        PreparedStatement statement;
+        ResultSet resultSet;
+        Book object = null;
+        
+        connection = database.getConnection();
+        
+        // Prepares and execute the query
+        statement = connection.prepareStatement(QUERY_LIST_MAX_PRICE);
+        statement.setDouble(1, searchPrice);
+        
+        
         resultSet = statement.executeQuery();
         
         while (resultSet.next()) {
