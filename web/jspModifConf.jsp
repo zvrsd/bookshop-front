@@ -16,17 +16,17 @@
         <link rel="stylesheet" href="css/templatecss.css">
     </head>
 
-    
+
 
     <body>
-  <header><jsp:include page="headerJsp.jsp" /></header>
-        
-  <div>
-      Vos informations personnelles ont bien été mises à jour. <br>
-      <a href="myAccount.jsp">Retour</a>
-  </div>
-        
-        
+        <header><jsp:include page="headerJsp.jsp" /></header>
+
+        <div>
+            Vos informations personnelles ont bien été mises à jour. <br>
+            <a href="myAccount.jsp">Retour</a>
+        </div>
+
+
         <footer><jsp:include page="footerJsp.jsp" /></footer>
     </body>
 </html>

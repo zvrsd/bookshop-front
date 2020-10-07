@@ -53,10 +53,10 @@ public class ServletMyAccount extends HttpServlet {
                 String newPassword = request.getParameter("newPassword");
                 String newPasswordConf = request.getParameter("newPasswordConf");
 
-            //Customer customer = new CustomerDAO().getByUsername("test", "2002");
+                //Customer customer = new CustomerDAO().getByUsername("test", "2002");
                 if (fName.isEmpty() || lName.isEmpty() || pseudo.isEmpty() || newPassword.isEmpty() || newPasswordConf.isEmpty()) {
                     request.getRequestDispatcher("id.jsp").forward(request, response);
-                } else if (!newPassword.equals(newPasswordConf)){
+                } else if (!newPassword.equals(newPasswordConf)) {
                     request.getRequestDispatcher("register.html").forward(request, response);
                 } else {
                     customer.setCustomerFName(fName);
