@@ -3,6 +3,12 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.dao.CustomerDAO;
+import model.entity.Customer;
 import res.Values;
+import util.HashUtil;
 
 /**
  *
@@ -30,27 +38,46 @@ public class ServletMyAccount extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
        
-        
-        //
-        String lName = request.getParameter("lName");
-        String fName = request.getParameter("fName");
-        String pseudo = request.getParameter("pseudo");
-        String newPassword = request.getParameter("newPassword");
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-            request.getRequestDispatcher("WEB-INF/myAccount.jsp").include(request, response);
+        try {
+            response.setContentType("text/html;charset=UTF-8");
             
+            
+            //
+            HttpSession session = request.getSession();
+            Customer customer = (Customer) session.getAttribute("customer");
+            
+            
+            
+            if(customer != null) {
+                
+            String lName = request.getParameter("lName");
+            String fName = request.getParameter("fName");
+            String pseudo = request.getParameter("pseudo");
+            String newPassword = request.getParameter("newPassword");
+            
+            
+            //Customer customer = new CustomerDAO().getByUsername("test", "2002");
+            customer.setCustomerFName(fName);
+            customer.setCustomerLName(lName);
+            customer.setCustomerUsername(pseudo);
+            customer.setCustomerPassword(new HashUtil().hashText(newPassword));
+            new CustomerDAO().update(customer);
+            } else {
+                request.getRequestDispatcher("login").forward(request, response);
+            }
+            
+
+        } catch (NamingException ex) {
+            System.out.println(ex.getMessage());
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } catch (NoSuchAlgorithmException ex) {
+            System.out.println(ex.getMessage());
+        } catch (UnsupportedEncodingException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
             
         
     }

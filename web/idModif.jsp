@@ -46,7 +46,7 @@
             
             <br />
             
-            <form action="/ServletIdModif" method="post">
+            <form action="/idModif" method="post">
             <table>
                 <tr>
                 <label>
@@ -89,7 +89,7 @@
             
             <section>
                 
-                <button type="button">Confirmer</button>
+                <button type="submit">Confirmer</button>
                  
                 <button type="button"><a href="myAccount.jsp">Annuler</a></button>
             </section>

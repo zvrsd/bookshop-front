@@ -89,7 +89,7 @@ public class CustomerDAO implements DAO<Customer,Long> {
     }
 
     @Override
-    public void update(Customer object) throws Exception {
+    public void update(Customer object) throws NamingException, SQLException /*throws Exception*/ {
         // code Loïc
         Database database = Database.getInstance();
         Connection connection;
@@ -104,6 +104,7 @@ public class CustomerDAO implements DAO<Customer,Long> {
         statement.setString(3, object.getCustomerEmail());
         statement.setString(4, object.getCustomerUsername());
         statement.setString(5, object.getCustomerPassword());
+        statement.setLong(6, object.getCustomerId());
         
         result = statement.executeUpdate();
 
