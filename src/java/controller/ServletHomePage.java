@@ -21,8 +21,18 @@ import model.entity.Book;
  *
  * @author Cy
  */
-@WebServlet(name = "LastFiveBooks", urlPatterns = {"/LastFiveBooks"})
-public class LastFiveBooks extends HttpServlet {
+
+
+/* 
+    Servlet qui remplace et appele la page d'accueil!
+    
+    Ajoutez ici toutes les methodes necessaires pour modifier la HomePage!
+
+*/
+
+
+@WebServlet(name = "HomePage", urlPatterns = {"/HomePage"})
+public class ServletHomePage extends HttpServlet {
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -48,9 +58,9 @@ public class LastFiveBooks extends HttpServlet {
                 request.getRequestDispatcher("homePageJsp.jsp").include(request, response);   
             
         } catch (NamingException ex) {
-            Logger.getLogger(LastFiveBooks.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServletHomePage.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(LastFiveBooks.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServletHomePage.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
