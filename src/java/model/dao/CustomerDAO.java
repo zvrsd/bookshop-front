@@ -47,9 +47,9 @@ public class CustomerDAO implements DAO<Customer,Long> {
     public final String QUERY_UPDATE_CUSTOMER
             = "UPDATE " + TABLE_CUSTOMER + " "
             + "SET "
-            + "CUSTOMER_L_NAME, CUSTOMER_F_NAME, CUSTOMER_EMAIL, "
-            + "CUSTOMER_USERNAME, CUSTOMER_PASSWORD "
-            + "WHERE CUSTOMER_ID = ?";
+            + "CUSTOMER_L_NAME = (?), CUSTOMER_F_NAME = (?), CUSTOMER_EMAIL = (?), "
+            + "CUSTOMER_USERNAME = (?), CUSTOMER_PASSWORD = (?) "
+            + "WHERE CUSTOMER_ID = (?)";
     
    // fin variable SQL
             

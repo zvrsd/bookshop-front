@@ -49,24 +49,38 @@
             <form action="/ServletIdModif" method="post">
             <table>
                 <tr>
+                <label>
                     <td>Nom</td>
                     <td><input type="text" name="lName" value="${customer.customerLName}">*</td>
-                </tr>
-                <tr>
+                    </label>
+                    </tr>
+                    
+                    <tr>
+                    <label>
                     <td>Prénom</td>
                     <td><input type="text" name="fName" value="${customer.customerFName}">*</td>
+                    </label>
                 </tr>
+                
                 <tr>
+                <label>
                     <td>Pseudonyme</td>
                     <td><input type="text" name="pseudo" value="${customer.customerUsername}"></td>
+                    </label>
                 </tr>
+                
                 <tr>
+                <label>
                     <td>Nouveau mot de passe</td>
                     <td><input type="password" name="newPassword">*<td/>
+                    </label>
                 </tr>
+                
                 <tr>
+                <label>
                     <td>Confirmer le mot de passe</td>
                     <td><input type="password" name="newPasswordConf">*</td>
+                </label>
                 </tr>
             
             </table>

@@ -8,13 +8,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.dao.CustomerDAO;
 import res.Values;
 
 /**
  *
  * @author Loïc
  */
-@WebServlet(name = "ServletMyAccount", urlPatterns = {"/ServletMyAccount"})
+@WebServlet(urlPatterns = {"/idModif"})
 public class ServletMyAccount extends HttpServlet {
 
     /**
@@ -30,6 +32,22 @@ public class ServletMyAccount extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
        
+        
+        //
+        String lName = request.getParameter("lName");
+        String fName = request.getParameter("fName");
+        String pseudo = request.getParameter("pseudo");
+        String newPassword = request.getParameter("newPassword");
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
             request.getRequestDispatcher("WEB-INF/myAccount.jsp").include(request, response);
             
