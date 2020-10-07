@@ -10,6 +10,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
@@ -17,7 +18,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.dao.AddressDAO;
 import model.dao.CustomerDAO;
+import model.entity.Address;
 import model.entity.Customer;
 import util.HashUtil;
 
@@ -38,20 +41,35 @@ public class TestServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
-        response.setContentType("text/html;charset=UTF-8");
-        
-        
-        
-        /*
         try {
+            response.setContentType("text/html;charset=UTF-8");
+            
+            
+            List<Address> deliveryAddresses = AddressDAO.listDeliveryAddressByIdCustomer(7);
+            List<Address> billingAddresses = AddressDAO.listBillingAddressByIdCustomer(7);
+            
+            for(Address address : deliveryAddresses){
+                System.out.println("del : "+address);
+            }
+            
+            for(Address address : billingAddresses){
+                System.out.println("bil : "+address);
+            }
+            /*
+            try {
             addCustomer();
-        } catch (NoSuchAlgorithmException ex) {
+            } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(TestServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedEncodingException ex) {
+            } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(TestServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            testHash();
+            */
+        } catch (SQLException ex) {
+            Logger.getLogger(TestServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NamingException ex) {
             Logger.getLogger(TestServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        testHash();
-        */
     }
 
     private static void testHash() {

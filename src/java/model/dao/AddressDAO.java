@@ -13,6 +13,64 @@ import model.entity.Address;
 
 public class AddressDAO {
 
+// Afficher Adresse de livraison pour un client donné   
+    public static List<Address> listDeliveryAddressByIdCustomer(int a) throws SQLException, NamingException {
+        List<Address> result = new ArrayList<Address>();
+
+        String viewAddressByIdCustomer = "select ADDRESS.* from dbo.ASSOC_CUSTOMER_DELIVERY_ADDRESS inner join"
+                +" ADDRESS on dbo.ASSOC_CUSTOMER_DELIVERY_ADDRESS.ADDRESS_ID=ADDRESS.ADDRESS_ID"
+                +" where CUSTOMER_ID=?";
+
+        Connection db = Database.getInstance().getConnection();
+        
+        PreparedStatement pstmt = db.prepareStatement(viewAddressByIdCustomer);
+        pstmt.setInt(1, a);
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()) {
+            Address address = new Address(
+                    rs.getInt("ADDRESS_ID"),
+                    rs.getString("ADDRESS_COMPANY_NAME"),
+                    rs.getString("ADDRESS_L_NAME"),
+                    rs.getString("ADDRESS_F_NAME"),
+                    rs.getString("ADDRESS_STREET"),
+                    rs.getString("ADDRESS_STREET_EXTRA"),
+                    rs.getString("ADDRESS_POSTCODE"),
+                    rs.getString("ADDRESS_CITY"),
+                    rs.getString("ADDRESS_PHONE"));
+            result.add(address);
+        }
+        return result;
+    }
+    
+// Afficher Adresse de facturation pour un client donné   
+    public static List<Address> listBillingAddressByIdCustomer(int a) throws SQLException, NamingException {
+        List<Address> result = new ArrayList<Address>();
+
+        String viewAddressByIdCustomer = "select ADDRESS.* from dbo.ASSOC_CUSTOMER_BILLING_ADDRESS inner join"
+                +" ADDRESS on dbo.ASSOC_CUSTOMER_BILLING_ADDRESS.ADDRESS_ID=ADDRESS.ADDRESS_ID"
+                +" where CUSTOMER_ID=?";
+
+        Connection db = Database.getInstance().getConnection();
+        
+        PreparedStatement pstmt = db.prepareStatement(viewAddressByIdCustomer);
+        pstmt.setInt(1, a);
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()) {
+            Address address = new Address(
+                    rs.getInt("ADDRESS_ID"),
+                    rs.getString("ADDRESS_COMPANY_NAME"),
+                    rs.getString("ADDRESS_L_NAME"),
+                    rs.getString("ADDRESS_F_NAME"),
+                    rs.getString("ADDRESS_STREET"),
+                    rs.getString("ADDRESS_STREET_EXTRA"),
+                    rs.getString("ADDRESS_POSTCODE"),
+                    rs.getString("ADDRESS_CITY"),
+                    rs.getString("ADDRESS_PHONE"));
+            result.add(address);
+        }
+        return result;
+    }
+    
 //Afficher Address vides    
     public static List<Address> listAddressByIdCustomer(int a) throws SQLException, NamingException {
         List<Address> result = new ArrayList<Address>();
