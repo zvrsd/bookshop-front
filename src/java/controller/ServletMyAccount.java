@@ -57,7 +57,7 @@ public class ServletMyAccount extends HttpServlet {
                 if (fName.isEmpty() || lName.isEmpty() || pseudo.isEmpty() || newPassword.isEmpty() || newPasswordConf.isEmpty()) {
                     request.getRequestDispatcher("id.jsp").forward(request, response);
                 } else if (!newPassword.equals(newPasswordConf)) {
-                    request.getRequestDispatcher("register.html").forward(request, response);
+                    request.getRequestDispatcher("jspModifRetry.jsp").forward(request, response);
                 } else {
                     customer.setCustomerFName(fName);
                     customer.setCustomerLName(lName);
