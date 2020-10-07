@@ -128,7 +128,7 @@ public class ServletLogin extends HttpServlet {
         request.setAttribute("email", request.getParameter("email"));
         request.setAttribute("error_message", errorMessage);
 
-        request.getRequestDispatcher(Values.JSP_LOGIN_FULL).forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/dlogin.jsp").include(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

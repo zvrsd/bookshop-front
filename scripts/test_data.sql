@@ -482,7 +482,7 @@ INSERT INTO CUSTOMER
 		('Nom7050','Prenom960','tincidunt@aliquet.ca','face20','22590','laoreet, libero et tristique pellentesque, tellus sem mollis'),
 		('Nom20','Prenom750','sodales.at@sed.ca','user40','4210','condimentum eget, volutpat ornare, facilisis eget, ipsum. Donec'),
 		('Nom2040','Prenom87','a@Maecenasliberoest.com','user5','21230','auctor. Mauris vel turpis. Aliquam adipiscing lobortis risus.'),
-        ('test','test','test','test','4ba29b9f9e5732ed33761840f4ba6c53','clear pass : 2002')
+        ('Nom_test','Prenom_test','test','username_test','4ba29b9f9e5732ed33761840f4ba6c53','clear pass : 2002')
 ;
 
 INSERT INTO ASSOC_STATUS_CUSTOMER
