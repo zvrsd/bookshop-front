@@ -118,6 +118,14 @@
                 </select>
             </div> 
                 
+                Type de Carte <br>
+                VISA
+                <input type="radio" name="card" value="VISA" checked="checked" />
+                MASTERCARD
+                <input type="radio" name="card" value="MASTERCARD" />
+                OTHER
+                <input type="radio" name="card" value="OTHER" />
+                
             <div id="k_box_shopping_cart_actions">
 
                 <div id="k_box_shopping_cart_clear">

@@ -1,5 +1,6 @@
 package model.dao;
 
+import db.Database;
 import java.awt.Image;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,8 +9,10 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.Scanner;
+import javax.naming.NamingException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -47,6 +50,9 @@ public class Order_RowDAO {
  	        connection = DriverManager.getConnection(url, username, password);
  	    }
  	    
+           public Order_RowDAO(int id) {
+               
+           }
  	   public Order_RowDAO() throws SQLException{
  	        System.out.println("Entrez vos informations de connexion: \n "); 
  	        System.out.println("Url : \n");
@@ -91,4 +97,30 @@ return new Order_Row();
 }
              
            }
+           
+           
+    public final String QUERY_INSERT_ORDER_ROW = "insert into ORDER_ROW"
+            + " (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE)"
+            + " values (?, ?, ?, ?, ?, ?)";
+    
+    public void add(Order_Row object) throws NamingException, SQLException {
+        
+        Database database = Database.getInstance();
+        Connection connection;
+        PreparedStatement statement;
+
+        connection = database.getConnection();
+        statement = connection.prepareStatement(QUERY_INSERT_ORDER_ROW);
+
+        statement.setString(1, null);
+        statement.setInt(2, object.getOrderId());
+        statement.setString(3, object.getBookIsbn());
+        statement.setInt(4, object.getOrderQuantity());
+        statement.setDouble(5, object.getOrderRowPrice());
+        statement.setDouble(6, 0);
+
+        statement.executeUpdate();
+
+        statement.close();
+    }
 }

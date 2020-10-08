@@ -10,6 +10,7 @@ import model.dao.ShippingOfferDAO;
 import model.entity.Address;
 import model.entity.Book;
 import model.entity.Customer;
+import model.entity.Order;
 import model.entity.Order_Row;
 import model.entity.ShippingOffer;
 
@@ -27,6 +28,7 @@ public class OrderValidationBean {
     private Address deliveryAddress;
     private Address billingAddress;
     private List<Order_Row> rows;
+    private Order order;
 
     public OrderValidationBean() {
         this.isValidated = false;
@@ -100,5 +102,9 @@ public class OrderValidationBean {
 
     public void setShippingOffers(HashMap<Long, ShippingOffer> shippingOffers) {
         this.shippingOffers = shippingOffers;
+    }
+    
+    public ShippingOffer getShippingOfferById(Long id){
+        return shippingOffers.get(id);
     }
 }

@@ -62,7 +62,8 @@
                     <tr>
                         <td>
                             Mot de passe<br />
-                            <input class="k_text_field" type="password" name="password" value="" />
+                            <input class="k_text_field" type="password" name="password" value="" readonly onfocus="this.removeAttribute('readonly');"/>
+                
                         </td>
                     </tr>
                     <tr>
