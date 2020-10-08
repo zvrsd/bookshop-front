@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.dao.BookDAO;
 import model.entity.Book;
 
+
 /**
  *
  * @author Cy
@@ -30,24 +31,49 @@ import model.entity.Book;
 
 */
 
-
 @WebServlet(name = "HomePage", urlPatterns = {"/HomePage"})
 public class ServletHomePage extends HttpServlet {
+    
+/*
+ *                          Method to name variables for JSPs
+ */    
+    
+    private void initp() { 
+                   
+            
+        getServletContext().setAttribute("result", res.Values.QUICK_SEARCH_CONTROLLER);
+        getServletContext().setAttribute("account", res.Values.JSP_ACCOUNT);
+        getServletContext().setAttribute("book_info", res.Values.JSP_BOOK_INFO);
+        getServletContext().setAttribute("book_information", res.Values.JSP_BOOK_INFO_FULL);
+        getServletContext().setAttribute("error", res.Values.JSP_ERROR);
+        getServletContext().setAttribute("home", res.Values.JSP_HOME);
+        getServletContext().setAttribute("login", res.Values.JSP_LOGIN);
+        getServletContext().setAttribute("login_f", res.Values.JSP_LOGIN_FULL);
+        getServletContext().setAttribute("notlog", res.Values.JSP_NOTLOG);
+        getServletContext().setAttribute("register", res.Values.JSP_REGISTER);
+        getServletContext().setAttribute("register_f", res.Values.JSP_REGISTER_FULL);
+        getServletContext().setAttribute("cart", res.Values.JSP_SHOPPING_CART);
+        getServletContext().setAttribute("cart_f", res.Values.JSP_SHOPPING_CART_FULL);
 
+            
+    }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String url = "homePageJsp.jsp";
+
+// Call on method to set Attributes for the JPSs (here above):
+            initp();
             
-            // Gets the last 5 books from DB
+// Gets the last 5 books from DB
             ArrayList<Book> allBooks = (ArrayList<Book>) new BookDAO().getAll();
             List<Book> lastBooks = new ArrayList<Book>();
             for(int i = allBooks.size() - 1; i > allBooks.size() - 6; i--){
                 lastBooks.add(allBooks.get(i));
             }
-            // Displays books
+// Displays books
             for(Book book : lastBooks){
                 System.out.println(book);
                 
