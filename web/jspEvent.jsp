@@ -1,3 +1,4 @@
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
     Document   : jspEvent
@@ -11,13 +12,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html;>
         <title>JSP Event</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="templatecss.css">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   
         <script src="evtImg.js"></script>
     <canvas id="canvas" width="1300" height="200"></canvas>
     <script src="evtImg.js"></script>
@@ -50,27 +51,23 @@
 
         <div class="container"> 
             <div class="row">  
-               
-                <c:forEach var="book" items="${book}">
+                
+              <c:forEach var="book" items="${book}">
 
                     <a href="book?isbn=${book.isbn}<img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
-
                     <div class="col-sm-4"> 
                         <figure>  <p><a href="book?isbn=${book.isbn} "><img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
                             <h3>  ${book.title}  </h3>
-
                             <p>   ${book.postIt} </p>
-                            <c:set var="remise" value="${remise}"/>
-                            <%-- Calcul à revoir --%>
+                            <c:set  var="remise" value="${remise}"/>
                             
-                            <p> Ancien prix :  ${book.price}  Euros</p><p> Nouveau prix : <c:set var="discount" value="${remise * book.price /100}"/>  ${discount} Euros</p>
-
-                            <br></br><br></br>
+                   <!--   <fmt:formatNumber var="discount" minIntegerDigits="2" value="${remise * (book.priceT /100)}"/> -->
+                            
+                            <p> Ancien prix : ${book.priceT} Euros</p><p> Nouveau prix : <c:set var="discount"value="${remise * (book.priceT /100)}" />  ${discount} Euros</p>
+                                                                                    
+                            <br></br><br></br><%----%>
                    
                 </div>
-
-
-
             </c:forEach>
         </div> 
     </div>
@@ -80,3 +77,4 @@
     <%@include file="footerJsp.jsp" %>      
 </body>
 </html>
+

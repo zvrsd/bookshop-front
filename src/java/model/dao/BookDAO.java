@@ -1,3 +1,4 @@
+
 package model.dao;
 
 import db.Database;
@@ -688,4 +689,5 @@ public class BookDAO implements DAO<Book, String> {
         return objects;
     }
 }
+
 

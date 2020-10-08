@@ -1,10 +1,15 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
@@ -13,42 +18,45 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.dao.BookDAO;
+import model.bean.beanOrder;
 import model.entity.Book;
 import res.Values;
 
 /**
  *
- * @author Cy
+ * @author Charlène
  */
-@WebServlet(name = Values.QUICK_SEARCH_CONTROLLER, urlPatterns = {"/"+Values.QUICK_SEARCH_CONTROLLER})
-public class QuickSearchController extends HttpServlet {
+@WebServlet(name = "searchOrderServlet", urlPatterns = {"/searchOrderServlet"})
+public class searchOrderServlet extends HttpServlet {
 
-    
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            String url = "WEB-INF/headerJsp.jsp";
-            
-            
-            BookDAO qs = new BookDAO();
-            try {
-                ArrayList<Book> listQS = (ArrayList<Book>) qs.quickSearch((String) request.getParameter("recherche"));
-                System.out.println("Test: " + request.getParameter("recherche"));
-                
-                request.setAttribute("books", listQS);
-                
-                request.getRequestDispatcher("jspQuickSearch.jsp").include(request, response);
-                
-                
-                
+         try{
+       String id = (String) request.getParameter("inputOrder"); 
+       List<Book> books =new ArrayList(); 
+       beanOrder beanOrder = new beanOrder(); 
+       if (id != null)
+       books = (List<Book>) beanOrder.getListById(id);
+       
+        request.setAttribute(Values.PARAM_BOOKS, books);    
+        request.getRequestDispatcher("/jspOrderSearch.jsp").include(request, response);
+        
+              System.out.println(books); 
             } catch (NamingException ex) {
                 Logger.getLogger(QuickSearchController.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 Logger.getLogger(QuickSearchController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

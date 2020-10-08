@@ -80,7 +80,7 @@ public class EventDAO {
                 // Obtains the publisher matching the ID
                 //object.setPublisher(new PublisherDAO().get(rs.getInt(2)));
                 // Obtains the VAT matching the ID
-                //object.setVat(new VatDAO().get(rs.getInt(3)));
+                object.setVat(new VatDAO().getById(rs.getInt(3)));
                 object.setTitle(rs.getString(4));
                 object.setSubTitle(rs.getString(5));
                 object.setPrice(rs.getFloat(6));

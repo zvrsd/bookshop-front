@@ -342,7 +342,7 @@ public class OrderDAO implements DAO<Order, Book>{
     }
 
     public List<Book> getListById(String id) throws SQLException{
-        List<Book> Ibook = new ArrayList(); 
+       lBook = new ArrayList(); 
         
          DataSource ds = null;
             try {
@@ -356,7 +356,7 @@ public class OrderDAO implements DAO<Order, Book>{
  
 
                 connexion= ds.getConnection();
-        String query = "select * from Book where BOOK_ISBN in (Select [BOOK_ISBN] from [dbo].[ORDER_ROW] where Order_id=" + id + "";
+        String query = "select * from Book where BOOK_ISBN in (Select [BOOK_ISBN] from [dbo].[ORDER_ROW] where Order_id=" + id + ");";
          Statement stmt = connexion.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
                 Book book = null;
@@ -386,7 +386,7 @@ public class OrderDAO implements DAO<Order, Book>{
                    
                 }
 
-      return Ibook;   
+      return lBook;   
     }
     
     @Override
