@@ -1,9 +1,9 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
     Document   : homePage.jsp
     Created on : 1 oct. 2020, 11:28:20
     Author     : Loïc
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -69,39 +69,38 @@
                 </td>
                 <br> </br>
                 
-                </td>     
+       
             </tr>  
         </tbody>
     </table>
             </section>
-            
+
             <section id = "livres tendance" class="livreConteneur">
-                
+
                 <h2 class="titre">Les nouveautés</h2>
-                 <table> 
-        <tbody> 
+                <table> 
+        <tbody>
             <tr>
-                <td>
-                    <figure>  <p><a href="book.html" title=""><img src ="img/furieBook.jpg" width="150" height="200"  alt= "" /></a>
-                </td>
-                <td>
-                    <figure>  <p><a href="book.html" title=""><img src ="img/furieBook.jpg" width="150" height="200"  alt= "" /></a>
-                </td>
-                <td>
-                    <figure>  <p><a href="book.html" title=""><img src ="img/furieBook.jpg" width="150" height="200"  alt= "" /></a>
-                </td>
-                <td> 
-               <figure>  <p><a href="book.html" title=""><img src ="img/furieBook.jpg" width="150" height="200"  alt= "" /></a>
-                </td>
-                <td> 
-               <figure>  <p><a href="book.html" title=""><img src ="img/furieBook.jpg" width="150" height="200"  alt= "" /></a>
-                </td>
-                <br> </br>
-                
-                </td>     
+                <c:forEach var="book" items="${books}">
+                    <td>
+                        <a href="book?isbn=${book.isbn}<img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
+                        <div class="col-sm-2"> 
+                            <figure>  <p><a href="book?isbn=${book.isbn} "><img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
+                                <h3>  ${book.title}  </h3>
+                                <p>   ${book.postIt} </p>     
+
+                                <p> Prix :  ${book.price}  Euros</p>
+                                <br></br><br></br>
+                        </div>
+                    </td>
+                </c:forEach>
+                <br></br>      
             </tr>  
         </tbody>
     </table>
+                
+                
+     
             </section>
             
             <section id = "livres tendance" class="livreConteneur">
@@ -125,20 +124,13 @@
                <figure>  <p><a href="book.html" title=""><img src ="img/furieBook.jpg" width="150" height="200"  alt= "" /></a>
                 </td>
                 <br> </br>
-                
-                </td>     
+                    
             </tr>  
         </tbody>
     </table>
-            </section>
-            
+            </section>   
         </div>
 
-
         <footer><jsp:include page="footerJsp.jsp" /></footer>
-
     </body>
-
-
-
 </html>
