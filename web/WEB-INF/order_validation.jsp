@@ -89,7 +89,7 @@
                 
                 <select id="shipping_offers" name="shipping_offers">
                     <c:forEach var="shippingOffer" items="${bean_order_val.genericShippingOffers}">
-                        <option name="shippingOffer" value="${shippingOffer}">${shippingOffer.shippingOfferName} - ${shippingOffer.shippingOfferDetails}</option>
+                        <option name="shippingOffer" value="${shippingOffer.shippingOfferId}">${shippingOffer.shippingOfferName} - ${shippingOffer.shippingOfferDetails}</option>
                     </c:forEach>
                 </select>
             </div> 
@@ -103,7 +103,7 @@
                 <label>Addresse de livraison</label>
                 <select id="delivery_addresses" name="delivery_addresses">
                     <c:forEach var="delivery_address" items="${customer.deliveryAddresses}">
-                        <option name="delivery_address" value="${delivery_address}">${delivery_address.firstName} ${delivery_address.lastName} ${delivery_address.street}</option>
+                        <option name="delivery_address" value="${delivery_address.id}">${delivery_address.firstName} ${delivery_address.lastName} ${delivery_address.street}</option>
                     </c:forEach>
                 </select>
             </div> 
@@ -113,7 +113,7 @@
                 <label>Addresse de facturation</label>
                 <select id="billing_addresses" name="billing_addresses">
                     <c:forEach var="billing_address" items="${customer.billingAddresses}">
-                        <option name="billing_address" value="${billing_address}">${billing_address.firstName} ${billing_address.lastName} ${billing_address.street}</option>
+                        <option name="billing_address" value="${billing_address.id}">${billing_address.firstName} ${billing_address.lastName} ${billing_address.street}</option>
                     </c:forEach>
                 </select>
             </div> 

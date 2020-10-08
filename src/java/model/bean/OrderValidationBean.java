@@ -8,6 +8,8 @@ import javax.naming.NamingException;
 import model.dao.ShippingOfferDAO;
 import model.entity.Address;
 import model.entity.Book;
+import model.entity.Customer;
+import model.entity.Order_Row;
 import model.entity.ShippingOffer;
 
 /**
@@ -17,10 +19,12 @@ import model.entity.ShippingOffer;
 public class OrderValidationBean {
     
     private boolean isValidated;
+    private Customer customer;
     private ShippingOffer shippingOffer;
     private List<Book> books;
     private Address deliveryAddress;
     private Address billingAddress;
+    private List<Order_Row> rows;
 
     public OrderValidationBean() {
         this.isValidated = false;
@@ -39,7 +43,6 @@ public class OrderValidationBean {
         return isValidated;
     }
 
-   
     public void setShippingOffer(ShippingOffer shippingOffer) {
         this.shippingOffer = shippingOffer;
     }
@@ -72,4 +75,21 @@ public class OrderValidationBean {
     public List<ShippingOffer> getGenericShippingOffers() throws NamingException, SQLException{
         return new ShippingOfferDAO().getByCarrierId(null);
     }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public List<Order_Row> getRows() {
+        return rows;
+    }
+
+    public void setRows(List<Order_Row> rows) {
+        this.rows = rows;
+    }
+    
 }

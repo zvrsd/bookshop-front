@@ -304,9 +304,16 @@ public class OrderDAO implements DAO<Order, Book>{
                  return statut; 
     }
 
+    public final String QUERY_INSERT_ORDER = "INSERT INTO [dbo].[ORDER]\n"
+            + "	([CUSTOMER_ID],[DELIVERY_ADDRESS_ID],[BILLING_ADDRESS_ID],[SHIPPING_OFFER_ID],[ORDER_CREATION_DATE],[ORDER_SHIPPING_TIME_LIMIT],\n"
+            + "	[ORDER_USER_IP],[ORDER_COMMENT],[ASSOC_SHIPPING_OFFER_COMMAND_HT_PRICE])\n"
+            + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    
+    public final String QUERY_INSERT_ORDER_ROW = "";
     @Override
     public void add(Order object) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        
     }
 
     @Override

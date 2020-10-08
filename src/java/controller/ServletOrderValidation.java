@@ -12,7 +12,11 @@ import javax.servlet.http.HttpSession;
 import model.bean.LoginBean;
 import model.bean.OrderValidationBean;
 import model.bean.ShoppingCartBean;
+import model.dao.OrderDAO;
 import model.entity.Book;
+import model.entity.Customer;
+import model.entity.Order;
+import model.entity.Order_Row;
 import res.Values;
 
 /**
@@ -69,6 +73,18 @@ public class ServletOrderValidation extends HttpServlet {
             orderValidationBean.setValidated(false);
         }
         
+        // If the user chooses to validate the order
+        if(Values.ACTION_CREATE_ORDER.equals(request.getParameter(Values.PARAM_ACTION))){
+            System.out.println((Customer) session.getAttribute(Values.PARAM_CUSTOMER));
+            System.out.println("del : "+request.getParameter("delivery_address"));
+            System.out.println("bil : "+request.getParameter("billing_address"));
+            System.out.println();
+            /*
+            orderValidationBean.setCustomer((Customer) session.getAttribute(Values.PARAM_CUSTOMER));
+            orderValidationBean.setBillingAddress(request.getAttribute(message));
+            
+            //validateOrder(orderValidationBean, shoppingcartBean);*/
+        }
         // If the order has been validated already
         if(orderValidationBean.isValidated()){
             message = "commande deja validée";
@@ -109,7 +125,32 @@ public class ServletOrderValidation extends HttpServlet {
         processRequest(request, response);
     }
 
-    private boolean validateOrder(OrderValidationBean orderBean){
+    private boolean validateOrder(OrderValidationBean orderBean, ShoppingCartBean cartBean) throws Exception{
+        
+        // Creates the order
+        Order order = new Order();
+        order.setCustomer(orderBean.getCustomer());
+        order.setAdresseBilId(orderBean.getBillingAddress().getId());
+        order.setAdresseLivId(orderBean.getDeliveryAddress().getId());
+        order.setIpCustomer("0.0.0.0");
+        order.setCommentaire("");
+        // UNSAFE CAST !!
+        order.setShippingId(Integer.parseInt(""+orderBean.getShippingOffer().getShippingOfferId()));
+        order.setPriceTaxFree(orderBean.getShippingOffer().getShippingOfferHtPrice());
+        
+        // Adds the order into the DB
+        new OrderDAO().add(order);
+        
+        Order_Row orderRow;
+        // Creates an order row for each book
+        for(Book book : orderBean.getBooks()){
+            orderRow = new Order_Row();
+            orderRow.setBookIsbn(book.getIsbn());
+            orderRow.setOrderQuantity(book.getQuantity());
+            // unsafe cast
+            orderRow.setOrderRowPrice(Double.parseDouble(""+book.getTPrice()));
+        }
+        
         return false;
     }
 }
