@@ -32,7 +32,7 @@ public class beanSearch implements Serializable {
     }
      
     public Set<Book> getAll() throws NamingException, SQLException{
-        books = new HashSet<>(new BookDAO().getAll()); 
+       // books = new HashSet<>(new BookDAO().getAll()); 
         
         return books; 
     }
@@ -44,19 +44,19 @@ public class beanSearch implements Serializable {
     }
     
     public Set<Book> getByTitle(String title) throws NamingException, SQLException{
-        books = new HashSet<>( new BookDAO().quickSearch(title)); 
+        books = new HashSet<>( new BookDAO().titleSearch(title)); 
         
         return books; 
     }
     
     public Set<Book> getByISBN(String isbn) throws NamingException, SQLException{
-        books = new HashSet<>( new BookDAO().quickSearch(isbn)); 
+        books = new HashSet<>( new BookDAO().isbnSearch(isbn)); 
         
         return books; 
     }
     
     public Set<Book> getByKeywords(String keyword) throws NamingException, SQLException{
-        books = new HashSet<>( new BookDAO().quickSearch(keyword)); 
+        books = new HashSet<>( new BookDAO().keywordSearch(keyword)); 
         
         return books; 
     }
