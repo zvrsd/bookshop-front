@@ -186,11 +186,11 @@ window.onclick = function(event) {
                 
                 <ul id="menuNav">
                     <!-- <div id="gauche"> -->
-                    <li class="barreMenuG"><a href="">Littérature</a></li>
-                    <li class="barreMenuG"><a href="">Sciences Humaines</a></li>
-                    <li class="barreMenuG"><a href="">Arts</a></li>
-                    <li class="barreMenuG"><a href="">Jeunesse</a></li>
-                    <li class="barreMenuG"><a href="">BD / Manga</a></li>
+                    <li class="barreMenuG"><a href="advSearchServlet?category=categorie_A">Littérature</a></li>
+                    <li class="barreMenuG"><a href="advSearchServlet?category=categorie_B">Sciences Humaines</a></li>
+                    <li class="barreMenuG"><a href="advSearchServlet?category=categorie_C">Arts</a></li>
+                    <li class="barreMenuG"><a href="advSearchServlet?category=categorie_A_0">Jeunesse</a></li>
+                    <li class="barreMenuG"><a href="advSearchServlet?category=categorie_A_1">BD / Manga</a></li>
                     <!-- </div> -->
                 </ul>
                 
