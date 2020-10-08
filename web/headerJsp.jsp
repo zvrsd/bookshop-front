@@ -2,7 +2,7 @@
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<link rel="stylesheet" href="css/templatecss.css">
          <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 
@@ -91,7 +91,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 <!-- Trigger/Open The Modal -->
 <ul>
 
-    <form method="POST" action="QuickSearchController">
+    <form method="POST" action="${result}">
 
         <li class="banniere"><a href="homePageJsp.jsp"><figure><img src="img/0.png" alt="Logo Bookshop" id="logoBookshop"></figure></a></li>
         <!-- recherche rapide -->
@@ -186,11 +186,11 @@ window.onclick = function(event) {
                 
                 <ul id="menuNav">
                     <!-- <div id="gauche"> -->
-                    <li class="barreMenuG"><a href="">Littérature</a></li>
-                    <li class="barreMenuG"><a href="">Sciences Humaines</a></li>
-                    <li class="barreMenuG"><a href="">Arts</a></li>
-                    <li class="barreMenuG"><a href="">Jeunesse</a></li>
-                    <li class="barreMenuG"><a href="">BD / Manga</a></li>
+                    <li class="barreMenuG"><a href="advSearchServlet?category=categorie_A">Littérature</a></li>
+                    <li class="barreMenuG"><a href="advSearchServlet?category=categorie_B">Sciences Humaines</a></li>
+                    <li class="barreMenuG"><a href="advSearchServlet?category=categorie_C">Arts</a></li>
+                    <li class="barreMenuG"><a href="advSearchServlet?category=categorie_A_0">Jeunesse</a></li>
+                    <li class="barreMenuG"><a href="advSearchServlet?category=categorie_A_1">BD / Manga</a></li>
                     <!-- </div> -->
                 </ul>
                 
