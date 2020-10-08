@@ -9,9 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
@@ -20,15 +18,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.bean.beanSearch;
+import model.bean.beanOrder;
 import model.entity.Book;
+import res.Values;
 
 /**
  *
  * @author Charlène
  */
-@WebServlet(name = "advSearchServlet", urlPatterns = {"/advSearchServlet"})
-public class advSearchServlet extends HttpServlet {
+@WebServlet(name = "searchOrderServlet", urlPatterns = {"/searchOrderServlet"})
+public class searchOrderServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,40 +37,27 @@ public class advSearchServlet extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     * @throws javax.naming.NamingException
-     * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, NamingException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+         try{
+       String id = (String) request.getParameter("inputOrder"); 
+       List<Book> books =new ArrayList(); 
+       beanOrder beanOrder = new beanOrder(); 
+       if (id != null)
+       books = (List<Book>) beanOrder.getListById(id);
+       
+        request.setAttribute(Values.PARAM_BOOKS, books);    
+        request.getRequestDispatcher("/jspOrderSearch.jsp").include(request, response);
         
-            Set books = new HashSet(); 
-            beanSearch beanSearch = new beanSearch(); 
-            //List<Book> books = new ArrayList(); 
-            Set<Set<Book>> recueil = new HashSet(); 
-            recueil.add( beanSearch.getByTitle((String) request.getParameter("title"))); 
-            recueil.add(beanSearch.getByCategory((String) request.getParameter("category")));
-            recueil.add(beanSearch.getByISBN((String) request.getParameter("isbn")));
-            recueil.add(beanSearch.getByKeywords((String) request.getParameter("keywords")));
-           /* if(request.getParameter("priceMin") != null) {
-                  if (request.getParameter("priceMax") != null){
-            Double min = Double.parseDouble(request.getParameter("priceMin")); 
-            Double max = Double.parseDouble(request.getParameter("priceMax"));
-             recueil.add( beanSearch.getByPrice(min , max));
-            }*/
-            
-            recueil.stream().forEach((book) -> {
-                book.stream().forEach((boo) -> {
-                    books.add(boo);
-            });
-        });
-            
-             request.setAttribute("books", books);
-             request.getRequestDispatcher("/advancedSearch.jsp").include(request, response);
-           
-        
+              System.out.println(books); 
+            } catch (NamingException ex) {
+                Logger.getLogger(QuickSearchController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(QuickSearchController.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -85,13 +71,7 @@ public class advSearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (NamingException ex) {
-            Logger.getLogger(advSearchServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(advSearchServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -105,13 +85,7 @@ public class advSearchServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (NamingException ex) {
-            Logger.getLogger(advSearchServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(advSearchServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
