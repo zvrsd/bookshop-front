@@ -49,13 +49,13 @@ public class beanSearch implements Serializable {
         return books; 
     }
     
-    public Set<Book> getByISBN(String isbn) throws NamingException, SQLException{
+    public Set<Book> getByISBN(String isbn) throws NamingException, SQLException, Exception{
         books = new HashSet<>( new BookDAO().quickSearch(isbn)); 
         
         return books; 
     }
     
-    public Set<Book> getByKeywords(String keyword) throws NamingException, SQLException{
+    public Set<Book> getByKeywords(String keyword) throws NamingException, SQLException, Exception{
         books = new HashSet<>( new BookDAO().quickSearch(keyword)); 
         
         return books; 
