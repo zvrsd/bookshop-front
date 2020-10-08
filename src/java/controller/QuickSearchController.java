@@ -41,8 +41,6 @@ public class QuickSearchController extends HttpServlet {
                 
                 request.getRequestDispatcher("jspQuickSearch.jsp").include(request, response);
                 
-                
-                
             } catch (NamingException ex) {
                 Logger.getLogger(QuickSearchController.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {

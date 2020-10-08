@@ -87,7 +87,7 @@
                 <label>Mode de livraison</label>
                 <jsp:useBean id="bean_order_val" scope="session" class="model.bean.OrderValidationBean" />
                 
-                <select id="shipping_offers" name="shipping_offers">
+                <select id="shipping_offers" name="shipping_offer">
                     <c:forEach var="shippingOffer" items="${bean_order_val.genericShippingOffers}">
                         <option name="shippingOffer" value="${shippingOffer.shippingOfferId}">${shippingOffer.shippingOfferName} - ${shippingOffer.shippingOfferDetails}</option>
                     </c:forEach>
@@ -101,7 +101,7 @@
 
                 <%-- Delivery Address selection --%>
                 <label>Addresse de livraison</label>
-                <select id="delivery_addresses" name="delivery_addresses">
+                <select id="delivery_addresses" name="delivery_address">
                     <c:forEach var="delivery_address" items="${customer.deliveryAddresses}">
                         <option name="delivery_address" value="${delivery_address.id}">${delivery_address.firstName} ${delivery_address.lastName} ${delivery_address.street}</option>
                     </c:forEach>
@@ -111,7 +111,7 @@
             <div id="k_box_order_validation_total">
                 <%-- Billing Address selection --%>
                 <label>Addresse de facturation</label>
-                <select id="billing_addresses" name="billing_addresses">
+                <select id="billing_addresses" name="billing_address">
                     <c:forEach var="billing_address" items="${customer.billingAddresses}">
                         <option name="billing_address" value="${billing_address.id}">${billing_address.firstName} ${billing_address.lastName} ${billing_address.street}</option>
                     </c:forEach>
@@ -125,7 +125,7 @@
                 </div>
 
                 <div id="k_box_shopping_cart_order">
-                    <button class="k_button" type="submit" name="action" value="">Valider cette commande</button>
+                    <button class="k_button" type="submit" name="action" value="create_order">Valider cette commande</button>
                 </div>
 
             </div>

@@ -12,7 +12,7 @@
 
         <header><jsp:include page="/headerJsp.jsp" /></header>
 
-        <%-- <jsp:include page="book_info.jsp"/> --%> 
+        <jsp:include page="book_info.jsp"/>
 
         <footer><jsp:include page="/footerJsp.jsp" /></footer>   
 

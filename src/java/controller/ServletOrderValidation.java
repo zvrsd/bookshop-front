@@ -3,6 +3,8 @@ package controller;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -75,15 +77,15 @@ public class ServletOrderValidation extends HttpServlet {
         
         // If the user chooses to validate the order
         if(Values.ACTION_CREATE_ORDER.equals(request.getParameter(Values.PARAM_ACTION))){
-            System.out.println((Customer) session.getAttribute(Values.PARAM_CUSTOMER));
-            System.out.println("del : "+request.getParameter("delivery_address"));
-            System.out.println("bil : "+request.getParameter("billing_address"));
-            System.out.println();
-            /*
-            orderValidationBean.setCustomer((Customer) session.getAttribute(Values.PARAM_CUSTOMER));
-            orderValidationBean.setBillingAddress(request.getAttribute(message));
             
-            //validateOrder(orderValidationBean, shoppingcartBean);*/
+            try {
+                
+                orderValidationBean.setCustomer((Customer) session.getAttribute(Values.PARAM_CUSTOMER));
+                validateOrder(orderValidationBean, shoppingcartBean, request);
+                
+            } catch (Exception ex) {
+                Logger.getLogger(ServletOrderValidation.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         // If the order has been validated already
         if(orderValidationBean.isValidated()){
@@ -125,17 +127,20 @@ public class ServletOrderValidation extends HttpServlet {
         processRequest(request, response);
     }
 
-    private boolean validateOrder(OrderValidationBean orderBean, ShoppingCartBean cartBean) throws Exception{
+    private boolean validateOrder(OrderValidationBean orderBean, ShoppingCartBean cartBean, HttpServletRequest request) throws Exception{
         
         // Creates the order
         Order order = new Order();
         order.setCustomer(orderBean.getCustomer());
-        order.setAdresseBilId(orderBean.getBillingAddress().getId());
-        order.setAdresseLivId(orderBean.getDeliveryAddress().getId());
+        order.setAdresseBilId(Integer.parseInt(request.getParameter("billing_address")));
+        order.setAdresseLivId(Integer.parseInt(request.getParameter("delivery_address")));
         order.setIpCustomer("0.0.0.0");
         order.setCommentaire("");
         // UNSAFE CAST !!
-        order.setShippingId(Integer.parseInt(""+orderBean.getShippingOffer().getShippingOfferId()));
+        order.setShippingId(Integer.parseInt(request.getParameter("shipping_offer")));
+        
+        System.out.print(order);
+        
         order.setPriceTaxFree(orderBean.getShippingOffer().getShippingOfferHtPrice());
         
         // Adds the order into the DB

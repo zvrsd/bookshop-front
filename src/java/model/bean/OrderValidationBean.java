@@ -3,6 +3,7 @@ package model.bean;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import javax.naming.NamingException;
 import model.dao.ShippingOfferDAO;
@@ -21,6 +22,7 @@ public class OrderValidationBean {
     private boolean isValidated;
     private Customer customer;
     private ShippingOffer shippingOffer;
+    private HashMap<Long, ShippingOffer> shippingOffers;
     private List<Book> books;
     private Address deliveryAddress;
     private Address billingAddress;
@@ -91,5 +93,12 @@ public class OrderValidationBean {
     public void setRows(List<Order_Row> rows) {
         this.rows = rows;
     }
-    
+
+    public HashMap<Long, ShippingOffer> getShippingOffers() {
+        return shippingOffers;
+    }
+
+    public void setShippingOffers(HashMap<Long, ShippingOffer> shippingOffers) {
+        this.shippingOffers = shippingOffers;
+    }
 }
