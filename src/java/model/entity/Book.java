@@ -1,3 +1,4 @@
+
 package model.entity;
 
 /**
@@ -225,4 +226,3 @@ public class Book {
             this.assocPostIt = assocPostIt;
         }
     }
-}
