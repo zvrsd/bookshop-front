@@ -1,3 +1,4 @@
+
 package model.entity;
 
 /**
@@ -24,6 +25,7 @@ public class Book {
     private List<Author> authors;
     private List<Keyword> keywords;
     private List<BookStatusAssoc> statuses;
+    private float priceT;
 
     public Book() {
         // TODO: implement
@@ -75,7 +77,13 @@ public class Book {
     }
 
     public float getTPrice(){
-        return price + price * (vat.getRate() / 100);
+        priceT = price + price * (vat.getRate() / 100);
+        return priceT;
+    }
+
+     public float getPriceT(){
+        priceT = price + price * (vat.getRate() / 100);
+        return priceT;
     }
     /**
      * @param newPrice
