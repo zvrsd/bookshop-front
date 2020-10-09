@@ -3,6 +3,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="css/templatecss.css">
+        <link rel="stylesheet" href="bouton.css" />
          <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 
@@ -97,7 +98,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
         <!-- recherche rapide -->
         <li class="banniere"><label for="recherche">Recherche</label>
             <input type="text" id="recherche" name="recherche">
-            <button type="submit">OK</button>
+            <button class="bttn-unite" type="submit">OK</button>
         </li>
         <li class="banniere"><a href="shoppingcart">Panier</a></li>
 
@@ -111,11 +112,11 @@ body {font-family: Arial, Helvetica, sans-serif;}
         <%-- If the user is logged --%>
         <c:if test="${bean_login.isLogged}" var="isLogged" scope="session">
             <li class="banniere"> ${bean_login.customer.customerUsername}</li>
-            <li class="banniere"><a href="login"><span id="barreMenuD"><button type="button">Mon compte</button></span></a></li>
+            <li class="banniere"><a href="login"><span id="barreMenuD"><button button class="bttn-unite" type="button">Mon compte</button></span></a></li>
         </c:if>
         <%-- Else --%>
         <c:if test="${!bean_login.isLogged}" var="isLogged" scope="session">
-            <li class="banniere"><span id="barreMenuD"><button id="myBtn" type="button">Se connecter</button></span></li>
+            <li class="banniere"><span id="barreMenuD"><button id="myBtn" button class="bttn-unite" type="button">Se connecter</button></span></li>
         </c:if>
     </form>
 </ul>
