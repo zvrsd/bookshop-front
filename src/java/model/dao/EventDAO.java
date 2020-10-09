@@ -45,8 +45,7 @@ public class EventDAO {
                     
                 }
                 
-            stmt.close();
-            connexion.close();
+            
            return event;     
         }
     
@@ -98,8 +97,7 @@ public class EventDAO {
                 }
 
         
-         stmt.close();
-         connexion.close();
+        
         return lBook;
     }
      	
