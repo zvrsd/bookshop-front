@@ -1,3 +1,6 @@
+<%@page import="model.dao.CommentDAO"%>
+<%@page import="model.entity.Customer"%>
+<%@page import="res.Values"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -85,114 +88,22 @@
 
             <!-- book comments section -->
             <div id="k_box_book_comments">
-  <jsp:useBean id="beanComment" scope="session" class="model.bean.beanComment" />
 
+                <%
+                  
+         Customer customer = (Customer) session.getAttribute(Values.PARAM_CUSTOMER); 
+        Long id = customer.getCustomerId(); 
+        String cusId = String.valueOf(id); 
+        CommentDAO commentDao = new CommentDAO(); 
+        if(commentDao.autorise(cusId) == true){
+            %>
+            <%@include file="/commentJSP.jsp" %>
        
-        <c:if test="${beanComment.authComment}" var="authorize" scope="session">
+            <%}%>
            
      
-                <div class="authoComment">
-                    <!-- title container -->
-                    <div class="k_box_page_title">
-                        Commentaires
-                    </div>
-                    <!-- customer comment container -->
-                    <div id="k_box_book_comment">
-
-                        <!-- method should be POST -->
-                        <form action="/commentServlet" method="post">
-
-                            <div id="k_box_book_comment_title">
-                                Titre du commentaire :
-                                <input class="k_text_field" type="text" name="comment_title" />
-                            </div>
-
-                            <div id="k_box_book_comment_msg">
-                                Message :
-                                <textarea class="k_text_field" name="comment_msg" cols="50" rows="4"></textarea>
-                            </div>
-
-
-
-                            <div id="k_box_book_comment_details">
-
-
-                                <div class="main">
-                                    <i class="fa fa-star checked" id="one"></i> 
-                                    <i class="fa fa-star unchecked" id="two"></i>
-                                    <i class="fa fa-star unchecked" id="three"></i>
-                                    <i class="fa fa-star unchecked" id="four"></i>
-                                    <i class="fa fa-star unchecked" id="five"></i>
-                                </div>
-                                <div>
-
-                                </div>
-
-                                <style>
-
-                                    .main
-                                    {
-                                        height:50px;
-                                        width:200px;
-                                        margin:auto;
-                                        margin-top:100px;
-                                    }
-                                    .fa
-                                    {
-                                        font-size:30px !important;
-                                        cursor:pointer;
-                                    }
-                                    .checked
-                                    {
-                                        color:yellow;
-                                    }
-                                    .unchecked
-                                    {
-                                        color:black;
-                                    }
-                                    .btn
-                                    {
-                                        width:150px;
-                                        height:20px;
-
-                                    }
-                                    .btn:hover
-                                    {
-                                        cursor:pointer;
-                                    }
-                                </style>
-
-                                <script>
-
-                                    var list = ['one', 'two', 'three', 'four', 'five'];
-                                    list.forEach(function (element) {
-                                        document.getElementById(element).addEventListener("click", function () {
-                                            var cls = document.getElementById(element).className;
-                                            if (cls.includes("unchecked"))
-                                            {
-                                                document.getElementById(element).classList.remove("unchecked");
-                                                document.getElementById(element).classList.add("checked");
-                                            } else
-                                            {
-                                                document.getElementById(element).classList.remove("checked");
-                                                document.getElementById(element).classList.add("unchecked");
-                                            }
-                                        });
-                                    });
-
-                                    document.getElementById("buttonnew").addEventListener("click", function () {
-                                        var note = getElementById('main'); 
-                                    });
-                                </script>
-                                <div class="k_right">
-                                    <button class="k_button" id="buttonnew" type="submit" name="action" value="send_comment">Envoyer le commentaire</button>
-                                </div>
-
-                            </div>
-                        </form>
-                    </div>
-                </div>
-   </c:if>
+              
+   </div>
                 <!-- title container -->
                 <div class="k_box_page_title">
                     Commentaires
