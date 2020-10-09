@@ -5,6 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
         <link rel="stylesheet" href="css/default.css" />
+        <link rel="stylesheet" href="bouton.css" />
     </head>
     <body>
         
@@ -49,7 +50,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <button class="k_button" type="submit" name="action" value="login">Connexion</button>
+                            <button class="bttn-unite" type="submit" name="action" value="login">Connexion</button>
                         </td>
                     </tr>
                 </form>
@@ -66,7 +67,7 @@
                 <tr>
                     <td>
                         <form action="servletRegister" method="post">
-                            <button class="k_button" type="submit" name="action" value="register">Creer un compte</button>
+                            <button class="bttn-unite" type="submit" name="action" value="register">Creer un compte</button>
                         </form>
 
                     </td>
