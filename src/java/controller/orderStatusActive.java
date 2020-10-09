@@ -69,7 +69,7 @@ public class orderStatusActive extends HttpServlet {
             } catch (SQLException ex) {
                 Logger.getLogger(QuickSearchController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            }
+            
         
     
 

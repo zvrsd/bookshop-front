@@ -169,6 +169,7 @@ public class ServletOrderValidation extends HttpServlet {
         System.out.print(order);
         // Adds the order into the DB
         new OrderDAO().add(order);
+        order.setId(new OrderDAO().getLastId());
         
         Order_Row orderRow;
         // Creates an order row for each book
