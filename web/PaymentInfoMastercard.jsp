@@ -1,3 +1,8 @@
+<%-- 
+    Document   : PaymentInfoMastercard
+    Created on : 9 oct. 2020, 17:38:49
+    Author     : Loïc
+--%>
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -8,34 +13,34 @@
         <title>Paiement bancaire</title>
     </head>
     <body>
-
+        
         <header><img src="logos/Banque Honnête.png"></header>
+        
 
-
-        <h1>Paiement par carte American Express</h1>
+        <h1>Paiement par Mastercard</h1>
         <div>
 
-            <p><img src="logos/Amex.png">Règlement à Bookshop du montant de ${bean_shopping_cart.totalFullPriceText} euros.<br>
-                ${messageAm}<br>
+            <p><img src="logos/Mastercard.png">Règlement à Bookshop du montant de ${bean_shopping_cart.totalFullPriceText} euros.<br>
+                ${messageMC}<br>
                 Veuillez entrer les informations de paiement suivantes :</p>
-            <form action="ServletPayAmex" method="post">
+            <form action="ServletPayMC" method="post">
                 <table>
                     <tr>
                     <label>
-                        <td>Titulaire de la carte Amex</td>
+                        <td>Titulaire de la Mastercard</td>
                         <td><input type="text" name="lName">*</td>
                     </label>
                     </tr>
                     <tr>
                     <label>
                         <td>Numéro de carte</td>
-                        <td><input type="text" name="digitsAmex">*</td>
+                        <td><input type="text" name="digitsMC">*</td>
                     </label>
                     </tr>
                     <tr>
                     <label>
-                        <td>Numéro de sécurité à 4 chiffres</td>
-                        <td><input type="text" name="secuAmex">*</td>
+                        <td>Numéro de sécurité à 3 chiffres</td>
+                        <td><input type="text" name="secuMC">*</td>
                     </label>
                     </tr>
                     <tr>
@@ -60,17 +65,6 @@
                                 <option>2022</option>
                                 <option>2023</option>
                                 <option>2024</option>
-                                <option>2025</option>
-                                <option>2026</option>
-                                <option>2027</option>
-                                <option>2028</option>
-                                <option>2029</option>
-                                <option>2030</option>
-                                <option>2031</option>
-                                <option>2032</option>
-                                <option>2033</option>
-                                <option>2034</option>
-                                <option>2035</option>
                             </select></td>
                     </label>
                     </tr>
@@ -81,10 +75,12 @@
                 <p>Les champs marqués d'un astérisque * doivent impérativement être renseignés.</p>
 
                 <input type="submit" value="Valider" name="valider" />
+               
             </form>
             <form action="ordervalidation">
                 <input type="submit" value="Annuler" name="annuler" />
             </form>
+            
         </div>
 
 

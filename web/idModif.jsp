@@ -91,7 +91,7 @@
 
                     <button class="bttn-unite" type="submit">Confirmer</button>
                     <input class="bttn-unite" type="reset" name="" value="Restaurer les valeurs initiales">
-                    <button class="bttn-unite" type="submit" formaction="myAccount.jsp">Annuler</button>
+                    <button class="bttn-unite" type="submit" formaction="myAccount.jsp">Aller à Mon Compte</button>
                 </section>
             </form>    
         </section>

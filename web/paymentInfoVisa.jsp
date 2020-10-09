@@ -18,7 +18,7 @@
             <p><img src="logos/Visa.png">Règlement à Bookshop du montant de ${bean_shopping_cart.totalFullPriceText} euros.<br>
                 ${messageVisa}<br>
                 Veuillez entrer les informations de paiement suivantes :</p>
-            <form action="ServletVisa" method="post">
+            <form action="ServletPayVisa" method="post">
                 <table>
                     <tr>
                     <label>
@@ -34,7 +34,7 @@
                     </tr>
                     <tr>
                     <label>
-                        <td>Numéro de sécurité à 4 chiffres</td>
+                        <td>Numéro de sécurité à 3 chiffres</td>
                         <td><input type="text" name="secuVisa">*</td>
                     </label>
                     </tr>
@@ -72,7 +72,9 @@
                 <p>Les champs marqués d'un astérisque * doivent impérativement être renseignés.</p>
 
                 <input type="submit" value="Valider" name="valider" />
-                <input type="button" value="Annuler" name="annuler" action="WEB-INF/shopping_cart.jsp" />
+            </form>
+            <form action="ordervalidation">
+                <input type="submit" value="Annuler" name="annuler" />
             </form>
         </div>
 

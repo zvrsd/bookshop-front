@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -90,7 +91,10 @@ public class ServletOrderValidation extends HttpServlet {
         // If the user chooses to validate the order
         else if (Values.ACTION_CREATE_ORDER.equals(request.getParameter(Values.PARAM_ACTION))) {
             
-            try {
+            RequestDispatcher req = request.getRequestDispatcher("/ServletPay");
+            req.forward(request, response);
+            
+            /*try {
                 
                 orderValidationBean.setCustomer((Customer) session.getAttribute(Values.PARAM_CUSTOMER));
                 if (validateOrder(orderValidationBean, shoppingcartBean, request)) {
@@ -106,7 +110,7 @@ public class ServletOrderValidation extends HttpServlet {
                 
             } catch (Exception ex) {
                 Logger.getLogger(ServletOrderValidation.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
         }
         
         request.setAttribute(Values.PARAM_ERROR_MSG, errorMessage);
@@ -169,6 +173,7 @@ public class ServletOrderValidation extends HttpServlet {
         System.out.print(order);
         // Adds the order into the DB
         new OrderDAO().add(order);
+        order.setId(new OrderDAO().getLastId());
         
         Order_Row orderRow;
         // Creates an order row for each book
