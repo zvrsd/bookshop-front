@@ -1,4 +1,3 @@
-
 package res;
 
 /**
@@ -57,17 +56,16 @@ public class Values {
     public final static String JSP_ACCOUNT = "myAccount.jsp";
     public final static String JSP_REGISTER = "register.jsp";
 
-
-
     public final static String JSP_BOOK_INFO = "/WEB-INF/book_info.jsp";
     public final static String JSP_BOOK_INFO_FULL = "/WEB-INF/book_info_full.jsp";
     public final static String JSP_ORDER_VALIDATION_FULL = "/WEB-INF/order_validation_full.jsp";
     
+    
     // Order 
     
-    public final static String ORDER_LASTMONTH = "listMonth";
+    public final static String ORDER_LASTMONTH = "listMonth"; 
     public final static String ORDER_SIXMONTH = "listSixMonth";
-    public final static String ORDER_PAST = "listPast";
+    public final static String ORDER_PAST = "listPast"; 
     
     public final static String JSP_NOTLOG = "WEB-INF/notLog.jsp";
     public final static String ERROR_NOT_LOGIN = "Non identifié";
@@ -75,6 +73,9 @@ public class Values {
     
 
     // Search: 
+    
     public final static String QUICK_SEARCH_CONTROLLER = "Resultats";
+    public final static String JSP_BOOK = "/WEB-INF/book_info.jsp";
 
+ 
   }
