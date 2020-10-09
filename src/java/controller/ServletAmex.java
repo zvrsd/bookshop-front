@@ -34,7 +34,7 @@ public class ServletAmex extends HttpServlet {
             
             String card = request.getParameter("card");
             
-           if(card = "AMEX") {
+           if(card == "AMEX") {
                
             final String regexAmex = "^3[47][0-9]{13}$";
             final String regexSecuAmex = "^[0-9]{3,4}$";
@@ -52,6 +52,8 @@ public class ServletAmex extends HttpServlet {
                 RequestDispatcher req = request.getRequestDispatcher("validPay.jsp");
                 req.forward(request, response);
             }
+           } else {
+               requestDispatcher req = request.getRequestDispatcher("Homepage.jsp");
            }
             
         }
