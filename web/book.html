@@ -4,11 +4,23 @@
     <head>
         <link rel="stylesheet" href="css/default.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <!-- Copy it to head of page -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+       <script data-require="jquery@*" data-semver="2.2.0" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link data-require="fontawesome@*" data-semver="4.5.0" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+    
+    
     </head>
 
     <body>
 
-        <div class="k_box_page_content" id="k_box_book_page_content">
+        
+<div class="k_box_page_content" id="k_box_book_page_content">
 
             <!-- page title container -->
             <div class="k_box_page_title">
@@ -69,21 +81,21 @@
             <!-- book comments section -->
             <div id="k_box_book_comments">
 
-  <jsp:useBean id="beanComment" scope="session" class="model.bean.beanComment" />
+ <!-- <jsp:useBean id="beanComment" scope="session" class="model.bean.beanComment" /> 
 
        
         <c:if test="${beanComment.authComment}" var="authorize" scope="session">
            
      
                 <div class="authoComment">
-                    <!-- title container -->
+                    <!-- title container 
                     <div class="k_box_page_title">
                         Commentaires
                     </div>
-                    <!-- customer comment container -->
+                    <!-- customer comment container 
                     <div id="k_box_book_comment">
 
-                        <!-- method should be POST -->
+                        <!-- method should be POST 
                         <form action="/commentServlet" method="post">
 
                             <div id="k_box_book_comment_title">
@@ -96,87 +108,68 @@
                                 <textarea class="k_text_field" name="comment_msg" cols="50" rows="4"></textarea>
                             </div>
 
-
-
-                            <div id="k_box_book_comment_details">
-
-
-                                <div class="main">
-                                    <i class="fa fa-star checked" id="one"></i> 
-                                    <i class="fa fa-star unchecked" id="two"></i>
-                                    <i class="fa fa-star unchecked" id="three"></i>
-                                    <i class="fa fa-star unchecked" id="four"></i>
-                                    <i class="fa fa-star unchecked" id="five"></i>
-                                </div>
-                                <div>
-
-                                </div>
-
-                                <style>
-
-                                    .main
-                                    {
-                                        height:50px;
-                                        width:200px;
-                                        margin:auto;
-                                        margin-top:100px;
-                                    }
-                                    .fa
-                                    {
-                                        font-size:30px !important;
-                                        cursor:pointer;
-                                    }
-                                    .checked
-                                    {
-                                        color:yellow;
-                                    }
-                                    .unchecked
-                                    {
-                                        color:black;
-                                    }
-                                    .btn
-                                    {
-                                        width:150px;
-                                        height:20px;
-
-                                    }
-                                    .btn:hover
-                                    {
-                                        cursor:pointer;
-                                    }
-                                </style>
-
-                                <script>
-
-                                    var list = ['one', 'two', 'three', 'four', 'five'];
-                                    list.forEach(function (element) {
-                                        document.getElementById(element).addEventListener("click", function () {
-                                            var cls = document.getElementById(element).className;
-                                            if (cls.includes("unchecked"))
-                                            {
-                                                document.getElementById(element).classList.remove("unchecked");
-                                                document.getElementById(element).classList.add("checked");
-                                            } else
-                                            {
-                                                document.getElementById(element).classList.remove("checked");
-                                                document.getElementById(element).classList.add("unchecked");
-                                            }
-                                        });
-                                    });
-
-                                    document.getElementById("buttonnew").addEventListener("click", function () {
-                                        var note = getElementById('main'); 
-                                    });
-                                </script>
-                                <div class="k_right">
+                            <input type="hidden" name="isbn" value="" />
+                            <input type="number" name="rating" id="rating-input" min="1" max="5" />
+  
+    
+    <div class="rating" role="optgroup">
+      <!-- in Rails just use 1.upto(5) 
+      <i class="fa fa-star-o fa-2x rating-star" id="rating-1" data-rating="1" tabindex="0" aria-label="Rate as one out of 5 stars" role="radio"></i>
+      <i class="fa fa-star-o fa-2x rating-star" id="rating-2" data-rating="2" tabindex="0" aria-label="Rate as two out of 5 stars" role="radio"></i>
+      <i class="fa fa-star-o fa-2x rating-star" id="rating-3" data-rating="3" tabindex="0" aria-label="Rate as three out of 5 stars" role="radio"></i>
+      <i class="fa fa-star-o fa-2x rating-star" id="rating-4" data-rating="4" tabindex="0" aria-label="Rate as four out of 5 stars" role="radio"></i>
+      <i class="fa fa-star-o fa-2x rating-star" id="rating-5" data-rating="5" tabindex="0" aria-label="Rate as five out of 5 stars" role="radio"></i>
+    </div>
+                            <script>
+                                
+                                $(document).ready(function () {
+  
+  function setRating(rating) {
+    $('#rating-input').val(rating);
+    // fill all the stars assigning the '.selected' class
+    $('.rating-star').removeClass('fa-star-o').addClass('selected');
+    // empty all the stars to the right of the mouse
+    $('.rating-star#rating-' + rating + ' ~ .rating-star').removeClass('selected').addClass('fa-star-o');
+  }
+  
+  $('.rating-star')
+  .on('mouseover', function(e) {
+    var rating = $(e.target).data('rating');
+    // fill all the stars
+    $('.rating-star').removeClass('fa-star-o').addClass('fa-star');
+    // empty all the stars to the right of the mouse
+    $('.rating-star#rating-' + rating + ' ~ .rating-star').removeClass('fa-star').addClass('fa-star-o');
+  })
+  .on('mouseleave', function (e) {
+    // empty all the stars except those with class .selected
+    $('.rating-star').removeClass('fa-star').addClass('fa-star-o');
+  })
+  .on('click', function(e) {
+    var rating = $(e.target).data('rating');
+    setRating(rating);
+  })
+  .on('keyup', function(e){
+    // if spacebar is pressed while selecting a star
+    if (e.keyCode === 32) {
+      // set rating (same as clicking on the star)
+      var rating = $(e.target).data('rating');
+      setRating(rating);
+    }
+  });
+});
+                            </script>
+                            
+                              <div class="k_right">
                                     <button class="k_button" id="buttonnew" type="submit" name="action" value="send_comment">Envoyer le commentaire</button>
                                 </div>
+                        </form>
 
                             </div>
-                        </form>
                     </div>
-                </div>
+               
+          
    </c:if>
+   </div> -->
                 <!-- comment container -->
                 <!-- comment example -->
                 <div id="k_box_book_comment">
@@ -240,6 +233,21 @@
                 </div>
             </div>
         </div>
+        
+        <script type="text/javascript">
+function remplirInput() {         
+  var zone = document.getElementById("zone");   
+  //var texte = zone.texte;
+  var texte = zone.value;
+  //alert(texte);
+  document.getElementById('t').value = texte;      
+}
+</script>
+
+<textarea id="zone" name="zone">test</textarea><br />
+<input type="button" onclick="remplirInput();" /><br />
+<textarea id="t" name="t"></textarea><br />
+</body>
 
     </body>
 
