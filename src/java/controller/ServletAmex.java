@@ -1,21 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import res.Values;
 
 /**
  *
- * @author cda601
+ * @author Loïc
  */
 @WebServlet(name = "ServletAmex", urlPatterns = {"/ServletAmex"})
 public class ServletAmex extends HttpServlet {
@@ -32,10 +29,27 @@ public class ServletAmex extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-
-            request.setAttribute(Values.PARAM_ERROR_MSG, "commande validée");
-            request.getRequestDispatcher(Values.JSP_ERROR).include(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            
+            // prévoir DAO pour paiements
+            final String regexAmex = "^3[47][0-9]{13}$";
+            final String regexSecuAmex = "^[0-9]{3,4}$";
+            String digits = request.getParameter("digitsAmex");
+            String secuAmex = request.getParameter("secuAmex");
+            String messageAm;
+            
+            if (!digits.matches(regexAmex) || !secuAmex.matches(regexSecuAmex)) {
+                messageAm = "Votre tentative de paiement a échoué.";
+                /**/RequestDispatcher req = request.getRequestDispatcher("paymentInfoAmex.jsp");
+                req.forward(request, response);/**/
+                return;
+            } else {
+                RequestDispatcher req = request.getRequestDispatcher("validPay.jsp");
+                req.forward(request, response);
+            }
+            
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

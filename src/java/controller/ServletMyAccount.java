@@ -54,11 +54,13 @@ public class ServletMyAccount extends HttpServlet {
                 String newPasswordConf = request.getParameter("newPasswordConf");
                 final String lNameRegex = "(?!.*--)[\\u00C0-\\u017Fa-zA-Z-' ]+";
                 final String fNameRegex = "(?!.*--)[\\u00C0-\\u017Fa-zA-Z-' ]+";
+                String message;
                 
 
                 //Customer customer = new CustomerDAO().getByUsername("test", "2002");
                 if (fName.isEmpty() || lName.isEmpty() || pseudo.isEmpty() || newPassword.isEmpty() || newPasswordConf.isEmpty()) {
-                    request.getRequestDispatcher("id.jsp").forward(request, response);
+                    message = "Veuillez compléter tous les champs.";
+                    request.getRequestDispatcher("idModif.jsp").forward(request, response);
                 } else if (!newPassword.equals(newPasswordConf)) {
                     request.getRequestDispatcher("jspModifRetry.jsp").forward(request, response);
                 } else {
