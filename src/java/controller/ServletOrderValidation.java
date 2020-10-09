@@ -97,7 +97,8 @@ public class ServletOrderValidation extends HttpServlet {
             request.setAttribute(Values.PARAM_ERROR_MSG, errorMessage);
             request.setAttribute(Values.PARAM_MSG, message);
             request.getRequestDispatcher(Values.JSP_ERROR).forward(request, response);
-        } // If the user chooses to validate the order
+        } 
+        // If the user chooses to validate the order
         else if (Values.ACTION_CREATE_ORDER.equals(request.getParameter(Values.PARAM_ACTION))) {
             
             try {
@@ -105,6 +106,8 @@ public class ServletOrderValidation extends HttpServlet {
                 orderValidationBean.setCustomer((Customer) session.getAttribute(Values.PARAM_CUSTOMER));
                 if (validateOrder(orderValidationBean, shoppingcartBean, request)) {
                     orderValidationBean.setValidated(true);
+                    orderValidationBean = null;
+                    session.setAttribute(Values.BEAN_ORDER_VALIDATION_NAME, null);
                 }
                 
             } catch (Exception ex) {
@@ -156,8 +159,10 @@ public class ServletOrderValidation extends HttpServlet {
         order.setAdresseLivId(Integer.parseInt(request.getParameter("delivery_address")));
         order.setIpCustomer("0.0.0.0");
         order.setCommentaire("");
+        
         // UNSAFE CAST !!
         order.setShippingId(Integer.parseInt(request.getParameter("shipping_offer")));
+        System.out.print(Integer.parseInt(request.getParameter("shipping_offer")));
         order.setPriceTaxFree(orderBean.getShippingOfferById(Long.parseLong(request.getParameter("shipping_offer"))).getShippingOfferHtPrice());
         
         System.out.print(order);
