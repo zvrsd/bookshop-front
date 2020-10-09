@@ -119,12 +119,13 @@
             </div> 
                 
                 Type de Carte <br>
+                
                 VISA
                 <input type="radio" name="card" value="VISA" checked="checked" />
                 MASTERCARD
                 <input type="radio" name="card" value="MASTERCARD" />
                 OTHER
-                <input type="radio" name="card" value="OTHER" />
+                <input type="radio" name="card" value="AMEX" />
                 
             <div id="k_box_shopping_cart_actions">
 

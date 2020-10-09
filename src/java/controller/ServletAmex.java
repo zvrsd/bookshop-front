@@ -41,6 +41,9 @@ public class ServletAmex extends HttpServlet {
             
             if (!digits.matches(regexAmex) || !secuAmex.matches(regexSecuAmex)) {
                 messageAm = "Votre tentative de paiement a échoué.";
+                
+                request.setAttribute("messageAm", messageAm);
+                
                 /**/RequestDispatcher req = request.getRequestDispatcher("paymentInfoAmex.jsp");
                 req.forward(request, response);/**/
                 return;
