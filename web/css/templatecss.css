@@ -484,18 +484,6 @@ section {
     background-color: var(--k_main_bg_color);
 }
 
-
-#font {
-    background-color: hsl(200,25%,92%);
-    border-top-style: solid;
-@@ -96,9 +97,42 @@ section {
-}
-
-#tdr {
-    display: flex;
-    text-align: center;
-}
-
 /* --------------------------------------------------------
 ***********************************************************
 *************************CHARLèNE***************************** 
