@@ -30,8 +30,8 @@ public class Values {
     public final static String ACTION_DEC_BOOK = "dec_book";
     public final static String ACTION_EMPTY_CART = "empty_cart";
     public final static String ACTION_GOTO_CART = "cart";
-    public final static String ACTION_YES = "yes";
-    public final static String ACTION_NO = "no";
+    public final static String ACTION_YES = "oui";
+    public final static String ACTION_NO = "non";
     
     public final static String ERROR_INVALID_LOGIN = "Identifiants invalides";
     public final static String ERROR_NO_BOOK = "Aucun livre à afficher";

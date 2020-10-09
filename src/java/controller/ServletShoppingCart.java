@@ -152,6 +152,4 @@ public class ServletShoppingCart extends HttpServlet {
         
         processRequest(request, response);
     }
-
 }
-

@@ -76,7 +76,8 @@ public class ServletOrderValidation extends HttpServlet {
             orderValidationBean = new OrderValidationBean();
             session.setAttribute(Values.BEAN_ORDER_VALIDATION_NAME, orderValidationBean);
             orderValidationBean.setBooks(shoppingcartBean.getBooks());
-            orderValidationBean.setValidated(false);    
+            orderValidationBean.setValidated(false);
+            orderValidationBean.setCustomer((Customer) session.getAttribute("customer"));
         }
         orderValidationBean.setBooks(shoppingcartBean.getBooks());
 
@@ -89,11 +90,45 @@ public class ServletOrderValidation extends HttpServlet {
         }
         // If the user chooses to validate the order
         else if (Values.ACTION_CREATE_ORDER.equals(request.getParameter(Values.PARAM_ACTION))) {
-            System.out.println(request.getParameter("card"));
-            request.getRequestDispatcher("/paymentInfoAmex.jsp").forward(request, response);
+            
+            try {
+                // Creates the order
+                Order order = new Order();
+                
+                order.setCustomer(orderValidationBean.getCustomer());
+                order.setAdresseBilId(Integer.parseInt(request.getParameter("billing_address")));
+                order.setAdresseLivId(Integer.parseInt(request.getParameter("delivery_address")));
+                order.setIpCustomer("0.0.0.0");
+                order.setCommentaire("");
+                order.setIdcustomer(Integer.parseInt(""+orderValidationBean.getCustomer().getCustomerId()));
+                
+                HashMap<Long, ShippingOffer> shippingOffers = new HashMap<>();
+                for (ShippingOffer offer : orderValidationBean.getGenericShippingOffers()) {
+                    shippingOffers.put(offer.getShippingOfferId(), offer);
+                    orderValidationBean.setShippingOffers(shippingOffers);
+                }
+                
+                // UNSAFE CAST !!
+                order.setShippingId(Integer.parseInt(request.getParameter("shipping_offer")));
+                System.out.print(Integer.parseInt(request.getParameter("shipping_offer")));
+                order.setPriceTaxFree(orderValidationBean.getShippingOfferById(Long.parseLong(request.getParameter("shipping_offer"))).getShippingOfferHtPrice());
+                
+                System.out.print(order);
+                
+                // Puts the order into the bean
+                orderValidationBean.setOrder(order);
+                
+                request.getRequestDispatcher("/paymentInfoAmex.jsp").forward(request, response);
+                
+            } catch (NamingException ex) {
+                Logger.getLogger(ServletOrderValidation.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(ServletOrderValidation.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         // If the payment has been validated
         else if(Values.ACTION_YES.equals(request.getParameter(Values.PARAM_ACTION))) {
+            
              try {
                 
                 orderValidationBean.setCustomer((Customer) session.getAttribute(Values.PARAM_CUSTOMER));
@@ -106,6 +141,7 @@ public class ServletOrderValidation extends HttpServlet {
                     errorMessage = "commande validée";
                     request.setAttribute(Values.PARAM_ERROR_MSG, errorMessage);
                     request.setAttribute(Values.PARAM_MSG, message);
+                    System.out.print("cmd valid");
                     request.getRequestDispatcher(Values.JSP_ERROR).forward(request, response);
                 }
                 
@@ -116,7 +152,7 @@ public class ServletOrderValidation extends HttpServlet {
         // If the payment has been refused
         else if(Values.ACTION_NO.equals(request.getParameter(Values.PARAM_ACTION))) {
             
-            errorMessage = "Le paiement a été refusé";
+            errorMessage = "Le paiement à été refusé";
             request.setAttribute(Values.PARAM_ERROR_MSG, errorMessage);
             request.setAttribute(Values.PARAM_MSG, message);
             request.getRequestDispatcher(Values.JSP_ERROR).forward(request, response);
@@ -136,7 +172,8 @@ public class ServletOrderValidation extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     */
+    */
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -159,27 +196,9 @@ public class ServletOrderValidation extends HttpServlet {
     
     private boolean validateOrder(OrderValidationBean orderBean, ShoppingCartBean cartBean, HttpServletRequest request) throws Exception {
 
-        // Creates the order
-        Order order = new Order();
-        order.setCustomer(orderBean.getCustomer());
-        order.setAdresseBilId(Integer.parseInt(request.getParameter("billing_address")));
-        order.setAdresseLivId(Integer.parseInt(request.getParameter("delivery_address")));
-        order.setIpCustomer("0.0.0.0");
-        order.setCommentaire("");
-
-        HashMap<Long, ShippingOffer> shippingOffers = new HashMap<>();
-
-        for (ShippingOffer offer : orderBean.getGenericShippingOffers()) {
-            shippingOffers.put(offer.getShippingOfferId(), offer);
-            orderBean.setShippingOffers(shippingOffers);
-        }
-
-        // UNSAFE CAST !!
-        order.setShippingId(Integer.parseInt(request.getParameter("shipping_offer")));
-        System.out.print(Integer.parseInt(request.getParameter("shipping_offer")));
-        order.setPriceTaxFree(orderBean.getShippingOfferById(Long.parseLong(request.getParameter("shipping_offer"))).getShippingOfferHtPrice());
-        
-        System.out.print(order);
+        // Gets the order
+        Order order = orderBean.getOrder();
+      
         // Adds the order into the DB
         new OrderDAO().add(order);
         order.setId(new OrderDAO().getLastId());

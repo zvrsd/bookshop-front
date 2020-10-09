@@ -107,4 +107,13 @@ public class OrderValidationBean {
     public ShippingOffer getShippingOfferById(Long id){
         return shippingOffers.get(id);
     }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+    
 }
