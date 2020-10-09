@@ -387,6 +387,7 @@ public class OrderDAO implements DAO<Order, Book>{
                    
                 }
       stmt.close();
+      connexion.close();
       return lBook;   
     }
     
