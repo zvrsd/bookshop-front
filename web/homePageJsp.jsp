@@ -15,6 +15,7 @@
         <title>Bookshop - Bienvenue sur votre librairie en ligne !</title>
         <meta name="description" content="">
         <link rel="stylesheet" href="css/templatecss.css">
+        <link rel="stylesheet" href="bouton.css" />
     </head>
 
     <header><jsp:include page="headerJsp.jsp" /></header>
@@ -100,7 +101,7 @@
         </tbody>
     </table>
                 
-                
+               
      
             </section>
             
