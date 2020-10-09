@@ -61,7 +61,7 @@
                             <h3>  ${book.title}  </h3>
                             <p>   ${book.postIt} </p>     
                             
-                            <p> Prix :  ${book.price}  Euros</p>
+                            <p> Prix :  ${book.priceT}  Euros</p>
                             <br></br><br></br>
                    
                 </div>

@@ -1,3 +1,4 @@
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
     Document   : homePage.jsp
@@ -134,3 +135,4 @@
         <footer><jsp:include page="footerJsp.jsp" /></footer>
     </body>
 </html>
+

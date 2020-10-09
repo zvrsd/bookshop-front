@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -9,14 +10,15 @@ and open the template in the editor.
         <title>Recherche avancée</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+           <link rel="stylesheet" type="text/css"   href="bouton.css" >
     </head>
     <body>
         <h2>Recherche avancée</h2>
         <form action="/advSearchServlet" method="GET">
 
-            par Titre : <input type="text" name="title" value="" />
+            par Titre : <input type="text" name="title" value />
             <br></br>
-            par ISBN : <input type="text" name="isbn" value="" />
+            par ISBN : <input type="text" name="isbn" value />
             <br></br>
             par Catégorie : <select name="category">
                 <option value="category">categorie</option>
@@ -32,14 +34,19 @@ and open the template in the editor.
                 
             </select>
             <br></br>
-            par Mot-Clefs : <input type="text" name="keywords" value="" />
+            par Mot-Clefs : <input type="text" name="keywords" value />
             <br></br>
-            par prix min : <input type="number" name="priceMin" value="" /> par prix max : <input type="number" name="priceMax" value="" /> 
+            par prix min : <input type="number" name="priceMin" value /> par prix max : <input type="number" name="priceMax" value="" /> 
             <br></br>
-            Article remisé <input type="radio" name="remise" value="" />
+            Article remisé <input type="radio" name="remise" value />
             <br></br>
-            <input type="submit" value="Rechercher" />
+            <!-- <input class="bttn-unite" value="Rechercher" /> -->
+            
+            <button class="bttn-unite" type="submit" >Rechercher
+                
+            </button>
         </form>
 
     </body>
 </html>
+

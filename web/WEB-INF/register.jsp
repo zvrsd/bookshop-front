@@ -45,13 +45,7 @@
 
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            Adresse email<br />
-                            <input class="k_text_field" type="text" name="email" value="${email}" />
-
-                        </td>
-                    </tr>
+                    
                     <tr>
                         <td>
                             Nom d'utilisateur<br />
@@ -61,9 +55,15 @@
                     </tr>
                     <tr>
                         <td>
-                            Mot de passe<br />
+                            Adresse email<br />
+                            <input class="k_text_field" type="text" name="email" value="${email}" />
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                           Mot de passe<br />
                             <input class="k_text_field" type="password" name="password" value="" readonly onfocus="this.removeAttribute('readonly');"/>
-                
                         </td>
                     </tr>
                     <tr>

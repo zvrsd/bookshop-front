@@ -43,7 +43,16 @@ public class CustomerDAO implements DAO<Customer,Long> {
             = "SELECT CUSTOMER_EMAIL FROM " + TABLE_CUSTOMER + " "
             + "WHERE CUSTOMER_EMAIL = ?";
     
+    // Loïc : variable - requête SQL pour modif données client
+    public final String QUERY_UPDATE_CUSTOMER
+            = "UPDATE " + TABLE_CUSTOMER + " "
+            + "SET "
+            + "CUSTOMER_L_NAME = (?), CUSTOMER_F_NAME = (?), CUSTOMER_EMAIL = (?), "
+            + "CUSTOMER_USERNAME = (?), CUSTOMER_PASSWORD = (?) "
+            + "WHERE CUSTOMER_ID = (?)";
     
+   // fin variable SQL
+            
     @Override
     public void add(Customer object) throws NamingException, SQLException{
          
@@ -80,8 +89,29 @@ public class CustomerDAO implements DAO<Customer,Long> {
     }
 
     @Override
-    public void update(Customer object) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void update(Customer object) throws NamingException, SQLException /*throws Exception*/ {
+        // code Loïc
+        Database database = Database.getInstance();
+        Connection connection;
+        PreparedStatement statement;
+        int result = -1;
+ 
+        connection = database.getConnection();
+        statement = connection.prepareStatement(QUERY_UPDATE_CUSTOMER);
+        
+        statement.setString(1, object.getCustomerLName());
+        statement.setString(2, object.getCustomerFName());
+        statement.setString(3, object.getCustomerEmail());
+        statement.setString(4, object.getCustomerUsername());
+        statement.setString(5, object.getCustomerPassword());
+        statement.setLong(6, object.getCustomerId());
+        
+        result = statement.executeUpdate();
+
+        statement.close();
+        connection.close();
+        
+        // fin code Loïc
     }
 
     @Override
