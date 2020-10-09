@@ -109,6 +109,7 @@ public class OrderDAO implements DAO<Order, Book>{
                   lBook.add(book );
                    
                 }
+                connexion.close();
                 stmt.close();
                 return lBook;
      }
@@ -163,7 +164,7 @@ public class OrderDAO implements DAO<Order, Book>{
                    
                 }
 
-        
+        connexion.close();
         stmt.close();
         return lBook;
     }
@@ -217,7 +218,7 @@ public class OrderDAO implements DAO<Order, Book>{
                    
                 }
 
-        
+        connexion.close();
           stmt.close();
         return lBook;
     }
@@ -272,7 +273,7 @@ public class OrderDAO implements DAO<Order, Book>{
                    
                 }
 
-        
+        connexion.close();
         stmt.close();
         return lBook;
     }
@@ -280,8 +281,8 @@ public class OrderDAO implements DAO<Order, Book>{
   
   //retourne  le nom du statut de la commande
   
-    public String getStatusOrder(Order orderCours) throws SQLException{
-              String statut = "";
+    public Order getStatusOrder(String id) throws SQLException{
+              Order order  = new Order();
              DataSource ds = null;
             try {
                 InitialContext context = new InitialContext();
@@ -294,15 +295,21 @@ public class OrderDAO implements DAO<Order, Book>{
  
 
                 connexion= ds.getConnection();
-                String query = "Select [ORDER_STATUS_NAME] from [dbo].[ORDER_STATUS] where [ORDER_STATUS_ID] in (Select [ORDER_STATUS_ID] from [dbo].[ASSOC_STATUS_ORDER] where [ORDER_ID] = '" + orderCours.getId() +  "' ";
+                String query = "select * from dbo.[ORDER] where [ORDER_ID] in(Select ORDER_STATUS_Id from [dbo].[ORDER_STATUS] where ORDER_STATUS_Id= 2 and dbo.[ORDER].CUSTOMER_ID= "+ id +" );";
                  
                 Statement stmt = connexion.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
                 
                  while (rs.next()){
-                    statut = rs.getString("ORDER_STATUS_NAME");
+                     
+           order.setId(rs.getLong("ORDER_ID")); 
+           order.setOrderStatus("en cours");
+           order.setCommentaire(rs.getString("Order_Comment"));
+           order.setDateLivraison(rs.getString("Order_Creation_date"));
                  }
-                 return statut; 
+                 
+                 connexion.close();
+                 return order; 
     }
 
     @Override
