@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>p&p</title>
         <link rel="stylesheet" href="css/templatecss.css">
-        <canvas id="canvas" width="1300" height="200"></canvas>
+       
     </head>
     
 <body>

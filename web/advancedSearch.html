@@ -7,20 +7,21 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Recherche avancée</title>
-        <meta charset="UTF-8">
+        <title>Recherche avancee</title>
+      <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
            <link rel="stylesheet" type="text/css"   href="bouton.css" >
+            <link rel="stylesheet" type="text/css" href="css/templatecss.css"/>
     </head>
     <body>
-        <h2>Recherche avancée</h2>
-        <form action="/advSearchServlet" method="GET">
-
+       
+        <form style="margin-left:10px" id="bor" action="/advSearchServlet" method="GET">
+ <h2> Recherche avancee </h2>
             par Titre : <input type="text" name="title" value />
             <br></br>
             par ISBN : <input type="text" name="isbn" value />
             <br></br>
-            par Catégorie : <select name="category">
+            par Categorie : <select name="category">
                 <option value="category">categorie</option>
                 <option value="categorie_A">categorie_A</option>
                 <option value="categorie_B">categorie_B</option>
@@ -38,13 +39,14 @@ and open the template in the editor.
             <br></br>
             par prix min : <input type="number" name="priceMin" value /> par prix max : <input type="number" name="priceMax" value="" /> 
             <br></br>
-            Article remisé <input type="radio" name="remise" value />
+            Article remise <input type="radio" name="remise" value />
             <br></br>
             <!-- <input class="bttn-unite" value="Rechercher" /> -->
             
             <button class="bttn-unite" type="submit" >Rechercher
                 
             </button>
+            <br></br>
         </form>
 
     </body>
