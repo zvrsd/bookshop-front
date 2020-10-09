@@ -35,7 +35,7 @@
             <section>
 
 
-                <div id="llbienvenue">Bienvenue ${customer.customerFName} ${customer.customerLName}</div>
+                <h1 class="titre">Bienvenue ${customer.customerFName} ${customer.customerLName}</h1>
 
                 <h2> <%--    --%>    
                     <form action="allOrder" method="post">
