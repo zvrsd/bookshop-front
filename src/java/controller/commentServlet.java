@@ -7,13 +7,20 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.bean.beanComment;
+import model.dao.CommentDAO;
+import model.entity.Customer;
+import res.Values;
 
 /**
  *
@@ -30,24 +37,24 @@ public class commentServlet extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-       /* HttpSession session = request.getSession(); 
-        String title = request.getParameter("title"); 
-        String msg = request.getParameter("title"); 
-        String rate; 
-        Date date = new Date(); 
-        String customId = session.getAttribute(""); 
-        String orderId; 
-        String isbnBook; 
-        String comIp; 
+       
         
-        Créer un bean dans le book jsp afin de récupérer les informations isbnBook, rate */
-        }
-    
-
+        
+      /* String title = request.getParameter("comment_title"); 
+        String msg = request.getParameter("comment_msg"); 
+        String rate =  request.getParameter("rating"); 
+        Date date = new Date(); 
+       
+        //String orderId; 
+        String isbnBook =  request.getParameter("isbn");
+       // String comIp; */
+        this.getServletContext().getRequestDispatcher(Values.JSP_BOOK).include(request, response); 
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -60,7 +67,11 @@ public class commentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(commentServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -74,7 +85,11 @@ public class commentServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(commentServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
