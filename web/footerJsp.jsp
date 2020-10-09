@@ -4,11 +4,11 @@
 <link rel="stylesheet" href="css/templatecss.css">
              <nav id="bottomNav">
              <ul id="footer">
-                 <li class="barreMenuB"><a href="">CGV</a></li>
-                 <li class="barreMenuB"><a href="">Conditions de livraison</a></li>
+                 <li class="barreMenuB"><a href="TermsConditionsJSP.jsp">CGV</a></li>
+                 <li class="barreMenuB"><a href="CondLivJSP.jsp">Conditions de livraison</a></li>
                  <li class="barreMenuB"><a href="mailto:contact@bookshop.fr">Nous contacter</a></li>
-                 <li class="barreMenuB"><a href="">FAQ</a></li>
-                 <li class="barreMenuB"><a href="">Crédits</a></li>
+                 <li class="barreMenuB"><a href="FAQjsp.jsp">FAQ</a></li>
+                 <li class="barreMenuB"><a href="CreditsJSP.jsp">Crédits</a></li>
                  <li class="barreMenuB"><a href=""><img src="img/facebook.png" class="logo"></a></li>
                  <li class="barreMenuB"><a href=""><img src="img/twitter.png" class="logo"></a></li>
              </ul>
