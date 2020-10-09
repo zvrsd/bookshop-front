@@ -72,10 +72,12 @@ public class ServletOrderValidation extends HttpServlet {
         
         OrderValidationBean orderValidationBean = (OrderValidationBean) session.getAttribute(Values.BEAN_ORDER_VALIDATION_NAME);
         if (orderValidationBean == null) {
+            
             orderValidationBean = new OrderValidationBean();
             session.setAttribute(Values.BEAN_ORDER_VALIDATION_NAME, orderValidationBean);
             orderValidationBean.setBooks(shoppingcartBean.getBooks());
             orderValidationBean.setValidated(false);
+            
             try {
                 HashMap<Long, ShippingOffer> shippingOffers = new HashMap<>();
                 
@@ -83,6 +85,7 @@ public class ServletOrderValidation extends HttpServlet {
                     shippingOffers.put(offer.getShippingOfferId(), offer);
                     orderValidationBean.setShippingOffers(shippingOffers);
                 }
+                
             } catch (NamingException ex) {
                 Logger.getLogger(ServletOrderValidation.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
@@ -108,6 +111,7 @@ public class ServletOrderValidation extends HttpServlet {
                     orderValidationBean.setValidated(true);
                     orderValidationBean = null;
                     session.setAttribute(Values.BEAN_ORDER_VALIDATION_NAME, null);
+                    System.out.print("cmd validée");
                 }
                 
             } catch (Exception ex) {
