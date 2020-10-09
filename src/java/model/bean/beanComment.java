@@ -16,27 +16,20 @@ import model.dao.CommentDAO;
  */
 public class beanComment implements Serializable {
     
-    private boolean authComment; 
+
+      private boolean isAuthComment; 
  
     public beanComment() {
        
     }
-    
-   public boolean autComment(String customerId) throws SQLException{
-    //autorise le client à faire un commentaire 
-    CommentDAO comment = new CommentDAO(); 
-        authComment = comment.autorise(customerId);
-   
-   return authComment;  }
 
-    public boolean isAuthComment() {
-        return authComment;
+    public boolean isIsAuthComment() {
+        return isAuthComment;
     }
 
-    public void setAuthComment(boolean authComment) {
-        this.authComment = authComment;
+    public void setIsAuthComment(boolean isAuthComment) {
+        this.isAuthComment = isAuthComment;
     }
-   
-   
+     
     
 }

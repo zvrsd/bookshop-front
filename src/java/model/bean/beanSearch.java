@@ -18,6 +18,7 @@ import java.util.ListIterator;
 import java.util.Set;
 import javax.naming.NamingException;
 import model.dao.BookDAO;
+import model.dao.EventDAO;
 import model.entity.Book;
 
 /**
@@ -76,6 +77,14 @@ public class beanSearch implements Serializable {
     
     public Set<Book> getByPriceMax(Double priceS) throws NamingException, SQLException{
         books = new HashSet<>( new BookDAO().priceSearchMax(priceS)); 
+        
+        return books; 
+    }
+     public Set<Book> getByRemise() throws NamingException, SQLException{
+         
+          EventDAO ed = new EventDAO(); 
+       
+        books = new HashSet<>(  ed.getList("2")); 
         
         return books; 
     }
