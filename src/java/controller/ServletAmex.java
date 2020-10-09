@@ -37,11 +37,11 @@ public class ServletAmex extends HttpServlet {
             final String regexSecuAmex = "^[0-9]{3,4}$";
             String digits = request.getParameter("digitsAmex");
             String secuAmex = request.getParameter("secuAmex");
-            String message;
+            String messageAm;
             
             if (!digits.matches(regexAmex) || !secuAmex.matches(regexSecuAmex)) {
-                message = "Votre tentative de paiement a échoué.";
-                /**/RequestDispatcher req = request.getRequestDispatcher("homePageJsp.jsp");
+                messageAm = "Votre tentative de paiement a échoué.";
+                /**/RequestDispatcher req = request.getRequestDispatcher("paymentInfoAmex.jsp");
                 req.forward(request, response);/**/
                 return;
             } else {

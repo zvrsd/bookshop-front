@@ -15,9 +15,10 @@
         <h1>Paiement par carte American Express</h1>
         <div>
 
-            <p>Règlement à Bookshop du montant $..... euros.<br>
+            <p><img src="logos/Amex.png">Règlement à Bookshop du montant de ${bean_shopping_cart.totalFullPriceText}} euros.<br>
+                ${messageAm}
                 Veuillez entrer les informations de paiement suivantes :</p>
-            <form>
+            <form action="ServletAmex" method="post">
                 <table>
                     <tr>
                     <label>
@@ -80,7 +81,7 @@
                 <p>Les champs marqués d'un astérisque * doivent impérativement être renseignés.</p>
 
                 <input type="submit" value="Valider" name="valider" />
-                <input type="submit" value="Annuler" name="annuler" />
+                <input type="button" value="Annuler" name="annuler" action="WEB-INF/shopping_cart.jsp" />
             </form>
         </div>
 
