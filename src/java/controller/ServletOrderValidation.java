@@ -86,14 +86,19 @@ public class ServletOrderValidation extends HttpServlet {
             request.setAttribute(Values.PARAM_ERROR_MSG, errorMessage);
             request.setAttribute(Values.PARAM_MSG, message);
             request.getRequestDispatcher(Values.JSP_ERROR).forward(request, response);
-        } 
+        }
         // If the user chooses to validate the order
         else if (Values.ACTION_CREATE_ORDER.equals(request.getParameter(Values.PARAM_ACTION))) {
-            
-            try {
+            System.out.println(request.getParameter("card"));
+            request.getRequestDispatcher("/paymentInfoAmex.jsp").forward(request, response);
+        }
+        // If the payment has been validated
+        else if(Values.ACTION_YES.equals(request.getParameter(Values.PARAM_ACTION))) {
+             try {
                 
                 orderValidationBean.setCustomer((Customer) session.getAttribute(Values.PARAM_CUSTOMER));
                 if (validateOrder(orderValidationBean, shoppingcartBean, request)) {
+                    
                     orderValidationBean.setValidated(true);
                     orderValidationBean = null;
                     session.setAttribute(Values.BEAN_ORDER_VALIDATION_NAME, null);
@@ -107,6 +112,14 @@ public class ServletOrderValidation extends HttpServlet {
             } catch (Exception ex) {
                 Logger.getLogger(ServletOrderValidation.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+        // If the payment has been refused
+        else if(Values.ACTION_NO.equals(request.getParameter(Values.PARAM_ACTION))) {
+            
+            errorMessage = "Le paiement a été refusé";
+            request.setAttribute(Values.PARAM_ERROR_MSG, errorMessage);
+            request.setAttribute(Values.PARAM_MSG, message);
+            request.getRequestDispatcher(Values.JSP_ERROR).forward(request, response);
         }
         
         request.setAttribute(Values.PARAM_ERROR_MSG, errorMessage);
