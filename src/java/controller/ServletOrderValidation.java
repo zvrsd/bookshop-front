@@ -71,13 +71,15 @@ public class ServletOrderValidation extends HttpServlet {
         }
         
         OrderValidationBean orderValidationBean = (OrderValidationBean) session.getAttribute(Values.BEAN_ORDER_VALIDATION_NAME);
-        if (orderValidationBean == null) {
+        if (orderValidationBean == null || orderValidationBean.isIsOver()) {
             
             orderValidationBean = new OrderValidationBean();
             session.setAttribute(Values.BEAN_ORDER_VALIDATION_NAME, orderValidationBean);
             orderValidationBean.setBooks(shoppingcartBean.getBooks());
             orderValidationBean.setValidated(false);
+            orderValidationBean.setIsOver(false);
             orderValidationBean.setCustomer((Customer) session.getAttribute("customer"));
+            
         }
         orderValidationBean.setBooks(shoppingcartBean.getBooks());
 
@@ -100,10 +102,13 @@ public class ServletOrderValidation extends HttpServlet {
                 order.setAdresseLivId(Integer.parseInt(request.getParameter("delivery_address")));
                 order.setIpCustomer("0.0.0.0");
                 order.setCommentaire("");
+                System.out.print("customer : "+orderValidationBean.getCustomer());
+                System.out.print("customer : "+orderValidationBean.getCustomer().getCustomerId());
                 order.setIdcustomer(Integer.parseInt(""+orderValidationBean.getCustomer().getCustomerId()));
                 
                 HashMap<Long, ShippingOffer> shippingOffers = new HashMap<>();
                 for (ShippingOffer offer : orderValidationBean.getGenericShippingOffers()) {
+                    
                     shippingOffers.put(offer.getShippingOfferId(), offer);
                     orderValidationBean.setShippingOffers(shippingOffers);
                 }
@@ -135,6 +140,7 @@ public class ServletOrderValidation extends HttpServlet {
                 if (validateOrder(orderValidationBean, shoppingcartBean, request)) {
                     
                     orderValidationBean.setValidated(true);
+                    orderValidationBean.setIsOver(true);
                     orderValidationBean = null;
                     session.setAttribute(Values.BEAN_ORDER_VALIDATION_NAME, null);
                     shoppingcartBean.clear();

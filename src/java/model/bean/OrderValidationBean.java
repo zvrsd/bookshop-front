@@ -21,6 +21,7 @@ import model.entity.ShippingOffer;
 public class OrderValidationBean {
     
     private boolean isValidated;
+    private boolean isOver;
     private Customer customer;
     private ShippingOffer shippingOffer;
     private HashMap<Long, ShippingOffer> shippingOffers;
@@ -114,6 +115,14 @@ public class OrderValidationBean {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    public boolean isIsOver() {
+        return isOver;
+    }
+
+    public void setIsOver(boolean isOver) {
+        this.isOver = isOver;
     }
     
 }
