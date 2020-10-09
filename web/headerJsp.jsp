@@ -97,7 +97,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
         <li class="banniere"><a href="homePageJsp.jsp"><figure><img src="img/0.png" alt="Logo Bookshop" id="logoBookshop"></figure></a></li>
         <!-- recherche rapide -->
         <li class="banniere"><label for="recherche">Recherche</label>
-            <input type="text" id="recherche" name="recherche">
+            <input type="text" id="recherche" name="recherche" placeholder="Recherche par Titre, Auteur, Isbn, Mot-clef">
             <button class="bttn-unite" type="submit">OK</button>
         </li>
         <li class="banniere"><a href="shoppingcart">Panier</a></li>
