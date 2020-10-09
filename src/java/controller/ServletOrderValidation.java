@@ -97,7 +97,11 @@ public class ServletOrderValidation extends HttpServlet {
                     orderValidationBean.setValidated(true);
                     orderValidationBean = null;
                     session.setAttribute(Values.BEAN_ORDER_VALIDATION_NAME, null);
-                    System.out.print("cmd validée");
+                    shoppingcartBean.clear();
+                    errorMessage = "commande validée";
+                    request.setAttribute(Values.PARAM_ERROR_MSG, errorMessage);
+                    request.setAttribute(Values.PARAM_MSG, message);
+                    request.getRequestDispatcher(Values.JSP_ERROR).forward(request, response);
                 }
                 
             } catch (Exception ex) {
@@ -170,6 +174,7 @@ public class ServletOrderValidation extends HttpServlet {
         // Creates an order row for each book
         for (Book book : orderBean.getBooks()) {
             
+            System.out.println("OrderID :" + order.getId());
             orderRow = new Order_Row();
             // UNSAFE CAST
             orderRow.setOrderId(Integer.parseInt("" + order.getId()));
@@ -179,7 +184,7 @@ public class ServletOrderValidation extends HttpServlet {
             orderRow.setOrderRowPrice(Double.parseDouble("" + book.getPrice()));
             new Order_RowDAO(0).add(orderRow);
             
-            System.out.println(book + " " + orderRow);
+            System.out.println("OrderRow  :" + orderRow);
         }
         
         return true;

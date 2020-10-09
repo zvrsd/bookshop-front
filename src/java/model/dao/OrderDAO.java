@@ -433,7 +433,7 @@ public class OrderDAO implements DAO<Order, Book>{
         
         statement.executeUpdate();
 
-        statement.close();
+        //statement.close();
         
     }
 
@@ -443,7 +443,7 @@ public class OrderDAO implements DAO<Order, Book>{
         Connection connection;
         PreparedStatement statement;
         ResultSet resultSet;
-        Long lastId = 0L;
+        Long lastId = -1L;
  
         connection = database.getConnection();
         statement = connection.prepareStatement(SELECT_LAST_ID);
