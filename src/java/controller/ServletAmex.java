@@ -53,7 +53,7 @@ public class ServletAmex extends HttpServlet {
                 req.forward(request, response);
             }
            } else {
-               requestDispatcher req = request.getRequestDispatcher("Homepage.jsp");
+               RequestDispatcher req = request.getRequestDispatcher("Homepage.jsp");
            }
             
         }
