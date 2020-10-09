@@ -76,21 +76,7 @@ public class ServletOrderValidation extends HttpServlet {
             orderValidationBean = new OrderValidationBean();
             session.setAttribute(Values.BEAN_ORDER_VALIDATION_NAME, orderValidationBean);
             orderValidationBean.setBooks(shoppingcartBean.getBooks());
-            orderValidationBean.setValidated(false);
-            
-            try {
-                HashMap<Long, ShippingOffer> shippingOffers = new HashMap<>();
-                
-                for (ShippingOffer offer : orderValidationBean.getGenericShippingOffers()) {
-                    shippingOffers.put(offer.getShippingOfferId(), offer);
-                    orderValidationBean.setShippingOffers(shippingOffers);
-                }
-                
-            } catch (NamingException ex) {
-                Logger.getLogger(ServletOrderValidation.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(ServletOrderValidation.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            orderValidationBean.setValidated(false);    
         }
         orderValidationBean.setBooks(shoppingcartBean.getBooks());
 
@@ -163,7 +149,14 @@ public class ServletOrderValidation extends HttpServlet {
         order.setAdresseLivId(Integer.parseInt(request.getParameter("delivery_address")));
         order.setIpCustomer("0.0.0.0");
         order.setCommentaire("");
-        
+
+        HashMap<Long, ShippingOffer> shippingOffers = new HashMap<>();
+
+        for (ShippingOffer offer : orderBean.getGenericShippingOffers()) {
+            shippingOffers.put(offer.getShippingOfferId(), offer);
+            orderBean.setShippingOffers(shippingOffers);
+        }
+
         // UNSAFE CAST !!
         order.setShippingId(Integer.parseInt(request.getParameter("shipping_offer")));
         System.out.print(Integer.parseInt(request.getParameter("shipping_offer")));
