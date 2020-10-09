@@ -144,12 +144,19 @@ public class CustomerDAO implements DAO<Customer,Long> {
         if (resultSet.next()) {
 
             customer = new Customer();
+            
             customer.setCustomerId(resultSet.getLong(1));
             customer.setCustomerLName(resultSet.getString(2));
             customer.setCustomerFName(resultSet.getString(3));
             customer.setCustomerEmail(resultSet.getString(4));
             customer.setCustomerUsername(resultSet.getString(5));
             customer.setCustomerPassword(resultSet.getString(6));
+            
+            // Unsafe cast from long to int !!!
+            customer.setBillingAddresses(AddressDAO.listBillingAddressByIdCustomer(Integer.parseInt(""+customer.getCustomerId())));
+            
+            // Unsafe cast from long to int !!!
+            customer.setDeliveryAddresses(AddressDAO.listDeliveryAddressByIdCustomer(Integer.parseInt(""+customer.getCustomerId())));
         }
 
         statement.close();
@@ -177,10 +184,11 @@ public class CustomerDAO implements DAO<Customer,Long> {
         // Creates objects based on the query results
         if (resultSet.next()) {
             emailFound = true;
-         
-        statement.close();
+            
+            statement.close();
         
         }
         return emailFound; 
     }
+    
 }

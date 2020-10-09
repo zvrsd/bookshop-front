@@ -13,6 +13,6 @@
     </head>
     <body>
         <p>Faut-il valider le règlement soumis ?</p>
-        <form><input type="submit" value="oui" /><input type="submit" value="non" /></form>
+        <form><input type="submit" value="oui" name="action" /><input type="submit" value="non" name="action" /></form>
     </body>
 </html>

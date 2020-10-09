@@ -1,27 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.entity;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-/*import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;*/
 import java.sql.Statement;
 
 import javax.swing.JFrame;
@@ -30,39 +15,6 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author cda611
- */
-/*
- * @Entity
- * 
- * @Table(name = "SHIPPING_OFFER")
- * 
- * @NamedQueries({
- * 
- * @NamedQuery(name = "ShippingOffer.findAll", query =
- * "SELECT s FROM ShippingOffer s"),
- * 
- * @NamedQuery(name = "ShippingOffer.findByShippingOfferId", query =
- * "SELECT s FROM ShippingOffer s WHERE s.shippingOfferId = :shippingOfferId"),
- * 
- * @NamedQuery(name = "ShippingOffer.findByShippingOfferName", query =
- * "SELECT s FROM ShippingOffer s WHERE s.shippingOfferName = :shippingOfferName"
- * ),
- * 
- * @NamedQuery(name = "ShippingOffer.findByShippingOfferDetails", query =
- * "SELECT s FROM ShippingOffer s WHERE s.shippingOfferDetails = :shippingOfferDetails"
- * ),
- * 
- * @NamedQuery(name = "ShippingOffer.findByShippingOfferConditions", query =
- * "SELECT s FROM ShippingOffer s WHERE s.shippingOfferConditions = :shippingOfferConditions"
- * ),
- * 
- * @NamedQuery(name = "ShippingOffer.findByShippingOfferHtPrice", query =
- * "SELECT s FROM ShippingOffer s WHERE s.shippingOfferHtPrice = :shippingOfferHtPrice"
- * ),
- * 
- * @NamedQuery(name = "ShippingOffer.findByShippingOfferPostIt", query =
- * "SELECT s FROM ShippingOffer s WHERE s.shippingOfferPostIt = :shippingOfferPostIt"
- * )})
  */
 
 public class ShippingOffer implements Serializable {
@@ -78,42 +30,13 @@ public class ShippingOffer implements Serializable {
 	    private  String username = "sa"; 
 	    private  String password = "sa"; 
     private static final long serialVersionUID = 1L;
-	/*
-	 * @Id
-	 * 
-	 * @Basic(optional = false)
-	 * 
-	 * @Column(name = "SHIPPING_OFFER_ID")
-	 */
     private Long shippingOfferId;
-	/*
-	 * @Basic(optional = false)
-	 * 
-	 * @Column(name = "SHIPPING_OFFER_NAME")
-	 */
     private String shippingOfferName;
-   // @Column(name = "SHIPPING_OFFER_DETAILS")
     private String shippingOfferDetails;
-	/*
-	 * @Basic(optional = false)
-	 * 
-	 * @Column(name = "SHIPPING_OFFER_CONDITIONS")
-	 */
     private String shippingOfferConditions;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-	/*
-	 * @Basic(optional = false)
-	 * 
-	 * @Column(name = "SHIPPING_OFFER_HT_PRICE")
-	 */
     private double shippingOfferHtPrice;
-    //@Column(name = "SHIPPING_OFFER_POST_IT")
     private String shippingOfferPostIt;
-	/*
-	 * @JoinColumn(name = "CARRIER_ID", referencedColumnName = "CARRIER_ID")
-	 * 
-	 * @ManyToOne(optional = false) private Carrier carrierId;
-	 */
+
     ShippingOffer sO; 
 
     public ShippingOffer() {
@@ -197,6 +120,7 @@ public class ShippingOffer implements Serializable {
         if (!(object instanceof ShippingOffer)) {
             return false;
         }
+        
         ShippingOffer other = (ShippingOffer) object;
         if ((this.shippingOfferId == null && other.shippingOfferId != null) || (this.shippingOfferId != null && !this.shippingOfferId.equals(other.shippingOfferId))) {
             return false;
