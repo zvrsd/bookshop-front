@@ -13,15 +13,20 @@
     <div class="k_box_page_title">
         Mon compte
     </div>
+    
+    <label class="k_label_info">${message} : ${origin}</label>
 
     <!-- page content container -->
     <div class="k_box_account" id="k_box_account_content">
 
+        
         <!-- login container -->
         <div class="k_box_account" id="k_box_account_login">
 
             <table class="k_table_form">
                 <form action="login" method="post">
+                    
+                    <input type="hidden" name="origin" value="${origin}" />
                     <tr>
                         <th>Se connecter</th>
                     </tr>

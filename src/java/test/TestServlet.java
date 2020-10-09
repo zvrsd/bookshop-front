@@ -10,6 +10,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
@@ -17,7 +18,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.dao.AddressDAO;
 import model.dao.CustomerDAO;
+import model.entity.Address;
 import model.entity.Customer;
 import util.HashUtil;
 
@@ -37,17 +40,41 @@ public class TestServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
-        response.setContentType("text/html;charset=UTF-8");
-        
+            throws ServletException, IOException {
         try {
-            addCustomer();
+            response.setContentType("text/html;charset=UTF-8");
+
+            Customer customer = new CustomerDAO().getByUsername("test", "2002");
+            
+            //List<Address> deliveryAddresses = AddressDAO.listDeliveryAddressByIdCustomer(7);
+            //List<Address> billingAddresses = AddressDAO.listBillingAddressByIdCustomer(7);
+
+            for (Address address : customer.getDeliveryAddresses()) {
+                System.out.println("del : " + address);
+            }
+
+            for (Address address : customer.getBillingAddresses()) {
+                System.out.println("bil : " + address);
+            }
+            /*
+             try {
+             addCustomer();
+             } catch (NoSuchAlgorithmException ex) {
+             Logger.getLogger(TestServlet.class.getName()).log(Level.SEVERE, null, ex);
+             } catch (UnsupportedEncodingException ex) {
+             Logger.getLogger(TestServlet.class.getName()).log(Level.SEVERE, null, ex);
+             }
+             testHash();
+             */
+        } catch (SQLException ex) {
+            Logger.getLogger(TestServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NamingException ex) {
+            Logger.getLogger(TestServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(TestServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(TestServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        testHash();
     }
 
     private static void testHash() {
@@ -107,7 +134,9 @@ public class TestServlet extends HttpServlet {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *

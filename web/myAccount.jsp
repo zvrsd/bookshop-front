@@ -26,9 +26,6 @@
 
 
     <body>
-
-
-
         <div id="font"> 
 
 
@@ -68,7 +65,4 @@
         <footer><jsp:include page="footerJsp.jsp" /></footer>
 
     </body>
-
-
-
 </html>

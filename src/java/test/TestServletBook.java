@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package test;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
@@ -16,18 +18,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.dao.OrderDAO;
-import model.entity.Customer;
-import model.entity.Order;
-import res.Values;
+import model.dao.BookDAO;
+import model.dao.ShippingOfferDAO;
+import model.entity.Book;
+import model.entity.ShippingOffer;
 
 /**
  *
- * @author cda611
+ * @author cda601
  */
-@WebServlet(name = "orderStatusActive", urlPatterns = {"/orderStatusActive"})
-public class orderStatusActive extends HttpServlet {
+@WebServlet(name = "TestServletBook", urlPatterns = {"/TestServletBook"})
+public class TestServletBook extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,37 +43,20 @@ public class orderStatusActive extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-           try {
-           HttpSession session = request.getSession();
-
-            if (session.getAttribute(Values.PARAM_CUSTOMER) == null){
-                request.setAttribute(Values.PARAM_ERROR_MSG, Values.ERROR_NOT_LOGIN);
-                request.getRequestDispatcher(Values.JSP_NOTLOG).include(request, response);
-                return;     
-            }else{
-                
-                Customer custid = (Customer) session.getAttribute(Values.PARAM_CUSTOMER);
-                OrderDAO orderDAO = new OrderDAO(); 
-                Order order = new Order(); 
-                String id = String.valueOf(custid.getCustomerId());
-                order = orderDAO.getStatusOrder("2");
-                
-                request.setAttribute("orderId", order.getId());
-                request.setAttribute("date", order.getDateOrder());
-                request.setAttribute("timeLimite", order.getDateLivraison());
-                request.setAttribute("comment", order.getCommentaire());
-                request.setAttribute("statut", order.getOrderStatus());
-                
-                 request.getRequestDispatcher("/orderStatus.jsp").include(request, response);
-        
-            }
-            } catch (SQLException ex) {
-                Logger.getLogger(QuickSearchController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        try {
+            ArrayList<ShippingOffer> list = (ArrayList<ShippingOffer>) new ShippingOfferDAO().getByCarrierId(null);
             
-        
-    
+            // Displays books
+            for (ShippingOffer offer : list) {
+                System.out.println(offer);
+            }
 
+        } catch (NamingException ex) {
+            Logger.getLogger(TestServletBook.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(TestServletBook.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

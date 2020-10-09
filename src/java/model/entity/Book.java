@@ -7,9 +7,10 @@ package model.entity;
  * Module: Book.java Author: ZVR Purpose: Defines the Class Book *
  * ****************************************************************
  */
+import java.io.Serializable;
 import java.util.*;
 
-public class Book {
+public class Book implements Serializable {
 
     private String isbn;
     private String title;

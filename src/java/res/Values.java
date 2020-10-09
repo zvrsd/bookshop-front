@@ -29,6 +29,9 @@ public class Values {
     public final static String ACTION_INC_BOOK = "inc_book";
     public final static String ACTION_DEC_BOOK = "dec_book";
     public final static String ACTION_EMPTY_CART = "empty_cart";
+    public final static String ACTION_GOTO_CART = "cart";
+    public final static String ACTION_YES = "oui";
+    public final static String ACTION_NO = "non";
     
     public final static String ERROR_INVALID_LOGIN = "Identifiants invalides";
     public final static String ERROR_NO_BOOK = "Aucun livre à afficher";
@@ -42,6 +45,7 @@ public class Values {
     
     public final static String BEAN_LOGIN_NAME = "bean_login";
     public final static String BEAN_SHOPPING_CART_NAME = "bean_shopping_cart";
+    public final static String BEAN_ORDER_VALIDATION_NAME = "bean_order_val";
     
     public final static String JSP_HOME = "homePageJsp.jsp";
     public final static String JSP_ERROR = "/WEB-INF/error.jsp";
@@ -58,12 +62,13 @@ public class Values {
 
     public final static String JSP_BOOK_INFO = "/WEB-INF/book_info.jsp";
     public final static String JSP_BOOK_INFO_FULL = "/WEB-INF/book_info_full.jsp";
+    public final static String JSP_ORDER_VALIDATION_FULL = "/WEB-INF/order_validation_full.jsp";
     
     // Order 
     
-    public final static String ORDER_LASTMONTH = "listMonth"; 
+    public final static String ORDER_LASTMONTH = "listMonth";
     public final static String ORDER_SIXMONTH = "listSixMonth";
-    public final static String ORDER_PAST = "listPast"; 
+    public final static String ORDER_PAST = "listPast";
     
     public final static String JSP_NOTLOG = "WEB-INF/notLog.jsp";
     public final static String ERROR_NOT_LOGIN = "Non identifié";

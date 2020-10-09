@@ -96,6 +96,11 @@ public class ServletShoppingCart extends HttpServlet {
             shoppingcartBean.clear();
             message = String.format(Values.MSG_CART_CLEARED);
         }
+        // If the user wants to order
+        if(Values.ACTION_CREATE_ORDER.equals(request.getParameter(Values.PARAM_ACTION))){
+            response.sendRedirect("ordervalidation");
+            return;
+        }
         
         isEmpty = shoppingcartBean.isEmpty();
         // If the cart is empty
@@ -147,6 +152,4 @@ public class ServletShoppingCart extends HttpServlet {
         
         processRequest(request, response);
     }
-
 }
-
