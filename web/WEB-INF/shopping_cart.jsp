@@ -4,6 +4,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="css/default.css" />
+        <link rel="stylesheet" href="bouton.css" />
     </head>
 
     <body>
@@ -50,9 +51,9 @@
                                 <td>${bookBean.fullPriceText} </td>
                                 <td>${book.quantity}</td>
                                 <td>${bookBean.fullPriceTotalText} &euro;</td>
-                                <td><button class="k_button" type="submit" name="action" value="inc_book">+1</button></td>
-                                <td><button class="k_button" type="submit" name="action" value="dec_book">-1</button></td>
-                                <td><button class="k_button" type="submit" name="action" value="rem_book">X</button></td>
+                                <td><button class="bttn-unite" type="submit" name="action" value="inc_book">+1</button></td>
+                                <td><button class="bttn-unite" type="submit" name="action" value="dec_book">-1</button></td>
+                                <td><button class="bttn-unite" type="submit" name="action" value="rem_book">X</button></td>
                                 </tr>
                             </form>
                         </c:forEach>
@@ -72,11 +73,11 @@
                         <div id="k_box_shopping_cart_actions">
 
                             <div id="k_box_shopping_cart_clear">
-                                <button class="k_button" type="submit" name="action" value="empty_cart">Vider le panier</button>
+                                <button class="bttn-unite" type="submit" name="action" value="empty_cart">Vider le panier</button>
                             </div>
 
                             <div id="k_box_shopping_cart_order">
-                                <button class="k_button" type="submit" name="action" value="order">Commander</button>
+                                <button class="bttn-unite" type="submit" name="action" value="order">Commander</button>
                             </div>
 
                         </div>
