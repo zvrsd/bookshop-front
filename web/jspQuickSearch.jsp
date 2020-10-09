@@ -16,11 +16,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="templatecss.css">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="evtImg.js"></script>
-    <canvas id="canvas" width="1300" height="200"></canvas>
-    <script src="evtImg.js"></script>
+
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -32,10 +29,6 @@
     <%@include file="headerJsp.jsp" %>   
 
 
-    <p>
-
-        <script src="evtImg.js"></script>       
-    </p>
 
 
     <br> </br><br></br>

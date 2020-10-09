@@ -2,7 +2,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
         <link rel="stylesheet" href="css/default.css" />
-        <link rel="stylesheet" href="css/templatecss.css" />
+        <link rel="stylesheet" href="css/templatecss.css"/> 
+        <link rel="stylesheet" href="bouton.css" />
          <style>
              
 body {font-family: Arial, Helvetica, sans-serif;}

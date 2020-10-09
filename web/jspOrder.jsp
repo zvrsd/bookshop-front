@@ -23,33 +23,33 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        
+
     </head>
     <body>
 
-        <hr>
-
+        
         <%@include file="headerJsp.jsp" %>  
         <!-- Premiere ligne sous l'en tete -->
-        <div>
-            <div> Vos commandes  <a href="cadeau" >Achat Cadeau</a> </div>
+        <div style="margin-left:40px">
+            <div> Vos commandes  </div>
+      
+            <%@include file="searchOrder.html" %>  
+
         </div>
 
-         <div> 
-                <%@include file="searchOrder.html" %>  
-              
-        </div>
-
-
+    <center> 
         <h3> Dernier mois</h3>  
+        <br> </br> <br> </br>
+ </center> 
+       
 
-        <div class="container"> 
-           
 
 
 
-                <c:forEach var="book" items="${listMonth}">
-                     <div class="row">  
+            <c:forEach var="book" items="${listMonth}">
+                
+                 <div class="container"> 
+                <div class="row">  
                     <div class="col-sm-4"> 
                         <figure>  <p><a href="book?isbn=${book.isbn} "><img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
                             <h3>  ${book.title}  </h3>
@@ -64,18 +64,18 @@
 
             </c:forEach>
 
-
+                     <center>
             <h3> 6 derniers mois</h3> 
-
-            <div class="container"> 
-                <div class="row">  
-
+<br> </br> <br> </br>
+          </center>
 
 
-                    <c:forEach var="book" items="${listSixMonth}">
 
-                      
 
+                <c:forEach var="book" items="${listSixMonth}">
+
+  <div class="container"> 
+                    <div class="row">  
                         <div class="col-sm-4"> 
                             <figure>  <p><a href="book?isbn=${book.isbn} "><img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
                                 <h3>  ${book.title}  </h3>
@@ -92,17 +92,19 @@
 
 
 
-
+ <center>
                 <h3> Plus de 6 mois</h3> 
-
-                <div class="container"> 
-                    <div class="row">
-
-
-                        <c:forEach var="book" items="${listPast}">
+<br> </br> <br> </br>
+                </center>
 
 
+
+                    <c:forEach var="book" items="${listPast}">
+                        <center>
+                        <div class="container"> 
+                        <div class="row">
                             <div class="col-sm-4"> 
+
                                 <figure>  <p><a href="book?isbn=${book.isbn} "><img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
                                     <h3>  ${book.title}  </h3>
 
@@ -112,7 +114,7 @@
                                     <br></br><br></br>
                             </div> 
                         </div>
-
+</center>
 
                     </c:forEach>
 
