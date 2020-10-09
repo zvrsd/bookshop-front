@@ -73,7 +73,7 @@ public class Values {
     
     // Search: 
     public final static String QUICK_SEARCH_CONTROLLER = "Resultats";
-
+    public final static String JSP_BOOK = "/WEB-INF/book_info.jsp";
    
     
   }
