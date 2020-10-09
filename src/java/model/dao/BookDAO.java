@@ -486,7 +486,7 @@ public class BookDAO implements DAO<Book, String> {
         }
 
         statement.close();
-        connection.close();
+        
         return objects;
     }
      
@@ -535,7 +535,7 @@ public class BookDAO implements DAO<Book, String> {
         }
 
         statement.close();
-        connection.close();
+        
         return objects;
     }
      
@@ -585,7 +585,7 @@ public class BookDAO implements DAO<Book, String> {
         }
 
         statement.close();
-        connection.close(); 
+        
         return objects;
     }
      
@@ -635,7 +635,7 @@ public class BookDAO implements DAO<Book, String> {
         }
 
         statement.close();
-        connection.close();
+        
         return objects;
     }
      
@@ -685,7 +685,7 @@ public class BookDAO implements DAO<Book, String> {
         }
 
         statement.close();
-        connection.close();
+        
         return objects;
     }
 }

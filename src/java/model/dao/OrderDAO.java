@@ -109,7 +109,6 @@ public class OrderDAO implements DAO<Order, Book>{
                   lBook.add(book );
                    
                 }
-                stmt.close();
                 return lBook;
      }
      
@@ -164,7 +163,7 @@ public class OrderDAO implements DAO<Order, Book>{
                 }
 
         
-        stmt.close();
+        
         return lBook;
     }
                
@@ -218,7 +217,7 @@ public class OrderDAO implements DAO<Order, Book>{
                 }
 
         
-          stmt.close();
+        
         return lBook;
     }
      
@@ -273,7 +272,7 @@ public class OrderDAO implements DAO<Order, Book>{
                 }
 
         
-        stmt.close();
+        
         return lBook;
     }
   
@@ -386,8 +385,7 @@ public class OrderDAO implements DAO<Order, Book>{
                   lBook.add(book );
                    
                 }
-      stmt.close();
-      connexion.close();
+
       return lBook;   
     }
     
