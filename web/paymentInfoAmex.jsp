@@ -15,7 +15,7 @@
         <h1>Paiement par carte American Express</h1>
         <div>
 
-            <p><img src="logos/Amex.png">Règlement à Bookshop du montant de ${bean_shopping_cart.totalFullPriceText}} euros.<br>
+            <p><img src="logos/Amex.png">Règlement à Bookshop du montant de ${bean_shopping_cart.totalFullPriceText} euros.<br>
                 ${messageAm}<br>
                 Veuillez entrer les informations de paiement suivantes :</p>
             <form action="ServletAmex" method="post">

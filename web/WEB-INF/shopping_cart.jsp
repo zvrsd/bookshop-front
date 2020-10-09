@@ -77,7 +77,7 @@
                             </div>
 
                             <div id="k_box_shopping_cart_order">
-                                <button class="bttn-unite" type="submit" name="action" value="order">Commander</button>
+                                <button class="bttn-unite" type="submit" name="action" value="create_order">Commander</button>
                             </div>
 
                         </div>

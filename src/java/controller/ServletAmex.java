@@ -32,7 +32,10 @@ public class ServletAmex extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             
-            // prévoir DAO pour paiements
+            String card = request.getParameter("card");
+            
+           if(card = "AMEX") {
+               
             final String regexAmex = "^3[47][0-9]{13}$";
             final String regexSecuAmex = "^[0-9]{3,4}$";
             String digits = request.getParameter("digitsAmex");
@@ -49,6 +52,7 @@ public class ServletAmex extends HttpServlet {
                 RequestDispatcher req = request.getRequestDispatcher("validPay.jsp");
                 req.forward(request, response);
             }
+           }
             
         }
     }
