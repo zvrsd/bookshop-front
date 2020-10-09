@@ -38,13 +38,12 @@
                 <div id="llbienvenue">Bienvenue ${customer.customerFName} ${customer.customerLName}</div>
 
                 <h2> <%--    --%>    
-                    <form action="allOrder" method="post">
-                        <a href="/allOrder">Mes Commandes</a> 
-                    </form>
+                  
+                        Mes Commandes
                 </h2>
                 <ul>
-                    <li><a href="/allOrder">Commandes en cours</a></li>
-                    <li><a href="">Commandes archivées</a></li>
+                    <li><a href="/allOrder">Toutes mes commandes</a></li>
+                    <li><a href="/orderStatusActive">Commandes en cours</a></li>
                 </ul>
             </section>
 
