@@ -2,9 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
@@ -123,7 +121,7 @@ public class ServletOrderValidation extends HttpServlet {
                 // Puts the order into the bean
                 orderValidationBean.setOrder(order);
                 
-                request.getRequestDispatcher("/paymentInfoAmex.jsp").forward(request, response);
+                request.getRequestDispatcher("ServletPay").forward(request, response);
                 
             } catch (NamingException ex) {
                 Logger.getLogger(ServletOrderValidation.class.getName()).log(Level.SEVERE, null, ex);
