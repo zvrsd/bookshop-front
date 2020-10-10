@@ -75,7 +75,6 @@ public class ServletOrderValidation extends HttpServlet {
         OrderValidationBean orderValidationBean = (OrderValidationBean) session.getAttribute(Values.BEAN_ORDER_VALIDATION_NAME);
         if (orderValidationBean == null || orderValidationBean.isIsOver()) {
             
-            System.out.println("creating new order val bean");
             orderValidationBean = new OrderValidationBean();
             orderValidationBean.setBooks(shoppingcartBean.getBooks());
             orderValidationBean.setCustomer((Customer) session.getAttribute("customer"));
@@ -105,8 +104,6 @@ public class ServletOrderValidation extends HttpServlet {
                 order.setAdresseLivId(Integer.parseInt(request.getParameter("delivery_address")));
                 order.setIpCustomer("0.0.0.0");
                 order.setCommentaire("");
-                System.out.print("customer : "+loginBean.getCustomer());
-                System.out.print("customer_id : "+loginBean.getCustomer().getCustomerId());
                 order.setIdcustomer(Integer.parseInt(""+loginBean.getCustomer().getCustomerId()));
                 
                 HashMap<Long, ShippingOffer> shippingOffers = new HashMap<>();
@@ -118,10 +115,7 @@ public class ServletOrderValidation extends HttpServlet {
                 
                 // UNSAFE CAST !!
                 order.setShippingId(Integer.parseInt(request.getParameter("shipping_offer")));
-                System.out.print(Integer.parseInt(request.getParameter("shipping_offer")));
                 order.setPriceTaxFree(orderValidationBean.getShippingOfferById(Long.parseLong(request.getParameter("shipping_offer"))).getShippingOfferHtPrice());
-                
-                System.out.print(order);
                 
                 // Puts the order into the bean
                 orderValidationBean.setOrder(order);
@@ -142,8 +136,9 @@ public class ServletOrderValidation extends HttpServlet {
                 orderValidationBean.setCustomer((Customer) session.getAttribute(Values.PARAM_CUSTOMER));
                 if (validateOrder(orderValidationBean, shoppingcartBean, request)) {
                     
+                    // Removes the bean and clears the shopping cart
                     session.removeAttribute(Values.BEAN_ORDER_VALIDATION_NAME);
-                    System.out.print("cmd valid");
+                    shoppingcartBean.clear();
                     
                     message = "commande validée";
                     request.setAttribute(Values.PARAM_MSG, message);
@@ -218,7 +213,6 @@ public class ServletOrderValidation extends HttpServlet {
         // Creates an order row for each book
         for (Book book : orderBean.getBooks()) {
             
-            System.out.println("OrderID :" + order.getId());
             orderRow = new Order_Row();
             // UNSAFE CAST
             orderRow.setOrderId(Integer.parseInt("" + order.getId()));
@@ -227,8 +221,6 @@ public class ServletOrderValidation extends HttpServlet {
             // UNSAFE CAST
             orderRow.setOrderRowPrice(Double.parseDouble("" + book.getPrice()));
             new Order_RowDAO(0).add(orderRow);
-            
-            System.out.println("OrderRow  :" + orderRow);
         }
         
         return true;
