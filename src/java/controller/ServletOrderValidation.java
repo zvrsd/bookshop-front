@@ -217,7 +217,7 @@ public class ServletOrderValidation extends HttpServlet {
             // UNSAFE CAST
             orderRow.setOrderId(Integer.parseInt("" + order.getId()));
             orderRow.setBookIsbn(book.getIsbn());
-            orderRow.setOrderQuantity(book.getQuantity());
+            orderRow.setOrderQuantity(book.getCartQuantity());
             // UNSAFE CAST
             orderRow.setOrderRowPrice(Double.parseDouble("" + book.getPrice()));
             new Order_RowDAO(0).add(orderRow);
