@@ -91,16 +91,17 @@
             <div id="k_box_book_comments">
 
                 <%
-                  
+                  if (session.getAttribute(Values.PARAM_CUSTOMER) != null){
          Customer customer = (Customer) session.getAttribute(Values.PARAM_CUSTOMER); 
         Long id = customer.getCustomerId(); 
         String cusId = String.valueOf(id); 
         CommentDAO commentDao = new CommentDAO(); 
         if(commentDao.autorise(cusId) == true){
+        
             %>
-            <%@include file="/commentJSP.jsp" %>
+             <%@include file="/commentJSP.jsp" %>
        
-            <%}%>
+             <%}}%>
            
      
               

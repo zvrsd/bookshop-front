@@ -16,6 +16,8 @@
         <link rel="stylesheet" href="bouton.css">
     </head>
     <body>
+          <%@include file="/headerJsp.jsp" %>   
+   
         <h1>Vos commandes en cours</h1>
       
         
@@ -32,5 +34,7 @@
         </table>
                 <br></br>   <br></br>   
                  <button class="bttn-unite" type="button"><a href="myAccount.jsp">Retour</a></button>
+ 
+     <%@include file="/footerJsp.jsp" %>  
     </body>
 </html>
