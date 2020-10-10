@@ -6,7 +6,6 @@
 package model.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -15,21 +14,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import db.Database;
 import java.text.DateFormat;
 import  model.entity.Address;
 import model.entity.Book;
 import  model.entity.Customer;
 import model.entity.Order;
-import model.entity.OrderStatus;
 import model.entity.ShippingOffer;
 
 /**
@@ -348,6 +341,7 @@ public class OrderDAO implements DAO<Order, Book>{
                      order = new Order(); 
                      order.setCustomer(new CustomerDAO().getById(rs.getLong("Customer_Id")));
                  }
+                 connexion.close();
       return order;   
     }
 
