@@ -33,6 +33,7 @@ public class OrderValidationBean {
 
     public OrderValidationBean() {
         this.isValidated = false;
+        this.isOver = false;
         this.books = new ArrayList<>();
     }
 

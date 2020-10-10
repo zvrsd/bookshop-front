@@ -55,28 +55,33 @@ public class ServletOrderValidation extends HttpServlet {
         // If the user chooses to go back to cart
         if (Values.ACTION_GOTO_CART.equals(request.getParameter(Values.PARAM_ACTION))) {
             response.sendRedirect("shoppingcart");
-        } // If the cart is empty
+        } 
+        // If the cart is empty
         else if (shoppingcartBean == null || shoppingcartBean.isEmpty()) {
             errorMessage = "Aucun livre disponible";
             response.sendRedirect("shoppingcart");
             return;
-        } // If the user is not logged in
+        } 
+        // If the user is not logged in
         else if (loginBean == null || !loginBean.getIsLogged()) {
-            request.setAttribute(Values.PARAM_MSG, "Connectez-vous pour commander");
+            
+            // Sends a message for display and prompts the user to log in
+            request.setAttribute(Values.PARAM_MSG, Values.MSG_LOGIN_TO_ORDER);
             session.setAttribute(Values.PARAM_ORIGIN, "ordervalidation");
             request.getRequestDispatcher("login").include(request, response);
             return;
         }
-        
+        // Creates or retreive the order validation bean
         OrderValidationBean orderValidationBean = (OrderValidationBean) session.getAttribute(Values.BEAN_ORDER_VALIDATION_NAME);
         if (orderValidationBean == null || orderValidationBean.isIsOver()) {
             
+            System.out.println("creating new order val bean");
             orderValidationBean = new OrderValidationBean();
-            session.setAttribute(Values.BEAN_ORDER_VALIDATION_NAME, orderValidationBean);
             orderValidationBean.setBooks(shoppingcartBean.getBooks());
-            orderValidationBean.setValidated(false);
-            orderValidationBean.setIsOver(false);
             orderValidationBean.setCustomer((Customer) session.getAttribute("customer"));
+            
+            // Putting the bean into the session
+            session.setAttribute(Values.BEAN_ORDER_VALIDATION_NAME, orderValidationBean);
             
         }
         orderValidationBean.setBooks(shoppingcartBean.getBooks());
