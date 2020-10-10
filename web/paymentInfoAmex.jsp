@@ -15,10 +15,10 @@
         <h1>Paiement par carte American Express</h1>
         <div>
 
-            <p><img src="logos/Amex.png">Règlement à Bookshop du montant de ${bean_shopping_cart.totalFullPriceText}} euros.<br>
+            <p><img src="logos/Amex.png">Règlement à Bookshop du montant de ${bean_shopping_cart.totalFullPriceText} euros.<br>
                 ${messageAm}
                 Veuillez entrer les informations de paiement suivantes :</p>
-            <form action="ServletAmex" method="post">
+            <form action="ServletPayAmex" method="post">
                 <table>
                     <tr>
                     <label>
@@ -34,7 +34,7 @@
                     </tr>
                     <tr>
                     <label>
-                        <td>Numéro de sécurité à 4 chiffres</td>
+                        <td>Numéro de sécurité à 3 ou 4 chiffres</td>
                         <td><input type="text" name="secuAmex">*</td>
                     </label>
                     </tr>
