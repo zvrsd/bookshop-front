@@ -93,7 +93,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 <!-- Trigger/Open The Modal -->
 
 <ul> <form method="POST" action="book">
-        <li class="banniere"><a href="homePageJsp.jsp"><figure><img src="img/0.png" alt="Logo Bookshop" id="logoBookshop"></figure></a></li>
+        <li class="banniere"><a href="/HomePage"><figure><img src="img/0.png" alt="Logo Bookshop" id="logoBookshop"></figure></a></li>
             <!-- recherche rapide -->
             <li class="banniere"><label for="recherche">Recherche</label>
                 <input type="text" id="recherche" name="isbn">
