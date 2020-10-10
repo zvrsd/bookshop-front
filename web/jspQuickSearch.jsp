@@ -49,15 +49,20 @@
         <div class="container"> 
             <div class="row">  
                
+                <!-- bean used to round up price -->
+                <jsp:useBean id="bookBean" scope="application" class="model.bean.BookBean" />
+                
                 <c:forEach var="book" items="${books}">
 
+                    <jsp:setProperty name="bookBean" property="book" value="${book}" />
+                    
                     <a href="book?isbn=${book.isbn}<img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
                     <div class="col-sm-4"> 
                         <figure>  <p><a href="book?isbn=${book.isbn} "><img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
                             <h3>  ${book.title}  </h3>
                             <p>   ${book.postIt} </p>     
                             
-                            <p> Prix :  ${book.price}  Euros</p>
+                            <p> Prix :  ${bookBean.fullPriceText}  Euros</p>
                             <br></br><br></br>
                    
                 </div>
