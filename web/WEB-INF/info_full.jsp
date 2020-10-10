@@ -11,7 +11,7 @@
 
     <body>
         <header>
-            <jsp:include page="headerJsp.jsp" />
+            <jsp:include page="/headerJsp.jsp" />
         </header>
 
         <section>
@@ -32,7 +32,7 @@
         </section>
 
         <footer>
-            <jsp:include page="footerJsp.jsp" />
+            <jsp:include page="/footerJsp.jsp" />
         </footer>
 
     </body>
