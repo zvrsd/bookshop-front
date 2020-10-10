@@ -47,7 +47,8 @@ public class Values {
     public final static String BEAN_ORDER_VALIDATION_NAME = "bean_order_val";
     
     public final static String JSP_HOME = "/HomePage";
-    public final static String JSP_ERROR = "/WEB-INF/error.jsp";
+    public final static String JSP_ERROR = "/WEB-INF/error_full.jsp";
+    public final static String JSP_INFO = "/WEB-INF/info_full.jsp";
     public final static String JSP_SHOPPING_CART = "/WEB-INF/shopping_cart.jsp";
     public final static String JSP_SHOPPING_CART_FULL = "/WEB-INF/shopping_cart_full.jsp";
     public final static String JSP_LOGIN = "/WEB-INF/login.jsp";
