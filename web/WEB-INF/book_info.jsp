@@ -1,3 +1,7 @@
+
+<%@page import="model.dao.CommentDAO"%>
+<%@page import="model.entity.Customer"%>
+<%@page import="res.Values"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,7 +10,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Fiche du livre</title>
         <link rel="stylesheet" href="css/default.css" />
-        <link rel="stylesheet" href="bouton.css" />
     </head>
 
     <body>
@@ -35,7 +38,7 @@
                         <!-- This button could be disabled if the book is already in the shopping cart
                             and change its label too -->
                         <input type="hidden" name="isbn" value=${book.isbn} />
-                        <button class="bttn-unite" type="submit" name="action" value="add_book">Ajouter au panier</button>
+                        <button class="k_button" type="submit" name="action" value="add_book">Ajouter au panier</button>
                         
                     </form>
                 </div>
@@ -87,6 +90,22 @@
             <!-- book comments section -->
             <div id="k_box_book_comments">
 
+                <%
+                  if (session.getAttribute(Values.PARAM_CUSTOMER) != null){
+         Customer customer = (Customer) session.getAttribute(Values.PARAM_CUSTOMER); 
+        Long id = customer.getCustomerId(); 
+        String cusId = String.valueOf(id); 
+        CommentDAO commentDao = new CommentDAO(); 
+        if(commentDao.autorise(cusId) == true){
+        
+            %>
+             <%@include file="/commentJSP.jsp" %>
+       
+             <%}}%>
+           
+     
+              
+   </div>
                 <!-- title container -->
                 <div class="k_box_page_title">
                     Commentaires

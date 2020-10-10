@@ -26,9 +26,6 @@
 
 
     <body>
-
-
-
         <div id="font"> 
 
 
@@ -52,8 +49,8 @@
                 <h2>Mes paramètres</h2>
                 <ul>
                     <li><a href="id.jsp">Paramètres de sécurité et de connexion</a></li>
-                    <li><a href="">Mes adresses de facturation</a></li>
-                    <li><a href="">Mes adresses de livraison</a></li>
+                    <li><a href="/adresse">Mes adresses de facturation</a></li>
+                    <li><a href="/adresse">Mes adresses de livraison</a></li>
                 </ul>
             </section>
 
@@ -68,7 +65,4 @@
         <footer><jsp:include page="footerJsp.jsp" /></footer>
 
     </body>
-
-
-
 </html>

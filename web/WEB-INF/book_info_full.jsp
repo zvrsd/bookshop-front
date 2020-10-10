@@ -2,10 +2,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="stylesheet" href="/css/templatecss.css">
         <title>Fiche du livre</title>
     </head>
+    
     <body>
 
         <header><jsp:include page="/headerJsp.jsp" /></header>

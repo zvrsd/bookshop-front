@@ -24,6 +24,7 @@ import javax.sql.DataSource;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import db.Database;
+import java.text.DateFormat;
 import  model.entity.Address;
 import model.entity.Book;
 import  model.entity.Customer;
@@ -37,7 +38,13 @@ import model.entity.ShippingOffer;
  */
 public class OrderDAO implements DAO<Order, Book>{
     
-	
+	 public final String QUERY_INSERT_ORDER = "INSERT INTO [dbo].[ORDER]\n"
+            + "	([CUSTOMER_ID],[DELIVERY_ADDRESS_ID],[BILLING_ADDRESS_ID],[SHIPPING_OFFER_ID],[ORDER_CREATION_DATE],[ORDER_SHIPPING_TIME_LIMIT],\n"
+            + "	[ORDER_USER_IP],[ORDER_COMMENT],[ASSOC_SHIPPING_OFFER_COMMAND_HT_PRICE])\n"
+            + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    
+    public final String QUERY_INSERT_ORDER_ROW = "";
+    public final String SELECT_LAST_ID = "SELECT @@IDENTITY as ID";
 	
 	 
 	 	ResultSetMetaData resultMeta;
@@ -313,11 +320,6 @@ public class OrderDAO implements DAO<Order, Book>{
     }
 
     @Override
-    public void add(Order object) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public List<Order> getAll() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -413,6 +415,51 @@ public class OrderDAO implements DAO<Order, Book>{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    
-                  
+     @Override
+    public void add(Order object) throws Exception {
+        
+        Database database = Database.getInstance();
+        Connection connection;
+        PreparedStatement statement;
+ 
+        connection = database.getConnection();
+        statement = connection.prepareStatement(QUERY_INSERT_ORDER);
+        
+        statement.setLong(1, object.getCustomer().getCustomerId());
+        statement.setInt(2, object.getAdresseLivId());
+        statement.setInt(3, object.getAdresseBilId());
+        statement.setLong(4, object.getShippingId());
+        statement.setString(5, DateFormat.getInstance().format(new Date()));
+        statement.setString(6, DateFormat.getInstance().format(new Date()));
+        statement.setString(7, object.getIpCustomer());
+        statement.setString(8, object.getCommentaire());
+        statement.setDouble(9, object.getPriceTaxFree());
+        
+        object.setId(getLastId());
+        
+        statement.executeUpdate();
+
+        //statement.close();
+        
+    }
+
+    public Long getLastId() throws NamingException, SQLException {
+        
+        Database database = Database.getInstance();
+        Connection connection;
+        PreparedStatement statement;
+        ResultSet resultSet;
+        Long lastId = -1L;
+ 
+        connection = database.getConnection();
+        statement = connection.prepareStatement(SELECT_LAST_ID);
+        resultSet = statement.executeQuery();
+        
+        if(resultSet.next()){
+            lastId = resultSet.getLong(1);
+        }
+        
+        return lastId;
+    }              
                
 }

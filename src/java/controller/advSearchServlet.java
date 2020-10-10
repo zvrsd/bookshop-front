@@ -63,13 +63,24 @@ public class advSearchServlet extends HttpServlet {
                         String keyword = (String) request.getParameter("keywords"); 
                         if ((keyword != null) && (keyword.length() >1)){
             recueil.add(beanSearch.getByKeywords(keyword));}
-           /* if(request.getParameter("priceMin") != null) {
-                  if (request.getParameter("priceMax") != null){
-            Double min = Double.parseDouble(request.getParameter("priceMin")); 
-            Double max = Double.parseDouble(request.getParameter("priceMax"));
-             recueil.add( beanSearch.getByPrice(min , max));
-            }*/
                         
+          /*  Double min = Double.parseDouble(request.getParameter("priceMin")); 
+            Double max = Double.parseDouble(request.getParameter("priceMax")); 
+            if ((min != null) && (max != null)) {
+                recueil.add( beanSearch.getByPrice(min , max));
+            }
+                  if (min != null){
+              recueil.add(beanSearch.getByPriceMin(min)); 
+             
+                  }
+                 if(max != null){
+                      recueil.add(beanSearch.getByPriceMax(max)); 
+                  }*/
+                 
+              String remise = request.getParameter("remise"); 
+              if (remise != null){
+                  recueil.add(beanSearch.getByRemise());
+              }
                     
                 
             
