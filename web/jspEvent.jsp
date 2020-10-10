@@ -47,19 +47,25 @@
         <div class="container"> 
             <div class="row">  
                 
-              <c:forEach var="book" items="${book}">
 
+                <!-- bean used to round up price -->
+                <jsp:useBean id="bookBean" scope="application" class="model.bean.BookBean" />
+                
+
+              <c:forEach var="book" items="${book}">
+                  
+                  <jsp:setProperty name="bookBean" property="book" value="${book}" />
+                  
                     <a href="book?isbn=${book.isbn}<img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
                     <div class="col-sm-4"> 
                         <figure>  <p><a href="book?isbn=${book.isbn} "><img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
                             <h3>  ${book.title}  </h3>
                             <p>   ${book.postIt} </p>
                             <c:set  var="remise" value="${remise}"/>
-                            
-                   <!--   <fmt:formatNumber var="discount" minIntegerDigits="2" value="${remise * (book.priceT /100)}"/> -->
-                            
-                            <p> Ancien prix : ${book.priceT} Euros</p><p> Nouveau prix : <c:set var="discount"value="${remise * (book.priceT /100)}" />  ${discount} Euros</p>
-                                                                                    
+                                                        
+                            <p> Ancien prix : ${bookBean.fullPriceText} Euros</p><p> Nouveau prix : <c:set var="discount"value="${bookBean.getDiscountFullPriceText(remise)}" />  ${discount} Euros</p>
+
+                          
                             <br></br><br></br><%----%>
                    
                 </div>
