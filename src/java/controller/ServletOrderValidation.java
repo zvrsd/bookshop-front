@@ -55,28 +55,32 @@ public class ServletOrderValidation extends HttpServlet {
         // If the user chooses to go back to cart
         if (Values.ACTION_GOTO_CART.equals(request.getParameter(Values.PARAM_ACTION))) {
             response.sendRedirect("shoppingcart");
-        } // If the cart is empty
+        } 
+        // If the cart is empty
         else if (shoppingcartBean == null || shoppingcartBean.isEmpty()) {
             errorMessage = "Aucun livre disponible";
             response.sendRedirect("shoppingcart");
             return;
-        } // If the user is not logged in
+        } 
+        // If the user is not logged in
         else if (loginBean == null || !loginBean.getIsLogged()) {
-            request.setAttribute(Values.PARAM_MSG, "Connectez-vous pour commander");
+            
+            // Sends a message for display and prompts the user to log in
+            request.setAttribute(Values.PARAM_MSG, Values.MSG_LOGIN_TO_ORDER);
             session.setAttribute(Values.PARAM_ORIGIN, "ordervalidation");
             request.getRequestDispatcher("login").include(request, response);
             return;
         }
-        
+        // Creates or retreive the order validation bean
         OrderValidationBean orderValidationBean = (OrderValidationBean) session.getAttribute(Values.BEAN_ORDER_VALIDATION_NAME);
         if (orderValidationBean == null || orderValidationBean.isIsOver()) {
             
             orderValidationBean = new OrderValidationBean();
-            session.setAttribute(Values.BEAN_ORDER_VALIDATION_NAME, orderValidationBean);
             orderValidationBean.setBooks(shoppingcartBean.getBooks());
-            orderValidationBean.setValidated(false);
-            orderValidationBean.setIsOver(false);
             orderValidationBean.setCustomer((Customer) session.getAttribute("customer"));
+            
+            // Putting the bean into the session
+            session.setAttribute(Values.BEAN_ORDER_VALIDATION_NAME, orderValidationBean);
             
         }
         orderValidationBean.setBooks(shoppingcartBean.getBooks());
@@ -95,14 +99,12 @@ public class ServletOrderValidation extends HttpServlet {
                 // Creates the order
                 Order order = new Order();
                 
-                order.setCustomer(orderValidationBean.getCustomer());
+                order.setCustomer(loginBean.getCustomer());
                 order.setAdresseBilId(Integer.parseInt(request.getParameter("billing_address")));
                 order.setAdresseLivId(Integer.parseInt(request.getParameter("delivery_address")));
                 order.setIpCustomer("0.0.0.0");
                 order.setCommentaire("");
-                System.out.print("customer : "+orderValidationBean.getCustomer());
-                System.out.print("customer : "+orderValidationBean.getCustomer().getCustomerId());
-                order.setIdcustomer(Integer.parseInt(""+orderValidationBean.getCustomer().getCustomerId()));
+                order.setIdcustomer(Integer.parseInt(""+loginBean.getCustomer().getCustomerId()));
                 
                 HashMap<Long, ShippingOffer> shippingOffers = new HashMap<>();
                 for (ShippingOffer offer : orderValidationBean.getGenericShippingOffers()) {
@@ -113,10 +115,7 @@ public class ServletOrderValidation extends HttpServlet {
                 
                 // UNSAFE CAST !!
                 order.setShippingId(Integer.parseInt(request.getParameter("shipping_offer")));
-                System.out.print(Integer.parseInt(request.getParameter("shipping_offer")));
                 order.setPriceTaxFree(orderValidationBean.getShippingOfferById(Long.parseLong(request.getParameter("shipping_offer"))).getShippingOfferHtPrice());
-                
-                System.out.print(order);
                 
                 // Puts the order into the bean
                 orderValidationBean.setOrder(order);
@@ -137,15 +136,18 @@ public class ServletOrderValidation extends HttpServlet {
                 orderValidationBean.setCustomer((Customer) session.getAttribute(Values.PARAM_CUSTOMER));
                 if (validateOrder(orderValidationBean, shoppingcartBean, request)) {
                     
-                    orderValidationBean.setValidated(true);
-                    orderValidationBean.setIsOver(true);
-                    orderValidationBean = null;
-                    session.setAttribute(Values.BEAN_ORDER_VALIDATION_NAME, null);
+                    // Removes the bean and clears the shopping cart
+                    session.removeAttribute(Values.BEAN_ORDER_VALIDATION_NAME);
                     shoppingcartBean.clear();
-                    errorMessage = "commande validée";
+                    
+                    message = "commande validée";
+                    request.setAttribute(Values.PARAM_MSG, message);
+                    request.getRequestDispatcher(Values.JSP_INFO).forward(request, response);
+                }
+                else {
+                    errorMessage = "La commande n'a pu etre validée";
                     request.setAttribute(Values.PARAM_ERROR_MSG, errorMessage);
                     request.setAttribute(Values.PARAM_MSG, message);
-                    System.out.print("cmd valid");
                     request.getRequestDispatcher(Values.JSP_ERROR).forward(request, response);
                 }
                 
@@ -211,7 +213,6 @@ public class ServletOrderValidation extends HttpServlet {
         // Creates an order row for each book
         for (Book book : orderBean.getBooks()) {
             
-            System.out.println("OrderID :" + order.getId());
             orderRow = new Order_Row();
             // UNSAFE CAST
             orderRow.setOrderId(Integer.parseInt("" + order.getId()));
@@ -220,8 +221,6 @@ public class ServletOrderValidation extends HttpServlet {
             // UNSAFE CAST
             orderRow.setOrderRowPrice(Double.parseDouble("" + book.getPrice()));
             new Order_RowDAO(0).add(orderRow);
-            
-            System.out.println("OrderRow  :" + orderRow);
         }
         
         return true;
