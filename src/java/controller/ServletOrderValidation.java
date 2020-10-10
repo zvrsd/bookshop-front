@@ -100,14 +100,14 @@ public class ServletOrderValidation extends HttpServlet {
                 // Creates the order
                 Order order = new Order();
                 
-                order.setCustomer(orderValidationBean.getCustomer());
+                order.setCustomer(loginBean.getCustomer());
                 order.setAdresseBilId(Integer.parseInt(request.getParameter("billing_address")));
                 order.setAdresseLivId(Integer.parseInt(request.getParameter("delivery_address")));
                 order.setIpCustomer("0.0.0.0");
                 order.setCommentaire("");
-                System.out.print("customer : "+orderValidationBean.getCustomer());
-                System.out.print("customer : "+orderValidationBean.getCustomer().getCustomerId());
-                order.setIdcustomer(Integer.parseInt(""+orderValidationBean.getCustomer().getCustomerId()));
+                System.out.print("customer : "+loginBean.getCustomer());
+                System.out.print("customer_id : "+loginBean.getCustomer().getCustomerId());
+                order.setIdcustomer(Integer.parseInt(""+loginBean.getCustomer().getCustomerId()));
                 
                 HashMap<Long, ShippingOffer> shippingOffers = new HashMap<>();
                 for (ShippingOffer offer : orderValidationBean.getGenericShippingOffers()) {
@@ -142,15 +142,17 @@ public class ServletOrderValidation extends HttpServlet {
                 orderValidationBean.setCustomer((Customer) session.getAttribute(Values.PARAM_CUSTOMER));
                 if (validateOrder(orderValidationBean, shoppingcartBean, request)) {
                     
-                    orderValidationBean.setValidated(true);
-                    orderValidationBean.setIsOver(true);
-                    orderValidationBean = null;
-                    session.setAttribute(Values.BEAN_ORDER_VALIDATION_NAME, null);
-                    shoppingcartBean.clear();
-                    errorMessage = "commande validée";
+                    session.removeAttribute(Values.BEAN_ORDER_VALIDATION_NAME);
+                    System.out.print("cmd valid");
+                    
+                    message = "commande validée";
+                    request.setAttribute(Values.PARAM_MSG, message);
+                    request.getRequestDispatcher(Values.JSP_INFO).forward(request, response);
+                }
+                else {
+                    errorMessage = "La commande n'a pu etre validée";
                     request.setAttribute(Values.PARAM_ERROR_MSG, errorMessage);
                     request.setAttribute(Values.PARAM_MSG, message);
-                    System.out.print("cmd valid");
                     request.getRequestDispatcher(Values.JSP_ERROR).forward(request, response);
                 }
                 
