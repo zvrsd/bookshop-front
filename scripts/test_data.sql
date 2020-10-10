@@ -280,6 +280,7 @@ INSERT INTO BOOK
 /* Autres */
 ('9782416000188', 9, 3, 'Programmer en Java', 'Couvre Java 10 à Java 14', 35.00, 'img\16.jpg', '', 13, 'Rayon P', ''),
 ('9782212675214', 9, 3, 'Apprenez à programmer en Java', '', 35.0, 'img\16.jpg', '', 54, 'Rayon A', ''),
+('9782212675224', 9, 3, 'Apprenez à ne pas programmer en Java', '', 35.0, 'img\16.jpg', '', 0, 'Rayon A', ''),
 ('9782409026300', 10, 3, 'Apprendre la Programmation Orientée Objet avec le langage Java', '', 28.0, 'img\16.jpg', '', 12, 'Rayon A', '');
 
 INSERT INTO ASSOC_BOOK_AUTHOR
