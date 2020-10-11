@@ -14,7 +14,7 @@
         Mon compte
     </div>
     
-    <label class="k_label_info">${message} : ${origin}</label>
+    <label class="k_label_info">${message}</label>
 
     <!-- page content container -->
     <div class="k_box_account" id="k_box_account_content">
