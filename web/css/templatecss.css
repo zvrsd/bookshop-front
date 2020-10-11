@@ -345,8 +345,11 @@ section {
 }
 
 #k_label_book_subtitle {
-    width: 100%;
-    font-size: 18px;
+    font-size: 16px;
+}
+
+#k_label_book_isbn {
+    font-size: 10px;
 }
 
 #k_box_book_plus {

@@ -59,7 +59,7 @@
                     <!-- title and subtitle container -->
                     <div id="k_book_info_title">
                         <label id="k_label_book_title">${book.title}</label><br>
-                        <label id="k_label_book_subtitle">${book.subTitle}</label>
+                        <label id="k_label_book_subtitle">${book.subTitle} ( ${book.isbn} )</label><br>
                     </div>
 
                     <!-- author, publisher, summary etc -->
