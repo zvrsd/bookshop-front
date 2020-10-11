@@ -16,6 +16,7 @@ public class Book implements Serializable {
     private String title;
     private String subTitle;
     private int quantity;
+    private int cartQuantity;
     private float price;
     private Vat vat;
     private Publisher publisher;
@@ -189,6 +190,15 @@ public class Book implements Serializable {
         this.statuses = statuses;
     }
 
+    public int getCartQuantity() {
+        return cartQuantity;
+    }
+
+    public void setCartQuantity(int cartQuantity) {
+        this.cartQuantity = cartQuantity;
+    }
+
+    
     public String toString() {
         return isbn+" - "+title+" - "+subTitle;
     }

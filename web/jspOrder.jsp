@@ -61,6 +61,7 @@
                             <p>   ${book.postIt} </p>
                             <p>  ${bookBean.priceText}  Euros HT</p>
 
+
                             <br></br><br></br>
                     </div> 
                 </div>
@@ -78,6 +79,7 @@
 
                 <c:forEach var="book" items="${listSixMonth}">
 
+
                     <jsp:setProperty name="bookBean" property="book" value="${book}" />
   <div class="container"> 
                     <div class="row">  
@@ -86,7 +88,9 @@
                                 <h3>  ${book.title}  </h3>
 
                                 <p>   ${book.postIt} </p>
+
                                 <p>  ${bookBean.priceText}  Euros HT</p>
+
 
                                 <br></br><br></br>
                         </div> 
@@ -105,6 +109,7 @@
 
 
                     <c:forEach var="book" items="${listPast}">
+
                         
                         <jsp:setProperty name="bookBean" property="book" value="${book}" />
                         
@@ -117,6 +122,7 @@
                                     <h3>  ${book.title}  </h3>
 
                                     <p>   ${book.postIt} </p>
+
                                     <p>  ${bookBean.priceText}  Euros HT</p>
 
                                     <br></br><br></br>

@@ -1,7 +1,7 @@
 /*==============================================================*/
 /*				TEST DATA  for BookShop							*/
 /*			Date de création     :  01/09/2020 16:49:00         */ 
-/*          Date de modification :  06/10/2020 11:12:13         */
+/*          Date de modification :  11/10/2020 11:12:13         */
 /*==============================================================*/
 
 -- Resets auto-increment
@@ -97,13 +97,13 @@ SET DATEFORMAT ymd;
 INSERT INTO CATEGORY 
 	(CATEGORY_NAME) 
 	values 
-	    ('categories'),
+	    ('Littérature'),
 		
-		('categorie_A'),
-		('categorie_B'),
-		('categorie_C'),
+		('Sciences Humaines'),
+		('Arts'),
+		('Jeunesse'),
 		
-		('categorie_A_0'),
+		('BD / Manga'),
 		('categorie_A_1'),
 		('categorie_A_2'),
 		
@@ -154,9 +154,9 @@ INSERT INTO KEYWORD (KEYWORD_NAME) values
 INSERT INTO BOOK_STATUS
 	(BOOK_STATUS_NAME) 
 	values 
-		('statut_livre_0'),
-		('statut_livre_1'),
-		('statut_livre_2')
+		('disponible'),
+		('non-disponible'),
+		('autre')
 ;
 
 INSERT INTO PUBLISHER (PUBLISHER_NAME, PUBLISHER_POST_IT) values
@@ -206,9 +206,9 @@ INSERT INTO VAT
 INSERT INTO [EVENT]
 	(EVENT_NAME, EVENT_DATE_START, EVENT_DATE_END, EVENT_DISCOUNT_VALUE, EVENT_IMAGE_URL)
 	values
-		('evenement_0', '01/01/2001', '01/01/2001', 10.00, null),
-		('evenement_1', '01/01/2001', '01/01/2001', 50.00, null),
-		('evenement_2', '01/01/2001', '01/01/2001', 70.00, null)
+		('evenement_0', '01/01/2020', '01/01/2021', 5.00, null),
+		('evenement_1', '01/01/2010', '01/01/2012', 5.00, null),
+		('evenement_2', '01/09/2020', '01/12/2020', 5.00, null)
 ;
 
 INSERT INTO BOOK
@@ -280,6 +280,7 @@ INSERT INTO BOOK
 /* Autres */
 ('9782416000188', 9, 3, 'Programmer en Java', 'Couvre Java 10 à Java 14', 35.00, 'img\16.jpg', '', 13, 'Rayon P', ''),
 ('9782212675214', 9, 3, 'Apprenez à programmer en Java', '', 35.0, 'img\16.jpg', '', 54, 'Rayon A', ''),
+('9782212675224', 9, 3, 'Apprenez à ne pas programmer en Java', '', 35.0, 'img\16.jpg', '', 0, 'Rayon A', ''),
 ('9782409026300', 10, 3, 'Apprendre la Programmation Orientée Objet avec le langage Java', '', 28.0, 'img\16.jpg', '', 12, 'Rayon A', '');
 
 INSERT INTO ASSOC_BOOK_AUTHOR
@@ -473,16 +474,16 @@ INSERT INTO CUSTOMER_STATUS
 INSERT INTO CUSTOMER
 	([CUSTOMER_L_NAME],[CUSTOMER_F_NAME],[CUSTOMER_EMAIL],[CUSTOMER_USERNAME],[CUSTOMER_PASSWORD],[CUSTOMER_POST_IT]) 
 	VALUES
-		('Nom10','Prenom50','ultrices.Duis.volutpat@venenatislacusEtiam.co.uk','membre1','4ba29b9f9e5732ed33761840f4ba6c53','clear pass : 2002'), 
-		('Nom1050','Prenom560','enim@mauris.com','2membre','35690','rutrum magna. Cras convallis convallis dolor. Quisque tincidunt'), 
-		('Nom1060','Prenom600','elit.Etiam@sitamet.net','20','20','orci. Ut semper pretium neque. Morbi quis urna.'),
-		('Nom2050','Prenom75','metus@eu.org','user20','1220','risus. Nulla eget metus eu erat semper rutrum.'), 
-		('Nom30','Prenom97','eu.augue.porttitor@Fuscediam.edu','dude20','23sol0','enim, condimentum eget, volutpat ornare, facilisis eget, ipsum.'),
-		('Nom70','Prenom9750','Proin@et.co.uk','user300','2130','semper tellus id nunc interdum feugiat. Sed nec'), 
-		('Nom7050','Prenom960','tincidunt@aliquet.ca','face20','22590','laoreet, libero et tristique pellentesque, tellus sem mollis'),
-		('Nom20','Prenom750','sodales.at@sed.ca','user40','4210','condimentum eget, volutpat ornare, facilisis eget, ipsum. Donec'),
-		('Nom2040','Prenom87','a@Maecenasliberoest.com','user5','21230','auctor. Mauris vel turpis. Aliquam adipiscing lobortis risus.'),
-        ('Nom_test','Prenom_test','test','username_test','4ba29b9f9e5732ed33761840f4ba6c53','clear pass : 2002')
+		('Nom10','Prenom50','ultrices.Duis.volutpat@venenatislacusEtiam.co.uk','membre1','4ba29b9f9e5732ed33761840f4ba6c53','2002'), 
+		('Nom1050','Prenom560','enim@mauris.com','2membre','266c29a5d874af62d87413456e07d700','35690rutrum magna. Cras convallis convallis dolor. Quisque tincidunt'), 
+		('Nom1060','Prenom600','elit.Etiam@sitamet.net','20','98f13708210194c475687be6106a3b84','20orci. Ut semper pretium neque. Morbi quis urna.'),
+		('Nom2050','Prenom75','metus@eu.org','user20','98f13708210194c475687be6106a3b84','20risus. Nulla eget metus eu erat semper rutrum.'), 
+		('Nom30','Prenom97','eu.augue.porttitor@Fuscediam.edu','dude20','0dc60854754b144cd1d3089bf682eaf0','23sol0enim, condimentum eget, volutpat ornare, facilisis eget, ipsum.'),
+		('Nom70','Prenom9750','Proin@et.co.uk','user300','f15d337c70078947cfe1b5d6f0ed3f13','2130semper tellus id nunc interdum feugiat. Sed nec'), 
+		('Nom7050','Prenom960','tincidunt@aliquet.ca','face20','cadc87ddebe5c65eba0316c443a289d7','22590laoreet, libero et tristique pellentesque, tellus sem mollis'),
+		('Nom20','Prenom750','sodales.at@sed.ca','user40','ef35613fc5fa4c4c512d552533f5e6f2','4210condimentum eget, volutpat ornare, facilisis eget, ipsum. Donec'),
+		('Nom2040','Prenom87','a@Maecenasliberoest.com','user5','a4cfff2f82da85e81bb59f671dc8bb1d','21230auctor. Mauris vel turpis. Aliquam adipiscing lobortis risus.'),
+        ('Nom_test','Prenom_test','test','username_test','4ba29b9f9e5732ed33761840f4ba6c53','pw:2002')
 ;
 
 INSERT INTO ASSOC_STATUS_CUSTOMER
@@ -781,4 +782,4 @@ insert into ASSOC_STATUS_COMMENT
 ;
 
 -- TESTDATA END --
-SELECT 'SCRIPT OK' FROM ATTRIBUTE;
+SELECT 'OK' AS SCRIPT_EXECUTION;

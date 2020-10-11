@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
 import java.util.Date;
 import java.util.Scanner;
 import javax.naming.NamingException;
@@ -103,7 +102,7 @@ return new Order_Row();
             + " (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE)"
             + " values (?, ?, ?, ?, ?, ?)";
     
-    public void add(Order_Row object) throws NamingException, SQLException {
+    public void add(Order_Row object) throws NamingException, SQLException, Exception {
         
         Database database = Database.getInstance();
         Connection connection;
@@ -112,6 +111,9 @@ return new Order_Row();
         connection = database.getConnection();
         statement = connection.prepareStatement(QUERY_INSERT_ORDER_ROW);
 
+        // Updates book's stock quantity
+        new BookDAO().reduceQuantity(object.getBookIsbn(), object.getOrderQuantity());
+        
         statement.setString(1, null);
         statement.setInt(2, object.getOrderId());
         statement.setString(3, object.getBookIsbn());
