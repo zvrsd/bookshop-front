@@ -10,6 +10,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Fiche du livre</title>
         <link rel="stylesheet" href="css/default.css" />
+        <link rel="stylesheet"  type="text/css"  href="bouton.css" />
     </head>
 
     <body>
@@ -38,15 +39,16 @@
                         <!-- This button could be disabled if the book is already in the shopping cart
                             and change its label too -->
                         <input type="hidden" name="isbn" value=${book.isbn} />
+
                         
                         <%-- If the book quantity is > 0 --%>
                         <c:if test="${!(bookBean.book.quantity <= 0) }" var="is_out_of_stock" scope="application">
-                            <button class="k_button" type="submit" name="action" value="add_book">Ajouter au panier</button>
+                            <button class="bttn-unite" type="submit" name="action" value="add_book">Ajouter au panier</button>
                         </c:if>
                             
                         <%-- If the book quantity is <= 0 --%>   
                         <c:if test="${(bookBean.book.quantity <= 0)}" var="is_out_of_stock" scope="application">
-                            <button class="k_button" disabled >En rupture de stock</button>
+                            <button class="bttn-unite" disabled >En rupture de stock</button>
                         </c:if>
                             
                     </form>

@@ -15,6 +15,8 @@
         <script data-require="jquery@*" data-semver="2.2.0" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <link data-require="fontawesome@*" data-semver="4.5.0" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css" />
         <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet"  type="text/css"  href="bouton.css" />
+
         <script src="script.js"></script>
 
 
@@ -94,7 +96,7 @@
                 </script>
 
                 <div class="k_right">
-                    <button class="k_button" onclick="myFunction()">Envoyer le commentaire</button>
+                    <button class="bttn-unite" onclick="myFunction()">Envoyer le commentaire</button>
                 </div>
                 <div>
                     <button class="bttn-unite" type="button"><a href="myAccount.jsp">Retour</a></button>

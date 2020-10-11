@@ -99,7 +99,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
                 <input type="text" id="recherche" name="isbn">
                 <button type="submit">OK</button></li>
             <li class="banniere"><a href="shoppingcart"><span id="barreMenuD">Panier</span></a></li>
-                    <li class="banniere"><button id="myBtn" type="button">Se connecter</button></li>
+                    <li class="banniere"><button class="bttn-unite" id="myBtn" type="button">Se connecter</button></li>
                     <li class="banniere">
                          
     </form>

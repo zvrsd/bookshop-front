@@ -47,6 +47,7 @@
         <div class="container"> 
             <div class="row">  
                 
+
                 <!-- bean used to round up price -->
                 <jsp:useBean id="bookBean" scope="application" class="model.bean.BookBean" />
                 
@@ -61,10 +62,10 @@
                             <h3>  ${book.title}  </h3>
                             <p>   ${book.postIt} </p>
                             <c:set  var="remise" value="${remise}"/>
-                            
-                            
+                                                        
                             <p> Ancien prix : ${bookBean.fullPriceText} Euros</p><p> Nouveau prix : <c:set var="discount"value="${bookBean.getDiscountFullPriceText(remise)}" />  ${discount} Euros</p>
-                                                                                    
+
+                          
                             <br></br><br></br><%----%>
                    
                 </div>
