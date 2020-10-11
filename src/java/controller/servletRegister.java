@@ -144,7 +144,7 @@ public class servletRegister extends HttpServlet {
                 }
 
 // Change this line to redirect new customer to desired page of website:               
-            RequestDispatcher req = request.getRequestDispatcher("/homePageJsp.jsp");
+            RequestDispatcher req = request.getRequestDispatcher(Values.SERVLET_HOME);
             req.forward(request, response);
                 }
                 

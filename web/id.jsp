@@ -19,6 +19,8 @@
         <title>Bookshop - Mon compte</title>
         <meta name="description" content="">
         <link rel="stylesheet" href="css/templatecss.css">
+        <link rel="stylesheet"  type="text/css"  href="bouton.css" />
+
     </head>
     
     
@@ -64,7 +66,7 @@
             
             <section>
                 
-                <button type="button"><a href="idModif.jsp">Modifier</a></button>
+                <button class="bttn-unite" type="button"><a href="idModif.jsp">Modifier</a></button>
                 <br>
             <a href="myAccount.jsp">Précédent</a>
             </section>

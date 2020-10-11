@@ -69,6 +69,6 @@ public class BookBean implements Serializable {
     }
     
     public String getDiscountFullPriceText(float discount){
-        return roundFloat(discount * book.getPriceT() / 100);
+        return roundFloat (book.getPriceT() - discount * book.getPriceT() / 100);
     }
 }

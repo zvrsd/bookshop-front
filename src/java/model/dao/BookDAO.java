@@ -6,12 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.naming.NamingException;
 import model.entity.Author;
 import model.entity.Book;
 import model.entity.Category;
 import model.entity.Keyword;
+import model.entity.Order_Row;
+import util.BookSoldComparator;
 
 /**
  *
@@ -716,5 +720,44 @@ public class BookDAO implements DAO<Book, String> {
 
         statement.close();
         connection.close();
+    }
+    
+    // Gets the best sales of all time
+    public List<Book> getBestSales() throws SQLException, NamingException, Exception{
+        
+        Map<String,Integer> isbnSales;
+        List<Book> bookSales;
+        List<Order_Row> orderRows; 
+        
+        isbnSales = new HashMap<>();
+        bookSales = new ArrayList<>();
+        orderRows = new Order_RowDAO(0).getAll();
+        
+        
+        for(Order_Row orderRow : orderRows){
+            
+            String isbn = orderRow.getBookIsbn();
+            if(!isbnSales.containsKey(isbn)){
+                isbnSales.put(isbn, 0);
+            }
+            isbnSales.replace(isbn, isbnSales.get(isbn) + orderRow.getOrderQuantity());
+        }
+        
+        Book book = null;
+        for(String key : isbnSales.keySet()){
+            book = getById(key);
+            book.setSoldQuantity(isbnSales.get(key));
+            bookSales.add(book);
+        }
+        
+        // Sorts the list
+        bookSales.sort(new BookSoldComparator(true));
+        
+        // Debug code START
+        for(Book b : bookSales){
+            System.out.println(" book : "+b.getTitle()+" - "+b.getSoldQuantity());
+        }
+        
+        return bookSales;
     }
 }
