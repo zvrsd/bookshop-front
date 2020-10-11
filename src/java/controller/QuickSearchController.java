@@ -38,7 +38,7 @@ public class QuickSearchController extends HttpServlet {
                 System.out.println("Test: " + request.getParameter("recherche"));
                 
                 request.setAttribute("books", listQS);
-                
+                request.setAttribute("search_text", request.getParameter("recherche"));
                 request.getRequestDispatcher("jspQuickSearch.jsp").include(request, response);
                 
             } catch (NamingException ex) {
