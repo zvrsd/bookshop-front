@@ -39,8 +39,18 @@
                         <!-- This button could be disabled if the book is already in the shopping cart
                             and change its label too -->
                         <input type="hidden" name="isbn" value=${book.isbn} />
-                        <button class="bttn-unite" type="submit" name="action" value="add_book">Ajouter au panier</button>
+
                         
+                        <%-- If the book quantity is > 0 --%>
+                        <c:if test="${!(bookBean.book.quantity <= 0) }" var="is_out_of_stock" scope="application">
+                            <button class="bttn-unite" type="submit" name="action" value="add_book">Ajouter au panier</button>
+                        </c:if>
+                            
+                        <%-- If the book quantity is <= 0 --%>   
+                        <c:if test="${(bookBean.book.quantity <= 0)}" var="is_out_of_stock" scope="application">
+                            <button class="bttn-unite" disabled >En rupture de stock</button>
+                        </c:if>
+                            
                     </form>
                 </div>
 

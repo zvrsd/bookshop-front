@@ -96,6 +96,15 @@ public class ServletOrderValidation extends HttpServlet {
         else if (Values.ACTION_CREATE_ORDER.equals(request.getParameter(Values.PARAM_ACTION))) {
             
             try {
+                
+                // Checks if the books are still available in the database
+                if(!orderValidationBean.isOrderPossible()){
+                    errorMessage = "La commande ne peux pas etre effectuée ( quantité en stock insuffisante )";
+                    request.setAttribute(Values.PARAM_ERROR_MSG, errorMessage);
+                    request.setAttribute(Values.PARAM_MSG, message);
+                    request.getRequestDispatcher(Values.JSP_ERROR).forward(request, response);
+                }
+                
                 // Creates the order
                 Order order = new Order();
                 
@@ -125,6 +134,8 @@ public class ServletOrderValidation extends HttpServlet {
             } catch (NamingException ex) {
                 Logger.getLogger(ServletOrderValidation.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
+                Logger.getLogger(ServletOrderValidation.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
                 Logger.getLogger(ServletOrderValidation.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -217,7 +228,7 @@ public class ServletOrderValidation extends HttpServlet {
             // UNSAFE CAST
             orderRow.setOrderId(Integer.parseInt("" + order.getId()));
             orderRow.setBookIsbn(book.getIsbn());
-            orderRow.setOrderQuantity(book.getQuantity());
+            orderRow.setOrderQuantity(book.getCartQuantity());
             // UNSAFE CAST
             orderRow.setOrderRowPrice(Double.parseDouble("" + book.getPrice()));
             new Order_RowDAO(0).add(orderRow);

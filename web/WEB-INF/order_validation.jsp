@@ -47,7 +47,7 @@
                         <td>${bookBean.book.vat.rate} %</td>
                         <td>${bookBean.fullPriceText} &euro;</td>
                         <td>?</td>
-                        <td>${bookBean.book.quantity}</td>
+                        <td>${bookBean.book.cartQuantity}</td>
                         <td>${bookBean.priceTotalText} &euro;</td>
                         <td>${bookBean.fullPriceTotalText} &euro;</td>
                     </tr>

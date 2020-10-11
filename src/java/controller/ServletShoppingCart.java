@@ -76,13 +76,13 @@ public class ServletShoppingCart extends HttpServlet {
         else if(Values.ACTION_INC_BOOK.equals(request.getParameter(Values.PARAM_ACTION))){
             book = shoppingcartBean.getBook(isbn);
             shoppingcartBean.increment(isbn);
-            message = String.format(Values.MSG_BOOK_QTY_CHANGED, book.getTitle(), book.getQuantity());
+            message = String.format(Values.MSG_BOOK_QTY_CHANGED, book.getTitle(), book.getCartQuantity());
         }
         // If the user decreases by 1 book
         else if(Values.ACTION_DEC_BOOK.equals(request.getParameter(Values.PARAM_ACTION))){
             book = shoppingcartBean.getBook(isbn);
             shoppingcartBean.decrement(isbn);
-            message = String.format(Values.MSG_BOOK_QTY_CHANGED, book.getTitle(), book.getQuantity());
+            message = String.format(Values.MSG_BOOK_QTY_CHANGED, book.getTitle(), book.getCartQuantity());
         }
         // If the user removes a book
         else if(Values.ACTION_DEL_BOOK.equals(request.getParameter(Values.PARAM_ACTION))){
