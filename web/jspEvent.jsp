@@ -37,7 +37,8 @@
     <br> </br><br></br>
     <div class="jumbotron text-center">
         <h1>Les livres sélectionnés pour l'évenement </h1>
-
+        <h3> ${book.size()} livre(s)</h3>
+        
     </div>
     <div>
         <!-- Le container -->
@@ -59,15 +60,15 @@
                     <a href="book?isbn=${book.isbn}<img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
                     <div class="col-sm-4"> 
                         <figure>  <p><a href="book?isbn=${book.isbn} "><img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
-                            <h3>  ${book.title}  </h3>
-                            <p>   ${book.postIt} </p>
+                            <h3> ${book.title} </h3>
+                            ${book.subTitle}<br/><h4>${book.authors.size() == 0 ? "Inconnu" : book.authors.get(0)}</h4>
                             <c:set  var="remise" value="${remise}"/>
-                                                        
+
                             <p> Ancien prix : ${bookBean.fullPriceText} Euros</p><p> Nouveau prix : <c:set var="discount"value="${bookBean.getDiscountFullPriceText(remise)}" />  ${discount} Euros</p>
 
-                          
+
                             <br></br><br></br><%----%>
-                   
+
                 </div>
             </c:forEach>
         </div> 

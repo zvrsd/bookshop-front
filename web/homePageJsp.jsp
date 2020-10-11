@@ -85,7 +85,7 @@
             
             <section id = "livres tendance" class="livreConteneur">
                 <h2 class="titre">Meilleures ventes</h2>
-                <table> 
+                <table>
                     <tbody>
                         <tr>
                             <c:forEach var="book" items="${best_sales_books}">
@@ -96,7 +96,7 @@
                                         <figure> <a href="book?isbn=${book.isbn} "><img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a> 
                                             <h3> ${book.title} </h3>
                                             ${book.subTitle}<br/><h4>${book.authors.size() == 0 ? "Inconnu" : book.authors.get(0)}</h4>
-                                            <p> ${book.soldQuantity} vendus</p>
+                                            <p> ${book.soldQuantity} exemplaires vendus</p>
                                             <p> Prix :  ${bookBean.fullPriceText}  Euros</p>
                                         </figure>
                                         <br></br><br></br>
