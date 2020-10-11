@@ -18,6 +18,7 @@ public class Values {
     public final static String PARAM_ERROR_MSG = "error_msg";
     public final static String PARAM_MSG = "message";
     public final static String PARAM_LAST_SEEN_BOOKS = "last_seen_books";
+    public final static String PARAM_BEST_SALES_BOOKS = "best_sales_books";
     
     public final static String ACTION_LOGIN = "login";
     public final static String ACTION_LOGOUT = "logout";

@@ -14,8 +14,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.dao.BookDAO;
 import model.entity.Book;
+import res.Values;
 
 
 /**
@@ -63,6 +65,7 @@ public class ServletHomePage extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String url = "homePageJsp.jsp";
+            HttpSession session = request.getSession();
 
 // Call on method to set Attributes for the JPSs (here above):
             initp();
@@ -78,19 +81,37 @@ public class ServletHomePage extends HttpServlet {
                 System.out.println(book);
                 
             }
+            
+// Gets the best sales from DB
+            List<Book> bookSales = new BookDAO().getBestSales();
+            Book[] historyBooks = (Book[]) session.getAttribute(Values.PARAM_LAST_SEEN_BOOKS);
+ 
+            if(historyBooks == null){
+                historyBooks = new Book[5];
+                session.setAttribute(Values.PARAM_LAST_SEEN_BOOKS, historyBooks);
+            }
+            
+            
+            System.out.println("last added : "+lastBooks.size());
+            System.out.println("last sales : "+bookSales.size());
+            System.out.println("last visit : "+historyBooks.length);
+            
             request.setAttribute("books", lastBooks);
-         
+            request.setAttribute(Values.PARAM_BEST_SALES_BOOKS, bookSales);
+            request.setAttribute(Values.PARAM_LAST_SEEN_BOOKS, historyBooks);
                 
-                request.getRequestDispatcher("homePageJsp.jsp").include(request, response);   
+            request.getRequestDispatcher("homePageJsp.jsp").include(request, response);   
             
         } catch (NamingException ex) {
             Logger.getLogger(ServletHomePage.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(ServletHomePage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(ServletHomePage.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
