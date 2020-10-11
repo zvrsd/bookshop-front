@@ -10,6 +10,7 @@
     <head>
         <link rel="stylesheet" href="/css/adresseajout.css">
         <link rel="stylesheet" href="/css/templatecss.css">
+        <link rel="stylesheet"  type="text/css"  href="bouton.css" />
     </head>
 
     <header><jsp:include page="/headerJsp.jsp" /></header>
@@ -39,7 +40,7 @@
                         <label for="portable">Portable</label><br>
                         <input id="portable" type="text" name="portable" placeholder="Vuillez entrer votre numéro de portable"><br><br>
                         <input type="hidden" name="type" value="${type}">
-                        <button class="button" type="submit" name="action" value="valider">Valider</button>
+                        <button class="bttn-unite" type="submit" name="action" value="valider">Valider</button>
                     </form>
                 </div>
             </div>  

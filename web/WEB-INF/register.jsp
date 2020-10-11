@@ -10,6 +10,7 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="css/default.css" />
+        <link rel="stylesheet"  type="text/css"  href="bouton.css" />
         <title>JSP Page</title>
     </head>
     <body>
@@ -73,7 +74,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <button class="k_button" type="submit" name="action" value="register">Creer le compte</button>
+                            <button class="bttn-unite" type="submit" name="action" value="register">Creer le compte</button>
                         </td>
                     </tr>
                 </form>

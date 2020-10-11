@@ -6,6 +6,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Paiement bancaire</title>
+        <link rel="stylesheet"  type="text/css"  href="bouton.css" />
+
     </head>
     <body>
 
@@ -80,8 +82,8 @@
 
                 <p>Les champs marqués d'un astérisque * doivent impérativement être renseignés.</p>
 
-                <input type="submit" value="Valider" name="valider" />
-                <input type="button" value="Annuler" name="annuler" action="WEB-INF/shopping_cart.jsp" />
+                <input class="bttn-unite" type="submit" value="Valider" name="valider" />
+                <input class="bttn-unite" type="button"  value="Annuler" name="annuler" action="WEB-INF/shopping_cart.jsp" />
             </form>
         </div>
 
