@@ -41,7 +41,8 @@ public class adresse extends HttpServlet {
         
         // Si le client n'est pas log
         if(customer == null){
-            this.getServletContext().getRequestDispatcher(Values.JSP_HOME).forward(request, response);
+            response.sendRedirect(Values.SERVLET_HOME);
+            return;
         }
         
         // UNSAFE CAST

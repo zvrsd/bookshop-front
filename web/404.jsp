@@ -33,7 +33,7 @@
                 }
             </script>
             
-            <li><a href="homePageJsp.jsp">Page d'accueil</a></li>
+            <li><a href="/HomePage">Page d'accueil</a></li>
             
         </ul>
         </section>
