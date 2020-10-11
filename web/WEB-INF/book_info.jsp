@@ -9,7 +9,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Fiche du livre</title>
-        <link rel="stylesheet" href="css/default.css" />
+        <link rel="stylesheet" href="/css/templatecss.css" />
     </head>
 
     <body>
@@ -57,7 +57,7 @@
                     <!-- title and subtitle container -->
                     <div id="k_book_info_title">
                         <label id="k_label_book_title">${book.title}</label><br>
-                        <label id="k_label_book_subtitle">${book.subTitle}</label>
+                        <label id="k_label_book_subtitle">${book.subTitle} ( ${book.isbn} )</label><br>
                     </div>
 
                     <!-- author, publisher, summary etc -->
