@@ -40,30 +40,32 @@
 
             <div>
                 Tous les champs marqués d'un astérisque * doivent impérativement être renseignés afin de valider les modifications.
+                <br><br>
+                NB. Les caractères spéciaux et accentués ne sont pas autorisés.
                 <br>
                 ${message}
-                <br />
+                <br /><br>
             </div>
 
-            <form action="/idModif" method="post">
+            <form action="/ServletMyAccount" method="post">
                 <table>
                     <tr>
                     <label>
-                        <td>Nom</td>
+                        <td>Nom (50 caractères maximum)</td>
                         <td><input type="text" name="lName" value="${customer.customerLName}">*</td>
                     </label>
                     </tr>
 
                     <tr>
                     <label>
-                        <td>Prénom</td>
+                        <td>Prénom (50 caractères maximum)</td>
                         <td><input type="text" name="fName" value="${customer.customerFName}">*</td>
                     </label>
                     </tr>
 
                     <tr>
                     <label>
-                        <td>Pseudonyme</td>
+                        <td>Pseudonyme (20 caractères maximum)</td>
                         <td><input type="text" name="pseudo" value="${customer.customerUsername}">*</td>
                     </label>
                     </tr>
@@ -71,14 +73,14 @@
                     <tr>
                     <label>
                         <td>Nouveau mot de passe</td>
-                        <td><input type="password" name="newPassword">*<td/>
+                        <td><input type="password" name="newPassword" placeholder="Nouveau mot de passe">*<td/>
                     </label>
                     </tr>
 
                     <tr>
                     <label>
                         <td>Confirmer le mot de passe</td>
-                        <td><input type="password" name="newPasswordConf">*</td>
+                        <td><input type="password" name="newPasswordConf" placeholder="Confirmer le mot de passe">*</td>
                     </label>
                     </tr>
 
