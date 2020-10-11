@@ -1,6 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="k_box_page_content">
-
+<link rel="stylesheet"  type="text/css"  href="bouton.css" />
     <!-- page title container -->
     <div class="k_box_page_title">
         Ma commande
@@ -47,7 +47,7 @@
                         <td>${bookBean.book.vat.rate} %</td>
                         <td>${bookBean.fullPriceText} &euro;</td>
                         <td>?</td>
-                        <td>${bookBean.book.quantity}</td>
+                        <td>${bookBean.book.cartQuantity}</td>
                         <td>${bookBean.priceTotalText} &euro;</td>
                         <td>${bookBean.fullPriceTotalText} &euro;</td>
                     </tr>
@@ -130,11 +130,11 @@
             <div id="k_box_shopping_cart_actions">
 
                 <div id="k_box_shopping_cart_clear">
-                    <button class="k_button" type="submit" name="action" value="cart">Revenir au panier</button>
+                    <button class="bttn-unite" type="submit" name="action" value="cart">Revenir au panier</button>
                 </div>
 
                 <div id="k_box_shopping_cart_order">
-                    <button class="k_button" type="submit" name="action" value="create_order">Valider cette commande</button>
+                    <button class="bttn-unite" type="submit" name="action" value="create_order">Valider cette commande</button>
                 </div>
 
             </div>

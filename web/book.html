@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="css/default.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet"  type="text/css"  href="bouton.css" />
         <!-- Copy it to head of page -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -36,7 +37,7 @@
 
                         <!-- This button could be disabled if the book is already in the shopping cart
                             and change its label too -->
-                        <button class="k_button" type="submit" name="action" value="add_book">Ajouter au panier</button>
+                        <button class="bttn-unite" type="submit" name="action" value="add_book">Ajouter au panier</button>
                         <input type="hidden" name="ref" value="4859789569" />
                     </form>
                 </div>
@@ -160,7 +161,7 @@
                             </script>
                             
                               <div class="k_right">
-                                    <button class="k_button" id="buttonnew" type="submit" name="action" value="send_comment">Envoyer le commentaire</button>
+                                    <button class="bttn-unite" id="buttonnew" type="submit" name="action" value="send_comment">Envoyer le commentaire</button>
                                 </div>
                         </form>
 
@@ -245,7 +246,7 @@ function remplirInput() {
 </script>
 
 <textarea id="zone" name="zone">test</textarea><br />
-<input type="button" onclick="remplirInput();" /><br />
+<input type="button" class="bttn-unite" onclick="remplirInput();" /><br />
 <textarea id="t" name="t"></textarea><br />
 </body>
 

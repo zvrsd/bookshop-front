@@ -22,7 +22,7 @@
                 <table>
                     <tr>
                     <label>
-                        <td>Titulaire de la carte Amex</td>
+                        <td>Titulaire de la carte Visa</td>
                         <td><input type="text" name="lName">*</td>
                     </label>
                     </tr>

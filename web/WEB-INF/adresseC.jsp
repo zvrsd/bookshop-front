@@ -11,6 +11,7 @@
     <head>
         <link rel="stylesheet" href="/css/adresse.css">  
         <link rel="stylesheet" href="/css/templatecss.css">
+        <link rel="stylesheet"  type="text/css"  href="bouton.css" />
     </head>
 
     <header><jsp:include page="/headerJsp.jsp" /></header>
@@ -30,7 +31,7 @@
                     <c:forEach items="${addressLiv}" var="adresseLiv" begin="2" end="2">
                     <div id="liv3">${adresseLiv.companyName}<br> ${adresseLiv.lastName} ${adresseLiv.firstName}<br>${adresseLiv.street}<br>${adresseLiv.streetExtra}<br>${adresseLiv.postcode}<br>${adresseLiv.city}<br>${adresseLiv.phone}</div>
                     </c:forEach>
-                <div id="liv4"><form method="get" action="adresse"><button class="button" type="submit" name="action" value="livraison"><h3>Ajouter adresse de livraison</h3></button></form></div> 
+                <div id="liv4"><form method="get" action="adresse"><button class="bttn-unite" type="submit" name="action" value="livraison"><h3>Ajouter adresse de livraison</h3></button></form></div> 
             </div>
             <h2 id="fac">Adresses de facturation</h2>
             <div id="containerFac">
@@ -43,7 +44,7 @@
                     <c:forEach items="${addressBil}" var="adresseBil" begin="2" end="2">
                     <div id="fac3">${adresseBil.companyName}<br> ${adresseBil.lastName} ${adresseBil.firstName}<br>${adresseBil.street}<br>${adresseBil.streetExtra}<br>${adresseBil.postcode}<br>${adresseBil.city}<br>${adresseBil.phone}</div>
                     </c:forEach>
-                <div id="fac4"><form method="get" action="adresse"><button class="button" type="submit" name="action" value="facturation"><h3>Ajouter adresse de facturation</h3></button></form></div> 
+                <div id="fac4"><form method="get" action="adresse"><button class="bttn-unite" type="submit" name="action" value="facturation"><h3>Ajouter adresse de facturation</h3></button></form></div> 
             </div>
 
         </div>

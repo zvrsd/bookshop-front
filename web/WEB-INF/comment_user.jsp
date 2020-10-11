@@ -18,7 +18,7 @@
             Note :
             <input class="k_input_number_select" type="number" name="comment_rating" min="0" max="5" /> / 5
             <div class="k_right">
-                <button class="k_button" type="submit" name="action" value="send_comment">Envoyer le commentaire</button>
+                <button class="bttn-unite" type="submit" name="action" value="send_comment">Envoyer le commentaire</button>
             </div>
 
         </div>
