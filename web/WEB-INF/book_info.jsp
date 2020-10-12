@@ -99,15 +99,16 @@
             </div>
 
             <!-- book comments section -->
-            <div id="k_box_book_comments">
+              
 
                 <%
+                    String isbn = request.getParameter("isbn"); 
                   if (session.getAttribute(Values.PARAM_CUSTOMER) != null){
          Customer customer = (Customer) session.getAttribute(Values.PARAM_CUSTOMER); 
         Long id = customer.getCustomerId(); 
         String cusId = String.valueOf(id); 
         CommentDAO commentDao = new CommentDAO(); 
-        if(commentDao.autorise(cusId) == true){
+        if(commentDao.autorise(cusId, isbn) == true){
         
             %>
              <%@include file="/commentJSP.jsp" %>
@@ -116,7 +117,7 @@
            
      
               
-   </div>
+   
                 <!-- title container -->
                 <div class="k_box_page_title">
                     Commentaires
