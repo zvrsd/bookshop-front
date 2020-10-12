@@ -55,10 +55,15 @@
             </section>
 
             <br><br>
+
+            <!-- bean used to round up price -->
+            <jsp:useBean id="bean_order_val" scope="session" class="model.bean.OrderValidationBean" />
+            
+            <c:if test="${not empty bean_order_val.books}">
+                <p><a href="/ordervalidation">Continuer la commande en cours</a></p>
+            </c:if>
+                
             <p><a href="login?action=logout">Déconnexion</a></p>
-
-
-
 
         </div>
 
