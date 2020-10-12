@@ -48,7 +48,7 @@
             <section>
                 <h2>Mes paramètres</h2>
                 <ul>
-                    <li class="llMyAccount"><a href="id.jsp">Paramètres de sécurité et de connexion</a></li>
+                    <li class="llMyAccount"><a href="/login">Paramètres de sécurité et de connexion</a></li>
                     <li class="llMyAccount"><a href="/adresse">Gérer mes adresses</a></li>
                 </ul>
             </section>
@@ -62,7 +62,6 @@
                 <p><a href="/ordervalidation">Continuer la commande en cours</a></p>
             </c:if>
                 
-            <p><a href="login?action=logout">Déconnexion</a></p>
             <p><button class="bttn-unite" type="button"><a href="login?action=logout">Déconnexion</a></button></p>
 
 
