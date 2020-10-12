@@ -19,18 +19,56 @@ public class PublisherDAO implements DAO<Publisher,Integer>{
     public final String TABLE_PUBLISHER = "PUBLISHER";
     public final String TABLE_ASSOC_ADDRESS_PUBLISHER = "ASSOC_ADDRESS_PUBLISHER";
     
+    public final String QUERY_INSERT_PUBLISHER =
+            "INSERT INTO " + TABLE_PUBLISHER
+            + "(PUBLISHER_NAME, PUBLISHER_POST_IT)"
+            + " values"
+            + "(?,?)";
+    
+    public final String QUERY_INSERT_ASSOC_ADDRESS_PUBLISHER =
+            "INSERT INTO " + TABLE_PUBLISHER
+            + "(ADDRESS_ID, PUBLISHER_ID)"
+            + " values"
+            + "(?,?)";
+    
     public final String QUERY_SELECT_ALL_PUBLISHER = "SELECT * FROM PUBLISHER";
+    
     public final String QUERY_SELECT_PUBLISHER = 
             "SELECT * FROM PUBLISHER "
             + "WHERE PUBLISHER_ID = ?";
     
+    public final String QUERY_UPDATE_PUBLISHER =
+            "UPDATE PUBLISHER "
+            + "SET PUBLISHER_NAME=?,"
+            + "PUBLISHER_POST_IT=? "
+            + "WHERE PUBLISHER_ID = ?";
+    
+    public final String QUERY_DELETE_PUBLISHER =
+        "DELETE FROM PUBLISHER WHERE PUBLISHER_ID = ?";
+    
+    public final String QUERY_DELETE_ASSOC_ADDRESS_PUBLISHER =
+        "DELETE FROM "+TABLE_ASSOC_ADDRESS_PUBLISHER+" WHERE PUBLISHER_ID = ?";
+    
+    
     @Override
-    public void add(Publisher object) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void add(Publisher object) throws NamingException, SQLException {
+
+        Database database = Database.getInstance();
+        Connection connection;
+        PreparedStatement statement;
+
+        connection = database.getConnection();
+
+        statement = connection.prepareStatement(QUERY_INSERT_PUBLISHER);
+        statement.setString(1, object.getName());
+        statement.setString(2, object.getPostIt());
+        statement.executeUpdate();
+
+        statement.close();
     }
 
     @Override
-    public List<Publisher> getAll() throws NamingException, SQLException{
+    public List<Publisher> getAll() throws NamingException, SQLException {
   
         List<Publisher> objects = new ArrayList<>();
 
@@ -95,13 +133,40 @@ public class PublisherDAO implements DAO<Publisher,Integer>{
     }
 
     @Override
-    public void update(Publisher object) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void update(Publisher object) throws NamingException, SQLException {
+
+        Database database = Database.getInstance();
+        Connection connection;
+        PreparedStatement statement;
+
+        connection = database.getConnection();
+
+        statement = connection.prepareStatement(QUERY_UPDATE_PUBLISHER);
+        statement.setString(1, object.getName());
+        statement.setString(2, object.getPostIt());
+        statement.setInt(3, object.getId());
+        statement.executeUpdate();
+
+        statement.close();
     }
 
     @Override
-    public void delete(Publisher object) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    public void delete(Publisher object) throws NamingException, SQLException {
 
+        Database database = Database.getInstance();
+        Connection connection;
+        PreparedStatement statement;
+
+        connection = database.getConnection();
+
+        statement = connection.prepareStatement(QUERY_DELETE_ASSOC_ADDRESS_PUBLISHER);
+        statement.setInt(1, object.getId());
+        statement.executeUpdate();
+
+        statement = connection.prepareStatement(QUERY_DELETE_PUBLISHER);
+        statement.setInt(1, object.getId());
+        statement.executeUpdate();
+
+        statement.close();
+    }
 }
