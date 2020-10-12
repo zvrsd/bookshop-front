@@ -14,7 +14,7 @@
         <link rel="stylesheet"  type="text/css"  href="bouton.css" />
 
     </head> 
-    <body>
+    
         <style>
             body {font-family: Arial, Helvetica, sans-serif;}
 
@@ -208,5 +208,5 @@
                 </ul>
 
             </nav>
-    </body>
+   
 </html>

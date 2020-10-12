@@ -39,8 +39,8 @@
                         Mes Commandes
                 </h2>
                 <ul>
-                    <li><a href="/allOrder">Toutes mes commandes</a></li>
-                    <li><a href="/orderStatusActive">Commandes en cours</a></li>
+                    <li class="llMyAccount"><a href="/allOrder">Toutes mes commandes</a></li>
+                    <li class="llMyAccount"><a href="/orderStatusActive">Commandes en cours</a></li>
                 </ul>
             </section>
 
@@ -48,14 +48,21 @@
             <section>
                 <h2>Mes paramètres</h2>
                 <ul>
-                    <li><a href="id.jsp">Paramètres de sécurité et de connexion</a></li>
-                    <li><a href="/adresse">Mes adresses de facturation</a></li>
-                    <li><a href="/adresse">Mes adresses de livraison</a></li>
+                    <li class="llMyAccount"><a href="/login">Paramètres de sécurité et de connexion</a></li>
+                    <li class="llMyAccount"><a href="/adresse">Gérer mes adresses</a></li>
                 </ul>
             </section>
 
             <br><br>
-            <p><a href="login?action=logout">Déconnexion</a></p>
+
+            <!-- bean used to round up price -->
+            <jsp:useBean id="bean_order_val" scope="session" class="model.bean.OrderValidationBean" />
+            
+            <c:if test="${not empty bean_order_val.books}">
+                <p><a href="/ordervalidation">Continuer la commande en cours</a></p>
+            </c:if>
+                
+            <p><button class="bttn-unite" type="button"><a href="login?action=logout">Déconnexion</a></button></p>
 
 
 

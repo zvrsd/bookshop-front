@@ -33,30 +33,30 @@
              
         
             
-        <section>
+        <section class="llAlignCenter">
             <h2>Paramètres de sécurité et de connexion</h2>
             
-            <span>
-                Mes informations personnelles
+            <span class="llBolder">
+                Mes informations personnelles<br><br>
             </span>
             
-            <table>
+            <table class="llTableCenter">
                 
                 <tr>
-                    <td>Nom</td>
-                    <td>${customer.customerLName}</td>
+                    <td class="llStrong">Nom</td>
+                    <td class="llItalic">${customer.customerLName}</td>
                 </tr>
                 <tr>
-                    <td>Prénom</td>
-                    <td>${customer.customerFName}</td>
+                    <td class="llStrong">Prénom</td>
+                    <td class="llItalic">${customer.customerFName}</td>
                 </tr>
                 <tr>
-                    <td>Pseudonyme</td>
-                    <td>${customer.customerUsername}</td>
+                    <td class="llStrong">Pseudonyme</td>
+                    <td class="llItalic">${customer.customerUsername}</td>
                 </tr>
                 <tr>
-                    <td>Adresse e-mail</td>
-                    <td>${customer.customerEmail}</td>
+                    <td class="llStrong">Adresse e-mail</td>
+                    <td class="llItalic">${customer.customerEmail}</td>
                 </tr>
                 
                 
@@ -64,7 +64,7 @@
                
             
             
-            <section>
+            <section class="llAlignCenter">
                 
                 <button class="bttn-unite" type="button"><a href="idModif.jsp">Modifier</a></button>
                 <br>
