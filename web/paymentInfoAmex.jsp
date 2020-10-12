@@ -5,21 +5,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet"  type="text/css"  href="css/templatecss.css"/>
         <title>Paiement bancaire</title>
     </head>
     <body>
 
-        <header><img src="logos/Banque Honnête.png"></header>
+        <header><img src="logos/Banque Honnête.png" class="headerBank"></header>
+
+        <div class="bankText">
+            <h1>Paiement par carte American Express</h1>
 
 
-        <h1>Paiement par carte American Express</h1>
-        <div>
-
-            <p><img src="logos/Amex.png">Règlement à Bookshop du montant de ${bean_shopping_cart.totalFullPriceText} euros.<br>
-                ${messageAm}
+            <p><img src="logos/Amex.png" class="logoBank">Règlement à Bookshop du montant de ${bean_shopping_cart.totalFullPriceText} euros.<br>
+                <span class="errorBank">${messageAm}</span><br>
                 Veuillez entrer les informations de paiement suivantes :</p>
             <form action="ServletPayAmex" method="post">
-                <table>
+                <table class="bankTable">
                     <tr>
                     <label>
                         <td>Titulaire de la carte Amex</td>
@@ -81,8 +82,9 @@
                 <p>Les champs marqués d'un astérisque * doivent impérativement être renseignés.</p>
 
                 <input type="submit" value="Valider" name="valider" />
-                <input type="button" value="Annuler" name="annuler" action="WEB-INF/shopping_cart.jsp" />
+
             </form>
+            <form action="ordervalidation"><input type="submit" value="Annuler" name="annuler" /></form>
         </div>
 
 

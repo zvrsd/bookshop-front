@@ -37,7 +37,7 @@
         <div class="prezConteneur"> 
 
             <nav  class="prezConteneur">
-                
+
                 <jsp:include page="advancedSearch.html" />
             </nav>         
 
