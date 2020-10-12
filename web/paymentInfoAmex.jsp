@@ -7,6 +7,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet"  type="text/css"  href="css/templatecss.css"/>
         <title>Paiement bancaire</title>
+        <link rel="stylesheet"  type="text/css"  href="bouton.css" />
+
     </head>
     <body>
 

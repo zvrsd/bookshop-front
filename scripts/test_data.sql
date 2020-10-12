@@ -230,20 +230,6 @@ INSERT INTO BOOK
 ('9782020222129', 5, 3, 'Don Quichotte de la Manche', '', 8.8, 'img\donQuich.jpg', '', 51, 'rayon D', ''),
 ('9782080712165', 3, 3, 'Divine Comédie', 'L''Enfer', 10.00, 'img\divine.jpg', '', 3, 'Rayon D', ''),
 
-/* Sciences humaines */
-('9782070400683', 1, 3, 'La Guerre du Péloponnèse', '', 13.5, 'img\1.jpg', '', 18, 'Rayon L', ''),
-('9782070387625', 1, 3, 'Annales', '', 9.9, 'img\2.jpg', '', 3, 'rayon A', ''),
-('9782757802137', 5, 3, 'L''interprétation du rêve', '', 13.5, 'img\3.jpg', '', 2, 'Rayon L', ''),
-('9782081358775', 3, 3, 'Politiques', '', 10.0, 'img\4.jpg', '', 5, 'Rayon P', ''),
-('9782080705631', 3, 3, 'Métaphysique', '', 11.5, 'img\5.jpg', '', 2, 'Rayon M', ''),
-('9782081421547', 3, 3, 'De l''Âme', '', 8.1, 'img\6.jpg', '', 2, 'Rayon M', ''),
-('9782081386693', 3, 3, 'République', '', 8.9, 'img\7.jpg', '', 8, 'Rayon R', ''),
-('9782081427730', 3, 3, 'Gorgias', '', 5.2, 'img\8.jpg', '', 8, 'Rayon G', ''),
-('9782080704894', 3, 3, 'Phédon', '', 8.2, 'img\9.jpg', '', 4, 'Rayon P', ''),
-('9782081377226', 3, 3, 'Apologie de Socrate', '', 3.5, 'img\10.jpg', '', 7, 'Rayon A', ''),
-('9782081422582', 3, 3, 'Banquet', '', 4.0, 'img\11.jpg', '', 27, 'Rayon B', ''),
-('9782080706881', 3, 3, 'Parménide', '', 8.8, 'img\12.jpg', '', 4, 'Rayon P', ''),
-
 /* BD / Manga */
 ('9782876952058', 6, 3, 'Dragon Ball', 'Tome 1', 6.9, 'img\13.jpg', '', 2, 'rayon D', ''),
 ('9782876952065', 6, 3, 'Dragon Ball', 'Tome 2', 6.9, 'img\13.jpg', '', 1, 'rayon D', ''),
@@ -280,8 +266,22 @@ INSERT INTO BOOK
 /* Autres */
 ('9782416000188', 9, 3, 'Programmer en Java', 'Couvre Java 10 à Java 14', 35.00, 'img\16.jpg', '', 13, 'Rayon P', ''),
 ('9782212675214', 9, 3, 'Apprenez à programmer en Java', '', 35.0, 'img\16.jpg', '', 54, 'Rayon A', ''),
-('9782409026300', 10, 3, 'Apprendre la Programmation Orientée Objet avec le langage Java', '', 28.0, 'img\16.jpg', '', 12, 'Rayon A', '');
+('9782212675224', 9, 3, 'Apprenez à ne pas programmer en Java', '', 35.0, 'img\16.jpg', '', 0, 'Rayon A', ''),
+('9782409026300', 10, 3, 'Apprendre la Programmation Orientée Objet avec le langage Java', '', 28.0, 'img\16.jpg', '', 12, 'Rayon A', ''),
 
+/* Sciences humaines */
+('9782070400683', 1, 3, 'La Guerre du Péloponnèse', '', 13.5, 'img\1.jpg', '', 18, 'Rayon L', ''),
+('9782070387625', 1, 3, 'Annales', '', 9.9, 'img\2.jpg', '', 3, 'rayon A', ''),
+('9782757802137', 5, 3, 'L''interprétation du rêve', '', 13.5, 'img\3.jpg', '', 2, 'Rayon L', ''),
+('9782081358775', 3, 3, 'Politiques', '', 10.0, 'img\4.jpg', '', 5, 'Rayon P', ''),
+('9782080705631', 3, 3, 'Métaphysique', '', 11.5, 'img\5.jpg', '', 2, 'Rayon M', ''),
+('9782081421547', 3, 3, 'De l''Âme', '', 8.1, 'img\6.jpg', '', 2, 'Rayon M', ''),
+('9782081386693', 3, 3, 'République', '', 8.9, 'img\7.jpg', '', 8, 'Rayon R', ''),
+('9782081427730', 3, 3, 'Gorgias', '', 5.2, 'img\8.jpg', '', 8, 'Rayon G', ''),
+('9782080704894', 3, 3, 'Phédon', '', 8.2, 'img\9.jpg', '', 4, 'Rayon P', ''),
+('9782081377226', 3, 3, 'Apologie de Socrate', '', 3.5, 'img\10.jpg', '', 7, 'Rayon A', ''),
+('9782081422582', 3, 3, 'Banquet', '', 4.0, 'img\11.jpg', '', 27, 'Rayon B', ''),
+('9782080706881', 3, 3, 'Parménide', '', 8.8, 'img\12.jpg', '', 4, 'Rayon P', '');
 INSERT INTO ASSOC_BOOK_AUTHOR
 	(AUTHOR_ID, BOOK_ISBN)
 	values
@@ -755,6 +755,9 @@ insert into ORDER_ROW (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW
 insert into ORDER_ROW (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE) values (null, 3, '9782080706881', 3, '10.18', '27.35');
 insert into ORDER_ROW (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE) values (null, 4, '9782080706881', 4, '2.49', '31.16');
 insert into ORDER_ROW (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE) values (null, 4, '9782203001107', 5, '13.20', '30.55');
+insert into ORDER_ROW (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE) values (null, 4, '9782416000188', 420, '13.20', '30.55');
+insert into ORDER_ROW (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE) values (null, 4, '9782010008993', 116, '13.20', '30.55');
+insert into ORDER_ROW (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE) values (null, 4, '9782070320530', 57, '13.20', '30.55');
 
 insert into COMMENT (CUSTOMER_ID, ORDER_ROW_ID, BOOK_ISBN, COMMENT_TITLE, COMMENT_RATING, COMMENT_TEXT, COMMENT_DATE, COMMENT_USER_IP, COMMENT_EDIT_DATE) values (1, 1, '9782203001107', 'forecast', 1, 'engineer 24/7 models', '2020-02-25T12:39:02', '127.46.205.152', '2020-02-14T05:32:46');
 insert into COMMENT (CUSTOMER_ID, ORDER_ROW_ID, BOOK_ISBN, COMMENT_TITLE, COMMENT_RATING, COMMENT_TEXT, COMMENT_DATE, COMMENT_USER_IP, COMMENT_EDIT_DATE) values (2, 2, '9782080706881', 'Ergonomic', 2, 'generate B2C applications', '2020-06-30T06:06:19', '253.125.33.249', '2020-01-24T21:50:09');

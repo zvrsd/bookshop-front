@@ -63,9 +63,12 @@ public class ServletLogin extends HttpServlet {
 
             // Logging the user out
             loginBean.logout();
-
+            session.removeAttribute(Values.PARAM_CUSTOMER);
+            session.removeAttribute(Values.BEAN_LOGIN_NAME);
+            session.removeAttribute(Values.BEAN_ORDER_VALIDATION_NAME);
+            
             // Going back to homepage
-            response.sendRedirect(Values.JSP_HOME);
+            response.sendRedirect(Values.SERVLET_HOME);
             return;
         }
         // If the user is logged already

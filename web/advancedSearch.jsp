@@ -36,6 +36,7 @@
     <br> </br><br></br>
     <div class="jumbotron text-center">
         <h1> Résultats recherche </h1>
+        <h3> ${books.size()} livre(s) trouvés <h3/>
 
     </div>
     <div>
@@ -44,6 +45,7 @@
         <div class="container"> 
             <div class="row">  
                
+
                 <!-- bean used to round up price -->
                 <jsp:useBean id="bookBean" scope="application" class="model.bean.BookBean" />
                 
@@ -54,11 +56,10 @@
                     <a href="book?isbn=${book.isbn}<img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
                     <div class="col-sm-4"> 
                         <figure>  <p><a href="book?isbn=${book.isbn} "><img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
-                            <h3>  ${book.title}  </h3>
-                            <p>   ${book.postIt} </p>     
-                            
-                            <p> Prix :  ${bookBean.fullPriceText}  Euros</p>
-                            <br></br><br></br>
+                            <h3> ${book.title} </h3>
+                                ${book.subTitle}<br/><h4>${book.authors.size() == 0 ? "Inconnu" : book.authors.get(0)}</h4>
+                                <p> Prix : ${bookBean.fullPriceText} Euros</p>
+                                <br><br><br><br>
                    
                 </div>
             </c:forEach>

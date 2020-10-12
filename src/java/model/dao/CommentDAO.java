@@ -6,21 +6,16 @@
 package model.dao;
 
 import db.Database;
-import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.List;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 import model.entity.Comment;
-import model.entity.Customer;
-import model.entity.Order;
 
 /**
  *
@@ -82,7 +77,7 @@ public class CommentDAO implements DAO<Comment, Long> {
         while (rs.next()) {
             authorisation = true;
         }
-
+        connexion.close();
         return authorisation;
     }
 
@@ -122,6 +117,7 @@ public class CommentDAO implements DAO<Comment, Long> {
             comment.setCommDate("COMMENT_DATE");
             comment.setCommIp("COMMENT_USER_IP");
         }
+        connexion.close();
         return comment;
     }
 

@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import javax.naming.NamingException;
+import model.dao.BookDAO;
 import model.dao.ShippingOfferDAO;
 import model.entity.Address;
 import model.entity.Book;
@@ -126,4 +127,36 @@ public class OrderValidationBean {
         this.isOver = isOver;
     }
     
+    // Checks if the book with given ISBN can be order safely
+    public boolean isBookOrderable(String isbn, int quantity) throws Exception{
+        
+        Book book = new BookDAO().getById(isbn);
+        
+        if(book == null){
+            return false;
+        }
+
+        if(book.getQuantity() >= quantity){
+            System.out.println("the book "+isbn+" can be order for qty "+quantity);
+            return true;
+        }
+        
+        return false;
+    }
+    
+    // Checks all the books quantity in the DB to make sure we can order them
+    public boolean isOrderPossible() throws Exception{
+
+        if(books == null || books.isEmpty()){
+            return false;
+        }
+        
+        for(Book book : books){
+            if(!isBookOrderable(book.getIsbn(), book.getCartQuantity())){
+                return false;
+            }
+        }
+        
+        return true;
+    }
 }
