@@ -1,12 +1,10 @@
-
-
 <%-- 
     Document   : homePage.jsp
     Created on : 1 oct. 2020, 11:28:20
     Author     : Loïc
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@page import="res.Values"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -37,7 +35,7 @@
         <div class="prezConteneur"> 
 
             <nav  class="prezConteneur">
-                
+
                 <jsp:include page="advancedSearch.html" />
             </nav>         
 
@@ -50,95 +48,99 @@
             </section>
 
 
-
         </div>  
 
         <div class="livreConteneur">
+
+            
+            <!-- bean used to round up price -->
+            <jsp:useBean id="bookBean" scope="application" class="model.bean.BookBean" />
+
+            
             <section id = "livres tendance" class="livreConteneur">
-                <h2 class="titre">En tendance en ce moment</h2>
-                <table> 
-                    <tbody> 
+                <h2 class="titre">Les nouveautés</h2>
+                <table>
+                    <tbody>
                         <tr>
-                            <td>
-                                <figure>  <p><a href="book.html" title=""><img src ="img/furieBook.jpg" width="150" height="200"  alt= "" /></a>
-                                        </td>
-                                    <td>
-                                        <figure>  <p><a href="book.html" title=""><img src ="img/furieBook.jpg" width="150" height="200"  alt= "" /></a>
-                                                </td>
-                                            <td>
-                                                <figure>  <p><a href="book.html" title=""><img src ="img/furieBook.jpg" width="150" height="200"  alt= "" /></a>
-                                                        </td>
-                                                    <td> 
-                                                        <figure>  <p><a href="book.html" title=""><img src ="img/furieBook.jpg" width="150" height="200"  alt= "" /></a>
-                                                                </td>
-                                                            <td> 
-                                                                <figure>  <p><a href="book.html" title=""><img src ="img/furieBook.jpg" width="150" height="200"  alt= "" /></a>
-                                                                        </td>
-                                                                        <br> </br>
+                            <c:forEach var="book" items="${books}">
+                                <jsp:setProperty name="bookBean" property="book" value="${book}" />
+                                <td style="width: 20%">
+                                    <a href="book?isbn=${book.isbn}<img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
+                                    <div> 
+                                        <figure> <a href="book?isbn=${book.isbn} "><img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a> 
+                                            <h3> ${book.title} </h3>
+                                            ${book.subTitle}<br/><h4>${book.authors.size() == 0 ? "Inconnu" : book.authors.get(0)}</h4>
+                                            <p> Prix : ${bookBean.fullPriceText} Euros</p>
+                                        </figure>
+                                        <br></br><br></br>
+                                    </div>
+                                </td>
+                            </c:forEach>
+                    <br></br>      
+                    </tr>  
+                    </tbody>
+                </table>
+            </section>
+
+            
+            <section id = "livres tendance" class="livreConteneur">
+                <h2 class="titre">Meilleures ventes</h2>
+                <table>
+                    <tbody>
+                        <tr>
+                            <c:forEach var="book" items="${best_sales_books}">
+                                <jsp:setProperty name="bookBean" property="book" value="${book}" />
+                                <td style="width: 20%">
+                                    <a href="book?isbn=${book.isbn}<img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
+                                    <div> 
+                                        <figure> <a href="book?isbn=${book.isbn} "><img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a> 
+                                            <h3> ${book.title} </h3>
+                                            ${book.subTitle}<br/><h4>${book.authors.size() == 0 ? "Inconnu" : book.authors.get(0)}</h4>
+                                            <p> ${book.soldQuantity} exemplaires vendus</p>
+                                            <p> Prix :  ${bookBean.fullPriceText}  Euros</p>
+                                        </figure>
+                                        <br></br><br></br>
+                                    </div>
+                                </td>
+                            </c:forEach>
+                    <br></br>      
+                    </tr>  
+                    </tbody>
+                </table>
+            </section> 
 
 
-                                                                        </tr>  
-                                                                        </tbody>
-                                                                        </table>
-                                                                        </section>
+            <section id = "livres tendance" class="livreConteneur">
+                <h2 class="titre">Consultés recemment</h2>
+                <table> 
+                    <tbody>
+                        <tr>
+                            <c:forEach var="book" items="${last_seen_books}">
+                                <td style="width: 20%">
+                                    <c:if test="${not empty book}">
+                                        <jsp:setProperty name="bookBean" property="book" value="${book}" />
+                                        <a href="book?isbn=${book.isbn}<img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
+                                        <div> 
+                                            <figure> <a href="book?isbn=${book.isbn} "><img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a> 
+                                                <h3> ${book.title} </h3>
+                                                ${book.subTitle}<br/><h4>${book.authors.size() == 0 ? "Inconnu" : book.authors.get(0)}</h4>
+                                                <p> Prix :  ${bookBean.fullPriceText}  Euros</p>
+                                            </figure>
+                                            <br></br><br></br>
+                                        </div>
+                                    </c:if>
+                                </td>
+                            </c:forEach>
+                    <br></br>      
+                    </tr>  
+                    </tbody>
+                </table>
+            </section>
 
-                                                                    <section id = "livres tendance" class="livreConteneur">
+        </div>
 
-                                                                        <h2 class="titre">Les nouveautés</h2>
-                                                                        <table> 
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <c:forEach var="book" items="${books}">
-                                                                                        <td>
-                                                                                            <a href="book?isbn=${book.isbn}<img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
-                                                                                            <div class="col-sm-2"> 
-                                                                                                <figure>  <p><a href="book?isbn=${book.isbn} "><img src ="${book.coverURL}" width="150" height="200"  alt= "" /></a>
-                                                                                                    <h3>  ${book.title}  </h3>
-                                                                                                    <p>   ${book.postIt} </p>     
+        <footer><jsp:include page="footerJsp.jsp" /></footer>
 
-                                                                                                    <p> Prix :  ${book.price}  Euros</p>
-                                                                                                    <br></br><br></br>
-                                                                                            </div>
-                                                                                        </td>
-                                                                                    </c:forEach>
-                                                                            <br></br>      
-                                                                            </tr>  
-                                                                            </tbody>
-                                                                        </table>
-
-
-
-                                                                    </section>
-
-                                                                    <section id = "livres tendance" class="livreConteneur">
-                                                                        <h2 class="titre">Les plus commentés</h2>
-                                                                        <table> 
-                                                                            <tbody> 
-                                                                                <tr>
-                                                                                    <td>
-                                                                                        <figure>  <p><a href="book.html" title=""><img src ="img/furieBook.jpg" width="150" height="200"  alt= "" /></a>
-                                                                                                </td>
-                                                                                            <td>
-                                                                                                <figure>  <p><a href="book.html" title=""><img src ="img/furieBook.jpg" width="150" height="200"  alt= "" /></a>
-                                                                                                        </td>
-                                                                                                    <td>
-                                                                                                        <figure>  <p><a href="book.html" title=""><img src ="img/furieBook.jpg" width="150" height="200"  alt= "" /></a>
-                                                                                                                </td>
-                                                                                                            <td> 
-                                                                                                                <figure>  <p><a href="book.html" title=""><img src ="img/furieBook.jpg" width="150" height="200"  alt= "" /></a>
-                                                                                                                        </td>
-                                                                                                                    <td> 
-                                                                                                                        <figure>  <p><a href="book.html" title=""><img src ="img/furieBook.jpg" width="150" height="200"  alt= "" /></a>
-                                                                                                                                </td>
-                                                                                                                                <br> </br>
-
-                                                                                                                                </tr>  
-                                                                                                                                </tbody>
-                                                                                                                                </table>
-                                                                                                                                </section>   
-                                                                                                                                </div>
-
-                                                                                                                            <footer><jsp:include page="footerJsp.jsp" /></footer>
-                                                                                                                            </body>
-                                                                                                                            </html>
+    </body>
+</html>
 

@@ -49,7 +49,7 @@
                                 <input type="hidden" name="isbn" value="${book.isbn}" />
                                 <td><a href="book?isbn=${book.isbn}">${book.title}</a></td>
                                 <td>${bookBean.fullPriceText} &euro;</td>
-                                <td>${book.quantity}</td>
+                                <td>${book.cartQuantity}</td>
                                 <td>${bookBean.fullPriceTotalText} &euro;</td>
                                 <td><button class="bttn-unite" type="submit" name="action" value="inc_book">+1</button></td>
                                 <td><button class="bttn-unite" type="submit" name="action" value="dec_book">-1</button></td>
@@ -77,7 +77,7 @@
                             </div>
 
                             <div id="k_box_shopping_cart_order">
-                                <button class="k_button" type="submit" name="action" value="create_order">Commander</button>
+                                <button class="bttn-unite" type="submit" name="action" value="create_order">Commander</button>
                             </div>
 
                         </div>

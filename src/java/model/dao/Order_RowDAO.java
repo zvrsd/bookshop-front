@@ -9,8 +9,9 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 import javax.naming.NamingException;
 
@@ -103,7 +104,7 @@ return new Order_Row();
             + " (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE)"
             + " values (?, ?, ?, ?, ?, ?)";
     
-    public void add(Order_Row object) throws NamingException, SQLException {
+    public void add(Order_Row object) throws NamingException, SQLException, Exception {
         
         Database database = Database.getInstance();
         Connection connection;
@@ -112,6 +113,9 @@ return new Order_Row();
         connection = database.getConnection();
         statement = connection.prepareStatement(QUERY_INSERT_ORDER_ROW);
 
+        // Updates book's stock quantity
+        new BookDAO().reduceQuantity(object.getBookIsbn(), object.getOrderQuantity());
+        
         statement.setString(1, null);
         statement.setInt(2, object.getOrderId());
         statement.setString(3, object.getBookIsbn());
@@ -122,5 +126,45 @@ return new Order_Row();
         statement.executeUpdate();
 
         statement.close();
+    }
+    
+    public final String QUERY_SELECT_ORDER_ROW = "SELECT * FROM ORDER_ROW";
+    
+    public List<Order_Row> getAll() throws NamingException, SQLException{
+        
+        List<Order_Row> objects = new ArrayList<>();
+
+        Database database = Database.getInstance();
+        Connection connection;
+        PreparedStatement statement;
+        ResultSet resultSet;
+
+        connection = database.getConnection();
+
+        // Prepares and execute the query
+        statement = connection.prepareStatement(QUERY_SELECT_ORDER_ROW);
+        resultSet = statement.executeQuery();
+
+        // Creates objects based on the query results
+        Order_Row object = null;
+
+        while (resultSet.next()) {
+
+            object = new Order_Row();
+           
+            object.setOrderRowId(resultSet.getInt(1));
+            object.setCommentId(resultSet.getInt(2));
+            object.setOrderId(resultSet.getInt(3));
+            object.setBookIsbn(resultSet.getString(4));
+            object.setOrderQuantity(resultSet.getInt(5));
+            object.setOrderRowPrice(resultSet.getDouble(6));
+            object.setOrderRowDiscount(resultSet.getDouble(7));
+
+            objects.add(object);
+        }
+
+        statement.close();
+        
+        return objects;
     }
 }

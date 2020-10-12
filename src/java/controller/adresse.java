@@ -41,7 +41,8 @@ public class adresse extends HttpServlet {
         
         // Si le client n'est pas log
         if(customer == null){
-            this.getServletContext().getRequestDispatcher(Values.JSP_HOME).forward(request, response);
+            response.sendRedirect(Values.SERVLET_HOME);
+            return;
         }
         
         // UNSAFE CAST
@@ -65,12 +66,17 @@ public class adresse extends HttpServlet {
 
             // Si c'est une adresse de facturation
             if ("facturation".equals(request.getParameter("type"))) {
+                
+                // Ajout de l'adresse dans la base et dans le client
                 AddressDAO.insertAddressBilling(""+customerId, lastId);
+                customer.setBillingAddresses(AddressDAO.listAddressBillingByIdCustomer(customerId));
                 
             } // Si c'est une adresse de livraison
             else if ("livraison".equals(request.getParameter("type"))) {
-                AddressDAO.insertAddressDelivry(""+customerId, lastId);                
                 
+                // Ajout de l'adresse dans la base et dans le client
+                AddressDAO.insertAddressDelivry(""+customerId, lastId);                
+                customer.setDeliveryAddresses(AddressDAO.listAddressDelivryByIdCustomer(customerId));
             }
         }
         // On affiche les adresses
@@ -80,9 +86,7 @@ public class adresse extends HttpServlet {
         request.setAttribute("addressLiv", addressLiv);
         request.setAttribute("addressBil", addressBil);
 
-        this.getServletContext().getRequestDispatcher("/WEB-INF/adresseC.jsp").forward(request, response);
-        this.getServletContext().getRequestDispatcher("/WEB-INF/adresseC.jsp").forward(request, response);
-        
+        this.getServletContext().getRequestDispatcher("/WEB-INF/adresseC.jsp").forward(request, response); 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

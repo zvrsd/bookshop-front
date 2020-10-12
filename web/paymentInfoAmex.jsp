@@ -6,6 +6,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Paiement bancaire</title>
+        <link rel="stylesheet"  type="text/css"  href="bouton.css" />
+
     </head>
     <body>
 
@@ -15,10 +17,10 @@
         <h1>Paiement par carte American Express</h1>
         <div>
 
-            <p><img src="logos/Amex.png">Règlement à Bookshop du montant de ${bean_shopping_cart.totalFullPriceText}} euros.<br>
+            <p><img src="logos/Amex.png">Règlement à Bookshop du montant de ${bean_shopping_cart.totalFullPriceText} euros.<br>
                 ${messageAm}
                 Veuillez entrer les informations de paiement suivantes :</p>
-            <form action="ServletAmex" method="post">
+            <form action="ServletPayAmex" method="post">
                 <table>
                     <tr>
                     <label>
@@ -34,7 +36,7 @@
                     </tr>
                     <tr>
                     <label>
-                        <td>Numéro de sécurité à 4 chiffres</td>
+                        <td>Numéro de sécurité à 3 ou 4 chiffres</td>
                         <td><input type="text" name="secuAmex">*</td>
                     </label>
                     </tr>
@@ -80,8 +82,8 @@
 
                 <p>Les champs marqués d'un astérisque * doivent impérativement être renseignés.</p>
 
-                <input type="submit" value="Valider" name="valider" />
-                <input type="button" value="Annuler" name="annuler" action="WEB-INF/shopping_cart.jsp" />
+                <input class="bttn-unite" type="submit" value="Valider" name="valider" />
+                <input class="bttn-unite" type="button"  value="Annuler" name="annuler" action="WEB-INF/shopping_cart.jsp" />
             </form>
         </div>
 
