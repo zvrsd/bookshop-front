@@ -264,7 +264,7 @@ public class OrderDAO implements DAO<Order, Book> {
         Connection connexion = null;
 
         connexion = ds.getConnection();
-        String query = "select * from dbo.[ORDER] where [ORDER_ID] in(Select ORDER_STATUS_Id from [dbo].[ORDER_STATUS] where ORDER_STATUS_Id= 2 and dbo.[ORDER].CUSTOMER_ID= " + id + " );";
+        String query = "select * from dbo.[ORDER] where [ORDER_ID] in(Select [ORDER_ID] from [dbo].[ASSOC_STATUS_ORDER] where [ORDER_STATUS_ID]= 2 and dbo.[ORDER].CUSTOMER_ID= "+ id+ " );";
 
         Statement stmt = connexion.createStatement();
         ResultSet rs = stmt.executeQuery(query);

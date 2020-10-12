@@ -14,6 +14,6 @@
     <body>
         <h1>Vous n'êtes pas connecté ! </h1>
         
-        <p>Veuillez-vous  <a href="/login.html">connecter</a> </p>
+        <p>Veuillez-vous  <a href="/login">connecter</a> </p>
     </body>
 </html>

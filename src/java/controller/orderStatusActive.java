@@ -7,6 +7,8 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.dao.OrderDAO;
+import model.entity.Book;
 import model.entity.Customer;
 import model.entity.Order;
 import res.Values;
@@ -51,15 +54,18 @@ public class orderStatusActive extends HttpServlet {
                 
                 Customer custid = (Customer) session.getAttribute(Values.PARAM_CUSTOMER);
                 OrderDAO orderDAO = new OrderDAO(); 
-                Order order = new Order(); 
-                String id = String.valueOf(custid.getCustomerId());
-                order = orderDAO.getStatusOrder("2");
+                List<Order> order = new ArrayList();
                 
-                request.setAttribute("orderId", order.getId());
-                request.setAttribute("date", order.getDateOrder());
+                String id = String.valueOf(custid.getCustomerId());
+                order = (List<Order>) orderDAO.getStatusOrder(id);
+                
+                request.setAttribute("list", order);
+               
+                
+                /*request.setAttribute("date", order.getDateOrder());
                 request.setAttribute("timeLimite", order.getDateLivraison());
                 request.setAttribute("comment", order.getCommentaire());
-                request.setAttribute("statut", order.getOrderStatus());
+                request.setAttribute("statut", order.getOrderStatus());*/
                 
                  request.getRequestDispatcher("/orderStatus.jsp").include(request, response);
         

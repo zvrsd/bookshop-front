@@ -23,6 +23,7 @@ import model.entity.Order;
 import model.entity.Order_Row;
 import model.entity.ShippingOffer;
 import res.Values;
+import model.dao.OrderDAO;
 
 /**
  *
@@ -109,6 +110,7 @@ public class ServletOrderValidation extends HttpServlet {
                 Order order = new Order();
                 
                 order.setCustomer(loginBean.getCustomer());
+                order.setDateOrder("2020-10-12T00:00:00");
                 order.setAdresseBilId(Integer.parseInt(request.getParameter("billing_address")));
                 order.setAdresseLivId(Integer.parseInt(request.getParameter("delivery_address")));
                 order.setIpCustomer("0.0.0.0");
@@ -215,11 +217,14 @@ public class ServletOrderValidation extends HttpServlet {
 
         // Gets the order
         Order order = orderBean.getOrder();
+        OrderDAO orderDAO = new OrderDAO(); 
+       
       
         // Adds the order into the DB
         new OrderDAO().add(order);
         order.setId(new OrderDAO().getLastId());
-        
+        orderDAO.setStatusOrder(order); 
+         
         Order_Row orderRow;
         // Creates an order row for each book
         for (Book book : orderBean.getBooks()) {
