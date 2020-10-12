@@ -59,7 +59,9 @@ public class BookDAO implements DAO<Book, String> {
             + "OR BOOK_SUBTITLE like concat ('%', ?, '%')\n"
             + "OR KEYWORD_NAME like concat ('%', ?, '%')\n" 
             + "OR BOOK.BOOK_ISBN like concat ('%', ?, '%')";
-       
+    public final String QUERY_DELETE_BOOK =
+            "DELETE FROM BOOK WHERE ISBN = ?";
+    
     public final String QUERY_LIST_CATEGORY = "SELECT distinct book.* FROM category inner join ASSOC_BOOK_CATEGORY  on CATEGORY.CATEGORY_ID = ASSOC_BOOK_CATEGORY.CATEGORY_ID  inner join BOOK on ASSOC_BOOK_CATEGORY.BOOK_ISBN = BOOK.BOOK_ISBN WHERE category.CATEGORY_NAME like concat ('%', ?, '%')";
     
     public final String QUERY_LIST_PRICE = "   select  * from Book where Book.BOOK_HT_PRICE > like concat ('%', ?, '%') and Book.BOOK_HT_PRICE < like concat ('%', ?, '%')";
@@ -69,7 +71,7 @@ public class BookDAO implements DAO<Book, String> {
      public final String QUERY_LIST_MAX_PRICE = "   select  * from Book where Book.BOOK_HT_PRICE > like concat ('%', ?, '%')";
      
     @Override
-    public void add(Book object) throws Exception {
+    public void add(Book object) throws NamingException, SQLException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -124,7 +126,7 @@ public class BookDAO implements DAO<Book, String> {
     }
 
     @Override
-    public Book getById(String id) throws Exception {
+    public Book getById(String id) throws NamingException, SQLException {
  
         Database database = Database.getInstance();
         Connection connection;
@@ -171,13 +173,25 @@ public class BookDAO implements DAO<Book, String> {
     }
 
     @Override
-    public void update(Book object) throws Exception {
+    public void update(Book object) throws NamingException, SQLException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void delete(Book object) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void delete(Book object) throws NamingException, SQLException {
+        
+        Database database = Database.getInstance();
+        Connection connection;
+        PreparedStatement statement;
+
+        connection = database.getConnection();
+
+        statement = connection.prepareStatement(QUERY_DELETE_BOOK);
+        statement.setString(1, object.getIsbn());
+        statement.executeUpdate();
+
+        statement.close();
+        
     }
 
     private List<Keyword> getKeywords(String bookISBN) throws NamingException, SQLException {
