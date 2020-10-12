@@ -15,7 +15,6 @@
     </head>
     
 <body>
-    <hr>
 
 
     <header><%@include file="/headerJsp.jsp" %></header>   
