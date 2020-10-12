@@ -43,7 +43,7 @@ public class ServletPayVisa extends HttpServlet {
        
             if (!digits.matches(regexVisa) || !secuVisa.matches(regexSecuVisa)) {
                 messageVisa = "Votre tentative de paiement a échoué.";
-                request.setAttribute("messageAm", messageVisa);
+                request.setAttribute("messageVisa", messageVisa);
                 /**/
                 RequestDispatcher req = request.getRequestDispatcher("paymentInfoVisa.jsp");
                 req.forward(request, response);/**/

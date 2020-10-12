@@ -18,7 +18,7 @@
         <%-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> --%>
         <title>JSP Event</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="templatecss.css">
+        <link rel="stylesheet" href="css/templatecss.css">
 
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -67,6 +67,6 @@
     </div>
     <br></br><br></br><br></br>
      
-    <%@include file="/footerJsp.jsp" %>      
+    <footer><%@include file="/footerJsp.jsp" %></footer>      
 </body>
 </html>
