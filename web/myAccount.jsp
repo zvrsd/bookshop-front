@@ -39,8 +39,8 @@
                         Mes Commandes
                 </h2>
                 <ul>
-                    <li><a href="/allOrder">Toutes mes commandes</a></li>
-                    <li><a href="/orderStatusActive">Commandes en cours</a></li>
+                    <li class="llMyAccount"><a href="/allOrder">Toutes mes commandes</a></li>
+                    <li class="llMyAccount"><a href="/orderStatusActive">Commandes en cours</a></li>
                 </ul>
             </section>
 
@@ -48,14 +48,13 @@
             <section>
                 <h2>Mes paramètres</h2>
                 <ul>
-                    <li><a href="id.jsp">Paramètres de sécurité et de connexion</a></li>
-                    <li><a href="/adresse">Mes adresses de facturation</a></li>
-                    <li><a href="/adresse">Mes adresses de livraison</a></li>
+                    <li class="llMyAccount"><a href="id.jsp">Paramètres de sécurité et de connexion</a></li>
+                    <li class="llMyAccount"><a href="/adresse">Gérer mes adresses</a></li>
                 </ul>
             </section>
 
             <br><br>
-            <p><a href="login?action=logout">Déconnexion</a></p>
+            <p><button class="bttn-unite" type="button"><a href="login?action=logout">Déconnexion</a></button></p>
 
 
 
