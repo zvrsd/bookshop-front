@@ -2,10 +2,7 @@
 .liv{
     
     position:relative;
-    min-width: 240px;
-    max-width: 240px; 
-    width: 150px;
-    height: 200px;    
+    min-width: 240px;    
     margin-left: 30px;
     padding: 10px 20px;
     border:10px dotted #1d89ff;
@@ -28,9 +25,6 @@ margin-top: 0px;
     
     position:relative;
     min-width: 240px;
-    max-width: 240px;
-    width: 150px;
-    height: 200px;
     margin-left: 30px;
     padding: 10px 20px;
     border:10px dotted #1d89ff;

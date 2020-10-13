@@ -266,7 +266,7 @@ public class AddressDAO {
     }
 
     public static final String insertionAssocDelivry = "insert into ASSOC_CUSTOMER_DELIVERY_ADDRESS\n"
-            + "values(?,?)";
+            + "values(?,?,'active')";
 
     public static void insertAddressDelivry(String idCustomer, String idAddress) throws SQLException, NamingException {
         Database database = Database.getInstance();
@@ -279,7 +279,7 @@ public class AddressDAO {
 
     }
     public static final String insertionAssocBilling = "insert into ASSOC_CUSTOMER_BILLING_ADDRESS\n"
-            + "values(?,?)";
+            + "values(?,?,'active')";
 
     public static void insertAddressBilling(String idCustomer, String idAddress) throws SQLException, NamingException {
         Database database = Database.getInstance();
