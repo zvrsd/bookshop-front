@@ -8,14 +8,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.naming.NamingException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.entity.BookStatus;
-import model.entity.Book;
 
 /**
  *
@@ -28,57 +25,44 @@ public class BookStatusDAO implements DAO<BookStatus, Integer> {
     
     public final String QUERY_SELECT_ALL_BOOK_STATUS
             = "SELECT * FROM " + TABLE_BOOK_STATUS;
-
     public final String QUERY_SELECT_BOOK_STATUS
             = "SELECT * FROM " + TABLE_BOOK_STATUS + " "
             + "WHERE BOOK_STATUS_ID = ?";
-    
-    public final String QUERY_INSERT_BOOK_STATUS
-        = "INSERT INTO " + TABLE_BOOK
-        + "(BOOK_ISBN, PUBLISHER_ID, "
-        + "VAT_ID, BOOK_TITLE, "
-        + "BOOK_SUBTITLE, "
-        + "BOOK_HT_PRICE, "
-        + "BOOK_COVER_URL, "
-        + "BOOK_SUMMARY, "
-        + "BOOK_STOCK_QTY,"
-        + "BOOK_SHELF, "
-        + "BOOK_POST_IT)"
-        + " values"
-        + "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, )";
+    public final String QUERY_INSERT_BOOK_STATUS =
+            "INSERT INTO " + TABLE_BOOK_STATUS
+            + "(BOOK_STATUS_NAME, BOOK_STATUS_POST_IT)"
+            + " values"
+            + "(?,?)";   
+    public final String QUERY_UPDATE_BOOK_STATUS =
+            "UPDATE "+TABLE_BOOK_STATUS+" "
+            + "SET BOOK_STATUS_NAME=?,"
+            + "BOOK_STATUS_POST_IT=? "
+            + "WHERE BOOK_STATUS_ID = ?";  
+    public final String QUERY_DELETE_BOOK_STATUS =
+            "DELETE FROM BOOK_STATUS WHERE BOOK_STATUS_ID = ?";
     
     final ImageIcon icon = new ImageIcon("icone.png");
     Image image2 = icon.getImage().getScaledInstance(32,32,0);
     
     @Override
-    public void add(BookStatus object) {
-        try {
+    public void add(BookStatus object) throws NamingException, SQLException {
+        
             Database database = Database.getInstance();
             Connection connection;
             PreparedStatement statement;
-            ResultSet resultSet;
             connection = database.getConnection();
             
             statement = connection.prepareStatement(QUERY_INSERT_BOOK_STATUS);
             
-            statement.setString(1, object.getIsbn());
-            statement.setInt(2, object.getPublisher().getId());
+            statement.setString(1, object.getName());
+            statement.setString(2, object.getPostIt());
 
-            resultSet = statement.executeQuery();
-
+            statement.executeUpdate();
+            
             statement.close();
-            connection.close();
-
+            // This is not supposed to be here if we use MVC pattern
+            // this code should go into a view element, maybe in controller
             JOptionPane.showMessageDialog(new JFrame(), "Nouveau livre enregistre dans BDD", "Livre insertion", 1, new ImageIcon(image2));
-    
-        } catch (NamingException ex) {
-            Logger.getLogger(BookStatusDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(BookStatusDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        
     }
 
     @Override
@@ -145,13 +129,38 @@ public class BookStatusDAO implements DAO<BookStatus, Integer> {
     }
 
     @Override
-    public void update(BookStatus object) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void update(BookStatus object) throws NamingException, SQLException {
+
+        Database database = Database.getInstance();
+        Connection connection;
+        PreparedStatement statement;
+
+        connection = database.getConnection();
+        
+        statement = connection.prepareStatement(QUERY_UPDATE_BOOK_STATUS);
+
+        statement.setString(1, object.getName());
+        statement.setString(2, object.getPostIt());
+        statement.setInt(3, object.getId());
+
+        statement.executeUpdate();
+
+        statement.close();
     }
 
     @Override
-    public void delete(BookStatus object) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    public void delete(BookStatus object) throws NamingException, SQLException {
+        
+        Database database = Database.getInstance();
+        Connection connection;
+        PreparedStatement statement;
 
+        connection = database.getConnection();
+
+        statement = connection.prepareStatement(QUERY_DELETE_BOOK_STATUS);
+        statement.setInt(1, object.getId());
+        statement.executeUpdate();
+
+        statement.close();
+    }
 }

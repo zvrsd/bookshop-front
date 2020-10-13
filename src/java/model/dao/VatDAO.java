@@ -17,16 +17,43 @@ import model.entity.Vat;
 public class VatDAO implements DAO<Vat, Integer> {
 
     public final String TABLE_VAT = "VAT";
-
-    public final String QUERY_SELECT_ALL_VAT
-            = "SELECT * FROM " + TABLE_VAT;
-    public final String QUERY_SELECT_VAT
-            = "SELECT * FROM " + TABLE_VAT + " "
+    
+    public final String QUERY_INSERT_VAT =
+            "INSERT INTO " + TABLE_VAT
+            + "(VAT_RATE)"
+            + " values"
+            + "(?)";
+    
+    public final String QUERY_SELECT_ALL_VAT = 
+            "SELECT * FROM "+TABLE_VAT;
+    
+    public final String QUERY_SELECT_VAT = 
+            "SELECT * FROM "+TABLE_VAT+" "
+            +"WHERE VAT_ID = ?";
+    
+    public final String QUERY_UPDATE_VAT =
+            "UPDATE "+TABLE_VAT+" "
+            + "SET VAT_RATE = ? "
             + "WHERE VAT_ID = ?";
+    
+    public final String QUERY_DELETE_VAT =
+        "DELETE FROM VAT WHERE VAT_ID = ?";
 
+    
     @Override
-    public void add(Vat object) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void add(Vat object) throws NamingException, SQLException {
+
+        Database database = Database.getInstance();
+        Connection connection;
+        PreparedStatement statement;
+
+        connection = database.getConnection();
+
+        statement = connection.prepareStatement(QUERY_INSERT_VAT);
+        statement.setFloat(1, object.getRate());
+        statement.executeUpdate();
+
+        statement.close();
     }
 
     @Override
@@ -92,13 +119,35 @@ public class VatDAO implements DAO<Vat, Integer> {
     }
 
     @Override
-    public void update(Vat object) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void update(Vat object) throws SQLException, NamingException {
+
+        Database database = Database.getInstance();
+        Connection connection;
+        PreparedStatement statement;
+
+        connection = database.getConnection();
+
+        statement = connection.prepareStatement(QUERY_UPDATE_VAT);
+        statement.setFloat(1, object.getRate());
+        statement.setInt(2, object.getId());
+        statement.executeUpdate();
+
+        statement.close();
     }
 
     @Override
-    public void delete(Vat object) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void delete(Vat object) throws SQLException, NamingException {
 
+        Database database = Database.getInstance();
+        Connection connection;
+        PreparedStatement statement;
+
+        connection = database.getConnection();
+
+        statement = connection.prepareStatement(QUERY_DELETE_VAT);
+        statement.setInt(1, object.getId());
+        statement.executeUpdate();
+
+        statement.close();
+    }
 }

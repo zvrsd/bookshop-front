@@ -18,14 +18,39 @@ public class KeywordDAO implements DAO<Keyword, Integer> {
 
     public final String TABLE_KEYWORD = "KEYWORD";
 
+    public final String QUERY_INSERT_KEYWORD =
+            "INSERT INTO " + TABLE_KEYWORD
+            + "(KEYWORD_NAME)"
+            + " values"
+            + "(?)";
+    
     public final String QUERY_SELECT_ALL_KEYWORD = "SELECT * FROM KEYWORD";
-    public final String QUERY_SELECT_KEYWORD
-            = "SELECT * FROM KEYWORD "
+    
+    public final String QUERY_SELECT_KEYWORD = 
+            "SELECT * FROM KEYWORD "
             + "WHERE KEYWORD_ID = ?";
+    
+    public final String QUERY_UPDATE_KEYWORD =
+            "UPDATE KEYWORD SET KEYWORD_NAME=? WHERE KEYWORD_ID = ?";
+    
+    public final String QUERY_DELETE_KEYWORD = 
+            "DELETE FROM KEYWORD WHERE KEYWORD_ID = ?";
 
+    
     @Override
-    public void add(Keyword object) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void add(Keyword object) throws NamingException, SQLException {
+
+        Database database = Database.getInstance();
+        Connection connection;
+        PreparedStatement statement;
+
+        connection = database.getConnection();
+
+        statement = connection.prepareStatement(QUERY_INSERT_KEYWORD);
+        statement.setString(1, object.getName());
+        statement.executeUpdate();
+
+        statement.close();
     }
 
     @Override
@@ -91,13 +116,36 @@ public class KeywordDAO implements DAO<Keyword, Integer> {
     }
 
     @Override
-    public void update(Keyword object) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void update(Keyword object) throws NamingException, SQLException {
+
+        Database database = Database.getInstance();
+        Connection connection;
+        PreparedStatement statement;
+
+        connection = database.getConnection();
+        
+        statement = connection.prepareStatement(QUERY_UPDATE_KEYWORD);
+        statement.setString(1, object.getName());
+        statement.setInt(2, object.getId());
+        statement.executeUpdate();
+
+        statement.close();
     }
 
     @Override
-    public void delete(Keyword object) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void delete(Keyword object) throws NamingException, SQLException {
+
+        Database database = Database.getInstance();
+        Connection connection;
+        PreparedStatement statement;
+
+        connection = database.getConnection();
+
+        statement = connection.prepareStatement(QUERY_DELETE_KEYWORD);
+        statement.setInt(1, object.getId());
+        statement.executeUpdate();
+
+        statement.close();
     }
 
 }
