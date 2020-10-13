@@ -10,21 +10,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet"  type="text/css"  href="css/templatecss.css"/>
         <title>Paiement bancaire</title>
     </head>
     <body>
-        
-        <header><img src="logos/Banque Honnête.png"></header>
-        
 
-        <h1>Paiement par Mastercard</h1>
-        <div>
+        <header><img src="logos/Banque Honnête.png" class="headerBank"></header>
 
-            <p><img src="logos/Mastercard.png">Règlement à Bookshop du montant de ${bean_shopping_cart.totalFullPriceText} euros.<br>
-                ${messageMC}<br>
+        <div class="bankText">
+            <h1>Paiement par Mastercard</h1>
+
+
+            <p><img src="logos/Mastercard.png" class="logoBank">Règlement à Bookshop du montant de ${bean_shopping_cart.totalFullPriceText} euros.<br>
+                <span class="errorBank">${messageMC}</span><br>
                 Veuillez entrer les informations de paiement suivantes :</p>
             <form action="ServletPayMC" method="post">
-                <table>
+                <table class="bankTable">
                     <tr>
                     <label>
                         <td>Titulaire de la Mastercard</td>
@@ -75,12 +76,12 @@
                 <p>Les champs marqués d'un astérisque * doivent impérativement être renseignés.</p>
 
                 <input type="submit" value="Valider" name="valider" />
-               
+
             </form>
             <form action="ordervalidation">
                 <input type="submit" value="Annuler" name="annuler" />
             </form>
-            
+
         </div>
 
 

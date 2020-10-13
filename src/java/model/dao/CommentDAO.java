@@ -56,7 +56,7 @@ public class CommentDAO implements DAO<Comment, Long> {
 
     }
 
-    public boolean autorise(String customerId) throws SQLException {
+    public boolean autorise(String customerId, String isbn) throws SQLException {
 
         //
         DataSource ds = null;
@@ -70,7 +70,7 @@ public class CommentDAO implements DAO<Comment, Long> {
         Connection connexion = null;
 
         connexion = ds.getConnection();
-        String query = "select book_isbn from order_row where order_row.order_id in (Select order_id from [order] where dbo.[order].Customer_id = "+ customerId +");";
+        String query = "select book_isbn from order_row where order_row.order_id in (Select order_id from [order] where dbo.[order].Customer_id = "+ customerId +" and order_row.book_isbn="+ isbn + " );";
         Statement stmt = connexion.createStatement();
         ResultSet rs = stmt.executeQuery(query);
 

@@ -5,21 +5,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet"  type="text/css"  href="css/templatecss.css"/>
         <title>Paiement bancaire</title>
     </head>
     <body>
-        
-        <header><img src="logos/Banque Honnête.png"></header>
-        
 
-        <h1>Paiement par Carte Bleue / VISA</h1>
-        <div>
+        <header><img src="logos/Banque Honnête.png" class="headerBank"></header>
 
-            <p><img src="logos/Visa.png">Règlement à Bookshop du montant de ${bean_shopping_cart.totalFullPriceText} euros.<br>
-                ${messageVisa}<br>
+        <div class="bankText">
+            <h1>Paiement par Carte Bleue / VISA</h1>
+
+
+            <p><img src="logos/Visa.png" class="logoBank">Règlement à Bookshop du montant de ${bean_shopping_cart.totalFullPriceText} euros.<br>
+                <span class="errorBank">${messageVisa}</span><br>
                 Veuillez entrer les informations de paiement suivantes :</p>
             <form action="ServletPayVisa" method="post">
-                <table>
+                <table class="bankTable">
                     <tr>
                     <label>
                         <td>Titulaire de la carte Visa</td>
