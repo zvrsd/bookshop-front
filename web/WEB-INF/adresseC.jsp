@@ -25,7 +25,7 @@
                     <div class="liv">
                         ${adresseLiv.companyName}<br> ${adresseLiv.lastName} ${adresseLiv.firstName}<br>${adresseLiv.street}<br>${adresseLiv.streetExtra}<br>
                         ${adresseLiv.postcode}<br>${adresseLiv.city}<br>${adresseLiv.phone}
-                        <form method="post" action="debutAdresse"><button class="button"  type="submit" name="supp" value="${adresseLiv.id}"><h3>Supprimer adresse </h3></button></form>
+                        <form method="post" action="debutAdresse"><button class="bttn-unite"  type="submit" name="supp" value="${adresseLiv.id}"><h3>Supprimer adresse </h3></button></form>
                     </div>
                     </c:forEach>
                     <div id="liv6"><form method="get" action="adresse"><button class="bttn-unite" type="submit" name="action" value="livraison"><h3>Ajouter adresse de livraison</h3></button></form></div> 
@@ -37,7 +37,7 @@
                     <div class="fac">
                         ${adresseBil.companyName}<br> ${adresseBil.lastName} ${adresseBil.firstName}<br>${adresseBil.street}<br>${adresseBil.streetExtra}<br>
                         ${adresseBil.postcode}<br>${adresseBil.city}<br>${adresseBil.phone}
-                        <form method="post" action="debutAdresse"><button class="button"  type="submit" name="suppr" value="${adresseBil.id}"><h3>Supprimer adresse </h3></button></form>
+                        <form method="post" action="debutAdresse"><button class="bttn-unite"  type="submit" name="suppr" value="${adresseBil.id}"><h3>Supprimer adresse </h3></button></form>
                     </div>    
                     </c:forEach>
                     <div id="fac6"><form method="get" action="adresse"><button class="bttn-unite" type="submit" name="action" value="livraison"><h3>Ajouter adresse de facturation</h3></button></form></div> 
