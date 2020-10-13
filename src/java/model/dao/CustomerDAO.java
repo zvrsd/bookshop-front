@@ -153,10 +153,10 @@ public class CustomerDAO implements DAO<Customer,Long> {
             customer.setCustomerPassword(resultSet.getString(6));
             
             // Unsafe cast from long to int !!!
-            customer.setBillingAddresses(AddressDAO.listBillingAddressByIdCustomer(Integer.parseInt(""+customer.getCustomerId())));
+            customer.setBillingAddresses(AddressDAO.listDeliveryAddressByIdCustomer(Integer.parseInt(""+customer.getCustomerId())));
             
             // Unsafe cast from long to int !!!
-            customer.setDeliveryAddresses(AddressDAO.listDeliveryAddressByIdCustomer(Integer.parseInt(""+customer.getCustomerId())));
+            customer.setDeliveryAddresses(AddressDAO.listBillingAddressByIdCustomer(Integer.parseInt(""+customer.getCustomerId())));
         }
 
         statement.close();

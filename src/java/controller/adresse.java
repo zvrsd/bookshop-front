@@ -69,19 +69,19 @@ public class adresse extends HttpServlet {
                 
                 // Ajout de l'adresse dans la base et dans le client
                 AddressDAO.insertAddressBilling(""+customerId, lastId);
-                customer.setBillingAddresses(AddressDAO.listAddressBillingByIdCustomer(customerId));
+                customer.setBillingAddresses(AddressDAO.listBillingAddressByIdCustomer(customerId));
                 
             } // Si c'est une adresse de livraison
             else if ("livraison".equals(request.getParameter("type"))) {
                 
                 // Ajout de l'adresse dans la base et dans le client
                 AddressDAO.insertAddressDelivry(""+customerId, lastId);                
-                customer.setDeliveryAddresses(AddressDAO.listAddressDelivryByIdCustomer(customerId));
+                customer.setDeliveryAddresses(AddressDAO.listDeliveryAddressByIdCustomer(customerId));
             }
         }
         // On affiche les adresses
-        List<Address> addressLiv = AddressDAO.listAddressDelivryByIdCustomer(customerId);
-        List<Address> addressBil = AddressDAO.listAddressBillingByIdCustomer(customerId);
+        List<Address> addressLiv = AddressDAO.listDeliveryAddressByIdCustomer(customerId);
+        List<Address> addressBil = AddressDAO.listBillingAddressByIdCustomer(customerId);
         
         request.setAttribute("addressLiv", addressLiv);
         request.setAttribute("addressBil", addressBil);

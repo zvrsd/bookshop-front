@@ -20,6 +20,7 @@
 form{
     position: relative;
     margin:auto auto;
+   
     
 }
 
@@ -31,5 +32,9 @@ form{
     font-size: 25px;
     font-weight: bolder;
     
+}
+.nom{
+    position:relative;
+    padding:auto;
 }
 

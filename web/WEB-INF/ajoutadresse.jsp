@@ -24,21 +24,21 @@
                 <div class="div2" id="div3">
                     <form method="post" action="adresse">
                         <label for="nom">Nom</label><br>
-                        <input id="nom" type="text" name="nom" placeholder="Veillez entrer votre Nom"><br><br>
+                        <input class="nom" type="text" name="nom" placeholder="Veillez entrer votre Nom"><br><br>
                         <label for="prenom">Prénom</label><br>
-                        <input id="prenom" type="text" name="prenom" placeholder="Veillez entrer votre Prénom"><br><br>
+                        <input class="nom" type="text" name="prenom" placeholder="Veillez entrer votre Prénom"><br><br>
                         <label for="societe">Société</label><br>
-                        <input id="societe" type="text" name="societe" placeholder="Veillez entrer le nom de votre société"><br><br>
+                        <input class="nom" type="text" name="societe" placeholder="Veillez entrer le nom de votre société"><br><br>
                         <label for="rue">rue</label><br>
-                        <input id="rue" type="text" name="rue" placeholder="Veillez entrer votre numero et nom de rue"><br><br>
+                        <input class="nom" type="text" name="rue" placeholder="Veillez entrer votre numero et nom de rue"><br><br>
                         <label for="rue1">Bat,Eta</label><br>
-                        <input id="rue1" type="text" name="rue1" placeholder="Veillez entrer votre Nom"><br><br>
+                        <input class="nom" type="text" name="rue1" placeholder="Veillez entrer l'étage et le batiment"><br><br>
                         <label for="ville">Ville</label><br>
-                        <input id="ville" type="text" name="ville" placeholder="Vuillez entrer le nom de votre ville"><br><br>
+                        <input class="nom" type="text" name="ville" placeholder="Vuillez entrer le nom de votre ville"><br><br>
                         <label for="codepostal">Code Postal</label><br>
-                        <input id="codepostal" type="text" name="codepostal" placeholder="Veillez entrer votre code postal"><br><br>
+                        <input class="nom" type="text" name="codepostal" placeholder="Veillez entrer votre code postal"><br><br>
                         <label for="portable">Portable</label><br>
-                        <input id="portable" type="text" name="portable" placeholder="Vuillez entrer votre numéro de portable"><br><br>
+                        <input class="nom" type="text" name="portable" placeholder="Vuillez entrer votre numéro de portable"><br><br>
                         <input type="hidden" name="type" value="${type}">
                         <button class="bttn-unite" type="submit" name="action" value="valider">Valider</button>
                     </form>

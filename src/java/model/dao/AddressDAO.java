@@ -12,72 +12,14 @@ import model.entity.Address;
 
 public class AddressDAO {
 
-// Afficher Adresse de livraison pour un client donné   
-    public static List<Address> listDeliveryAddressByIdCustomer(int a) throws SQLException, NamingException {
-        List<Address> result = new ArrayList<Address>();
-
-        String viewAddressByIdCustomer = "select ADDRESS.* from dbo.ASSOC_CUSTOMER_DELIVERY_ADDRESS inner join"
-                + " ADDRESS on dbo.ASSOC_CUSTOMER_DELIVERY_ADDRESS.ADDRESS_ID=ADDRESS.ADDRESS_ID"
-                + " where CUSTOMER_ID=?";
-
-        Connection db = Database.getInstance().getConnection();
-
-        PreparedStatement pstmt = db.prepareStatement(viewAddressByIdCustomer);
-        pstmt.setInt(1, a);
-        ResultSet rs = pstmt.executeQuery();
-        while (rs.next()) {
-            Address address = new Address(
-                    rs.getInt("ADDRESS_ID"),
-                    rs.getString("ADDRESS_COMPANY_NAME"),
-                    rs.getString("ADDRESS_L_NAME"),
-                    rs.getString("ADDRESS_F_NAME"),
-                    rs.getString("ADDRESS_STREET"),
-                    rs.getString("ADDRESS_STREET_EXTRA"),
-                    rs.getString("ADDRESS_POSTCODE"),
-                    rs.getString("ADDRESS_CITY"),
-                    rs.getString("ADDRESS_PHONE"));
-            result.add(address);
-        }
-        return result;
-    }
-
-// Afficher Adresse de facturation pour un client donné   
-    public static List<Address> listBillingAddressByIdCustomer(int a) throws SQLException, NamingException {
-        List<Address> result = new ArrayList<Address>();
-
-        String viewAddressByIdCustomer = "select ADDRESS.* from dbo.ASSOC_CUSTOMER_BILLING_ADDRESS inner join"
-                + " ADDRESS on dbo.ASSOC_CUSTOMER_BILLING_ADDRESS.ADDRESS_ID=ADDRESS.ADDRESS_ID"
-                + " where CUSTOMER_ID=?";
-
-        Connection db = Database.getInstance().getConnection();
-
-        PreparedStatement pstmt = db.prepareStatement(viewAddressByIdCustomer);
-        pstmt.setInt(1, a);
-        ResultSet rs = pstmt.executeQuery();
-        while (rs.next()) {
-            Address address = new Address(
-                    rs.getInt("ADDRESS_ID"),
-                    rs.getString("ADDRESS_COMPANY_NAME"),
-                    rs.getString("ADDRESS_L_NAME"),
-                    rs.getString("ADDRESS_F_NAME"),
-                    rs.getString("ADDRESS_STREET"),
-                    rs.getString("ADDRESS_STREET_EXTRA"),
-                    rs.getString("ADDRESS_POSTCODE"),
-                    rs.getString("ADDRESS_CITY"),
-                    rs.getString("ADDRESS_PHONE"));
-            result.add(address);
-        }
-        return result;
-    }
-
 //Afficher Address vides    
     public static List<Address> listAddressByIdCustomer(int a) throws SQLException, NamingException {
         List<Address> result = new ArrayList<Address>();
 
-        String viewAddressByIdCustomer = "select * from ADDRESS inner join\n"
-                + "ASSOC_CUSTOMER_DELIVERY_ADDRESS on ADDRESS.ADDRESS_ID=ASSOC_CUSTOMER_DELIVERY_ADDRESS.ADDRESS_ID inner join\n"
-                + "CUSTOMER on ASSOC_CUSTOMER_DELIVERY_ADDRESS.CUSTOMER_ID=CUSTOMER.CUSTOMER_ID\n"
-                + "where CUSTOMER.CUSTOMER_ID=? and ADDRESS_PHONE_EXTRA='active'";
+        String viewAddressByIdCustomer = "select distinct address.* from ASSOC_CUSTOMER_BILLING_ADDRESS right join\n" +
+        "ADDRESS on ASSOC_CUSTOMER_BILLING_ADDRESS.ADDRESS_ID=ADDRESS.ADDRESS_ID left join\n" +
+        "ASSOC_CUSTOMER_DELIVERY_ADDRESS on ADDRESS.ADDRESS_ID=ASSOC_CUSTOMER_DELIVERY_ADDRESS.ADDRESS_ID \n" +
+        "where ASSOC_CUSTOMER_DELIVERY_ADDRESS.CUSTOMER_ID=1 or ASSOC_CUSTOMER_BILLING_ADDRESS.CUSTOMER_ID=1";
 
         Connection db = Database.getInstance().getConnection();
 
@@ -249,15 +191,13 @@ public class AddressDAO {
     }
 // Mise à jour de l'addresse
     public static final String desactivation = "update ADDRESS set ADDRESS_PHONE_EXTRA='inactive' from ADDRESS\n"
-            + "inner join ASSOC_CUSTOMER_DELIVERY_ADDRESS \n"
-            + "on ADDRESS.ADDRESS_ID=ASSOC_CUSTOMER_DELIVERY_ADDRESS.ADDRESS_ID inner join\n"
-            + "CUSTOMER on ASSOC_CUSTOMER_DELIVERY_ADDRESS.CUSTOMER_ID=CUSTOMER.CUSTOMER_ID where CUSTOMER.CUSTOMER_ID=?;";
+            + "where ADDRESS.ADDRESS_ID=?;";
 
-    public static void desactivateAddressByIdCustomer(int customerId) throws SQLException, NamingException {
+    public static void desactivateAddressByIdAddress(int addressId) throws SQLException, NamingException {
         Connection db = Database.getInstance().getConnection();
         PreparedStatement pstmt = db.prepareStatement(desactivation);
 
-        pstmt.setInt(1, customerId);
+        pstmt.setInt(1, addressId);
         pstmt.executeUpdate();
     }
 
@@ -267,9 +207,9 @@ public class AddressDAO {
         "where ASSOC_CUSTOMER_DELIVERY_ADDRESS.CUSTOMER_ID=? and ADDRESS_PHONE_EXTRA='active'";*/
     public static final String viewAddressDelivryByIdCustomer = "select * from ADDRESS inner join\n"
             + "ASSOC_CUSTOMER_DELIVERY_ADDRESS on ADDRESS.ADDRESS_ID=ASSOC_CUSTOMER_DELIVERY_ADDRESS.ADDRESS_ID\n"
-            + "where ASSOC_CUSTOMER_DELIVERY_ADDRESS.CUSTOMER_ID=?";
+            + "where ASSOC_CUSTOMER_DELIVERY_ADDRESS.CUSTOMER_ID=? and ADDRESS_PHONE_EXTRA='active'";
 
-    public static List<Address> listAddressDelivryByIdCustomer(int a) throws SQLException, NamingException {
+    public static List<Address> listDeliveryAddressByIdCustomer(int a) throws SQLException, NamingException {
         List<Address> result = new ArrayList<Address>();
         Database database = Database.getInstance();
         Connection connection;
@@ -295,12 +235,12 @@ public class AddressDAO {
     }
     public static final String viewAddressBillingByIdCustomer = "select * from ADDRESS inner join\n"
             + "ASSOC_CUSTOMER_BILLING_ADDRESS on ADDRESS.ADDRESS_ID=ASSOC_CUSTOMER_BILLING_ADDRESS.ADDRESS_ID\n"
-            + "where ASSOC_CUSTOMER_BILLING_ADDRESS.CUSTOMER_ID=?";
+            + "where ASSOC_CUSTOMER_BILLING_ADDRESS.CUSTOMER_ID=? and ADDRESS_PHONE_EXTRA='active'";
     /*
       public static final String viewAddressBillingByIdCustomer="select * from ADDRESS inner join\n" +
         "ASSOC_CUSTOMER_BILLING_ADDRESS on ADDRESS.ADDRESS_ID=ASSOC_CUSTOMER_BILLING_ADDRESS.ADDRESS_ID\n" +
         "where ASSOC_CUSTOMER_BILLING_ADDRESS.CUSTOMER_ID=? and ADDRESS_PHONE_EXTRA='active'";*/
-    public static List<Address> listAddressBillingByIdCustomer(int a) throws SQLException, NamingException {
+    public static List<Address> listBillingAddressByIdCustomer(int a) throws SQLException, NamingException {
         List<Address> result = new ArrayList<Address>();
         Database database = Database.getInstance();
         Connection connection;
@@ -369,25 +309,25 @@ public class AddressDAO {
     public static final String desactivationDelivryAddress = "update ADDRESS set ADDRESS_PHONE_EXTRA='inactive' from ADDRESS\n"
             + "inner join ASSOC_CUSTOMER_DELIVERY_ADDRESS \n"
             + "on ADDRESS.ADDRESS_ID=ASSOC_CUSTOMER_DELIVERY_ADDRESS.ADDRESS_ID\n"
-            + "where ASSOC_CUSTOMER_DELIVERY_ADDRESS.CUSTOMER_ID=?;";
+            + "where ASSOC_CUSTOMER_DELIVERY_ADDRESS.ADDRESS_ID=?;";
 
-    public static void desactivateDelivryAddressByIdCustomer(int customerId) throws SQLException, NamingException {
+    public static void desactivateDelivryAddressByIdAddress(int addressId) throws SQLException, NamingException {
         Database database = Database.getInstance();
         Connection connection = database.getConnection();
         PreparedStatement pstmt = connection.prepareStatement(desactivationDelivryAddress);
-        pstmt.setInt(1, customerId);
+        pstmt.setInt(1, addressId);
         pstmt.executeUpdate();
     }
     public static final String desactivationBillingAddress = "update ADDRESS set ADDRESS_PHONE_EXTRA='inactive' from ADDRESS\n"
             + "inner join ASSOC_CUSTOMER_BILLING_ADDRESS \n"
             + "on ADDRESS.ADDRESS_ID=ASSOC_CUSTOMER_BILLING_ADDRESS.ADDRESS_ID\n"
-            + "where ASSOC_CUSTOMER_BILLING_ADDRESS.CUSTOMER_ID=?;";
+            + "where ASSOC_CUSTOMER_BILLING_ADDRESS.ADDRESS_ID=?;";
 
-    public static void desactivateBillingAddressByIdCustomer(int customerId) throws SQLException, NamingException {
+    public static void desactivateBillingAddressByIdAddress(int addressId) throws SQLException, NamingException {
         Database database = Database.getInstance();
         Connection connection = database.getConnection();
         PreparedStatement pstmt = connection.prepareStatement(desactivationBillingAddress);
-        pstmt.setInt(1, customerId);
+        pstmt.setInt(1, addressId);
         pstmt.executeUpdate();
     }
 }

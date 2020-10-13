@@ -32,16 +32,14 @@ public class debutAdresse extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, NamingException {
-
-        List<Address> addressLiv = AddressDAO.listAddressDelivryByIdCustomer(4);
-
-        request.setAttribute("addressLiv", addressLiv);
-        List<Address> addressBil = AddressDAO.listAddressBillingByIdCustomer(4);
-
-        request.setAttribute("addressBil", addressBil);
-
-        this.getServletContext().getRequestDispatcher("/WEB-INF/adresseC.jsp").forward(request, response);
-
+        if (request.getParameter("supp")!=null){
+         AddressDAO.desactivateDelivryAddressByIdAddress(Integer.parseInt(request.getParameter("supp")));
+        }else{
+              if (request.getParameter("suppr")!=null){    
+              AddressDAO.desactivateBillingAddressByIdAddress(Integer.parseInt(request.getParameter("suppr")));
+                }
+            }
+         this.getServletContext().getRequestDispatcher("/adresse").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

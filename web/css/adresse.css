@@ -1,133 +1,45 @@
 
-#liv1{
+.liv{
     
     position:relative;
+    min-width: 240px;
+    max-width: 240px; 
     width: 150px;
-    height: 150px;    
+    height: 200px;    
     margin-left: 30px;
     padding: 10px 20px;
-    border:10px dotted grey;
+    border:10px dotted #1d89ff;
     display:inline-block;
+    margin-bottom: 20px;
     
-}
-#liv2{
-    
-    position:relative;
-    width: 150px;
-    height: 150px;    
-    margin-left: 30px;
-    padding: 10px 20px;
-    border:10px dotted grey;
-    display:inline-block;
-    
-}
-#liv3{
-    
-    position:relative; 
-    width: 150px;
-    height: 150px;
-    margin-left: 30px;
-    padding: 10px 20px;
-    border:10px dotted grey; 
-    display:inline-block;
-   
-}
-#liv4{
-    
-    position:relative; 
-    width: 150px;
-    height: 150px;
-    margin-left: 30px;
-    padding: 10px 20px;
-    border:10px dotted grey; 
-    display:inline-block;
-   
-}
-#liv5{
-    
-    position:relative;
-    width: 150px;
-    height: 150px;
-    margin-left: 30px;
-    padding: 10px 20px;
-    border:10px dotted grey; 
-    display:inline-block;
-   
 }
 #liv6{
     
     position:relative; 
-    padding: 50px;  
+    padding: 30px;  
     display:block;
-}
-
-#containerLiv{
-    position:relative;
     
 }
 #fac{
 position:relative;
 margin-top: 0px;
 }
-#fac1{
+.fac{
     
     position:relative;
+    min-width: 240px;
+    max-width: 240px;
     width: 150px;
-    height: 150px;
+    height: 200px;
     margin-left: 30px;
     padding: 10px 20px;
-    border:10px dotted grey;
+    border:10px dotted #1d89ff;
     display:inline-block;
-}
-#fac2{
-    
-    position:relative;
-    width: 150px;
-    height: 150px;
-    margin-left: 30px;
-    padding: 10px 20px ;
-    border:10px dotted grey; 
-    display:inline-block;
-}
-#fac3{
-    
-    position:relative;
-    width: 150px;
-    height: 150px;  
-    margin-left: 30px;
-    padding: 10px 20px;
-    border:10px dotted grey;  
-    display:inline-block;
-}
-#fac4{
-    
-    position:relative; 
-    width: 150px;
-    height: 150px; 
-    margin-left: 30px;
-    padding: 10px 20px;
-    border:10px dotted grey;  
-    display:inline-block;
-}
-#fac5{
-    
-    position:relative;
-    width: 150px;
-    height: 150px;  
-    margin-left: 30px;
-    padding: 10px 20px;
-    border:10px dotted grey;  
-    display:inline-block;
+    margin-bottom: 20px;
 }
 #fac6{
     
     position:relative; 
-    padding:50px;   
+    padding:30px;   
     display:block;
 }
-
-#containerFac{
-    position:relative; 
-}
-
-
