@@ -7,6 +7,8 @@ package model.bean;
 
 import java.beans.*;
 import java.io.Serializable;
+import java.sql.SQLException;
+import model.dao.CommentDAO;
 
 /**
  *
@@ -14,15 +16,20 @@ import java.io.Serializable;
  */
 public class beanComment implements Serializable {
     
+
+      private boolean isAuthComment; 
  
     public beanComment() {
        
     }
-    
-   public boolean autComment(){
-    //autorise le client à faire un commentaire 
 
-   
-   return false; }
+    public boolean isIsAuthComment() {
+        return isAuthComment;
+    }
+
+    public void setIsAuthComment(boolean isAuthComment) {
+        this.isAuthComment = isAuthComment;
+    }
+     
     
 }

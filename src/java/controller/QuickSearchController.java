@@ -15,12 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.dao.BookDAO;
 import model.entity.Book;
+import res.Values;
 
 /**
  *
  * @author Cy
  */
-@WebServlet(name = "QuickSearchController", urlPatterns = {"/QuickSearchController"})
+@WebServlet(name = Values.QUICK_SEARCH_CONTROLLER, urlPatterns = {"/"+Values.QUICK_SEARCH_CONTROLLER})
 public class QuickSearchController extends HttpServlet {
 
     
@@ -37,10 +38,8 @@ public class QuickSearchController extends HttpServlet {
                 System.out.println("Test: " + request.getParameter("recherche"));
                 
                 request.setAttribute("books", listQS);
-                
+                request.setAttribute("search_text", request.getParameter("recherche"));
                 request.getRequestDispatcher("jspQuickSearch.jsp").include(request, response);
-                
-                
                 
             } catch (NamingException ex) {
                 Logger.getLogger(QuickSearchController.class.getName()).log(Level.SEVERE, null, ex);

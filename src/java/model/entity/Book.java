@@ -1,3 +1,5 @@
+
+
 package model.entity;
 
 /**
@@ -5,14 +7,17 @@ package model.entity;
  * Module: Book.java Author: ZVR Purpose: Defines the Class Book *
  * ****************************************************************
  */
+import java.io.Serializable;
 import java.util.*;
 
-public class Book {
+public class Book implements Serializable {
 
     private String isbn;
     private String title;
     private String subTitle;
     private int quantity;
+    private int soldQuantity;
+    private int cartQuantity;
     private float price;
     private Vat vat;
     private Publisher publisher;
@@ -24,6 +29,7 @@ public class Book {
     private List<Author> authors;
     private List<Keyword> keywords;
     private List<BookStatusAssoc> statuses;
+    private float priceT;
 
     public Book() {
         // TODO: implement
@@ -75,7 +81,13 @@ public class Book {
     }
 
     public float getTPrice(){
-        return price + price * (vat.getRate() / 100);
+        priceT = price + price * (vat.getRate() / 100);
+        return priceT;
+    }
+
+     public float getPriceT(){
+        priceT = price + price * (vat.getRate() / 100);
+        return priceT;
     }
     /**
      * @param newPrice
@@ -179,6 +191,22 @@ public class Book {
         this.statuses = statuses;
     }
 
+    public int getCartQuantity() {
+        return cartQuantity;
+    }
+
+    public void setCartQuantity(int cartQuantity) {
+        this.cartQuantity = cartQuantity;
+    }
+
+    public int getSoldQuantity() {
+        return soldQuantity;
+    }
+
+    public void setSoldQuantity(int soldQuantity) {
+        this.soldQuantity = soldQuantity;
+    }
+
     public String toString() {
         return isbn+" - "+title+" - "+subTitle;
     }
@@ -219,3 +247,4 @@ public class Book {
         }
     }
 }
+

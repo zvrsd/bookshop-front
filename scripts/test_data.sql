@@ -1,7 +1,7 @@
 /*==============================================================*/
 /*				TEST DATA  for BookShop							*/
 /*			Date de création     :  01/09/2020 16:49:00         */ 
-/*          Date de modification :  06/10/2020 11:12:13         */
+/*          Date de modification :  11/10/2020 11:12:13         */
 /*==============================================================*/
 
 -- Resets auto-increment
@@ -97,13 +97,13 @@ SET DATEFORMAT ymd;
 INSERT INTO CATEGORY 
 	(CATEGORY_NAME) 
 	values 
-	    ('categories'),
+	    ('Littérature'),
 		
-		('categorie_A'),
-		('categorie_B'),
-		('categorie_C'),
+		('Sciences Humaines'),
+		('Arts'),
+		('Jeunesse'),
 		
-		('categorie_A_0'),
+		('BD / Manga'),
 		('categorie_A_1'),
 		('categorie_A_2'),
 		
@@ -154,9 +154,9 @@ INSERT INTO KEYWORD (KEYWORD_NAME) values
 INSERT INTO BOOK_STATUS
 	(BOOK_STATUS_NAME) 
 	values 
-		('statut_livre_0'),
-		('statut_livre_1'),
-		('statut_livre_2')
+		('disponible'),
+		('non-disponible'),
+		('autre')
 ;
 
 INSERT INTO PUBLISHER (PUBLISHER_NAME, PUBLISHER_POST_IT) values
@@ -206,9 +206,9 @@ INSERT INTO VAT
 INSERT INTO [EVENT]
 	(EVENT_NAME, EVENT_DATE_START, EVENT_DATE_END, EVENT_DISCOUNT_VALUE, EVENT_IMAGE_URL)
 	values
-		('evenement_0', '01/01/2001', '01/01/2001', 10.00, null),
-		('evenement_1', '01/01/2001', '01/01/2001', 50.00, null),
-		('evenement_2', '01/01/2001', '01/01/2001', 70.00, null)
+		('evenement_0', '01/01/2020', '01/01/2021', 5.00, null),
+		('evenement_1', '01/01/2010', '01/01/2012', 5.00, null),
+		('evenement_2', '01/09/2020', '01/12/2020', 5.00, null)
 ;
 
 INSERT INTO BOOK
@@ -229,20 +229,6 @@ INSERT INTO BOOK
 ('9782253160786', 2, 3, 'Quatrevingt-Treize', '', 5.7, 'img\93.jpg', '', 26, 'rayon Q', ''),
 ('9782020222129', 5, 3, 'Don Quichotte de la Manche', '', 8.8, 'img\donQuich.jpg', '', 51, 'rayon D', ''),
 ('9782080712165', 3, 3, 'Divine Comédie', 'L''Enfer', 10.00, 'img\divine.jpg', '', 3, 'Rayon D', ''),
-
-/* Sciences humaines */
-('9782070400683', 1, 3, 'La Guerre du Péloponnèse', '', 13.5, 'img\1.jpg', '', 18, 'Rayon L', ''),
-('9782070387625', 1, 3, 'Annales', '', 9.9, 'img\2.jpg', '', 3, 'rayon A', ''),
-('9782757802137', 5, 3, 'L''interprétation du rêve', '', 13.5, 'img\3.jpg', '', 2, 'Rayon L', ''),
-('9782081358775', 3, 3, 'Politiques', '', 10.0, 'img\4.jpg', '', 5, 'Rayon P', ''),
-('9782080705631', 3, 3, 'Métaphysique', '', 11.5, 'img\5.jpg', '', 2, 'Rayon M', ''),
-('9782081421547', 3, 3, 'De l''Âme', '', 8.1, 'img\6.jpg', '', 2, 'Rayon M', ''),
-('9782081386693', 3, 3, 'République', '', 8.9, 'img\7.jpg', '', 8, 'Rayon R', ''),
-('9782081427730', 3, 3, 'Gorgias', '', 5.2, 'img\8.jpg', '', 8, 'Rayon G', ''),
-('9782080704894', 3, 3, 'Phédon', '', 8.2, 'img\9.jpg', '', 4, 'Rayon P', ''),
-('9782081377226', 3, 3, 'Apologie de Socrate', '', 3.5, 'img\10.jpg', '', 7, 'Rayon A', ''),
-('9782081422582', 3, 3, 'Banquet', '', 4.0, 'img\11.jpg', '', 27, 'Rayon B', ''),
-('9782080706881', 3, 3, 'Parménide', '', 8.8, 'img\12.jpg', '', 4, 'Rayon P', ''),
 
 /* BD / Manga */
 ('9782876952058', 6, 3, 'Dragon Ball', 'Tome 1', 6.9, 'img\13.jpg', '', 2, 'rayon D', ''),
@@ -280,8 +266,22 @@ INSERT INTO BOOK
 /* Autres */
 ('9782416000188', 9, 3, 'Programmer en Java', 'Couvre Java 10 à Java 14', 35.00, 'img\16.jpg', '', 13, 'Rayon P', ''),
 ('9782212675214', 9, 3, 'Apprenez à programmer en Java', '', 35.0, 'img\16.jpg', '', 54, 'Rayon A', ''),
-('9782409026300', 10, 3, 'Apprendre la Programmation Orientée Objet avec le langage Java', '', 28.0, 'img\16.jpg', '', 12, 'Rayon A', '');
+('9782212675224', 9, 3, 'Apprenez à ne pas programmer en Java', '', 35.0, 'img\16.jpg', '', 0, 'Rayon A', ''),
+('9782409026300', 10, 3, 'Apprendre la Programmation Orientée Objet avec le langage Java', '', 28.0, 'img\16.jpg', '', 12, 'Rayon A', ''),
 
+/* Sciences humaines */
+('9782070400683', 1, 3, 'La Guerre du Péloponnèse', '', 13.5, 'img\1.jpg', '', 18, 'Rayon L', ''),
+('9782070387625', 1, 3, 'Annales', '', 9.9, 'img\2.jpg', '', 3, 'rayon A', ''),
+('9782757802137', 5, 3, 'L''interprétation du rêve', '', 13.5, 'img\3.jpg', '', 2, 'Rayon L', ''),
+('9782081358775', 3, 3, 'Politiques', '', 10.0, 'img\4.jpg', '', 5, 'Rayon P', ''),
+('9782080705631', 3, 3, 'Métaphysique', '', 11.5, 'img\5.jpg', '', 2, 'Rayon M', ''),
+('9782081421547', 3, 3, 'De l''Âme', '', 8.1, 'img\6.jpg', '', 2, 'Rayon M', ''),
+('9782081386693', 3, 3, 'République', '', 8.9, 'img\7.jpg', '', 8, 'Rayon R', ''),
+('9782081427730', 3, 3, 'Gorgias', '', 5.2, 'img\8.jpg', '', 8, 'Rayon G', ''),
+('9782080704894', 3, 3, 'Phédon', '', 8.2, 'img\9.jpg', '', 4, 'Rayon P', ''),
+('9782081377226', 3, 3, 'Apologie de Socrate', '', 3.5, 'img\10.jpg', '', 7, 'Rayon A', ''),
+('9782081422582', 3, 3, 'Banquet', '', 4.0, 'img\11.jpg', '', 27, 'Rayon B', ''),
+('9782080706881', 3, 3, 'Parménide', '', 8.8, 'img\12.jpg', '', 4, 'Rayon P', '');
 INSERT INTO ASSOC_BOOK_AUTHOR
 	(AUTHOR_ID, BOOK_ISBN)
 	values
@@ -473,16 +473,16 @@ INSERT INTO CUSTOMER_STATUS
 INSERT INTO CUSTOMER
 	([CUSTOMER_L_NAME],[CUSTOMER_F_NAME],[CUSTOMER_EMAIL],[CUSTOMER_USERNAME],[CUSTOMER_PASSWORD],[CUSTOMER_POST_IT]) 
 	VALUES
-		('Nom10','Prenom50','ultrices.Duis.volutpat@venenatislacusEtiam.co.uk','membre1','4ba29b9f9e5732ed33761840f4ba6c53','clear pass : 2002'), 
-		('Nom1050','Prenom560','enim@mauris.com','2membre','35690','rutrum magna. Cras convallis convallis dolor. Quisque tincidunt'), 
-		('Nom1060','Prenom600','elit.Etiam@sitamet.net','20','20','orci. Ut semper pretium neque. Morbi quis urna.'),
-		('Nom2050','Prenom75','metus@eu.org','user20','1220','risus. Nulla eget metus eu erat semper rutrum.'), 
-		('Nom30','Prenom97','eu.augue.porttitor@Fuscediam.edu','dude20','23sol0','enim, condimentum eget, volutpat ornare, facilisis eget, ipsum.'),
-		('Nom70','Prenom9750','Proin@et.co.uk','user300','2130','semper tellus id nunc interdum feugiat. Sed nec'), 
-		('Nom7050','Prenom960','tincidunt@aliquet.ca','face20','22590','laoreet, libero et tristique pellentesque, tellus sem mollis'),
-		('Nom20','Prenom750','sodales.at@sed.ca','user40','4210','condimentum eget, volutpat ornare, facilisis eget, ipsum. Donec'),
-		('Nom2040','Prenom87','a@Maecenasliberoest.com','user5','21230','auctor. Mauris vel turpis. Aliquam adipiscing lobortis risus.'),
-        ('Nom_test','Prenom_test','test','username_test','4ba29b9f9e5732ed33761840f4ba6c53','clear pass : 2002')
+		('Nom10','Prenom50','ultrices.Duis.volutpat@venenatislacusEtiam.co.uk','membre1','4ba29b9f9e5732ed33761840f4ba6c53','2002'), 
+		('Nom1050','Prenom560','enim@mauris.com','2membre','266c29a5d874af62d87413456e07d700','35690rutrum magna. Cras convallis convallis dolor. Quisque tincidunt'), 
+		('Nom1060','Prenom600','elit.Etiam@sitamet.net','20','98f13708210194c475687be6106a3b84','20orci. Ut semper pretium neque. Morbi quis urna.'),
+		('Nom2050','Prenom75','metus@eu.org','user20','98f13708210194c475687be6106a3b84','20risus. Nulla eget metus eu erat semper rutrum.'), 
+		('Nom30','Prenom97','eu.augue.porttitor@Fuscediam.edu','dude20','0dc60854754b144cd1d3089bf682eaf0','23sol0enim, condimentum eget, volutpat ornare, facilisis eget, ipsum.'),
+		('Nom70','Prenom9750','Proin@et.co.uk','user300','f15d337c70078947cfe1b5d6f0ed3f13','2130semper tellus id nunc interdum feugiat. Sed nec'), 
+		('Nom7050','Prenom960','tincidunt@aliquet.ca','face20','cadc87ddebe5c65eba0316c443a289d7','22590laoreet, libero et tristique pellentesque, tellus sem mollis'),
+		('Nom20','Prenom750','sodales.at@sed.ca','user40','ef35613fc5fa4c4c512d552533f5e6f2','4210condimentum eget, volutpat ornare, facilisis eget, ipsum. Donec'),
+		('Nom2040','Prenom87','a@Maecenasliberoest.com','user5','a4cfff2f82da85e81bb59f671dc8bb1d','21230auctor. Mauris vel turpis. Aliquam adipiscing lobortis risus.'),
+        ('Nom_test','Prenom_test','test','username_test','4ba29b9f9e5732ed33761840f4ba6c53','pw:2002')
 ;
 
 INSERT INTO ASSOC_STATUS_CUSTOMER
@@ -755,6 +755,9 @@ insert into ORDER_ROW (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW
 insert into ORDER_ROW (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE) values (null, 3, '9782080706881', 3, '10.18', '27.35');
 insert into ORDER_ROW (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE) values (null, 4, '9782080706881', 4, '2.49', '31.16');
 insert into ORDER_ROW (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE) values (null, 4, '9782203001107', 5, '13.20', '30.55');
+insert into ORDER_ROW (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE) values (null, 4, '9782416000188', 420, '13.20', '30.55');
+insert into ORDER_ROW (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE) values (null, 4, '9782010008993', 116, '13.20', '30.55');
+insert into ORDER_ROW (COMMENT_ID, ORDER_ID, BOOK_ISBN, ORDER_ROW_QTY, ORDER_ROW_HT_PRICE, ORDER_ROW_DISCOUNT_VALUE) values (null, 4, '9782070320530', 57, '13.20', '30.55');
 
 insert into COMMENT (CUSTOMER_ID, ORDER_ROW_ID, BOOK_ISBN, COMMENT_TITLE, COMMENT_RATING, COMMENT_TEXT, COMMENT_DATE, COMMENT_USER_IP, COMMENT_EDIT_DATE) values (1, 1, '9782203001107', 'forecast', 1, 'engineer 24/7 models', '2020-02-25T12:39:02', '127.46.205.152', '2020-02-14T05:32:46');
 insert into COMMENT (CUSTOMER_ID, ORDER_ROW_ID, BOOK_ISBN, COMMENT_TITLE, COMMENT_RATING, COMMENT_TEXT, COMMENT_DATE, COMMENT_USER_IP, COMMENT_EDIT_DATE) values (2, 2, '9782080706881', 'Ergonomic', 2, 'generate B2C applications', '2020-06-30T06:06:19', '253.125.33.249', '2020-01-24T21:50:09');
@@ -781,4 +784,4 @@ insert into ASSOC_STATUS_COMMENT
 ;
 
 -- TESTDATA END --
-SELECT 'SCRIPT OK' FROM ATTRIBUTE;
+SELECT 'OK' AS SCRIPT_EXECUTION;

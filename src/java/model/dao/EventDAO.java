@@ -6,8 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
@@ -45,7 +43,7 @@ public class EventDAO {
                     
                 }
                 
-            
+            connexion.close();
            return event;     
         }
     
@@ -80,7 +78,7 @@ public class EventDAO {
                 // Obtains the publisher matching the ID
                 //object.setPublisher(new PublisherDAO().get(rs.getInt(2)));
                 // Obtains the VAT matching the ID
-                //object.setVat(new VatDAO().get(rs.getInt(3)));
+                object.setVat(new VatDAO().getById(rs.getInt(3)));
                 object.setTitle(rs.getString(4));
                 object.setSubTitle(rs.getString(5));
                 object.setPrice(rs.getFloat(6));
@@ -97,7 +95,7 @@ public class EventDAO {
                 }
 
         
-        
+        connexion.close();
         return lBook;
     }
      	

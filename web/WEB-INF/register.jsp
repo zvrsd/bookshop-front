@@ -10,6 +10,7 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="css/default.css" />
+        <link rel="stylesheet"  type="text/css"  href="bouton.css" />
         <title>JSP Page</title>
     </head>
     <body>
@@ -45,13 +46,7 @@
 
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            Adresse email<br />
-                            <input class="k_text_field" type="text" name="email" value="${email}" />
-
-                        </td>
-                    </tr>
+                    
                     <tr>
                         <td>
                             Nom d'utilisateur<br />
@@ -61,8 +56,15 @@
                     </tr>
                     <tr>
                         <td>
-                            Mot de passe<br />
-                            <input class="k_text_field" type="password" name="password" value="" />
+                            Adresse email<br />
+                            <input class="k_text_field" type="text" name="email" value="${email}" />
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                           Mot de passe<br />
+                            <input class="k_text_field" type="password" name="password" value="" readonly onfocus="this.removeAttribute('readonly');"/>
                         </td>
                     </tr>
                     <tr>
@@ -72,7 +74,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <button class="k_button" type="submit" name="action" value="register">Creer le compte</button>
+                            <button class="bttn-unite" type="submit" name="action" value="register">Creer le compte</button>
                         </td>
                     </tr>
                 </form>

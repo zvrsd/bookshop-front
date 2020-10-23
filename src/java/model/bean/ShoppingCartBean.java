@@ -43,8 +43,13 @@ public class ShoppingCartBean implements Serializable{
     // Set book's quantity manually
     public void setQuantity(String isbn, int quantity) {
 
+        // If the quantity is greater than the stock
+        if(quantity > books.get(isbn).getQuantity()){
+            return;
+        }
+            
         // Sets the book quantity to the specified value
-        books.get(isbn).setQuantity(quantity);
+        books.get(isbn).setCartQuantity(quantity);
         
         // If the quantity reaches 0
         if(getQuantity(isbn) <= 0){
@@ -79,7 +84,7 @@ public class ShoppingCartBean implements Serializable{
     public int getQuantity(String isbn){
         
         if(books.containsKey(isbn)){
-            return getBook(isbn).getQuantity();
+            return getBook(isbn).getCartQuantity();
         }
         return 0;
     }
@@ -90,7 +95,7 @@ public class ShoppingCartBean implements Serializable{
         float price = 0;
         
         for(Book book : books.values()){
-            price += book.getPrice() * book.getQuantity();
+            price += book.getPrice() * book.getCartQuantity();
         }
         return price;
     }
@@ -101,7 +106,7 @@ public class ShoppingCartBean implements Serializable{
         float price = 0;
         
         for(Book book : books.values()){
-            price += book.getTPrice() * book.getQuantity();
+            price += book.getTPrice() * book.getCartQuantity();
         }
         return price;
     }

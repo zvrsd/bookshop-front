@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collection;
 import java.util.Date;
-import model.entity.Address;
 
 /**
  *
@@ -42,8 +41,8 @@ public class Customer implements Serializable {
     private String customerPassword;
     private String customerPostIt;
     private Date clientDate;
-    private Collection<Address> addressCollection;
-    private Collection<Address> addressCollection1;
+    private Collection<Address> billingAddresses;
+    private Collection<Address> deliveryAddresses;
     private String clDate;
 
     public Customer() {
@@ -128,20 +127,20 @@ public class Customer implements Serializable {
         this.clientDate = clientDate;
     }
 
-    public Collection<Address> getAddressCollection() {
-        return addressCollection;
+    public Collection<Address> getDeliveryAddresses() {
+        return deliveryAddresses;
     }
 
-    public void setAddressCollection(Collection<Address> addressCollection) {
-        this.addressCollection = addressCollection;
+    public void setDeliveryAddresses(Collection<Address> deliveryAddresses) {
+        this.deliveryAddresses = deliveryAddresses;
     }
 
-    public Collection<Address> getAddressCollection1() {
-        return addressCollection1;
+    public Collection<Address> getBillingAddresses() {
+        return billingAddresses;
     }
 
-    public void setAddressCollection1(Collection<Address> addressCollection1) {
-        this.addressCollection1 = addressCollection1;
+    public void setBillingAddresses(Collection<Address> billingAddresses) {
+        this.billingAddresses = billingAddresses;
     }
 
     @Override

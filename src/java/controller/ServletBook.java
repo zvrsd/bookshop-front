@@ -3,11 +3,15 @@ package controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.dao.BookDAO;
 import model.entity.Book;
 import res.Values;
@@ -34,6 +38,14 @@ public class ServletBook extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        try {
+            new BookDAO().getBestSales();
+        } catch (NamingException ex) {
+            Logger.getLogger(ServletBook.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(ServletBook.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         // YOU MUST PROVIDE AN ISBN OR THE BOOK TO DISPLAY
         // in request
 
@@ -67,11 +79,15 @@ public class ServletBook extends HttpServlet {
             }
         }
 
+        // Updates the history
+        updateLastVisited(request, book);
+        
         // Book comments go inside this collection
         Collection<Object> comments = new ArrayList<>();
 
         // This contains the book to be displayed
         request.setAttribute(Values.PARAM_BOOK, book);
+        
 
         // This contains the comments related to this books
         request.setAttribute(Values.PARAM_COMMENTS, comments);
@@ -80,6 +96,36 @@ public class ServletBook extends HttpServlet {
         request.getRequestDispatcher(Values.JSP_BOOK_INFO_FULL).include(request, response);
     }
 
+    private void updateLastVisited(HttpServletRequest request, Book book){
+        
+        HttpSession session = request.getSession();
+        
+        // Creates the array if needed
+        Book[] lastVisitedBooks = (Book[]) session.getAttribute(Values.PARAM_LAST_SEEN_BOOKS);
+        if(lastVisitedBooks == null){
+            lastVisitedBooks = new Book[5];
+            session.setAttribute(Values.PARAM_LAST_SEEN_BOOKS, lastVisitedBooks);
+        }
+        
+        // Updates the history
+        for(int i = lastVisitedBooks.length - 1; i > 0; i--){
+           lastVisitedBooks[i] = lastVisitedBooks[i-1];
+        }
+        lastVisitedBooks[0] = book;
+        
+        // Debug code START
+        System.out.print("[");
+        for(Book b : lastVisitedBooks){
+            if(b == null){
+                System.out.print(" "+b);
+            }
+            else{
+                System.out.print(" "+b.getTitle());
+            }
+        }
+        System.out.print(" ]");
+        // Debug code END
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -108,4 +154,4 @@ public class ServletBook extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-} 
+}

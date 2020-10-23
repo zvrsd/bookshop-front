@@ -241,6 +241,11 @@
     font-size: 18px;
 }
 
+#k_label_book_isbn {
+    width: 100%;
+    font-size: 200px;
+}
+
 #k_box_book_plus {
     min-width: 50%;
     font-size: 20px;
@@ -375,3 +380,5 @@
     align-items: stretch;
     background-color: var(--k_main_bg_color);
 }
+
+

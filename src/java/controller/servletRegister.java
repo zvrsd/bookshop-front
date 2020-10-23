@@ -40,6 +40,8 @@ public class servletRegister extends HttpServlet {
             String password = request.getParameter("password");
             // Variable 
             String msg;
+            //email regex
+            final String emailRegex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
 
 /*
             This part of code checks if the user is coming from outside of the page:
@@ -67,7 +69,7 @@ public class servletRegister extends HttpServlet {
 
                 if (emailFound == true){;
                 // If Email exists in database
-                msg ="Cet email est deja connu! Veuillez voulez vous connecter!";
+                msg ="Cet email est deja connu! Veuillez vous connecter!";
                 request.setAttribute("msg", msg);
                 request.setAttribute("last_name", last_name);
                 request.setAttribute("first_name", first_name);
@@ -85,9 +87,6 @@ public class servletRegister extends HttpServlet {
                     System.out.println("SQLException: " + ex);
                     Logger.getLogger(servletRegister.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
-
-
 
 
             }              
@@ -109,7 +108,20 @@ public class servletRegister extends HttpServlet {
 //            }else if(request.getAttribute("email") == {
 
             }else{
-// If form is ok, the newly registered customer gets send to his account page. 
+                
+                if (!email.matches(emailRegex)) {
+                    
+                    msg = "Veuillez entrer une adresse e-mail valide.";
+                request.setAttribute("msg", msg);
+                request.setAttribute("last_name", last_name);
+                request.setAttribute("first_name", first_name);
+                request.setAttribute("email", email);
+                request.setAttribute("username", username);                
+
+                RequestDispatcher req = request.getRequestDispatcher(Values.JSP_REGISTER_FULL);
+                req.include(request, response);
+                } else {
+                    // If form is ok, the newly registered customer gets send to his account page. 
 
                Customer customer = new Customer();
 
@@ -132,8 +144,11 @@ public class servletRegister extends HttpServlet {
                 }
 
 // Change this line to redirect new customer to desired page of website:               
-            RequestDispatcher req = request.getRequestDispatcher("/homePageJsp.jsp");
+            RequestDispatcher req = request.getRequestDispatcher(Values.SERVLET_HOME);
             req.forward(request, response);
+                }
+                
+
             }
 // Hash related exceptions         
         } catch (NoSuchAlgorithmException ex) {

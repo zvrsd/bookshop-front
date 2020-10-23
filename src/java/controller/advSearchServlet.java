@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -49,16 +50,40 @@ public class advSearchServlet extends HttpServlet {
             beanSearch beanSearch = new beanSearch(); 
             //List<Book> books = new ArrayList(); 
             Set<Set<Book>> recueil = new HashSet(); 
-            recueil.add( beanSearch.getByTitle((String) request.getParameter("title"))); 
-            recueil.add(beanSearch.getByCategory((String) request.getParameter("category")));
-            recueil.add(beanSearch.getByISBN((String) request.getParameter("isbn")));
-            recueil.add(beanSearch.getByKeywords((String) request.getParameter("keywords")));
-           /* if(request.getParameter("priceMin") != null) {
-                  if (request.getParameter("priceMax") != null){
-            Double min = Double.parseDouble(request.getParameter("priceMin")); 
-            Double max = Double.parseDouble(request.getParameter("priceMax"));
-             recueil.add( beanSearch.getByPrice(min , max));
-            }*/
+            
+            String title = (String) request.getParameter("title"); 
+            if ((title != null) && (title.length() > 1)){
+            recueil.add( beanSearch.getByTitle(title)); }
+                String category = (String) request.getParameter("category");
+                if (!category.equals("category")){
+            recueil.add(beanSearch.getByCategory(category));}
+                    String isbn = (String) request.getParameter("isbn");
+                    if((isbn != null) && (isbn.length() > 1)){
+            recueil.add(beanSearch.getByISBN(isbn));}
+                        String keyword = (String) request.getParameter("keywords"); 
+                        if ((keyword != null) && (keyword.length() >1)){
+            recueil.add(beanSearch.getByKeywords(keyword));}
+                        
+          /*  Double min = Double.parseDouble(request.getParameter("priceMin")); 
+            Double max = Double.parseDouble(request.getParameter("priceMax")); 
+            if ((min != null) && (max != null)) {
+                recueil.add( beanSearch.getByPrice(min , max));
+            }
+                  if (min != null){
+              recueil.add(beanSearch.getByPriceMin(min)); 
+             
+                  }
+                 if(max != null){
+                      recueil.add(beanSearch.getByPriceMax(max)); 
+                  }*/
+                 
+              String remise = request.getParameter("remise"); 
+              if (remise != null){
+                  recueil.add(beanSearch.getByRemise());
+              }
+                    
+                
+            
             
             recueil.stream().forEach((book) -> {
                 book.stream().forEach((boo) -> {
@@ -125,3 +150,4 @@ public class advSearchServlet extends HttpServlet {
     }// </editor-fold>
 
 }
+

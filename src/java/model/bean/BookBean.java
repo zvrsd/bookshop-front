@@ -45,7 +45,7 @@ public class BookBean implements Serializable {
     }
 
     public float getPriceTotal() {
-        return book.getPrice() * book.getQuantity();
+        return book.getPrice() * book.getCartQuantity();
     }
 
     public String getPriceTotalText() {
@@ -53,7 +53,7 @@ public class BookBean implements Serializable {
     }
 
     public float getFullPriceTotal() {
-        return book.getTPrice() * book.getQuantity();
+        return book.getTPrice() * book.getCartQuantity();
     }
 
     public String getFullPriceTotalText() {
@@ -66,5 +66,9 @@ public class BookBean implements Serializable {
 
     public void setBook(Book book) {
         this.book = book;
+    }
+    
+    public String getDiscountFullPriceText(float discount){
+        return roundFloat (book.getPriceT() - discount * book.getPriceT() / 100);
     }
 }
